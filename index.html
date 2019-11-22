@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<title>Search School Extension</title>
+<title>RenArt</title>
 <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
 <link href = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,900&display=swap" rel="stylesheet">
 <style>
@@ -11,6 +11,7 @@
   box-sizing: border-box;
 }
 #artInput {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/221px-Vector_search_icon.svg.png');
   background-position: 10px 10px;;
   background-repeat: no-repeat;
   background-size: 25px;
@@ -58,6 +59,7 @@ h1:hover {
   animation-duration: 0.5s;
   animation-delay: 0.1s;
 }
+
 @keyframes artshadow {
   from {}
   to {text-shadow: 2px 2px 5px black;}
@@ -83,17 +85,18 @@ p {
 <body>
 
   <h1><a href = "https://micahlt.github.io/renart/"><b>RenArt</b></a></h1>
-<h2>Search for name,office or extension</h2>
+<h2>search artworks by name, artist, and more</h2>
 <div class = "centerenter">
-<input type="text" id="artInput" onkeyup="artFunction()" placeholder="name, office, extension..." title="Work search">
+<input type="text" id="artInput" onkeyup="artFunction()" placeholder="name, date, artist..." title="Work search">
 </div>
 <div class = "tablesearch">
-<table class="table table-bordered table-hover table-condensed">
-<thead><tr><th title="Field #1">職稱</th>
-<th title="Field #2">姓名</th>
-<th title="Field #3">處室</th>
-<th title="Field #4">分機</th>
-</tr></thead>
+<table id="artTable" align = "center">
+  <tr class="header">
+    <th style="width:25%;">職稱</th>
+    <th style="width:25%;">姓名</th>
+    <th style="width:25%;">處室</th>
+    <th style="width:25%;">分機</th>
+  </tr>
 <tbody><tr>
 <td>教務主任</td>
 <td>李一昇</td>
@@ -1025,6 +1028,7 @@ p {
 <td align="right">74</td>
 </tr>
 </tbody></table>
+</table>
   </div>
   <br><br><br><br><br>
   <p>this project was created and is maintained by <a href = "https://micahlt.github.io/">Micah Lindley</a>.  Last updated 8/21/19.</p>
