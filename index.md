@@ -10,3 +10,4 @@
 <body>
 </body>
 </html>
+<input type="text" onkeyup="searchFunction()" placeholder="search here" title="search">
