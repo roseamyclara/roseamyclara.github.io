@@ -94,103 +94,37 @@ p {
     <th style="width:25%;">Artist</th>
     <th style="width:25%;">Commisioner</th>
     <th style="width:25%;">Completed</th>
-  </tr>
-  <tr>
-    <td>RainbowCat</a></td>
-    <td>Fra Angelico</td>
-    <td>Cosimo de' Medici</td>
-    <td>1446</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+hunters+in+the+snow">The Hunters in the Snow</a></td>
-    <td>Pieter Bruegel the Elder</td>
-    <td>not commissioned</td>
-    <td>1567</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=portrait+of+julius+ii">Portrait of Julius II</a></td>
-    <td>Raphael</td>
-    <td>Julius II</td>
-    <td>1512</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+presentation+of+the+virgin+in+the+temple">The Presentation of the Virgin in the Temple</a></td>
-    <td>Fra Carnevale</td>
-    <td>unknown</td>
-    <td>1467</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+wedding+at+cana">The Wedding at Cana</a></td>
-    <td>Botticelli</td>
-    <td>the Black Monks</td>
-    <td>1563</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+sistine+chapel+ceiling">The Sistine Chapel Ceiling</a></td>
-    <td>Michaelangelo</td>
-    <td>Julius II</td>
-    <td>1512</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=venus+and+mars">Venus and Mars</a></td>
-    <td>Botticelli</td>
-    <td>possibly the Vespuccis</td>
-    <td>1485</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+feast+in+the+house+of+levi">The Feast in the House of Levi</a></td>
-    <td>Paolo Veronese</td>
-    <td>possibly Dominican monks</td>
-    <td>1573</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+sistine+madonna">The Sistine Madonna</a></td>
-    <td>Raphael</td>
-    <td>Julius II</td>
-    <td>1514</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+school+of+athens">The School of Athens</a></td>
-    <td>Raphael</td>
-    <td>Julius II</td>
-    <td>1511</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=bacchus+and+ariadne">Bacchus and Ariadne</a></td>
-    <td>Titian</td>
-    <td>Alfonso I de'Este</td>
-    <td>1523</td>
-  </tr> 
-  <tr>
-    <td><a href="http://www.google.com/search?q=marriage+of+the+virgin">Marriage of the Virgin</a></td>
-    <td>Titian</td>
-    <td>Filippo degli Albezzini</td>
-    <td>1504</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=adoration+of+the+magi">Adoration of the Magi</a></td>
-    <td>Sandro Botticelli</td>
-    <td>Gaspare di Zanobi del Lama</td>
-    <td>1476</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=st+stephens+disputation">St. Stephen's Disputation</a></td>
-    <td>Paolo Veronese</td>
-    <td>the Scuola di Santo Stefano</td>
-    <td>1514</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+peasant+wedding">The Peasant Wedding</a></td>
-    <td>Pieter Bruegel the Elder</td>
-    <td>not commissioned</td>
-    <td>1565</td>
-  </tr>
-  <tr>
-    <td><a href="http://www.google.com/search?q=the+holy+trinity+art">The Holy Trinity</a></td>
-    <td>Masaccio</td>
-    <td>unknown</td>
-    <td>1427</td>
-  </tr>
+  <!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSV Downloader</title>
+</head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
+<script>
+    function arrayToTable(tableData) {
+        var table = $('<table></table>');
+        $(tableData).each(function (i, rowData) {
+            var row = $('<tr></tr>');
+            $(rowData).each(function (j, cellData) {
+                row.append($('<td>'+cellData+'</td>'));
+            });
+            table.append(row);
+        });
+        return table;
+    }
+
+    $.ajax({
+        type: "GET",
+        url: "C:\Users\tim tom\Desktop\csvTOhtml\data.csv",
+        success: function (data) {
+            $('body').append(arrayToTable(Papa.parse(data).data));
+        }
+    });
+</script>
+</body>	
 </table>
   </div>
   <br><br><br><br><br>
