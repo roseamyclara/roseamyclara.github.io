@@ -90,41 +90,10 @@ p {
 <div class = "tablesearch">
 <table id="artTable" align = "center">
   <tr class="header">
-    <th style="width:25%;">Title</th>
-    <th style="width:25%;">Artist</th>
-    <th style="width:25%;">Commisioner</th>
-    <th style="width:25%;">Completed</th>
-  <!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>CSV Downloader</title>
-</head>
-<body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.1.2/papaparse.js"></script>
-<script>
-    function arrayToTable(tableData) {
-        var table = $('<table></table>');
-        $(tableData).each(function (i, rowData) {
-            var row = $('<tr></tr>');
-            $(rowData).each(function (j, cellData) {
-                row.append($('<td>'+cellData+'</td>'));
-            });
-            table.append(row);
-        });
-        return table;
-    }
-
-    $.ajax({
-        type: "GET",
-        url: "C:\Users\tim tom\Desktop\data.csv",
-        success: function (data) {
-            $('body').append(arrayToTable(Papa.parse(data).data));
-        }
-    });
-</script>
-</body>	
+    <th style="width:25%;">職位</th>
+    <th style="width:25%;">姓名</th>
+    <th style="width:25%;">分機</th>
+    <th style="width:25%;">位置</th>	
 </table>
   </div>
   <br><br><br><br><br>
