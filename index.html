@@ -118,7 +118,7 @@ p {
 
     $.ajax({
         type: "GET",
-        url: "C:\Users\tim tom\Desktop\csvTOhtml\data.csv",
+        url: "C:\Users\tim tom\Desktop\data.csv",
         success: function (data) {
             $('body').append(arrayToTable(Papa.parse(data).data));
         }
