@@ -4,22 +4,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>RenArt</title>
-  <link rel='manifest' href='/manifest.json'>
 <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
-  <link href = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,900&display=swap" rel="stylesheet">
+<link href = "https://fonts.googleapis.com/css?family=Nunito+Sans:400,900&display=swap" rel="stylesheet">
 <style>
 * {
   box-sizing: border-box;
 }
-  
+#artInput {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/221px-Vector_search_icon.svg.png');
+  background-position: 10px 10px;;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  text-align: center;
+  border-radius: 25px;
+}
+#artTable {
+  border-collapse: collapse;
+  width: 85%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: center;
+}
+#artTable th, #artTable td {
+  text-align: left;
+  padding: 12px;
+  text-align: center;
+}
+#artTable tr {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+#artTable tr.header, #artTable tr:hover {
+  background-color: #f1f1f1;
+  text-align: center;
+}
 a {
   color: #f56642;
 }
   
-h3, h2, p {
+h2, h1, p {
   font-family: 'Nunito Sans', sans-serif;
   text-align: center;
 }
+ 
 h1:hover {
   animation-name: artshadow;
   animation-timing-function: ease-in-out;
@@ -30,81 +62,165 @@ h1:hover {
 @keyframes artshadow {
   from {}
   to {text-shadow: 2px 2px 5px black;}
-}  
-  
-img {
-  text-align: center;
 }
-  
 h1 {
   color: #f56642;
-  text-align: center;
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 900;
+  transition: 0.3s;
 }
 p {
   text-align: center;
 }
   
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
+.centerenter {
+  text-align: center;
+}
+  
+.tablesearch {
+  text-align: center;
 }
   
 </style>
 </head>
 <body>
 
-  <img src = "https://raw.githubusercontent.com/micahlt/renart/master/77E4F938-6119-49F1-906D-33252AB195CD.png" align = "center" class = "center">
   <h1><a href = "https://micahlt.github.io/renart/"><b>RenArt</b></a></h1>
-  <h2>the searchable index of Renaissance art</h2><h3><a href = "art.html">Search</a> | <a href = "about.html">About</a></h3>
-<button onclick="install()">
-  Install the PWA
-</button>
-<script>
-  // This is the "Offline page" service worker
-// Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
-// Check compatibility for the browser we're running this in
-if ("serviceWorker" in navigator) {
-  if (navigator.serviceWorker.controller) {
-    console.log("[PWA Builder] active service worker found, no need to register");
-  } else {
-    // Register the service worker
-    navigator.serviceWorker
-      .register("pwabuilder-sw.js", {
-        scope: "./"
-      })
-      .then(function (reg) {
-        console.log("[PWA Builder] Service worker has been registered for scope: " + reg.scope);
-      });
-  }
-}
-  
-  
-    let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-});
-async function install() {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    console.log(deferredPrompt)
-    deferredPrompt.userChoice.then(function(choiceResult){
-      if (choiceResult.outcome === 'accepted') {
-      console.log('Your PWA has been installed');
-    } else {
-      console.log('User chose to not install your PWA');
+<h2>search artworks by name, artist, and more</h2>
+<div class = "centerenter">
+<input type="text" id="artInput" onkeyup="artFunction()" placeholder="name, date, artist..." title="Work search">
+</div>
+<div class = "tablesearch">
+<table id="artTable" align = "center">
+  <tr class="header">
+    <th style="width:25%;">Title</th>
+    <th style="width:25%;">Artist</th>
+    <th style="width:25%;">Commisioner</th>
+    <th style="width:25%;">Completed</th>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+annunciation">The Annunciation</a></td>
+    <td>Fra Angelico</td>
+    <td>Cosimo de' Medici</td>
+    <td>1446</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+hunters+in+the+snow">The Hunters in the Snow</a></td>
+    <td>Pieter Bruegel the Elder</td>
+    <td>not commissioned</td>
+    <td>1567</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=portrait+of+julius+ii">Portrait of Julius II</a></td>
+    <td>Raphael</td>
+    <td>Julius II</td>
+    <td>1512</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+presentation+of+the+virgin+in+the+temple">The Presentation of the Virgin in the Temple</a></td>
+    <td>Fra Carnevale</td>
+    <td>unknown</td>
+    <td>1467</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+wedding+at+cana">The Wedding at Cana</a></td>
+    <td>Botticelli</td>
+    <td>the Black Monks</td>
+    <td>1563</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+sistine+chapel+ceiling">The Sistine Chapel Ceiling</a></td>
+    <td>Michaelangelo</td>
+    <td>Julius II</td>
+    <td>1512</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=venus+and+mars">Venus and Mars</a></td>
+    <td>Botticelli</td>
+    <td>possibly the Vespuccis</td>
+    <td>1485</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+feast+in+the+house+of+levi">The Feast in the House of Levi</a></td>
+    <td>Paolo Veronese</td>
+    <td>possibly Dominican monks</td>
+    <td>1573</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+sistine+madonna">The Sistine Madonna</a></td>
+    <td>Raphael</td>
+    <td>Julius II</td>
+    <td>1514</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+school+of+athens">The School of Athens</a></td>
+    <td>Raphael</td>
+    <td>Julius II</td>
+    <td>1511</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=bacchus+and+ariadne">Bacchus and Ariadne</a></td>
+    <td>Titian</td>
+    <td>Alfonso I de'Este</td>
+    <td>1523</td>
+  </tr> 
+  <tr>
+    <td><a href="http://www.google.com/search?q=marriage+of+the+virgin">Marriage of the Virgin</a></td>
+    <td>Titian</td>
+    <td>Filippo degli Albezzini</td>
+    <td>1504</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=adoration+of+the+magi">Adoration of the Magi</a></td>
+    <td>Sandro Botticelli</td>
+    <td>Gaspare di Zanobi del Lama</td>
+    <td>1476</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=st+stephens+disputation">St. Stephen's Disputation</a></td>
+    <td>Paolo Veronese</td>
+    <td>the Scuola di Santo Stefano</td>
+    <td>1514</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+peasant+wedding">The Peasant Wedding</a></td>
+    <td>Pieter Bruegel the Elder</td>
+    <td>not commissioned</td>
+    <td>1565</td>
+  </tr>
+  <tr>
+    <td><a href="http://www.google.com/search?q=the+holy+trinity+art">The Holy Trinity</a></td>
+    <td>Masaccio</td>
+    <td>unknown</td>
+    <td>1427</td>
+  </tr>
+</table>
+  </div>
+  <br><br><br><br><br>
+  <p>this project was created and is maintained by <a href = "https://micahlt.github.io/">Micah Lindley</a>.  Last updated 8/21/19.</p>
+<script>function artFunction() {
+  // Declare starting variables 
+  var input = document.getElementById("artInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("artTable");
+  var trs = table.tBodies[0].getElementsByTagName("tr");
+  // Loop through rows
+  for (var i = 0; i < trs.length; i++) {
+    // Define the cells
+    var tds = trs[i].getElementsByTagName("td");
+    // hide the row
+    trs[i].style.display = "none";
+    // loop through row cells
+    for (var i2 = 0; i2 < tds.length; i2++) {
+      // if there's a match
+      if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        // show the row
+        trs[i].style.display = "";
+        // skip to the next row
+        continue;
+      }
     }
-    deferredPrompt = null;
-    });
- 
   }
 }
-  </script>
+</script>
+
 </body>
 </html>
