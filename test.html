@@ -1210,13 +1210,7 @@ p {
   }
 }
   </script>
-  <script>
-    for (var i = 0; i < trs.length; i=i+5) {
-    // Define the cells
-    var tds = trs[i].getElementsByTagName("td");
-    // hide the row
-    trs[i].style.display = "none";
-    }
-    </script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  $("#artTable tr:eq(0) td").slice(0,3).hide();
 </body>
 </html>
