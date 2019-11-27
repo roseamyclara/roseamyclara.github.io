@@ -1209,12 +1209,12 @@ p {
     }
   }
 }
-</script>
-
-  <script>function hideFunction() {
-  // Declare starting variables 
-  var trs = table.tBodies[0].getElementsByTagName("tr");
-  var tds = trs[i+4].getElementsByTagName("td");
-    trs[i+4].style.display = "none";
+<style>
+.hideme {
+height: 1px; border: none } 
+.noborder{border: none}
+.offscreen {
+height: 1px; width: 1px; position: absolute; overflow: hidden; top: -10px; } 
+</style>
 </body>
 </html>
