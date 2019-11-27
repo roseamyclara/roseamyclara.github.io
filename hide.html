@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>Search</title>
@@ -91,8 +91,6 @@ p {
 <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 處室,分機..." title="Work search">
 </div>
 <div class = "tablesearch">
-
-jQuery('th:nth-child(2), tr td:nth-child(2)').hide();
   <table id="artTable" align = "center">
   <tr class="header">
     <th style="width:25%;">職稱</th>
@@ -1056,6 +1054,9 @@ jQuery('th:nth-child(2), tr td:nth-child(2)').hide();
     }
   }
 }
+</script>
+<script type="text/javascript">
+$('th:nth-child(1), tr td:nth-child(1)').hide();
 </script>
 </body>
 </html>
