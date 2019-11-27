@@ -10,6 +10,8 @@
 * {
   box-sizing: border-box;
 }
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<body>
 #artInput {
   background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/221px-Vector_search_icon.svg.png');
   background-position: 10px 10px;;
@@ -82,9 +84,6 @@ p {
   
 </style>
 </head>
-  <script type="text/javascript" 
-src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<body>
 
   <h1><b>Search</h1>
 <h2>用職稱、名字、處室搜尋分機</h2>
@@ -1212,9 +1211,8 @@ src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   }
 }
   </script>
-  
-  $('tr td:nth-child(5)').hide();
-
-  
+ #artTable tr td:nth-child(5) {
+    display: none;
+}
 </body>
 </html>
