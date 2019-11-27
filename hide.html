@@ -91,7 +91,9 @@ p {
 <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 處室,分機..." title="Work search">
 </div>
 <div class = "tablesearch">
-<table id="artTable" align = "center">
+
+$('th:nth-child(2), tr td:nth-child(2)').hide();
+  <table id="artTable" align = "center">
   <tr class="header">
     <th style="width:25%;">職稱</th>
     <th style="width:25%;">姓名</th>
@@ -1055,6 +1057,5 @@ p {
   }
 }
 </script>
-$('th:nth-child(2), tr td:nth-child(2)').hide();
 </body>
 </html>
