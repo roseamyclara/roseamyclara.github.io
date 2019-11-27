@@ -1211,13 +1211,11 @@ p {
 }
   </script>
   <script>
-    tr = document.getElementsByTagName('tr');
-
-for (var i = 0; i < tr.length; i++) {
-  if (tr[i].getElementsByTagName('td').length == 5) {
-    tr[i].style.display = 'none';
-  }
-}
+    for (var i = 0; i < trs.length; i=i+5) {
+    // Define the cells
+    var tds = trs[i].getElementsByTagName("td");
+    // hide the row
+    trs[i].style.display = "none";
     </script>
 </body>
 </html>
