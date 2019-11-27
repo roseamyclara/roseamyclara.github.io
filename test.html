@@ -109,28 +109,28 @@ p {
 <td>顏o珉</td>
 <td>教務處</td>
 <td align="right">12</td>
-<td>顏佳珉</td>
+<td style="display:none;">顏佳珉</td>
 </tr>
 <tr>
 <td>註冊組長</td>
 <td>陳o華</td>
 <td>教務處</td>
 <td align="right">13</td>
-<td>陳盈華</td>
+<td style="display:none;">陳盈華</td>
 </tr>
 <tr>
 <td>設備組長</td>
 <td>曾o洋</td>
 <td>教務處</td>
 <td align="right">14</td>
-<td>曾國洋</td>
+<td style="display:none;">曾國洋</td>
 </tr>
 <tr>
 <td>資訊執秘</td>
 <td>吳o娟</td>
 <td>教務處</td>
 <td align="right">14</td>
-<td>吳淑娟</td>
+<td style="display:none;">吳淑娟</td>
 </tr>
 <tr>
 <td>教師</td>
@@ -1214,7 +1214,7 @@ p {
   var table = document.getElementById("artTable");
   var trs = table.tBodies[0].getElementsByTagName("tr");
   // Loop through rows
-  for (var j = 0; j < trs.length; j=j+4) {
+  for (var j = 0; j < trs.length; j=j+6) {
     // Define the cells
     var tds = trs[j].getElementsByTagName("td");
     // hide the row
