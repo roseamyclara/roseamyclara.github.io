@@ -1209,5 +1209,19 @@ p {
     }
   }
 }
+  <script>function artFunction() {
+  // Declare starting variables 
+  var input = document.getElementById("artInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("artTable");
+  var trs = table.tBodies[0].getElementsByTagName("tr");
+  // Loop through rows
+  for (var j = 0; j ==j+4) {
+    // Define the cells
+    var tds = trs[j].getElementsByTagName("td");
+    // hide the row
+    trs[j].style.display = "none";
+      }
+    }
 </body>
 </html>
