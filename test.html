@@ -1210,18 +1210,14 @@ p {
   }
 }
   </script>
-  <script>function hideFunction() {
-  // Declare starting variables 
-  var table = document.getElementById("artTable");
-  var trs = table.tBodies[0].getElementsByTagName("tr");
-  // Loop through rows
-  for (var j = 0; j < trs.length; j=j+6) {
-    // Define the cells
-    var tds = trs[j].getElementsByTagName("td");
-    // hide the row
-    trs[j].style.display = "none";
-      }
-    }
+  <script>
+    tr = document.getElementsByTagName('tr');
+
+for (var i = 0; i < tr.length; i++) {
+  if (tr[i].getElementsByTagName('td').length == 5) {
+    tr[i].style.display = 'none';
+  }
+}
     </script>
 </body>
 </html>
