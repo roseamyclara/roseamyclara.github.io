@@ -1213,7 +1213,7 @@ p {
   <script>
     tr = document.getElementsByTagName('tr');
 
-for (var i = 0; i < tr.length; i++) {
+for (var i = 0; i < tr.length; i=i+5) {
   if (tr[i].getElementsByTagName('td').length == 5) {
     tr[i].style.display = 'none';
   }
