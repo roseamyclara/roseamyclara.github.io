@@ -85,7 +85,6 @@ p {
 <body>
 
   <h1><b>Search</h1>
-<h2>用職稱、名字、處室搜尋分機</h2>
 <div class = "centerenter">
 <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 處室,分機..." title="Work search">
 </div>
@@ -5801,9 +5800,10 @@ p {
 <td>南一西</td>
 <td>75</td>
 </table>
-  </div>
-  <br><br><br><br><br>
-<script>function artFunction() {
+</div>
+<br><br><br><br><br>
+
+  <script>function artFunction() {
   // Declare starting variables 
   var input = document.getElementById("artInput");
   var filter = input.value.toUpperCase();
