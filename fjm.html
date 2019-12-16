@@ -1,11 +1,25 @@
 <HTML>
-<SCRIPT LANGUAGE="JavaScript">
+<SCRIPT LANGUAGE="javascript">
 
-var password = ''
-password=prompt('輸入密碼:','');
-if (password != null) {
-location.href= password + ".html";
+var password = prompt("請輸入密碼","")
+if (password=="fjm")
+{
+alert('Welcome!')
+location.href='.'
 }
-
-</SCRIPT>
+else
+{
+if (password=="null")
+{
+alert('請再輸入一次密碼');
+location.href='examples/javascript/16ex2.html';
+}
+else
+if (password!="fjm")
+{
+alert('請再輸入一次密碼');
+location.href='examples/javascript/16ex2.html';
+}
+} 
+</SCRIPT> 
 </HTML>
