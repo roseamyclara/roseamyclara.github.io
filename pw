@@ -8,3 +8,5 @@ if (password !='123') {
 location.href='https://tzuhsiangmeimei.blogspot.com';
 }
 </script> 
+</head>
+</html>
