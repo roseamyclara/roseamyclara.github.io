@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<head>
-<script type="text/javascript">
-/* password protection */
-var password ='youchendadmom'
-password=prompt('為防止非導師進入，網頁有設密碼請輸入後','');
-if (password !='123') {
-location.href='https://tzuhsiangmeimei.blogspot.com';
+<HTML>
+<SCRIPT LANGUAGE="javascript">
+var password = prompt("請輸入密碼",""); 
+
+while (password !== "fjm") {
+    password = prompt("請再輸入一次密碼");
+  }
+if ( password === "fjm") {
+alert('歡迎填寫表單!')
+location.href='https://forms.gle/E7yGUWCuHxutZoDY7'
 }
-</script> 
-</head>
-</html>
+    break;
+}
+</SCRIPT> 
+</HTML>
