@@ -1,15 +1,24 @@
-<HTML>
-<SCRIPT LANGUAGE="javascript">
-var password = prompt("請輸入密碼",""); 
-
-while (password !== "fjm") {
-    password = prompt("請再輸入一次密碼");
-  }
-if ( password === "fjm") {
+<html>
+<script language="JavaScript">
+var password = prompt("請輸入密碼","")
+if (password=="fjm")
+{
 alert('歡迎填寫表單!')
 location.href='https://forms.gle/E7yGUWCuHxutZoDY7'
 }
-    break;
+else
+{
+if (password=="null")
+{
+alert('請再輸入一次密碼');
+location.href='roseamyclara.github.io/fjm';
 }
+else
+if (password!="fjm")
+{
+alert('請再輸入一次密碼');
+location.href='roseamyclara.github.io/fjm';
+}
+} 
 </SCRIPT> 
 </HTML>
