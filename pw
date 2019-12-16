@@ -1,0 +1,8 @@
+<script type="text/javascript">
+/* password protection */
+var password ='youchendadmom'
+password=prompt('為防止非導師進入，網頁有設密碼請輸入後','');
+if (password !='123') {
+location.href='https://tzuhsiangmeimei.blogspot.com';
+}
+</script> 
