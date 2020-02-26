@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<title>Search</title>
+<link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
+</style>
+ <style>
+* {
+  box-sizing: border-box;
+}
+#artInput {
+  background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+  background-position: 10px 10px;;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  text-align: center;
+  border-radius: 25px;
+}
+#artTable {
+  border-collapse: collapse;
+  width: 85%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: center;
+}
+#artTable th, #artTable td {
+  text-align: left;
+  padding: 12px;
+  text-align: center;
+}
+#artTable tr {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+#artTable tr.header, #artTable tr:hover {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+a {
+  color: #f56642;
+}
+  
+h2, h1, p {
+  font-family: '微軟正黑字體', Gloria Hallelujah;
+  text-align: center;
+}
+ 
+h1:hover {
+  animation-name: artshadow;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  animation-duration: 0.5s;
+  animation-delay: 0.1s;
+}
+
+@keyframes artshadow {
+  from {}
+  to {text-shadow: 2px 2px 5px black;}
+}
+h1 {
+  color: #FF4500;
+  transition: 0.3s;
+}
+p {
+  text-align: center;
+}
+  
+.centerenter {
+  text-align: center;
+}
+  
+.tablesearch {
+  text-align: center;
+}
+  
+</style>
+</head>
+<body>
+
+  <h1><b>Roots</h1>
+<div class = "centerenter">
+<input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 處室,分機..." title="Work search">
+</div>
+<div class = "tablesearch">
+<table id="artTable" align = "center">
+  <tr class="header">
+    <th style="width:25%;">編號</th>
+    <th style="width:25%;">職稱</th>
+    <th style="width:25%;">姓名</th>
+    <th style="width:25%;">市話</th>
+    <th style="width:25%;">手機</th>
+  </tr>
+<tr>
+<td align="right">1</td>
+<td>校長</td>
+<td>丁文祺</td>
+<td>3973046</td>
+<td>0936-403639</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>教務主任</td>
+<td>李一昇</td>
+<td>7116520</td>
+<td>0939-594720</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>學務主任</td>
+<td>陳一中</td>
+<td>3481615</td>
+<td>0931-883689</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>總務主任</td>
+<td>陳朝聖</td>
+<td>7774486</td>
+<td>0921-683281</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>輔導主任</td>
+<td>郎長虹</td>
+<td>7170300</td>
+<td>0939-965705</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>教學組長</td>
+<td>顏佳珉</td>
+<td>7836333</td>
+<td>0910-655714</td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>註冊組長</td>
+<td>陳盈華</td>
+<td>08-7521894</td>
+<td>0932-881873</td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>設備組長</td>
+<td>曾國洋</td>
+<td> </td>
+<td>0913-594439</td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>訓育組長</td>
+<td>周美慧</td>
+<td> </td>
+<td>0953-809175</td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>生教組長</td>
+<td>陳慶發</td>
+<td> </td>
+<td>3725548</td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>體育組長</td>
+<td>李慧珊</td>
+<td> </td>
+<td>7821231</td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>衛生組長</td>
+<td>陳垣長</td>
+<td> </td>
+<td>08-7228575</td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>輔導組長</td>
+<td>吳明賢</td>
+<td> </td>
+<td>3452497</td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>資料組長</td>
+<td>蔡佳穎</td>
+<td> </td>
+<td>7776522</td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>特教組長</td>
+<td>蕭瑀婕</td>
+<td> </td>
+<td>7190037</td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>101導師</td>
+<td>陳宥潔</td>
+<td> </td>
+<td>2868020</td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>102導師</td>
+<td>林婉欣</td>
+<td> </td>
+<td>0939-683868</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>103導師</td>
+<td>林水汪</td>
+<td> </td>
+<td>7165599</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>104導師</td>
+<td>高曉萱</td>
+<td> </td>
+<td>7433604</td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>105導師</td>
+<td>林淑卿</td>
+<td> </td>
+<td>7910100</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>106導師</td>
+<td>李佳純</td>
+<td> </td>
+<td>7926926</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>107導師</td>
+<td>莊雅婷</td>
+<td> </td>
+<td>7458057</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>108導師</td>
+<td>張育萍</td>
+<td> </td>
+<td>3227746</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>109導師</td>
+<td>蔡郁和</td>
+<td> </td>
+<td>0929-231065</td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>110導師</td>
+<td>林靖純</td>
+<td> </td>
+<td>6317220</td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>111導師</td>
+<td>李耀宗</td>
+<td> </td>
+<td>7538182</td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>112導師</td>
+<td>蔡淑萍</td>
+<td> </td>
+<td>7272442</td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>113導師</td>
+<td>唐佳佳</td>
+<td> </td>
+<td>6114301</td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>114導師</td>
+<td>黃明玉</td>
+<td> </td>
+<td>7533146</td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>115導師</td>
+<td>劉書榮</td>
+<td> </td>
+<td>7217289</td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>116導師</td>
+<td>張勝凱</td>
+<td> </td>
+<td>3302838</td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>117導師</td>
+<td>簡玉卿</td>
+<td> </td>
+<td>7832012</td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>一資優導師</td>
+<td>曾冠雲</td>
+<td> </td>
+<td>04-25298610</td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>201導師</td>
+<td>鄒佩璇</td>
+<td> </td>
+<td>7762988</td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>202導師</td>
+<td>謝金秤</td>
+<td> </td>
+<td>7474902</td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>203導師</td>
+<td>呂宜錚</td>
+<td> </td>
+<td>02-29402117</td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>204導師</td>
+<td>陳尚遠</td>
+<td> </td>
+<td>7432552</td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>205導師</td>
+<td>李佩芬</td>
+<td> </td>
+<td>8412863</td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>206導師</td>
+<td>洪慶榮</td>
+<td> </td>
+<td>5360522</td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>207導師</td>
+<td>戴雅婷</td>
+<td> </td>
+<td>3516705</td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>208導師</td>
+<td>高佩鈴</td>
+<td> </td>
+<td>7990688</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>209導師</td>
+<td>黃明珍</td>
+<td> </td>
+<td>3808029</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>210導師</td>
+<td>林佳儀</td>
+<td> </td>
+<td>7802356</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td>211導師</td>
+<td>施惠真</td>
+<td> </td>
+<td>7677309</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td>212導師</td>
+<td>詹慧欣</td>
+<td> </td>
+<td>06-6801225</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td>213導師</td>
+<td>陳雪美</td>
+<td> </td>
+<td>7675078</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td>214導師</td>
+<td>顏玉芬</td>
+<td> </td>
+<td>3831790</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td>215導師</td>
+<td>吳登隆</td>
+<td> </td>
+<td>3960382</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>216導師</td>
+<td>楊素菁</td>
+<td> </td>
+<td>7198958</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td>217導師</td>
+<td>黃宇緹</td>
+<td> </td>
+<td>7802165</td>
+</tr>
+<tr>
+<td align="right">51</td>
+<td>二資優導師</td>
+<td>蘇柏瑎</td>
+<td> </td>
+<td>3832698</td>
+</tr>
+<tr>
+<td align="right">52</td>
+<td>301導師</td>
+<td>郭淑玲</td>
+<td> </td>
+<td>7131513</td>
+</tr>
+<tr>
+<td align="right">53</td>
+<td>302導師</td>
+<td>蔡惠玲</td>
+<td> </td>
+<td>8310388</td>
+</tr>
+<tr>
+<td align="right">54</td>
+<td>303導師</td>
+<td>葉嘉文</td>
+<td> </td>
+<td>7132666</td>
+</tr>
+<tr>
+<td align="right">55</td>
+<td>304導師</td>
+<td>陳盈伶</td>
+<td> </td>
+<td>7636176</td>
+</tr>
+<tr>
+<td align="right">56</td>
+<td>305導師</td>
+<td>賴美齡</td>
+<td> </td>
+<td>5819877</td>
+</tr>
+<tr>
+<td align="right">57</td>
+<td>306導師</td>
+<td>宋美齡</td>
+<td> </td>
+<td>0978-023639</td>
+</tr>
+<tr>
+<td align="right">58</td>
+<td>307導師</td>
+<td>謝晉榮</td>
+<td> </td>
+<td>3898813</td>
+</tr>
+<tr>
+<td align="right">59</td>
+<td>308導師</td>
+<td>陳芝華</td>
+<td> </td>
+<td>7531585</td>
+</tr>
+<tr>
+<td align="right">60</td>
+<td>309導師</td>
+<td>黃順民</td>
+<td> </td>
+<td>3908396</td>
+</tr>
+<tr>
+<td align="right">61</td>
+<td>310導師</td>
+<td>蕭崑典</td>
+<td> </td>
+<td>7662883</td>
+</tr>
+<tr>
+<td align="right">62</td>
+<td>311導師</td>
+<td>夏孝仁</td>
+<td> </td>
+<td>5577123</td>
+</tr>
+<tr>
+<td align="right">63</td>
+<td>312導師</td>
+<td>黃怡青</td>
+<td> </td>
+<td>7432552</td>
+</tr>
+<tr>
+<td align="right">64</td>
+<td>313導師</td>
+<td>張婉淳</td>
+<td> </td>
+<td>8410606</td>
+</tr>
+<tr>
+<td align="right">65</td>
+<td>314導師</td>
+<td>陳逸欣</td>
+<td> </td>
+<td>7925386</td>
+</tr>
+<tr>
+<td align="right">66</td>
+<td>315導師</td>
+<td>姚谷樺</td>
+<td> </td>
+<td>7991712</td>
+</tr>
+<tr>
+<td align="right">67</td>
+<td>316導師</td>
+<td>孫育智</td>
+<td> </td>
+<td>7322409</td>
+</tr>
+<tr>
+<td align="right">68</td>
+<td>317導師</td>
+<td>張瑞良</td>
+<td> </td>
+<td>7658092</td>
+</tr>
+<tr>
+<td align="right">69</td>
+<td>三資優導師</td>
+<td>王怡心</td>
+<td> </td>
+<td>7634881</td>
+</tr>
+<tr>
+<td align="right">70</td>
+<td>資源班導師</td>
+<td>陳逸娟</td>
+<td> </td>
+<td>7466584</td>
+</tr>
+<tr>
+<td align="right">71</td>
+<td>教師</td>
+<td>朱巧馨</td>
+<td> </td>
+<td>8013053</td>
+</tr>
+<tr>
+<td align="right">72</td>
+<td>教師</td>
+<td>楊淑娟</td>
+<td> </td>
+<td>7662521</td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td>教師</td>
+<td>張淑貞</td>
+<td> </td>
+<td>5828728</td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>教師</td>
+<td>連筱琦</td>
+<td> </td>
+<td>7902917</td>
+</tr>
+<tr>
+<td align="right">75</td>
+<td>教師</td>
+<td>吳欣憓</td>
+<td> </td>
+<td>7224313</td>
+</tr>
+<tr>
+<td align="right">76</td>
+<td>教師</td>
+<td>林靖英</td>
+<td> </td>
+<td>7246015</td>
+</tr>
+<tr>
+<td align="right">77</td>
+<td>教師</td>
+<td>謝益慈</td>
+<td> </td>
+<td>7665381</td>
+</tr>
+<tr>
+<td align="right">78</td>
+<td>教師</td>
+<td>吳淑娟</td>
+<td> </td>
+<td>3526524</td>
+</tr>
+<tr>
+<td align="right">79</td>
+<td>教師</td>
+<td>蘇靜蘭</td>
+<td> </td>
+<td>2818204</td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>教師</td>
+<td>陳秀枝</td>
+<td>7157676</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">81</td>
+<td>教師</td>
+<td>鄭佩芬</td>
+<td>7777591</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">82</td>
+<td>教師</td>
+<td>趙優華</td>
+<td>7279619</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">83</td>
+<td>教師</td>
+<td>高紹成</td>
+<td>7210338</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">84</td>
+<td>教師</td>
+<td>吳重萱</td>
+<td> </td>
+<td>7615426</td>
+</tr>
+<tr>
+<td align="right">85</td>
+<td>教師</td>
+<td>莊雙菱</td>
+<td> </td>
+<td>3384432</td>
+</tr>
+<tr>
+<td align="right">86</td>
+<td>教師</td>
+<td>鄭怡亭</td>
+<td> </td>
+<td>0911-067119</td>
+</tr>
+<tr>
+<td align="right">87</td>
+<td>教師</td>
+<td>張雅雯</td>
+<td> </td>
+<td>7651382</td>
+</tr>
+<tr>
+<td align="right">88</td>
+<td>教師</td>
+<td>丁鈺珊</td>
+<td> </td>
+<td>7716162</td>
+</tr>
+<tr>
+<td align="right">89</td>
+<td>教師</td>
+<td>王淳淩</td>
+<td> </td>
+<td>2816745</td>
+</tr>
+<tr>
+<td align="right">90</td>
+<td>教師</td>
+<td>王建智</td>
+<td> </td>
+<td>3223566</td>
+</tr>
+<tr>
+<td align="right">91</td>
+<td>教師</td>
+<td>陳家穎</td>
+<td> </td>
+<td>3492647</td>
+</tr>
+<tr>
+<td align="right">92</td>
+<td>教師</td>
+<td>吳巧吟</td>
+<td> </td>
+<td>7636525</td>
+</tr>
+<tr>
+<td align="right">93</td>
+<td>教師</td>
+<td>彭夢瑩</td>
+<td> </td>
+<td>7935590</td>
+</tr>
+<tr>
+<td align="right">94</td>
+<td>教師</td>
+<td>洪于涵</td>
+<td> </td>
+<td>7532300</td>
+</tr>
+<tr>
+<td align="right">95</td>
+<td>教師</td>
+<td>吳晏芝</td>
+<td> </td>
+<td>7431757</td>
+</tr>
+<tr>
+<td align="right">96</td>
+<td>教師</td>
+<td> 林憲聰</td>
+<td> </td>
+<td>0910-822826</td>
+</tr>
+<tr>
+<td align="right">97</td>
+<td>教師</td>
+<td>陳彥霖</td>
+<td> </td>
+<td>07-3606367</td>
+</tr>
+<tr>
+<td align="right">98</td>
+<td>教師</td>
+<td>鄭仁和</td>
+<td> </td>
+<td>7016688</td>
+</tr>
+<tr>
+<td align="right">99</td>
+<td>教師</td>
+<td>卓怡君</td>
+<td> </td>
+<td>5360522</td>
+</tr>
+<tr>
+<td align="right">100</td>
+<td>教師</td>
+<td>陳林千沛</td>
+<td> </td>
+<td>2317039</td>
+</tr>
+<tr>
+<td align="right">101</td>
+<td>教師</td>
+<td>葉峻嘉</td>
+<td> </td>
+<td>8416337</td>
+</tr>
+<tr>
+<td align="right">102</td>
+<td>教師</td>
+<td>黃雅靖</td>
+<td> </td>
+<td>7616970</td>
+</tr>
+<tr>
+<td align="right">103</td>
+<td>教師</td>
+<td>邱怡萍</td>
+<td> </td>
+<td>8159614</td>
+</tr>
+<tr>
+<td align="right">104</td>
+<td>教師</td>
+<td>林雅惠</td>
+<td> </td>
+<td>7806181</td>
+</tr>
+<tr>
+<td align="right">105</td>
+<td>教師</td>
+<td>陳鳳晨</td>
+<td> </td>
+<td>7992316</td>
+</tr>
+<tr>
+<td align="right">106</td>
+<td>教師</td>
+<td>吳倍慈</td>
+<td> </td>
+<td>7658891</td>
+</tr>
+<tr>
+<td align="right">107</td>
+<td>教師</td>
+<td>陳俐憬</td>
+<td> </td>
+<td>02-86743598</td>
+</tr>
+<tr>
+<td align="right">108</td>
+<td>教師</td>
+<td>王珮芸</td>
+<td> </td>
+<td>0982-000050</td>
+</tr>
+<tr>
+<td align="right">109</td>
+<td>教師</td>
+<td>吳敬慧</td>
+<td> </td>
+<td>04-8353546</td>
+</tr>
+<tr>
+<td align="right">110</td>
+<td>教師</td>
+<td>蘇俊源</td>
+<td> </td>
+<td>7224313</td>
+</tr>
+<tr>
+<td align="right">111</td>
+<td>教師</td>
+<td>劉顓誼</td>
+<td> </td>
+<td>0958-273560</td>
+</tr>
+<tr>
+<td align="right">112</td>
+<td>教師</td>
+<td>由瑪茲</td>
+<td>5365422</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">113</td>
+<td>專輔教師</td>
+<td>張聖杰</td>
+<td> </td>
+<td>08-8661313</td>
+</tr>
+<tr>
+<td align="right">114</td>
+<td>專輔教師</td>
+<td>盧沛綉</td>
+<td> </td>
+<td>3316402</td>
+</tr>
+<tr>
+<td align="right">115</td>
+<td>人事主任</td>
+<td>蘇莉琪</td>
+<td> </td>
+<td>0928-326705</td>
+</tr>
+<tr>
+<td align="right">116</td>
+<td>助理員</td>
+<td>黃琳涵</td>
+<td> </td>
+<td>0921-324719</td>
+</tr>
+<tr>
+<td align="right">117</td>
+<td>會計主任</td>
+<td>陳原寬</td>
+<td> </td>
+<td>0958-196510</td>
+</tr>
+<tr>
+<td align="right">118</td>
+<td>佐理員</td>
+<td>王勺仁</td>
+<td> </td>
+<td>6512938</td>
+</tr>
+<tr>
+<td align="right">119</td>
+<td>事務組長</td>
+<td>黃一興</td>
+<td> </td>
+<td>3858610</td>
+</tr>
+<tr>
+<td align="right">120</td>
+<td>出納組長</td>
+<td>陳立軒</td>
+<td> </td>
+<td>6132417</td>
+</tr>
+<tr>
+<td align="right">121</td>
+<td>文書組長</td>
+<td>王淑娟</td>
+<td> </td>
+<td>8229185</td>
+</tr>
+<tr>
+<td align="right">122</td>
+<td>幹事</td>
+<td>黃桂香</td>
+<td> </td>
+<td>7427523</td>
+</tr>
+<tr>
+<td align="right">123</td>
+<td>幹事</td>
+<td>王淑惠</td>
+<td> </td>
+<td>7634731</td>
+</tr>
+<tr>
+<td align="right">124</td>
+<td>幹事</td>
+<td>吳素珍</td>
+<td> </td>
+<td>7612661</td>
+</tr>
+<tr>
+<td align="right">125</td>
+<td>幹事</td>
+<td>陳晉育</td>
+<td> </td>
+<td>0975-303672</td>
+</tr>
+<tr>
+<td align="right">126</td>
+<td>管理員</td>
+<td>王定凱</td>
+<td> </td>
+<td>73384672</td>
+</tr>
+<tr>
+<td align="right">127</td>
+<td>護理師</td>
+<td>柯仁鳳</td>
+<td> </td>
+<td>07-8124932</td>
+</tr>
+<tr>
+<td align="right">128</td>
+<td>營養師</td>
+<td>莊淑雯</td>
+<td> </td>
+<td>0922-603466</td>
+</tr>
+<tr>
+<td align="right">129</td>
+<td>教練</td>
+<td>徐正義</td>
+<td> </td>
+<td>7633321</td>
+</tr>
+<tr>
+<td align="right">130</td>
+<td>工友</td>
+<td>林明珠</td>
+<td>7659710</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">131</td>
+<td>工友</td>
+<td>蔡慧貞</td>
+<td>7661807</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">132</td>
+<td>工友</td>
+<td>陳映如</td>
+<td>7662591</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">133</td>
+<td>業務助理</td>
+<td>張清鳳</td>
+<td>7532468</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">134</td>
+<td>業務助理</td>
+<td>林政毅</td>
+<td>8123461</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">135</td>
+<td>員生社</td>
+<td>林麗雪</td>
+<td>7432238</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">136</td>
+<td>代理教師</td>
+<td>潘俊良</td>
+<td> </td>
+<td>7466533</td>
+</tr>
+<tr>
+<td align="right">137</td>
+<td>代理教師</td>
+<td>蔡勝宏</td>
+<td> </td>
+<td>3422922</td>
+</tr>
+<tr>
+<td align="right">138</td>
+<td>代理教師</td>
+<td>林孟儒</td>
+<td> </td>
+<td>3343827</td>
+</tr>
+<tr>
+<td align="right">139</td>
+<td>代理教師</td>
+<td>劉嘉琪</td>
+<td> </td>
+<td>8313652</td>
+</tr>
+<tr>
+<td align="right">140</td>
+<td>代理教師</td>
+<td>黃馨平</td>
+<td> </td>
+<td>0979-097079</td>
+</tr>
+<tr>
+<td align="right">141</td>
+<td>代理教師</td>
+<td>蔡雅萍</td>
+<td> </td>
+<td>8061080</td>
+</tr>
+<tr>
+<td align="right">142</td>
+<td>代理教師</td>
+<td>鄭喬文</td>
+<td> </td>
+<td>7156628</td>
+</tr>
+<tr>
+<td align="right">143</td>
+<td>代理教師</td>
+<td>陶樹琴</td>
+<td> </td>
+<td>7923351</td>
+</tr>
+<tr>
+<td align="right">144</td>
+<td>代理教師</td>
+<td>李宜珊</td>
+<td> </td>
+<td>7821231</td>
+</tr>
+<tr>
+<td align="right">145</td>
+<td>代理教師</td>
+<td>陳慧君</td>
+<td> </td>
+<td>7458478</td>
+</tr>
+<tr>
+<td align="right">146</td>
+<td>代理教師</td>
+<td>王孝倫</td>
+<td> </td>
+<td>3505884</td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td>代理教師</td>
+<td>林秀燕</td>
+<td> </td>
+<td>0978-573618</td>
+</tr>
+<tr>
+<td align="right">148</td>
+<td>代理教師</td>
+<td>謝志祥</td>
+<td> </td>
+<td>6315781</td>
+</tr>
+<tr>
+<td align="right">149</td>
+<td>代課教師</td>
+<td>呂昱清</td>
+<td> </td>
+<td>8013175</td>
+</tr>
+<tr>
+<td align="right">150</td>
+<td>代課教師</td>
+<td>黃詩晴</td>
+<td> </td>
+<td>7240528</td>
+</tr>
+<tr>
+<td align="right">151</td>
+<td>代課教師</td>
+<td>張仕帆</td>
+<td> </td>
+<td>8116890</td>
+</tr>
+<tr>
+<td align="right">152</td>
+<td>代課教師</td>
+<td>莊雅雲</td>
+<td> </td>
+<td>3847914</td>
+</tr>
+<tr>
+<td align="right">153</td>
+<td>代課教師</td>
+<td>王湘淳</td>
+<td> </td>
+<td>3846194</td>
+</tr>
+<tr>
+<td align="right">154</td>
+<td>代課教師</td>
+<td>許晏瑱</td>
+<td> </td>
+<td>2360866</td>
+</tr>
+<tr>
+<td align="right">155</td>
+<td>兼任教師</td>
+<td>陳雨柔</td>
+<td> </td>
+<td>0922-797239</td>
+</tr>
+<tr>
+<td align="right">156</td>
+<td>兼任教師</td>
+<td>黃寶玉</td>
+<td> </td>
+<td>0910-868276</td>
+</tr>
+<tr>
+<td align="right">157</td>
+<td>兼任教師</td>
+<td>黃欣怡</td>
+<td> </td>
+<td>0912-114396</td>
+</tr>
+
+</table>
+</div>
+<br><br><br><br><br>
+
+  <script>function artFunction() {
+  // Declare starting variables 
+  var input = document.getElementById("artInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("artTable");
+  var trs = table.tBodies[0].getElementsByTagName("tr");
+  // Loop through rows
+  for (var i = 0; i < trs.length; i++) {
+    // Define the cells
+    var tds = trs[i].getElementsByTagName("td");
+    // hide the row
+    trs[i].style.display = "none";
+    // loop through row cells
+    for (var i2 = 1; i2 < tds.length; i2++) {
+      // if there's a match
+      if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        // show the row
+        trs[i].style.display = "";
+        // skip to the next row
+        continue;
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
