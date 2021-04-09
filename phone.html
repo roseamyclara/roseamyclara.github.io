@@ -1263,7 +1263,7 @@ p {
     // hide the row
     trs[i].style.display = "none";
     // loop through row cells
-    for (var i2 = 1; i2 < tds.length; i2++) {
+    for (var i2 = 0; i2 < tds.length; i2++) {
       // if there's a match
       if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
         // show the row
