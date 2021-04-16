@@ -11,7 +11,7 @@
 * {
   box-sizing: border-box;
 }
-#artInput {
+#uid {
   background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
   background-position: 10px 10px;;
   background-repeat: no-repeat;
@@ -104,6 +104,7 @@ var xmlhttp;
                         var result=xmlhttp.responseText;
                         var obj = JSON.parse(result);//解析json字串為json物件形式
                                                 
+                        
                         var html = '<table id="artTable" align = "center">';//
                         
                         for (var i = 0; i < obj.length; i ++ ) {//
