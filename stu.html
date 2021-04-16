@@ -143,6 +143,14 @@ var xmlhttp;
 <input type="text" id="uid" placeholder="班級(例:701、702...)"> 
 <input type="button" name="inq" value="查詢" onclick="showHint(uid.value);"></br>
 
+ <script>
+  $("#uid").keydown(function(event) {
+    if(event.keyCode == 13){
+        showHint(uid.value);
+    };
+});
+</script>
+ 
 <span id="order_status"></span>
 </body>
 </html>
