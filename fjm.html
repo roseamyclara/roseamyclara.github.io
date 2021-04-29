@@ -1,17 +1,2649 @@
-<HTML>
-<body>
-<div>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf1a2qwFykzVo_pmspQTJuh6OdxIOvUoCOPUb6HFk7CUa55iA/viewform?embedded=true"width="100%" height="520" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
- <div class="center">  
+<!DOCTYPE html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<title>分機查詢</title>
+<link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
+</style>
+ <style>
+* {
+  box-sizing: border-box;
+}
+#artInput {
+  background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+  background-position: 10px 10px;;
+  background-repeat: no-repeat;
+  background-size: 25px;
+  width: 60%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  text-align: center;
+  border-radius: 25px;
+}
+#artTable {
+  border-collapse: collapse;
+  width: 85%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  text-align: center;
+}
+#artTable th, #artTable td {
+  text-align: left;
+  padding: 12px;
+  text-align: center;
+}
+#artTable tr {
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+#artTable tr.header, #artTable tr:hover {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+a {
+  color: #f56642;
+}
   
-   <iframe id="chart" width="100%" height="371" frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/15AeUJ4BI56kldBjBj2Qt1xsq6JQDpVwoMp1oIN6Pdg0/htmlembed/sheet?gid=1217472581&range=B:D"></iframe>
-  <script>
-window.setInterval("reloadIFrame();", 3000);
-function reloadIFrame() {
- document.getElementById("chart").src="https://docs.google.com/spreadsheets/d/15AeUJ4BI56kldBjBj2Qt1xsq6JQDpVwoMp1oIN6Pdg0/htmlembed/sheet?gid=1217472581&range=B:D";
+h2, h1, p {
+  font-family: '微軟正黑字體', Gloria Hallelujah;
+  text-align: center;
+}
+ 
+h1:hover {
+  animation-name: artshadow;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  animation-duration: 0.5s;
+  animation-delay: 0.1s;
+}
+
+@keyframes artshadow {
+  from {}
+  to {text-shadow: 2px 2px 5px black;}
+}
+h1 {
+  color: #FF4500;
+  transition: 0.3s;
+}
+p {
+  text-align: center;
+}
+  
+.centerenter {
+  text-align: center;
+}
+  
+.tablesearch {
+  text-align: center;
+}
+  
+</style>
+</head>
+
+<body>
+  <h1><b>Extension Search <font size="2">beta</font></h1>
+<div class = "centerenter">
+<input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機,班級位置..." title="Work 
+                                                                                                     ">
+</div>
+<div class = "tablesearch">
+<table id="artTable" align = "center">
+ <thead>
+  <tr class="header">
+    <th style="width:5%;">編號</th>
+    <th style="width:25%;">職稱/課程</th>
+    <th style="width:25%;">姓名</th>
+    <th style="width:25%;">辦公室</th>
+    <th style="width:10%;">分機</th>
+    <th style="width:25%;">班級位置</th>
+  </tr>
+  </thead>
+<tr>
+<td align="right">1</td>
+<td>教務主任</td>
+<td>李一昇</td>
+<td>教務處</td>
+<td align="right">11</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td>教學組長</td>
+<td>顏佳珉</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td>註冊組長</td>
+<td>陳盈華</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td>設備組長</td>
+<td>曾國洋</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td>資訊執秘</td>
+<td>吳淑娟</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td>教師</td>
+<td>吳欣憓</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">7</td>
+<td>教師</td>
+<td>蘇俊源</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">8</td>
+<td>教師</td>
+<td>王珮芸</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">9</td>
+<td>教師</td>
+<td>林秀燕</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">10</td>
+<td>教師</td>
+<td>陶樹琴</td>
+<td>教務處</td>
+<td align="right">0</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">11</td>
+<td>教師</td>
+<td>張仕帆</td>
+<td>教務處</td>
+<td align="right">0</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">12</td>
+<td>幹事</td>
+<td>黃桂香</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">13</td>
+<td>幹事</td>
+<td>陳晉育</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">14</td>
+<td>工友</td>
+<td>林明珠</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">15</td>
+<td>教師</td>
+<td>林彥妙</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">16</td>
+<td>教師</td>
+<td>莊家銘</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">17</td>
+<td>709導師</td>
+<td>葉峻嘉</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>南三8</td>
+</tr>
+<tr>
+<td align="right">18</td>
+<td>717導師</td>
+<td>吳敬慧</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>南二6</td>
+</tr>
+<tr>
+<td align="right">19</td>
+<td>教師</td>
+<td>蔡勝宏</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">20</td>
+<td>817導師</td>
+<td>簡玉卿</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>南二7</td>
+</tr>
+<tr>
+<td align="right">21</td>
+<td>902導師</td>
+<td>謝金秤</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>南一6</td>
+</tr>
+<tr>
+<td align="right">22</td>
+<td>903導師</td>
+<td>呂宜錚</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>北一12</td>
+</tr>
+<tr>
+<td align="right">23</td>
+<td>917導師</td>
+<td>黃宇緹</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td>南二8</td>
+</tr>
+<tr>
+<td align="right">24</td>
+<td>教師</td>
+<td>林蜻英</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">25</td>
+<td>教師</td>
+<td>陳慧君</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">26</td>
+<td>教師</td>
+<td>潘俊良</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">27</td>
+<td>教師</td>
+<td>彭夢瑩</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">28</td>
+<td>教師</td>
+<td>黃順民</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">29</td>
+<td>教師</td>
+<td>夏孝仁</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">30</td>
+<td>教師</td>
+<td>保留</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">31</td>
+<td>教師</td>
+<td>張瑞良</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">32</td>
+<td>學務主任</td>
+<td>陳一中</td>
+<td>學務處</td>
+<td align="right">21</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">33</td>
+<td>訓育組長</td>
+<td>周美慧</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">34</td>
+<td>生教組長</td>
+<td>陳慶發</td>
+<td>學務處</td>
+<td align="right">21</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">35</td>
+<td>體育組長</td>
+<td>李慧珊</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">36</td>
+<td>衛生組長</td>
+<td>陳垣長</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">37</td>
+<td>教師</td>
+<td>林佩柔</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">38</td>
+<td>幹事</td>
+<td>王淑惠</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">39</td>
+<td>工友</td>
+<td>蔡慧貞</td>
+<td>學務處</td>
+<td align="right">23</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">40</td>
+<td>工友</td>
+<td>陳映如</td>
+<td>學務處</td>
+<td align="right">24</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">41</td>
+<td>703導師</td>
+<td>黃怡青</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南三2</td>
+</tr>
+<tr>
+<td align="right">42</td>
+<td>708導師</td>
+<td>吳巧吟</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南三7</td>
+</tr>
+<tr>
+<td align="right">43</td>
+<td>801導師</td>
+<td>陳宥潔</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南一2</td>
+</tr>
+<tr>
+<td align="right">44</td>
+<td>809導師</td>
+<td>蔡郁和</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南二5</td>
+</tr>
+<tr>
+<td align="right">45</td>
+<td>811導師</td>
+<td>李耀宗</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南二3</td>
+</tr>
+<tr>
+<td align="right">46</td>
+<td>812導師</td>
+<td>蔡淑萍</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南二2</td>
+</tr>
+<tr>
+<td align="right">47</td>
+<td>813導師</td>
+<td>唐佳佳</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>北四4</td>
+</tr>
+<tr>
+<td align="right">48</td>
+<td>901導師</td>
+<td>鄒佩璇</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>南一5</td>
+</tr>
+<tr>
+<td align="right">49</td>
+<td>904導師</td>
+<td>陳尚遠</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>北二8</td>
+</tr>
+<tr>
+<td align="right">50</td>
+<td>912導師</td>
+<td>詹慧欣</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td>北三1</td>
+</tr>
+<tr>
+<td align="right">51</td>
+<td>教師</td>
+<td>陳秀枝</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">52</td>
+<td>教師</td>
+<td>吳重萱</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">53</td>
+<td>教師</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">54</td>
+<td>教師</td>
+<td>郎長虹</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">55</td>
+<td>教師</td>
+<td>張雅雯</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">56</td>
+<td>教師</td>
+<td>莊雙菱</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">57</td>
+<td>803導師</td>
+<td>林水汪</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td>北三8</td>
+</tr>
+<tr>
+<td align="right">58</td>
+<td>805導師</td>
+<td>林淑卿</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td>北四7</td>
+</tr>
+<tr>
+<td align="right">59</td>
+<td>教師</td>
+<td>陳冠洲</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">60</td>
+<td>教師</td>
+<td>任梅英</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">61</td>
+<td>總務主任</td>
+<td>陳朝聖</td>
+<td>總務處</td>
+<td align="right">31</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">62</td>
+<td>事務組長</td>
+<td>黃一興</td>
+<td>總務處</td>
+<td align="right">35</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">63</td>
+<td>出納組長</td>
+<td>陳立軒</td>
+<td>總務處</td>
+<td align="right">33</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">64</td>
+<td>文書組長</td>
+<td>王淑娟</td>
+<td>總務處</td>
+<td align="right">33</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">65</td>
+<td>營養師</td>
+<td>莊淑雯</td>
+<td>總務處</td>
+<td align="right">33</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">66</td>
+<td>幹事</td>
+<td>吳素珍</td>
+<td>總務處</td>
+<td align="right">33</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">67</td>
+<td>業務助理</td>
+<td>張清鳳</td>
+<td>總務處</td>
+<td align="right">33</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">68</td>
+<td>802導師</td>
+<td>林婉欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td>北三7</td>
+</tr>
+<tr>
+<td align="right">69</td>
+<td>806導師</td>
+<td>李佳純</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td>北四6</td>
+</tr>
+<tr>
+<td align="right">70</td>
+<td>814導師</td>
+<td>黃明玉</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td>北四3</td>
+</tr>
+<tr>
+<td align="right">71</td>
+<td>816導師</td>
+<td>張勝凱</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td>北四1</td>
+</tr>
+<tr>
+<td align="right">72</td>
+<td>教師</td>
+<td>王淳淩</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">73</td>
+<td>教師</td>
+<td>陳逸欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">74</td>
+<td>教師</td>
+<td>謝晉榮</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">75</td>
+<td>715導師</td>
+<td>陳林千沛</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td>南四3</td>
+</tr>
+<tr>
+<td align="right">76</td>
+<td>716導師</td>
+<td>鄭仁和</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td>南四2</td>
+</tr>
+<tr>
+<td align="right">77</td>
+<td>教師</td>
+<td>趙優華</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">78</td>
+<td>教師</td>
+<td>鄭佩芬</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">79</td>
+<td>教師</td>
+<td>孫育智</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">80</td>
+<td>教師</td>
+<td>吳晏芝</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">81</td>
+<td>教師</td>
+<td>王湘淳</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">82</td>
+<td>教師</td>
+<td>陳家穎</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">83</td>
+<td>815導師</td>
+<td>劉書榮</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td>北四2</td>
+</tr>
+<tr>
+<td align="right">84</td>
+<td>911導師</td>
+<td>施惠真</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td>北二1</td>
+</tr>
+<tr>
+<td align="right">85</td>
+<td>913導師</td>
+<td>陳雪美</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td>北三2</td>
+</tr>
+<tr>
+<td align="right">86</td>
+<td>教師</td>
+<td>陳芝華</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">87</td>
+<td>輔導主任</td>
+<td>張淑貞</td>
+<td>輔導處</td>
+<td align="right">41</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">88</td>
+<td>輔導組長</td>
+<td>吳明賢</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">89</td>
+<td>資料組長</td>
+<td>蔡佳穎</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">90</td>
+<td>特教組長</td>
+<td>蕭瑀婕</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">91</td>
+<td>教師</td>
+<td>蘇靜蘭</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">92</td>
+<td>教師</td>
+<td>劉顓誼</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">93</td>
+<td>教師</td>
+<td>鄭怡亭</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">94</td>
+<td>教師</td>
+<td>丁鈺珊</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">95</td>
+<td>專輔教師</td>
+<td>張聖杰</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">96</td>
+<td>專輔教師</td>
+<td>廬沛綉</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">97</td>
+<td>專輔教師</td>
+<td>陳靜誼</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">98</td>
+<td>管理員</td>
+<td>王定凱</td>
+<td>輔導處</td>
+<td align="right">42</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">99</td>
+<td>705導師</td>
+<td>黃雅靖</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td>南三4</td>
+</tr>
+<tr>
+<td align="right">100</td>
+<td>712導師</td>
+<td>賴美齡</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td>南四6</td>
+</tr>
+<tr>
+<td align="right">101</td>
+<td>916導師</td>
+<td>楊素菁</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td>北三6</td>
+</tr>
+<tr>
+<td align="right">102</td>
+<td>教師</td>
+<td>謝益慈</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">103</td>
+<td>教師</td>
+<td>蔡雅萍</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">104</td>
+<td>教師</td>
+<td>高紹成</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">105</td>
+<td>教師</td>
+<td>連筱琦</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">106</td>
+<td>教師</td>
+<td>黃寶玉</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">107</td>
+<td>教師</td>
+<td>彭杏微</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">108</td>
+<td>701導師</td>
+<td>陳盈伶</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>南一3</td>
+</tr>
+<tr>
+<td align="right">109</td>
+<td>704導師</td>
+<td>姚谷樺</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>南三3</td>
+</tr>
+<tr>
+<td align="right">110</td>
+<td>706導師</td>
+<td>卓怡君</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>南三5</td>
+</tr>
+<tr>
+<td align="right">111</td>
+<td>707導師</td>
+<td>宋美齡</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>南三6</td>
+</tr>
+<tr>
+<td align="right">112</td>
+<td>808導師</td>
+<td>張育萍</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>南一4</td>
+</tr>
+<tr>
+<td align="right">113</td>
+<td>905導師</td>
+<td>李佩芬</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>北二7</td>
+</tr>
+<tr>
+<td align="right">114</td>
+<td>907導師</td>
+<td>戴雅婷</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td>北二5</td>
+</tr>
+<tr>
+<td align="right">115</td>
+<td>教師</td>
+<td>呂俊賢</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">116</td>
+<td>人事主任</td>
+<td>蘇莉琪</td>
+<td>人事室</td>
+<td align="right">51</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">117</td>
+<td>助理員</td>
+<td>黃琳涵</td>
+<td>人事室</td>
+<td align="right">52</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">118</td>
+<td>702導師</td>
+<td>林雅惠</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南三1</td>
+</tr>
+<tr>
+<td align="right">119</td>
+<td>710導師</td>
+<td>邱怡萍</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南四8</td>
+</tr>
+<tr>
+<td align="right">120</td>
+<td>711導師</td>
+<td>王建智</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南四7</td>
+</tr>
+<tr>
+<td align="right">121</td>
+<td>713導師</td>
+<td>吳倍慈</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南四5</td>
+</tr>
+<tr>
+<td align="right">122</td>
+<td>714導師</td>
+<td>林憲聰</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南四4</td>
+</tr>
+<tr>
+<td align="right">123</td>
+<td>804導師</td>
+<td>高曉萱</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北四8</td>
+</tr>
+<tr>
+<td align="right">124</td>
+<td>807導師</td>
+<td>莊雅婷</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北四5</td>
+</tr>
+<tr>
+<td align="right">125</td>
+<td>810導師</td>
+<td>林靖純</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>南二4</td>
+</tr>
+<tr>
+<td align="right">126</td>
+<td>906導師</td>
+<td>洪慶榮</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北二6</td>
+</tr>
+<tr>
+<td align="right">127</td>
+<td>908導師</td>
+<td>高佩鈴</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北二4</td>
+</tr>
+<tr>
+<td align="right">128</td>
+<td>909導師</td>
+<td>黃明珍</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北二3</td>
+</tr>
+<tr>
+<td align="right">129</td>
+<td>910導師</td>
+<td>林佳儀</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北二2</td>
+</tr>
+<tr>
+<td align="right">130</td>
+<td>914導師</td>
+<td>顏玉芬</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北三3</td>
+</tr>
+<tr>
+<td align="right">131</td>
+<td>915導師</td>
+<td>吳登隆</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td>北三4</td>
+</tr>
+<tr>
+<td align="right">132</td>
+<td>教師</td>
+<td>李宜珊</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">133</td>
+<td>教師</td>
+<td>蔡啟明</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">134</td>
+<td>教師</td>
+<td>謝志祥</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">135</td>
+<td>教師</td>
+<td>王怡心</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">136</td>
+<td>教師</td>
+<td>葉嘉文</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">137</td>
+<td>教師</td>
+<td>郭淑玲</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">138</td>
+<td>教師</td>
+<td>楊淑娟</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">139</td>
+<td>教師</td>
+<td>張婉淳</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">140</td>
+<td>教師</td>
+<td>潘怜蓁</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">141</td>
+<td>教師</td>
+<td>蔡惠玲</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">142</td>
+<td>教師</td>
+<td>陳鳳晨</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">143</td>
+<td>會計主任</td>
+<td>陳原寬</td>
+<td>會計室</td>
+<td align="right">61</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">144</td>
+<td>佐理員</td>
+<td>王勺仁</td>
+<td>會計室</td>
+<td align="right">61</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">145</td>
+<td>午餐秘書</td>
+<td>劉嘉琪</td>
+<td>會計室</td>
+<td align="right">61</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">146</td>
+<td>護理師</td>
+<td>柯仁鳳</td>
+<td>健保中心</td>
+<td align="right">24</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">147</td>
+<td>教練</td>
+<td>徐正義</td>
+<td>健保中心</td>
+<td align="right">24</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">148</td>
+<td>教練</td>
+<td>梁朝凱</td>
+<td>健保中心</td>
+<td align="right">25</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">149</td>
+<td>業務助理</td>
+<td>林政毅</td>
+<td>警衛室</td>
+<td align="right">39</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">150</td>
+<td>營養師</td>
+<td>莊淑雯</td>
+<td>廚房</td>
+<td align="right">34</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">151</td>
+<td>員生社</td>
+<td>林麗雪</td>
+<td>員生社</td>
+<td align="right">27</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">152</td>
+<td>一資優導師</td>
+<td>陳彥霖</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">153</td>
+<td>二資優導師</td>
+<td>曾冠雲</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">154</td>
+<td>三資優導師</td>
+<td>蘇柏瑎</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">155</td>
+<td>資源班導師</td>
+<td>朱巧馨</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">156</td>
+<td>資源班導師</td>
+<td>洪于涵</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">157</td>
+<td>教師</td>
+<td>陳逸娟</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">158</td>
+<td>教師</td>
+<td>邱致文</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">159</td>
+<td>教師</td>
+<td>陳俐憬</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">160</td>
+<td>701英文</td>
+<td>彭杏微</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">161</td>
+<td>702英文</td>
+<td>林雅惠</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">162</td>
+<td>703英文</td>
+<td>楊素菁</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">163</td>
+<td>704英文</td>
+<td>賴美齡</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">164</td>
+<td>705英文</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">165</td>
+<td>706英文</td>
+<td>宋美齡</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">166</td>
+<td>707英文</td>
+<td>宋美齡</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">167</td>
+<td>708英文</td>
+<td>楊素菁</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">168</td>
+<td>709英文</td>
+<td>賴美齡</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">169</td>
+<td>710英文</td>
+<td>彭杏微</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">170</td>
+<td>711英文</td>
+<td>彭杏微</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">171</td>
+<td>712英文</td>
+<td>賴美齡</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">172</td>
+<td>713英文</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">173</td>
+<td>714英文</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">174</td>
+<td>715英文</td>
+<td>陳林千沛</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">175</td>
+<td>716英文</td>
+<td>鄭仁和</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">176</td>
+<td>717英文</td>
+<td>陳家穎</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">177</td>
+<td>801英文</td>
+<td>陳宥潔</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">178</td>
+<td>802英文</td>
+<td>鄭佩芬</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">179</td>
+<td>803英文</td>
+<td>林水汪</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">180</td>
+<td>804英文</td>
+<td>鄭佩芬</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">181</td>
+<td>805英文</td>
+<td>陳林千沛</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">182</td>
+<td>806英文</td>
+<td>林水汪</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">183</td>
+<td>807英文</td>
+<td>陳宥潔</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">184</td>
+<td>808英文</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">185</td>
+<td>809英文</td>
+<td>鄭佩芬</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">186</td>
+<td>810英文</td>
+<td>鄭佩芬</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">187</td>
+<td>811英文</td>
+<td>鄭仁和</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">188</td>
+<td>812英文</td>
+<td>鄭仁和</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">189</td>
+<td>813英文</td>
+<td>詹慧欣</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">190</td>
+<td>814英文</td>
+<td>林水汪</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">191</td>
+<td>815英文</td>
+<td>陳林千沛</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">192</td>
+<td>816英文</td>
+<td>陳宥潔</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">193</td>
+<td>817英文</td>
+<td>蕭崑典</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">194</td>
+<td>901英文</td>
+<td>林秀燕</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">195</td>
+<td>902英文</td>
+<td>楊淑娟</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">196</td>
+<td>903英文</td>
+<td>宋美齡</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">197</td>
+<td>904英文</td>
+<td>林秀燕</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">198</td>
+<td>905英文</td>
+<td>楊淑娟</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">199</td>
+<td>906英文</td>
+<td>林雅惠</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">200</td>
+<td>907英文</td>
+<td>陳家穎</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">201</td>
+<td>908英文</td>
+<td>楊淑娟</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">202</td>
+<td>909英文</td>
+<td>林秀燕</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">203</td>
+<td>910英文</td>
+<td>陳家穎</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">204</td>
+<td>911英文</td>
+<td>楊淑娟</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">205</td>
+<td>912英文</td>
+<td>詹慧欣</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">206</td>
+<td>913英文</td>
+<td>林雅惠</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">207</td>
+<td>914英文</td>
+<td>林秀燕</td>
+<td>教務處</td>
+<td align="right">13</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">208</td>
+<td>915英文</td>
+<td>陳家穎</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">209</td>
+<td>916英文</td>
+<td>楊素菁</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">210</td>
+<td>917英文</td>
+<td>詹慧欣</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">211</td>
+<td>701國文</td>
+<td>趙優華</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">212</td>
+<td>702國文</td>
+<td>連筱琦</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">213</td>
+<td>703國文</td>
+<td>林彥妙</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">214</td>
+<td>704國文</td>
+<td>葉嘉文</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">215</td>
+<td>705國文</td>
+<td>趙優華</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">216</td>
+<td>706國文</td>
+<td>陳芝華</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">217</td>
+<td>707國文</td>
+<td>葉嘉文</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">218</td>
+<td>708國文</td>
+<td>吳倍慈</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">219</td>
+<td>709國文</td>
+<td>趙優華</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">220</td>
+<td>710國文</td>
+<td>邱怡萍</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">221</td>
+<td>711國文</td>
+<td>陳芝華</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">222</td>
+<td>712國文</td>
+<td>陳芝華</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">223</td>
+<td>713國文</td>
+<td>吳倍慈</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">224</td>
+<td>714國文</td>
+<td>葉嘉文</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">225</td>
+<td>715國文</td>
+<td>邱怡萍</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">226</td>
+<td>716國文</td>
+<td>游慧玟</td>
+<td>總務處</td>
+<td align="right">0</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">227</td>
+<td>717國文</td>
+<td>林彥妙</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">228</td>
+<td>801國文</td>
+<td>郭淑玲</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">229</td>
+<td>802國文</td>
+<td>王淳淩</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">230</td>
+<td>803國文</td>
+<td>莊雅婷</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">231</td>
+<td>804國文</td>
+<td>郭淑玲</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">232</td>
+<td>805國文</td>
+<td>林淑卿</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">233</td>
+<td>806國文</td>
+<td>王淳淩</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">234</td>
+<td>807國文</td>
+<td>莊雅婷</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">235</td>
+<td>808國文</td>
+<td>李耀宗</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">236</td>
+<td>809國文</td>
+<td>陳鳳晨</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">237</td>
+<td>810國文</td>
+<td>林靖純</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">238</td>
+<td>811國文</td>
+<td>李耀宗</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">239</td>
+<td>812國文</td>
+<td>蔡淑萍</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">240</td>
+<td>813國文</td>
+<td>陳鳳晨</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">241</td>
+<td>814國文</td>
+<td>郭淑玲</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">242</td>
+<td>815國文</td>
+<td>劉書榮</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">243</td>
+<td>816國文</td>
+<td>陳鳳晨</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">244</td>
+<td>817國文</td>
+<td>蔡淑萍</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">245</td>
+<td>901國文</td>
+<td>吳欣憓</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">246</td>
+<td>902國文</td>
+<td>劉書榮</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">247</td>
+<td>903國文</td>
+<td>呂宜錚</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">248</td>
+<td>904國文</td>
+<td>林淑卿</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">249</td>
+<td>905國文</td>
+<td>蔡雅萍</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">250</td>
+<td>906國文</td>
+<td>洪慶榮</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">251</td>
+<td>907國文</td>
+<td>施惠真</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">252</td>
+<td>908國文</td>
+<td>陳雪美</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">253</td>
+<td>909國文</td>
+<td>呂宜錚</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">254</td>
+<td>910國文</td>
+<td>林靖純</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">255</td>
+<td>911國文</td>
+<td>施惠真</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">256</td>
+<td>912國文</td>
+<td>蔡雅萍</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">257</td>
+<td>913國文</td>
+<td>陳雪美</td>
+<td>北四東</td>
+<td align="right">72</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">258</td>
+<td>914國文</td>
+<td>吳欣憓</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">259</td>
+<td>915國文</td>
+<td>蔡雅萍</td>
+<td>南二中</td>
+<td align="right">76</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">260</td>
+<td>916國文</td>
+<td>洪慶榮</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">261</td>
+<td>917國文</td>
+<td>顏佳珉</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">262</td>
+<td>701數學</td>
+<td>姚谷樺</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">263</td>
+<td>702數學</td>
+<td>王怡心</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">264</td>
+<td>703數學</td>
+<td>黃怡青</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">265</td>
+<td>704數學</td>
+<td>姚谷樺</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">266</td>
+<td>705數學</td>
+<td>王怡心</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">267</td>
+<td>706數學</td>
+<td>卓怡君</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">268</td>
+<td>707數學</td>
+<td>陳秀枝</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">269</td>
+<td>708數學</td>
+<td>陳冠洲</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">270</td>
+<td>709數學</td>
+<td>王怡心</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">271</td>
+<td>710數學</td>
+<td>王怡心</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">272</td>
+<td>711數學</td>
+<td>孫育智</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">273</td>
+<td>712數學</td>
+<td>陳冠洲</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">274</td>
+<td>713數學</td>
+<td>陳秀枝</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">275</td>
+<td>714數學</td>
+<td>林憲聰</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">276</td>
+<td>715數學</td>
+<td>孫育智</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">277</td>
+<td>716數學</td>
+<td>姚谷樺</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">278</td>
+<td>717數學</td>
+<td>林憲聰</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">279</td>
+<td>801數學</td>
+<td>孫育智</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">280</td>
+<td>802數學</td>
+<td>吳登隆</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">281</td>
+<td>803數學</td>
+<td>陳俐憬</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">282</td>
+<td>804數學</td>
+<td>卓怡君</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">283</td>
+<td>805數學</td>
+<td>陳俐憬</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">284</td>
+<td>806數學</td>
+<td>蘇俊源</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">285</td>
+<td>807數學</td>
+<td>孫育智</td>
+<td>南四中</td>
+<td align="right">80</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">286</td>
+<td>808數學</td>
+<td>莊家銘</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">287</td>
+<td>809數學</td>
+<td>陳冠洲</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">288</td>
+<td>810數學</td>
+<td>顏玉芬</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">289</td>
+<td>811數學</td>
+<td>陳冠洲</td>
+<td>北四西</td>
+<td align="right">73</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">290</td>
+<td>812數學</td>
+<td>蘇俊源</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">291</td>
+<td>813數學</td>
+<td>蘇俊源</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">292</td>
+<td>814數學</td>
+<td>林憲聰</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">293</td>
+<td>815數學</td>
+<td>卓怡君</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">294</td>
+<td>816數學</td>
+<td>顏玉芬</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">295</td>
+<td>817數學</td>
+<td>蘇俊源</td>
+<td>教務處</td>
+<td align="right">14</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">296</td>
+<td>901數學</td>
+<td>李一昇</td>
+<td>教務處</td>
+<td align="right">11</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">297</td>
+<td>902數學</td>
+<td>謝金秤</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">298</td>
+<td>903數學</td>
+<td>謝金秤</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">299</td>
+<td>904數學</td>
+<td>黃怡青</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">300</td>
+<td>905數學</td>
+<td>陳逸欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">301</td>
+<td>906數學</td>
+<td>陳逸欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">302</td>
+<td>907數學</td>
+<td>陳逸欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">303</td>
+<td>908數學</td>
+<td>謝金秤</td>
+<td>南一西</td>
+<td align="right">75</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">304</td>
+<td>909數學</td>
+<td>陳逸欣</td>
+<td>南四東</td>
+<td align="right">81</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">305</td>
+<td>910數學</td>
+<td>莊家銘</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">306</td>
+<td>911數學</td>
+<td>莊家銘</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">307</td>
+<td>912數學</td>
+<td>黃怡青</td>
+<td>南一東</td>
+<td align="right">77</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">308</td>
+<td>913數學</td>
+<td>吳登隆</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">309</td>
+<td>914數學</td>
+<td>顏玉芬</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">310</td>
+<td>915數學</td>
+<td>吳登隆</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">311</td>
+<td>916數學</td>
+<td>莊家銘</td>
+<td>教務處</td>
+<td align="right">12</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">312</td>
+<td>917數學</td>
+<td>吳登隆</td>
+<td>北四中</td>
+<td align="right">70</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">313</td>
+<td>918數學</td>
+<td>陳彥霖</td>
+<td>東二中</td>
+<td align="right">74</td>
+<td> </td>
+</tr>
+<tr>
+<td align="right">314</td>
+<td>教師</td>
+<td>白敏宏</td>
+<td>南三中</td>
+<td align="right">78</td>
+<td> </td>
+</tr>
+</table>
+</div>
+<br><br><br><br><br>
+
+  <script>function artFunction() {
+  // Declare starting variables 
+  var input = document.getElementById("artInput");
+  var filter = input.value.toUpperCase();
+  var table = document.getElementById("artTable");
+  var trs = table.tBodies[0].getElementsByTagName("tr");
+  // Loop through rows
+  for (var i = 0; i < trs.length; i++) {
+    // Define the cells
+    var tds = trs[i].getElementsByTagName("td");
+    // hide the row
+    trs[i].style.display = "none";
+    // loop through row cells
+    for (var i2 = 1; i2 < tds.length; i2++) {
+      // if there's a match
+      if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        // show the row
+        trs[i].style.display = "";
+        // skip to the next row
+        continue;
+      }
+    }
+  }
 }
 </script>
-  </div>
-  </body>
-  </html>
-  
+
+</body>
+</html>
+
