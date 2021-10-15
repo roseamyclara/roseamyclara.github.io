@@ -730,7 +730,7 @@ p {
 <td>218導師</td>
 <td>江崇豪</td>
 <td>體育</td>
-<td>202/215</td>
+<td>202/125</td>
 <td>體育組</td>
 </tr>
 <tr>
@@ -1530,6 +1530,45 @@ p {
   }
 }
 </script>
+   
+<SCRIPT language=JavaScript> 
+
+function password() { 
+
+var testV = 1; 
+
+var pass1 = prompt('請輸入密碼:',''); 
+
+while (testV < 3) { 
+
+if (!pass1) 
+
+history.go(-1); 
+
+if (pass1 == "shallpass") { 
+
+alert('密碼正確!'); 
+
+break; 
+
+} 
+
+testV+=-1; 
+
+var pass1 = prompt('密碼錯誤!請重新輸入:'); 
+
+} 
+
+if (pass1!="password" & testV ==3) 
+
+history.go(-1); 
+
+return " "; 
+
+} 
+
+document.write(password()); 
+ </script>
 
 </body>
 </html>
