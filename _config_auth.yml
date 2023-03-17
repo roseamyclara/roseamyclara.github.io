@@ -1,0 +1,6 @@
+# _config_auth.yml
+
+jekyll-auth:
+  basic:
+    username: your_username_here
+    password: your_password_here
