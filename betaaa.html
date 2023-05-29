@@ -8,20 +8,47 @@
   <div id="json-data"></div>
 
   <script>
-    fetch('7naog-y546h.json')
-      .then(function(response) {
-        if (response.ok) {
-          return response.json();
+  fetch('7naog-y546h.json')
+    .then(function(response) {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error('Network response was not ok.');
+    })
+    .then(function(jsonData) {
+      var table = document.createElement('table');
+      var thead = document.createElement('thead');
+      var tbody = document.createElement('tbody');
+
+      // 创建表头
+      var headRow = document.createElement('tr');
+      for (var key in jsonData[0]) {
+        var headCell = document.createElement('th');
+        headCell.textContent = key;
+        headRow.appendChild(headCell);
+      }
+      thead.appendChild(headRow);
+      table.appendChild(thead);
+
+      // 创建表格内容
+      jsonData.forEach(function(item) {
+        var row = document.createElement('tr');
+        for (var key in item) {
+          var cell = document.createElement('td');
+          cell.textContent = item[key];
+          row.appendChild(cell);
         }
-        throw new Error('Network response was not ok.');
-      })
-      .then(function(jsonData) {
-        var jsonDataDiv = document.getElementById('json-data');
-        jsonDataDiv.textContent = JSON.stringify(jsonData, null, 2);
-      })
-      .catch(function(error) {
-        console.log('Error:', error.message);
+        tbody.appendChild(row);
       });
-  </script>
+      table.appendChild(tbody);
+
+      // 将表格添加到页面中
+      var jsonDataDiv = document.getElementById('json-data');
+      jsonDataDiv.appendChild(table);
+    })
+    .catch(function(error) {
+      console.log('Error:', error.message);
+    });
+</script>
 </body>
 </html>
