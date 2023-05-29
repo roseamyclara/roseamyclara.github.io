@@ -9,37 +9,130 @@
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
   <style>
     @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
-    /* 剩下的样式代码 */
+    
+    #artInput {
+      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      background-size: 25px;
+      width: 60%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+      text-align: center;
+      border-radius: 25px;
+    }
+    
+    #artTable {
+      border-collapse: collapse;
+      width: 80%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+      text-align: center;
+      table-layout: auto;
+    }
+    
+    #artTable th, #artTable td {
+      text-align: center;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    #artTable tr {
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    
+    #artTable tr.header, #artTable tr:hover {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    
+    a {
+      color: #f56642;
+    }
+    
+    h2, h1, p {
+      font-family: '微軟正黑字體', Gloria Hallelujah;
+      text-align: center;
+    }
+    
+    h1:hover {
+      animation-name: artshadow;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: both;
+      animation-duration: 0.5s;
+      animation-delay: 0.1s;
+    }
+    
+    @keyframes artshadow {
+      from {}
+      to {
+        text-shadow: 2px 2px 5px black;
+      }
+    }
+    
+    h1 {
+      color: #FF4500;
+      transition: 0.3s;
+    }
+    
+    p {
+      text-align: center;
+    }
+    
+    .centerenter {
+      text-align: center;
+    }
+    
+    .tablesearch {
+      text-align: center;
+    }
   </style>
-  <style>
-    /* 剩下的样式代码 */
-  </style>
-  <SCRIPT language=JavaScript> 
+  
+  <SCRIPT language=JavaScript>
+    function password() {
+      var testV = 1;
+      var pass1 = prompt('請輸入密碼:', '');
+
+      while (testV < 3) {
+        if (!pass1) history.go(-1);
+        if (pass1 == 'fn112') {
+          break;
+        }
+        testV += -1;
+        pass1 = prompt('密碼錯誤!請重新輸入:');
+      }
+
+      if (pass1 != 'password' && testV == 3) history.go(-1);
+
+      return '';
+    }
+
+    document.write(password());
+  </script>
+  
+  <script>
     function artFunction() {
-      // Declare starting variables 
-      var input = document.getElementById("artInput");
+      var input = document.getElementById('artInput');
       var filter = input.value.toUpperCase();
-      var table = document.getElementById("artTable");
-      var trs = table.tBodies[0].getElementsByTagName("tr");
-      // Loop through rows
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
       for (var i = 0; i < trs.length; i++) {
-        // Define the cells
-        var tds = trs[i].getElementsByTagName("td");
-        // hide the row
-        trs[i].style.display = "none";
-        // loop through row cells
+        var tds = trs[i].getElementsByTagName('td');
+        trs[i].style.display = 'none';
+
         for (var i2 = 1; i2 < tds.length; i2++) {
-          // if there's a match
           if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            // show the row
-            trs[i].style.display = "";
-            // skip to the next row
+            trs[i].style.display = '';
             continue;
           }
         }
       }
     }
-  </SCRIPT>
+  </script>
 </head>
 
 <body>
@@ -49,35 +142,29 @@
   </div>
   <div class="tablesearch">
     <table id="artTable" align="center">
-      <!-- 这里将插入由 JavaScript 生成的表格 -->
+      <thead>
+        <tr class="header">
+          <th>職稱</th>
+          <th>姓名</th>
+          <th>辦公室</th>
+          <th>分機</th>
+        </tr>
+      </thead>
     </table>
   </div>
-
+  
   <script>
     fetch('7naog-y546h.json')
       .then(function(response) {
-        if (response.ok) {
-          return response.json();
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-        throw new Error('Network response was not ok.');
+        return response.json();
       })
-      .then(function(jsonData) {
+      .then(function(data) {
         var table = document.getElementById('artTable');
-
-        // 创建表头
-        var thead = document.createElement('thead');
-        var headRow = document.createElement('tr');
-        for (var key in jsonData[0]) {
-          var headCell = document.createElement('th');
-          headCell.textContent = key;
-          headRow.appendChild(headCell);
-        }
-        thead.appendChild(headRow);
-        table.appendChild(thead);
-
-        // 创建表格内容
         var tbody = document.createElement('tbody');
-        jsonData.forEach(function(item) {
+        data.forEach(function(item) {
           var row = document.createElement('tr');
           for (var key in item) {
             var cell = document.createElement('td');
