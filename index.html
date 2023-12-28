@@ -102,24 +102,18 @@
     var pass1 = prompt('請輸入密碼:', '');
 
     while (testV < 3) {
-      if (!pass1) {
-        alert('請輸入密碼');
-        return; // 終止執行後續程式碼
+      if (!pass1 || pass1 !== 'fn112') {
+        alert('密碼錯誤! 請重新輸入');
+        testV += 1;
+        pass1 = prompt('密碼錯誤! 請重新輸入:');
+      } else {
+        // 密碼正確，可以繼續執行其他程式碼，或者返回空字符串
+        return '';
       }
-      if (pass1 == 'fn112') {
-        break;
-      }
-      testV += 1;
-      pass1 = prompt('密碼錯誤!請重新輸入:');
     }
 
-    if (pass1 !== 'fn112') {
-      alert('密碼錯誤! 請重新輸入');
-      window.close(); // 关闭当前页面
-      return;
-    }
-
-    // 在這裡可以繼續執行其他程式碼，或者返回空字符串
+    // 如果取消或三次輸入錯誤，直接關閉分頁
+    window.close();
     return '';
   }
 
