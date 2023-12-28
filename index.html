@@ -95,34 +95,72 @@
     }
   </style>
   
-  <script>
-  // 密码验证函数
-  function password() {
-    var testV = 1;
+  function showPasswordPrompt() {
+  // 建立一個新的視窗
+  var passwordPrompt = new Window({
+    // 視窗的標題
+    title: "輸入密碼",
+    // 視窗的寬度和高度
+    width: 300,
+    height: 200,
+    // 視窗的背景顏色
+    backgroundColor: "#ffffff",
+    // 視窗的邊框顏色
+    borderColor: "#000000",
+    // 視窗的邊框粗細
+    borderWidth: 1,
+    // 視窗的對齊方式
+    align: "center",
+    // 視窗的定位方式
+    zIndex: 1000,
+  });
 
-    while (testV <= 3) {
-      var pass1 = prompt('請輸入密碼:', '');
+  // 在視窗中加入一個輸入框
+  var passwordInput = document.createElement("input");
+  passwordInput.type = "password";
+  passwordInput.name = "password";
+  passwordInput.style.width = "100%";
+  passwordInput.style.height = "20px";
+  passwordInput.style.textAlign = "center";
+  passwordInput.style.backgroundColor = "#ffffff";
+  passwordInput.style.borderColor = "#000000";
+  passwordInput.style.borderWidth = 1;
+  passwordInput.style.margin = "10px";
+  passwordInput.style.padding = "10px";
+  passwordPrompt.appendChild(passwordInput);
 
-      if (!pass1) {
-        // 如果取消輸入密碼，可以在這裡處理相應的邏輯
-        return;
-      }
+  // 在視窗中加入一個按鈕
+  var submitButton = document.createElement("button");
+  submitButton.innerHTML = "送出";
+  submitButton.style.width = "100px";
+  submitButton.style.height = "30px";
+  submitButton.style.textAlign = "center";
+  submitButton.style.backgroundColor = "#000000";
+  submitButton.style.color = "#ffffff";
+  submitButton.style.borderRadius = "5px";
+  submitButton.style.margin = "10px";
+  submitButton.onclick = function() {
+    // 取得輸入框中的密碼
+    var password = passwordInput.value;
 
-      if (pass1 === 'fn112') {
-        // 密碼正確，可以繼續執行其他程式碼，或者返回空字符串
-        return '';
-      } else {
-        alert('密碼錯誤! 請重新輸入');
-        testV += 1;
-      }
+    // 檢查密碼是否正確
+    if (password === "fn112") {
+      // 密碼正確，載入之後的網頁
+      window.location.href = "https://example.com";
+    } else {
+      // 密碼錯誤，顯示錯誤訊息
+      alert("密碼錯誤，請重新輸入。");
     }
+  };
+  passwordPrompt.appendChild(submitButton);
 
-    // 這裡可以根據實際需求進行相應的處理
-  }
+  // 顯示視窗
+  passwordPrompt.show();
+}
 
-  // 调用密码验证函数
-  password();
-</script>
+// 在頁面載入時，呼叫 showPasswordPrompt() 函數
+window.onload = showPasswordPrompt;
+
 
 
   <script>
