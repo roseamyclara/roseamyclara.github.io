@@ -101,10 +101,15 @@
     var testV = 1;
     var pass1 = prompt('請輸入密碼:', '');
 
+    while (testV < 3) {
+      if (!pass1) {
+        // 如果取消輸入密碼，可以在這裡處理相應的邏輯
+        return;
+      }
       if (pass1 == 'fn112') {
         break;
       }
-      testV += 1; // 修正了 testV 的增加方式
+      testV += 1;
       pass1 = prompt('密碼錯誤!請重新輸入:');
     }
 
@@ -118,7 +123,7 @@
 
   document.write(password());
 </script>
-
+  
   <script>
     function artFunction() {
       var input = document.getElementById('artInput');
