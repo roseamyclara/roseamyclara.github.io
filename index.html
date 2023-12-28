@@ -95,22 +95,27 @@
     }
   </style>
   
-  <script>
-    function checkPassword() {
-      var password = prompt("请输入密码:");
-
-      // 检查密码是否正确
-      if (password === "fn112") {
-        // 密码正确，加载后续网页内容
-        alert("密码正确！加载网页内容...");
-        // 在这里添加加载后续网页的代码
-      } else {
-        // 密码不正确，提示并刷新页面
-        alert("密码不正确！请重新输入。");
-        location.reload();
-      }
-    }
-  </script>
+  <SCRIPT>
+function passWord() {
+var testV = 1;
+var pass1 = prompt('Please Enter Your Password',' ');
+while (testV < 3) {
+if (!pass1) 
+history.go(-1);
+if (pass1.toLowerCase() == "fn112") {
+alert('You Got it Right!');
+window.open('www.wikihow.com');
+break;
+} 
+testV+=1;
+var pass1 = 
+prompt('Access Denied - Password Incorrect, Please Try Again.','Password');
+}
+if (pass1.toLowerCase()!="password" & testV ==3) 
+history.go(-1);
+return " ";
+} 
+</SCRIPT>
   
   <script>
     function artFunction() {
