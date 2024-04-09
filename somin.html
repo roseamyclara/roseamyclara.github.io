@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" nonce="ab24b0f7a12a4e45b4cf61da7db" src="//local.adguard.org?ts=1712617718182&amp;type=content-script&amp;dmn=roseamyclara.github.io&amp;url=https%3A%2F%2Froseamyclara.github.io%2F&amp;app=msedge.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-dnt"></script>
+<script type="text/javascript" nonce="ab24b0f7a12a4e45b4cf61da7db" src="//local.adguard.org?ts=1712617718182&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>學校分機查詢</title>
+  <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
+  <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
+    
+    #artInput {
+      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      background-size: 25px;
+      width: 60%;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+      text-align: center;
+      border-radius: 25px;
+    }
+    
+    #artTable {
+      border-collapse: collapse;
+      width: 80%;
+      border: 1px solid #ddd;
+      font-size: 18px;
+      text-align: center;
+      table-layout: auto;
+    }
+    
+    #artTable th, #artTable td {
+      text-align: center;
+      padding: 12px;
+      text-align: left;
+    }
+    
+    #artTable tr {
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+    
+    #artTable tr.header, #artTable tr:hover {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+    
+    #artTable td {
+      white-space: nowrap;
+    }
+    
+    a {
+      color: #f56642;
+    }
+    
+    h2, h1, p {
+      font-family: '微軟正黑字體', Gloria Hallelujah;
+      text-align: center;
+    }
+    
+    h1:hover {
+      animation-name: artshadow;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: both;
+      animation-duration: 0.5s;
+      animation-delay: 0.1s;
+    }
+    
+    @keyframes artshadow {
+      from {}
+      to {
+        text-shadow: 2px 2px 5px black;
+      }
+    }
+    
+    h1 {
+      color: #FF4500;
+      transition: 0.3s;
+    }
+    
+    p {
+      text-align: center;
+    }
+    
+    .centerenter {
+      text-align: center;
+    }
+    
+    .tablesearch {
+      text-align: center;
+    }
+  </style>
+  
+<script type="text/javascript">   
+loopy()   
+function loopy() {   
+var sWord =""  
+while (sWord != "fn112") {//設置密碼
+sWord = prompt("輸入正確密碼才能登入!")   
+}     
+}   
+</script> 
+  <script>
+    function artFunction() {
+      var input = document.getElementById('artInput');
+      var filter = input.value.toUpperCase();
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
+      for (var i = 0; i < trs.length; i++) {
+        var tds = trs[i].getElementsByTagName('td');
+        trs[i].style.display = 'none';
+
+        for (var i2 = 1; i2 < tds.length; i2++) {
+          if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            trs[i].style.display = '';
+            continue;
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- 引入sheetjs庫 -->
+  <script type="text/javascript" src="https://cdn.sheetjs.com/xlsx-0.18.9/package/dist/xlsx.full.min.mjs"></script>
+  
+  <script>
+    // 獲取表格元素
+    const table = document.getElementById('artTable');
+
+    // 創建一個按鈕元素
+    const downloadBtn = document.createElement('button');
+    downloadBtn.id = 'downloadBtn';
+    downloadBtn.textContent = '下載表格';
+    downloadBtn.style.position = 'fixed';
+    downloadBtn.style.top = '20px';
+    downloadBtn.style.right = '20px';
+
+    // 將按鈕添加到網頁上
+    document.body.appendChild(downloadBtn);
+
+    // 為按鈕添加點擊事件監聽器
+    downloadBtn.addEventListener('click', () => {
+      // 獲取表格數據
+      const ws = XLSX.utils.table_to_sheet(table);
+
+      // 創建一個新的工作簿
+      const wb = XLSX.utils.book_new();
+
+      // 將工作表添加到工作簿中
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+      // 將工作簿轉換為二進制數據
+      const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+
+      // 創建一個blob對象
+      const blob = new Blob([s2ab(wbout)], { type: 'application/octet-stream' });
+
+      // 創建一個鏈接元素
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'table.xlsx';
+
+      // 模擬點擊鏈接以觸發下載
+      link.click();
+    });
+
+    // 將字符串轉換為arraybuffer
+    function s2ab(s) {
+      const buf = new ArrayBuffer(s.length);
+      const view = new Uint8Array(buf);
+      for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+      return buf;
