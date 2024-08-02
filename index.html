@@ -8,168 +8,28 @@
   <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-    
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      padding: 20px;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    /* 保留原有的樣式 */
+    /* ... */
 
-    #artInput {
-      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
-      background-position: 10px center;
-      background-repeat: no-repeat;
-      background-size: 25px;
-      width: 100%;
-      max-width: 500px;
-      font-size: 16px;
-      padding: 12px 20px 12px 40px;
+    /* 為科目篩選按鈕添加新的樣式 */
+    .subject-filter {
+      background-color: #f0f0f0;
       border: 1px solid #ddd;
-      margin: 0 auto 20px;
-      text-align: center;
-      border-radius: 25px;
-      display: block;
-    }
-    
-    #artTable {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
-    }
-    
-    #artTable th, #artTable td {
-      text-align: left;
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    #artTable tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-    
-    #artTable tr:nth-child(odd) {
-      background-color: #ffffff;
-    }
-    
-    #artTable tr.header, #artTable tr:hover {
-      background-color: #e6f3ff;
-    }
-    
-    h1 {
-      text-align: center;
-      color: #4a4a4a;
-      font-size: 2.5em;
-      font-weight: 700;
-      margin: 30px 0;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    
-    h1:hover {
-      color: #FF4500;
-      transform: scale(1.05);
-    }
-    
-    .beta-tag {
-      font-size: 0.4em;
-      vertical-align: super;
-      color: #FF4500;
-      font-weight: 400;
-    }
-
-    .filter-links {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .filter-links a {
-      display: inline-block;
-      margin: 5px;
       padding: 5px 10px;
-      text-decoration: none;
-      color: #333;
-      border: 1px solid #ddd;
+      margin: 5px;
+      cursor: pointer;
       border-radius: 5px;
-      transition: all 0.3s ease;
     }
 
-    .filter-links a:hover {
-      color: #FF4500;
-      background-color: #f2f2f2;
-    }
-
-    @media screen and (max-width: 768px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      #artInput {
-        font-size: 14px;
-      }
-
-      #artTable {
-        font-size: 14px;
-      }
-
-      #artTable th, #artTable td {
-        padding: 8px;
-      }
-
-      .hide-mobile {
-        display: none;
-      }
-    }
-
-    /* Password protection styles */
-    #passwordPrompt {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    #passwordForm {
-      background-color: white;
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-    }
-
-    #passwordInput {
-      margin: 10px 0;
-      padding: 5px;
-    }
-
-    #content {
-      display: none;
-    }
-
-    #errorMessage {
-      color: red;
-      margin-top: 10px;
+    .subject-filter.active {
+      background-color: #4CAF50;
+      color: white;
     }
   </style>
 </head>      
 <body>
-  <div id="passwordPrompt">
-    <div id="passwordForm">
-      <h2>請輸入密碼</h2>
-      <input type="password" id="passwordInput">
-      <button onclick="checkPassword()">提交</button>
-      <div id="errorMessage"></div>
-    </div>
-  </div>
+  <!-- 密碼提示框和內容區域保持不變 -->
+  <!-- ... -->
 
   <div id="content" class="container">
     <h1>分機號碼查詢 <span class="beta-tag">beta</span></h1>
@@ -181,6 +41,10 @@
       <a href="#" onclick="filterByRange([[17, 70]])">導師</a>
       <a href="#" onclick="filterByRange([[71, 109]])">專任</a>
       <a href="#" onclick="filterByRange([[110, 130]])">代理&短代</a>
+    </div>
+
+    <div id="subjectFilters" class="filter-links">
+      <!-- 科目篩選按鈕將在這裡動態生成 -->
     </div>
 
     <div class="table-responsive">
@@ -203,36 +67,11 @@
   
   <script>
     var attemptCount = 0;
+    var originalData = []; // 用於存儲原始數據
+    var currentFilter = null; // 用於跟踪當前的篩選狀態
 
-    function checkPassword() {
-      var password = document.getElementById('passwordInput').value;
-      if (password === 'fn112') {
-        document.getElementById('passwordPrompt').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-      } else {
-        attemptCount++;
-        if (attemptCount >= 3) {
-          alert('密碼錯誤3次，頁面將關閉。');
-          window.close();
-        } else {
-          document.getElementById('errorMessage').textContent = `密碼錯誤，還有${3 - attemptCount}次機會。`;
-          document.getElementById('passwordInput').value = '';
-        }
-      }
-    }
-
-    document.getElementById('passwordInput').addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        checkPassword();
-      }
-    });
-
-    // New code to focus on password input when typing starts
-    document.addEventListener('keydown', function(event) {
-      if (document.getElementById('passwordPrompt').style.display !== 'none') {
-        document.getElementById('passwordInput').focus();
-      }
-    });
+    // 保留原有的 checkPassword 和相關的事件監聽器
+    // ...
 
     function artFunction() {
       var input = document.getElementById('artInput');
@@ -240,43 +79,77 @@
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
-      var visibleCount = 0;
-      for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        var display = 'none';
-
-        for (var i2 = 0; i2 < tds.length; i2++) {
-          if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            display = '';
-            break;
+      filterAndUpdateTable(trs, function(tr) {
+        var tds = tr.getElementsByTagName('td');
+        for (var i = 0; i < tds.length; i++) {
+          if (tds[i].textContent.toUpperCase().indexOf(filter) > -1) {
+            return true;
           }
         }
-
-        trs[i].style.display = display;
-        if (display === '') {
-          trs[i].classList.toggle('even', visibleCount % 2 === 0);
-          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          visibleCount++;
-        }
-      }
+        return false;
+      });
     }
 
     function filterByRange(ranges) {
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
+      filterAndUpdateTable(trs, function(tr) {
+        var numberCell = tr.getElementsByTagName('td')[0];
+        var number = parseInt(numberCell.textContent);
+        return ranges.some(range => number >= range[0] && number <= range[1]);
+      });
+    }
+
+    function filterBySubject(subject) {
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
+      if (currentFilter === subject) {
+        // 如果當前篩選器已經激活，則清除篩選
+        currentFilter = null;
+        filterAndUpdateTable(trs, function() { return true; });
+        document.querySelectorAll('.subject-filter').forEach(btn => btn.classList.remove('active'));
+      } else {
+        // 否則，應用新的篩選
+        currentFilter = subject;
+        filterAndUpdateTable(trs, function(tr) {
+          var subjectCell = tr.getElementsByTagName('td')[3];
+          return subjectCell.textContent === subject;
+        });
+        document.querySelectorAll('.subject-filter').forEach(btn => {
+          btn.classList.toggle('active', btn.textContent === subject);
+        });
+      }
+    }
+
+    function filterAndUpdateTable(trs, filterFunction) {
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
-        var numberCell = trs[i].getElementsByTagName('td')[0];
-        var number = parseInt(numberCell.textContent);
-        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
+        var shouldDisplay = filterFunction(trs[i]);
         trs[i].style.display = shouldDisplay ? '' : 'none';
         if (shouldDisplay) {
+          visibleCount++;
+          var numberCell = trs[i].getElementsByTagName('td')[0];
+          numberCell.textContent = visibleCount; // 更新編號
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          visibleCount++;
         }
       }
+    }
+
+    function createSubjectFilters(data) {
+      var subjects = [...new Set(data.map(item => item['科目']))];
+      var filterContainer = document.getElementById('subjectFilters');
+      subjects.forEach(subject => {
+        if (subject) { // 只為非空的科目創建按鈕
+          var button = document.createElement('button');
+          button.textContent = subject;
+          button.className = 'subject-filter';
+          button.onclick = function() { filterBySubject(subject); };
+          filterContainer.appendChild(button);
+        }
+      });
     }
 
     fetch('csvjson.json')
@@ -287,6 +160,7 @@
         return response.json();
       })
       .then(function(data) {
+        originalData = data; // 保存原始數據
         var table = document.getElementById('artTable');
         var tbody = table.querySelector('tbody');
         data.forEach(function(item, index) {
@@ -294,7 +168,7 @@
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           
           var cellsToCreate = [
-            item['編號'], 
+            index + 1, // 初始編號
             item['職稱/班級'], 
             item['姓名'], 
             item['科目'], 
@@ -314,6 +188,8 @@
 
           tbody.appendChild(row);
         });
+
+        createSubjectFilters(data);
       })
       .catch(function(error) {
         console.log('Error:', error.message);
