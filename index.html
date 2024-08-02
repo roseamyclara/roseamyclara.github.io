@@ -13,13 +13,11 @@
     body {
       font-family: 'Noto Sans TC', sans-serif;
       padding: 20px;
-      font-size: 16px;
     }
     
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px;
     }
 
     #artInput {
@@ -29,7 +27,7 @@
       background-size: 25px;
       width: 100%;
       max-width: 500px;
-      font-size: 1em;
+      font-size: 16px;
       padding: 12px 20px 12px 40px;
       border: 1px solid #ddd;
       margin: 0 auto 20px;
@@ -38,24 +36,16 @@
       display: block;
     }
     
-    .table-responsive {
-      overflow-x: auto;
-    }
-
     #artTable {
       width: 100%;
       border-collapse: collapse;
-      font-size: 1em;
-      table-layout: auto;
+      font-size: 16px;
     }
     
     #artTable th, #artTable td {
       text-align: left;
       padding: 12px;
       border-bottom: 1px solid #ddd;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     
     #artTable tr:nth-child(even) {
@@ -113,6 +103,28 @@
       background-color: #f2f2f2;
     }
 
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      #artInput {
+        font-size: 14px;
+      }
+
+      #artTable {
+        font-size: 14px;
+      }
+
+      #artTable th, #artTable td {
+        padding: 8px;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+    }
+
     /* Password protection styles */
     #passwordPrompt {
       position: fixed;
@@ -132,15 +144,11 @@
       padding: 20px;
       border-radius: 5px;
       text-align: center;
-      width: 90%;
-      max-width: 400px;
     }
 
     #passwordInput {
       margin: 10px 0;
       padding: 5px;
-      width: 100%;
-      max-width: 300px;
     }
 
     #content {
@@ -151,65 +159,6 @@
       color: red;
       margin-top: 10px;
     }
-
-    /* 響應式設計 */
-    @media screen and (max-width: 768px) {
-      body {
-        font-size: 14px;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
-
-      #artInput {
-        font-size: 0.9em;
-      }
-
-      #artTable {
-        font-size: 0.9em;
-      }
-
-      #artTable th, #artTable td {
-        padding: 8px;
-      }
-
-      .hide-mobile {
-        display: none;
-      }
-
-      .filter-links a {
-        padding: 3px 6px;
-        font-size: 0.9em;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      body {
-        font-size: 12px;
-      }
-
-      h1 {
-        font-size: 1.8em;
-      }
-
-      #artInput {
-        font-size: 0.8em;
-      }
-
-      #artTable {
-        font-size: 0.8em;
-      }
-
-      #artTable th, #artTable td {
-        padding: 6px;
-      }
-
-      .filter-links a {
-        padding: 2px 4px;
-        font-size: 0.8em;
-      }
-    }
   </style>
 </head>      
 <body>
@@ -217,7 +166,7 @@
     <div id="passwordForm">
       <h2>請輸入密碼</h2>
       <input type="password" id="passwordInput">
-      <button onclick="checkPassword()" class="btn btn-primary">提交</button>
+      <button onclick="checkPassword()">提交</button>
       <div id="errorMessage"></div>
     </div>
   </div>
@@ -235,7 +184,7 @@
     </div>
 
     <div class="table-responsive">
-      <table id="artTable" class="table">
+      <table id="artTable">
         <thead>
           <tr class="header">
             <th>編號</th>
@@ -278,6 +227,7 @@
       }
     });
 
+    // New code to focus on password input when typing starts
     document.addEventListener('keydown', function(event) {
       if (document.getElementById('passwordPrompt').style.display !== 'none') {
         document.getElementById('passwordInput').focus();
@@ -295,7 +245,7 @@
         var tds = trs[i].getElementsByTagName('td');
         var display = 'none';
 
-        for (var i2 = 1; i2 < tds.length; i2++) {
+        for (var i2 = 0; i2 < tds.length; i2++) {
           if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
             display = '';
             break;
@@ -306,7 +256,6 @@
         if (display === '') {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          tds[0].textContent = visibleCount + 1;
           visibleCount++;
         }
       }
@@ -319,13 +268,12 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var numberCell = trs[i].getElementsByTagName('td')[0];
-        var originalNumber = parseInt(numberCell.getAttribute('data-original-number'));
-        var shouldDisplay = ranges.some(range => originalNumber >= range[0] && originalNumber <= range[1]);
+        var number = parseInt(numberCell.textContent);
+        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
         trs[i].style.display = shouldDisplay ? '' : 'none';
         if (shouldDisplay) {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          numberCell.textContent = visibleCount + 1;
           visibleCount++;
         }
       }
@@ -346,7 +294,7 @@
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           
           var cellsToCreate = [
-            (index + 1).toString(), 
+            item['編號'], 
             item['職稱/班級'], 
             item['姓名'], 
             item['科目'], 
@@ -358,9 +306,6 @@
           cellsToCreate.forEach((cellContent, cellIndex) => {
             var cell = document.createElement('td');
             cell.textContent = cellContent;
-            if (cellIndex === 0) {
-              cell.setAttribute('data-original-number', cellContent);
-            }
             if (cellIndex === 3 || cellIndex === 4) {
               cell.classList.add('hide-mobile');
             }
@@ -369,33 +314,10 @@
 
           tbody.appendChild(row);
         });
-
-        adjustColumnWidths();
       })
       .catch(function(error) {
         console.log('Error:', error.message);
       });
-
-    function adjustColumnWidths() {
-      var table = document.getElementById('artTable');
-      var headerCells = table.querySelectorAll('th');
-      var bodyCells = table.querySelectorAll('td');
-
-      headerCells.forEach(cell => cell.style.width = 'auto');
-
-      var maxWidths = Array(headerCells.length).fill(0);
-      bodyCells.forEach((cell, index) => {
-        var cellWidth = cell.offsetWidth;
-        var colIndex = index % headerCells.length;
-        maxWidths[colIndex] = Math.max(maxWidths[colIndex], cellWidth);
-      });
-
-      headerCells.forEach((cell, index) => {
-        cell.style.width = `${maxWidths[index]}px`;
-      });
-    }
-
-    window.addEventListener('resize', adjustColumnWidths);
   </script>
 </body>
 </html>
