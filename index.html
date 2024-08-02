@@ -305,3 +305,74 @@
 
       if (currentSubjectFilter === subject) {
         currentSubjectFilter = null;
+      } else {
+        currentSubjectFilter = subject;
+        document.querySelector(`.subject-filter[data-subject="${subject}"]`).classList.add('active');
+      }
+
+      artFunction(); // 重新應用篩選
+    }
+
+    // 新增：創建科目篩選按鈕
+    function createSubjectFilters(data) {
+      var subjects = [...new Set(data.map(item => item['科目']))].filter(Boolean);
+      var filterContainer = document.getElementById('subjectFilters');
+      subjects.forEach(subject => {
+        var button = document.createElement('a');
+        button.href = '#';
+        button.className = 'subject-filter';
+        button.textContent = subject;
+        button.setAttribute('data-subject', subject);
+        button.onclick = function(e) {
+          e.preventDefault();
+          filterBySubject(subject);
+        };
+        filterContainer.appendChild(button);
+      });
+    }
+
+    fetch('csvjson.json')
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        originalData = data; // 保存原始數據
+        var table = document.getElementById('artTable');
+        var tbody = table.querySelector('tbody');
+        data.forEach(function(item, index) {
+          var row = document.createElement('tr');
+          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
+          
+          var cellsToCreate = [
+            index + 1, // 初始編號
+            item['職稱/班級'], 
+            item['姓名'], 
+            item['科目'], 
+            item['分機'], 
+            item['辦公室/廣播指令'], 
+            item['手機']
+          ];
+
+          cellsToCreate.forEach((cellContent, cellIndex) => {
+            var cell = document.createElement('td');
+            cell.textContent = cellContent;
+            if (cellIndex === 3 || cellIndex === 4) {
+              cell.classList.add('hide-mobile');
+            }
+            row.appendChild(cell);
+          });
+
+          tbody.appendChild(row);
+        });
+
+        createSubjectFilters(data); // 創建科目篩選按鈕
+      })
+      .catch(function(error) {
+        console.log('Error:', error.message);
+      });
+  </script>
+</body>
+</html>
