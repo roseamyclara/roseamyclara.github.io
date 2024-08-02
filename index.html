@@ -87,7 +87,7 @@
       margin-bottom: 20px;
     }
 
-    .filter-links a {
+    .filter-btn {
       display: inline-block;
       margin: 5px;
       padding: 5px 10px;
@@ -96,11 +96,13 @@
       border: 1px solid #ddd;
       border-radius: 5px;
       transition: all 0.3s ease;
+      cursor: pointer;
+      background-color: #f1f1f1;
     }
 
-    .filter-links a:hover {
+    .filter-btn:hover, .filter-btn.active {
       color: #FF4500;
-      background-color: #f2f2f2;
+      background-color: #e6f3ff;
     }
 
     @media screen and (max-width: 768px) {
@@ -160,38 +162,10 @@
       margin-top: 10px;
     }
 
-    /* 為科目篩選按鈕添加新的樣式 */
-    .subject-filter {
-      display: inline-block;
-      margin: 5px;
-      padding: 5px 10px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .subject-filter.active {
-      background-color: #e6f3ff;
-    }
-
-    /* Add styles for the subject dropdown */
+    /* Dropdown styles */
     .dropdown {
       position: relative;
       display: inline-block;
-    }
-
-    .dropbtn {
-      background-color: #f1f1f1;
-      color: #333;
-      padding: 5px 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .dropbtn:hover {
-      background-color: #e6f3ff;
     }
 
     .dropdown-content {
@@ -237,17 +211,16 @@
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
 
     <div class="filter-links">
-      <!-- Add the subject dropdown here -->
       <div class="dropdown">
-        <button class="dropbtn">科目</button>
+        <button class="filter-btn" id="subjectBtn">科目</button>
         <div id="subjectDropdown" class="dropdown-content">
           <!-- Subject options will be dynamically added here -->
         </div>
       </div>
-      <a href="#" onclick="filterByRange([[1, 16], [131, 146]])">行政</a>
-      <a href="#" onclick="filterByRange([[17, 70]])">導師</a>
-      <a href="#" onclick="filterByRange([[71, 109]])">專任</a>
-      <a href="#" onclick="filterByRange([[110, 130]])">代理&短代</a>
+      <button class="filter-btn" onclick="toggleFilter('admin')">行政</button>
+      <button class="filter-btn" onclick="toggleFilter('teacher')">導師</button>
+      <button class="filter-btn" onclick="toggleFilter('specialty')">專任</button>
+      <button class="filter-btn" onclick="toggleFilter('substitute')">代理&短代</button>
     </div>
 
     <div class="table-responsive">
@@ -270,8 +243,11 @@
   
   <script>
     var attemptCount = 0;
-    var originalData = []; // 用於存儲原始數據
-    var currentSubjectFilter = null; // 用於跟踪當前的科目篩選狀態
+    var originalData = [];
+    var currentFilters = {
+      subject: null,
+      category: null
+    };
 
     function checkPassword() {
       var password = document.getElementById('passwordInput').value;
@@ -311,51 +287,55 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
-        var display = 'none';
-
-        if ((!currentSubjectFilter || tds[3].textContent === currentSubjectFilter) &&
-            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1)) {
-          display = '';
-          visibleCount++;
-          tds[0].textContent = visibleCount; // 更新編號
-        }
-
-        trs[i].style.display = display;
-        if (display === '') {
-          trs[i].classList.toggle('even', visibleCount % 2 === 0);
-          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-        }
-      }
-    }
-
-    function filterByRange(ranges) {
-      var table = document.getElementById('artTable');
-      var trs = table.tBodies[0].getElementsByTagName('tr');
-
-      var visibleCount = 0;
-      for (var i = 0; i < trs.length; i++) {
-        var numberCell = trs[i].getElementsByTagName('td')[0];
-        var number = parseInt(numberCell.textContent);
-        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
+        var shouldDisplay = (!currentFilters.subject || tds[3].textContent === currentFilters.subject) &&
+                            (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
+                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
+        
         trs[i].style.display = shouldDisplay ? '' : 'none';
         if (shouldDisplay) {
           visibleCount++;
-          numberCell.textContent = visibleCount; // 更新編號
+          tds[0].textContent = visibleCount;
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
         }
       }
     }
 
-    function filterBySubject(subject) {
-      if (currentSubjectFilter === subject) {
-        currentSubjectFilter = null;
-        document.querySelector('.dropbtn').textContent = '科目';
+    function isInCategory(index, category) {
+      const ranges = {
+        admin: [[1, 16], [131, 146]],
+        teacher: [[17, 70]],
+        specialty: [[71, 109]],
+        substitute: [[110, 130]]
+      };
+      return ranges[category].some(range => index >= range[0] && index <= range[1]);
+    }
+
+    function toggleFilter(category) {
+      if (currentFilters.category === category) {
+        currentFilters.category = null;
+        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.remove('active');
       } else {
-        currentSubjectFilter = subject;
-        document.querySelector('.dropbtn').textContent = subject;
+        if (currentFilters.category) {
+          document.querySelector(`button[onclick="toggleFilter('${currentFilters.category}')"]`).classList.remove('active');
+        }
+        currentFilters.category = category;
+        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.add('active');
       }
-      artFunction(); // 重新應用篩選
+      artFunction();
+    }
+
+    function filterBySubject(subject) {
+      if (currentFilters.subject === subject) {
+        currentFilters.subject = null;
+        document.getElementById('subjectBtn').textContent = '科目';
+        document.getElementById('subjectBtn').classList.remove('active');
+      } else {
+        currentFilters.subject = subject;
+        document.getElementById('subjectBtn').textContent = subject;
+        document.getElementById('subjectBtn').classList.add('active');
+      }
+      artFunction();
     }
 
     function createSubjectFilters(data) {
@@ -381,7 +361,7 @@
         return response.json();
       })
       .then(function(data) {
-        originalData = data; // 保存原始數據
+        originalData = data;
         var table = document.getElementById('artTable');
         var tbody = table.querySelector('tbody');
         data.forEach(function(item, index) {
@@ -389,7 +369,7 @@
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           
           var cellsToCreate = [
-            index + 1, // 初始編號
+            index + 1,
             item['職稱/班級'], 
             item['姓名'], 
             item['科目'], 
@@ -401,6 +381,9 @@
           cellsToCreate.forEach((cellContent, cellIndex) => {
             var cell = document.createElement('td');
             cell.textContent = cellContent;
+            if (cellIndex === 0) {
+              cell.setAttribute('data-original-index', index + 1);
+            }
             if (cellIndex === 3 || cellIndex === 4) {
               cell.classList.add('hide-mobile');
             }
@@ -410,7 +393,7 @@
           tbody.appendChild(row);
         });
 
-        createSubjectFilters(data); // 創建科目篩選選項
+        createSubjectFilters(data);
       })
       .catch(function(error) {
         console.log('Error:', error.message);
