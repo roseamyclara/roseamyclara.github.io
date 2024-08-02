@@ -40,12 +40,16 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 16px;
+      table-layout: auto; /* 允許自動調整列寬 */
     }
     
     #artTable th, #artTable td {
       text-align: left;
       padding: 12px;
       border-bottom: 1px solid #ddd;
+      white-space: nowrap; /* 防止內容換行 */
+      overflow: hidden;
+      text-overflow: ellipsis; /* 內容過長時顯示省略號 */
     }
     
     #artTable tr:nth-child(even) {
@@ -227,7 +231,7 @@
       }
     });
 
-    // New code to focus on password input when typing starts
+    // Focus on password input when typing starts
     document.addEventListener('keydown', function(event) {
       if (document.getElementById('passwordPrompt').style.display !== 'none') {
         document.getElementById('passwordInput').focus();
@@ -245,7 +249,7 @@
         var tds = trs[i].getElementsByTagName('td');
         var display = 'none';
 
-        for (var i2 = 0; i2 < tds.length; i2++) {
+        for (var i2 = 1; i2 < tds.length; i2++) {  // 從第二列開始搜索，跳過編號列
           if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
             display = '';
             break;
@@ -256,6 +260,7 @@
         if (display === '') {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          tds[0].textContent = visibleCount + 1;  // 更新編號
           visibleCount++;
         }
       }
@@ -268,12 +273,13 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var numberCell = trs[i].getElementsByTagName('td')[0];
-        var number = parseInt(numberCell.textContent);
-        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
+        var originalNumber = parseInt(numberCell.getAttribute('data-original-number'));
+        var shouldDisplay = ranges.some(range => originalNumber >= range[0] && originalNumber <= range[1]);
         trs[i].style.display = shouldDisplay ? '' : 'none';
         if (shouldDisplay) {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          numberCell.textContent = visibleCount + 1;  // 更新編號
           visibleCount++;
         }
       }
@@ -294,7 +300,7 @@
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           
           var cellsToCreate = [
-            item['編號'], 
+            (index + 1).toString(), 
             item['職稱/班級'], 
             item['姓名'], 
             item['科目'], 
@@ -306,6 +312,9 @@
           cellsToCreate.forEach((cellContent, cellIndex) => {
             var cell = document.createElement('td');
             cell.textContent = cellContent;
+            if (cellIndex === 0) {
+              cell.setAttribute('data-original-number', cellContent);  // 保存原始編號
+            }
             if (cellIndex === 3 || cellIndex === 4) {
               cell.classList.add('hide-mobile');
             }
@@ -314,10 +323,38 @@
 
           tbody.appendChild(row);
         });
+
+        // 調整列寬
+        adjustColumnWidths();
       })
       .catch(function(error) {
         console.log('Error:', error.message);
       });
+
+    function adjustColumnWidths() {
+      var table = document.getElementById('artTable');
+      var headerCells = table.querySelectorAll('th');
+      var bodyCells = table.querySelectorAll('td');
+
+      // 重置所有列寬
+      headerCells.forEach(cell => cell.style.width = 'auto');
+
+      // 計算每列的最大寬度
+      var maxWidths = Array(headerCells.length).fill(0);
+      bodyCells.forEach((cell, index) => {
+        var cellWidth = cell.offsetWidth;
+        var colIndex = index % headerCells.length;
+        maxWidths[colIndex] = Math.max(maxWidths[colIndex], cellWidth);
+      });
+
+      // 設置每列的寬度
+      headerCells.forEach((cell, index) => {
+        cell.style.width = `${maxWidths[index]}px`;
+      });
+    }
+
+    // 在窗口大小改變時重新調整列寬
+    window.addEventListener('resize', adjustColumnWidths);
   </script>
 </body>
 </html>
