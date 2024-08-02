@@ -227,6 +227,13 @@
       }
     });
 
+    // New code to focus on password input when typing starts
+    document.addEventListener('keydown', function(event) {
+      if (document.getElementById('passwordPrompt').style.display !== 'none') {
+        document.getElementById('passwordInput').focus();
+      }
+    });
+
     function artFunction() {
       var input = document.getElementById('artInput');
       var filter = input.value.toUpperCase();
