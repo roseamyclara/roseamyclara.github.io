@@ -37,6 +37,7 @@
     }
     
     #artTable {
+      table-layout: auto;
       width: 100%;
       border-collapse: collapse;
       font-size: 16px;
@@ -46,6 +47,9 @@
       text-align: left;
       padding: 12px;
       border-bottom: 1px solid #ddd;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     
     #artTable tr:nth-child(even) {
@@ -103,7 +107,23 @@
       background-color: #f2f2f2;
     }
 
+    @media screen and (max-width: 1200px) {
+      body {
+        font-size: 14px;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      body {
+        font-size: 13px;
+      }
+    }
+
     @media screen and (max-width: 768px) {
+      body {
+        font-size: 12px;
+      }
+      
       h1 {
         font-size: 2em;
       }
@@ -117,11 +137,21 @@
       }
 
       #artTable th, #artTable td {
-        padding: 8px;
+        padding: 6px;
       }
 
       .hide-mobile {
         display: none;
+      }
+    }
+
+    @media screen and (max-width: 576px) {
+      body {
+        font-size: 11px;
+      }
+      
+      #artTable th, #artTable td {
+        padding: 4px;
       }
     }
 
@@ -183,22 +213,20 @@
       <a href="#" onclick="filterByRange([[110, 130]])">代理&短代</a>
     </div>
 
-    <div class="table-responsive">
-      <table id="artTable">
-        <thead>
-          <tr class="header">
-            <th>編號</th>
-            <th>職稱/班級</th>
-            <th>姓名</th>
-            <th class="hide-mobile">科目</th>
-            <th class="hide-mobile">分機</th>
-            <th>辦公室/廣播指令</th>
-            <th>手機</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <table id="artTable" class="table table-responsive">
+      <thead>
+        <tr class="header">
+          <th>編號</th>
+          <th>職稱/班級</th>
+          <th>姓名</th>
+          <th class="hide-mobile">科目</th>
+          <th class="hide-mobile">分機</th>
+          <th>辦公室/廣播指令</th>
+          <th>手機</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
   </div>
   
   <script>
