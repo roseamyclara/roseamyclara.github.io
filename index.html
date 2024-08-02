@@ -8,7 +8,11 @@
   <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
     
     #artInput {
       background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
@@ -57,29 +61,33 @@
       color: #f56642;
     }
     
-    h2, h1, p {
-      font-family: '微軟正黑字體', Gloria Hallelujah;
+    h2, p {
+      font-family: 'Noto Sans TC', sans-serif;
       text-align: center;
     }
     
-    h1:hover {
-      animation-name: artshadow;
-      animation-timing-function: ease-in-out;
-      animation-fill-mode: both;
-      animation-duration: 0.5s;
-      animation-delay: 0.1s;
-    }
-    
-    @keyframes artshadow {
-      from {}
-      to {
-        text-shadow: 2px 2px 5px black;
-      }
-    }
-    
     h1 {
+      font-family: 'Noto Sans TC', sans-serif;
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    h1:hover {
       color: #FF4500;
-      transition: 0.3s;
+      transform: scale(1.05);
+    }
+    
+    .beta-tag {
+      font-size: 0.4em;
+      vertical-align: super;
+      color: #FF4500;
+      font-weight: 400;
     }
     
     p {
@@ -104,6 +112,11 @@
       margin-left: 10px;
       text-decoration: none;
       color: #333;
+      transition: color 0.3s ease;
+    }
+
+    .filter-links a:hover {
+      color: #FF4500;
     }
   </style>
   
@@ -150,7 +163,7 @@ sWord = prompt("輸入正確密碼才能登入!")
   </script>
 </head>      
 <body>
-  <h1><b>Extension Number Search <font size="2">beta</font></h1>
+  <h1>分機號碼查詢 <span class="beta-tag">beta</span></h1>
   <div class="filter-links">
     <a href="#" onclick="filterByRange([[1, 16], [131, 146]])">行政</a>
     <a href="#" onclick="filterByRange([[17, 70]])">導師</a>
