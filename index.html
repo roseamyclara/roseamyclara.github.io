@@ -125,7 +125,7 @@
       }
     }
 
-    /* New styles for password protection */
+    /* Password protection styles */
     #passwordPrompt {
       position: fixed;
       top: 0;
@@ -154,6 +154,11 @@
     #content {
       display: none;
     }
+
+    #errorMessage {
+      color: red;
+      margin-top: 10px;
+    }
   </style>
 </head>      
 <body>
@@ -162,6 +167,7 @@
       <h2>請輸入密碼</h2>
       <input type="password" id="passwordInput">
       <button onclick="checkPassword()">提交</button>
+      <div id="errorMessage"></div>
     </div>
   </div>
 
@@ -196,15 +202,30 @@
   </div>
   
   <script>
+    var attemptCount = 0;
+
     function checkPassword() {
       var password = document.getElementById('passwordInput').value;
       if (password === 'fn112') {
         document.getElementById('passwordPrompt').style.display = 'none';
         document.getElementById('content').style.display = 'block';
       } else {
-        alert('密碼錯誤，請重試。');
+        attemptCount++;
+        if (attemptCount >= 3) {
+          alert('密碼錯誤3次，頁面將關閉。');
+          window.close();
+        } else {
+          document.getElementById('errorMessage').textContent = `密碼錯誤，還有${3 - attemptCount}次機會。`;
+          document.getElementById('passwordInput').value = '';
+        }
       }
     }
+
+    document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        checkPassword();
+      }
+    });
 
     function artFunction() {
       var input = document.getElementById('artInput');
