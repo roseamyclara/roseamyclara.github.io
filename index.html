@@ -20,6 +20,112 @@
       margin: 0 auto;
     }
 
+    #artInput {
+      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 25px;
+      width: 100%;
+      max-width: 500px;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin: 0 auto 20px;
+      text-align: center;
+      border-radius: 25px;
+      display: block;
+    }
+    
+    #artTable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+    
+    #artTable th, #artTable td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #artTable tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    #artTable tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    
+    #artTable tr.header, #artTable tr:hover {
+      background-color: #e6f3ff;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin: 30px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    h1:hover {
+      color: #FF4500;
+      transform: scale(1.05);
+    }
+    
+    .beta-tag {
+      font-size: 0.4em;
+      vertical-align: super;
+      color: #FF4500;
+      font-weight: 400;
+    }
+
+    .filter-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-links a {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .filter-links a:hover {
+      color: #FF4500;
+      background-color: #f2f2f2;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      #artInput {
+        font-size: 14px;
+      }
+
+      #artTable {
+        font-size: 14px;
+      }
+
+      #artTable th, #artTable td {
+        padding: 8px;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+    }
+
+    /* New styles for password protection */
     #passwordPrompt {
       position: fixed;
       top: 0;
@@ -48,8 +154,6 @@
     #content {
       display: none;
     }
-
-    /* Rest of the original styles... */
   </style>
 </head>      
 <body>
@@ -62,7 +166,6 @@
   </div>
 
   <div id="content" class="container">
-    <!-- Original content here -->
     <h1>分機號碼查詢 <span class="beta-tag">beta</span></h1>
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
@@ -103,19 +206,86 @@
       }
     }
 
-    // Rest of the original JavaScript...
-
     function artFunction() {
-      // ... (original function code)
+      var input = document.getElementById('artInput');
+      var filter = input.value.toUpperCase();
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        var tds = trs[i].getElementsByTagName('td');
+        var display = 'none';
+
+        for (var i2 = 0; i2 < tds.length; i2++) {
+          if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            display = '';
+            break;
+          }
+        }
+
+        trs[i].style.display = display;
+        if (display === '') {
+          trs[i].classList.toggle('even', visibleCount % 2 === 0);
+          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          visibleCount++;
+        }
+      }
     }
 
     function filterByRange(ranges) {
-      // ... (original function code)
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        var numberCell = trs[i].getElementsByTagName('td')[0];
+        var number = parseInt(numberCell.textContent);
+        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
+        trs[i].style.display = shouldDisplay ? '' : 'none';
+        if (shouldDisplay) {
+          trs[i].classList.toggle('even', visibleCount % 2 === 0);
+          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          visibleCount++;
+        }
+      }
     }
 
     fetch('csvjson.json')
       .then(function(response) {
-        // ... (original fetch code)
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        var table = document.getElementById('artTable');
+        var tbody = table.querySelector('tbody');
+        data.forEach(function(item, index) {
+          var row = document.createElement('tr');
+          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
+          
+          var cellsToCreate = [
+            item['編號'], 
+            item['職稱/班級'], 
+            item['姓名'], 
+            item['科目'], 
+            item['分機'], 
+            item['辦公室/廣播指令'], 
+            item['手機']
+          ];
+
+          cellsToCreate.forEach((cellContent, cellIndex) => {
+            var cell = document.createElement('td');
+            cell.textContent = cellContent;
+            if (cellIndex === 3 || cellIndex === 4) {
+              cell.classList.add('hide-mobile');
+            }
+            row.appendChild(cell);
+          });
+
+          tbody.appendChild(row);
+        });
       })
       .catch(function(error) {
         console.log('Error:', error.message);
