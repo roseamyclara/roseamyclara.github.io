@@ -172,6 +172,53 @@
     .subject-filter.active {
       background-color: #e6f3ff;
     }
+
+    /* Add styles for the subject dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 5px 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .dropbtn:hover {
+      background-color: #e6f3ff;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
   </style>
 </head>      
 <body>
@@ -190,14 +237,18 @@
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
 
     <div class="filter-links">
+      <!-- Add the subject dropdown here -->
+      <div class="dropdown">
+        <button class="dropbtn">科目</button>
+        <div id="subjectDropdown" class="dropdown-content">
+          <!-- Subject options will be dynamically added here -->
+        </div>
+      </div>
       <a href="#" onclick="filterByRange([[1, 16], [131, 146]])">行政</a>
       <a href="#" onclick="filterByRange([[17, 70]])">導師</a>
       <a href="#" onclick="filterByRange([[71, 109]])">專任</a>
       <a href="#" onclick="filterByRange([[110, 130]])">代理&短代</a>
     </div>
-
-    <!-- 添加科目篩選按鈕容器 -->
-    <div id="subjectFilters" class="filter-links"></div>
 
     <div class="table-responsive">
       <table id="artTable">
@@ -245,7 +296,6 @@
       }
     });
 
-    // 聚焦到密碼輸入框的代碼
     document.addEventListener('keydown', function(event) {
       if (document.getElementById('passwordPrompt').style.display !== 'none') {
         document.getElementById('passwordInput').focus();
@@ -263,7 +313,6 @@
         var tds = trs[i].getElementsByTagName('td');
         var display = 'none';
 
-        // 檢查是否符合搜索條件和科目篩選條件
         if ((!currentSubjectFilter || tds[3].textContent === currentSubjectFilter) &&
             Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1)) {
           display = '';
@@ -298,36 +347,29 @@
       }
     }
 
-    // 新增：科目篩選函數
     function filterBySubject(subject) {
-      var subjectButtons = document.querySelectorAll('.subject-filter');
-      subjectButtons.forEach(btn => btn.classList.remove('active'));
-
       if (currentSubjectFilter === subject) {
         currentSubjectFilter = null;
+        document.querySelector('.dropbtn').textContent = '科目';
       } else {
         currentSubjectFilter = subject;
-        document.querySelector(`.subject-filter[data-subject="${subject}"]`).classList.add('active');
+        document.querySelector('.dropbtn').textContent = subject;
       }
-
       artFunction(); // 重新應用篩選
     }
 
-    // 新增：創建科目篩選按鈕
     function createSubjectFilters(data) {
       var subjects = [...new Set(data.map(item => item['科目']))].filter(Boolean);
-      var filterContainer = document.getElementById('subjectFilters');
+      var dropdown = document.getElementById('subjectDropdown');
       subjects.forEach(subject => {
-        var button = document.createElement('a');
-        button.href = '#';
-        button.className = 'subject-filter';
-        button.textContent = subject;
-        button.setAttribute('data-subject', subject);
-        button.onclick = function(e) {
+        var link = document.createElement('a');
+        link.href = '#';
+        link.textContent = subject;
+        link.onclick = function(e) {
           e.preventDefault();
           filterBySubject(subject);
         };
-        filterContainer.appendChild(button);
+        dropdown.appendChild(link);
       });
     }
 
@@ -368,7 +410,7 @@
           tbody.appendChild(row);
         });
 
-        createSubjectFilters(data); // 創建科目篩選按鈕
+        createSubjectFilters(data); // 創建科目篩選選項
       })
       .catch(function(error) {
         console.log('Error:', error.message);
