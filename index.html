@@ -123,6 +123,32 @@
     .filter-links a:hover {
       color: #FF4500;
     }
+
+    @media screen and (max-width: 768px) {
+      #artTable {
+        width: 100%;
+      }
+      
+      #artTable th:nth-child(n+8),
+      #artTable td:nth-child(n+8) {
+        display: none;
+      }
+      
+      .filter-links {
+        position: static;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      
+      .filter-links a {
+        display: inline-block;
+        margin: 5px;
+      }
+      
+      #artInput {
+        width: 90%;
+      }
+    }
   </style>
   
 <script type="text/javascript">   
@@ -179,6 +205,37 @@ sWord = prompt("輸入正確密碼才能登入!")
         }
       }
     }
+
+    function adjustTableForMobile() {
+      var table = document.getElementById('artTable');
+      var headerRow = table.getElementsByTagName('thead')[0].getElementsByTagName('tr')[0];
+      var dataRows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+      if (window.innerWidth <= 768) {
+        // Hide columns after "手機" on mobile
+        for (var i = 7; i < headerRow.cells.length; i++) {
+          headerRow.cells[i].style.display = 'none';
+        }
+        for (var i = 0; i < dataRows.length; i++) {
+          for (var j = 7; j < dataRows[i].cells.length; j++) {
+            dataRows[i].cells[j].style.display = 'none';
+          }
+        }
+      } else {
+        // Show all columns on larger screens
+        for (var i = 0; i < headerRow.cells.length; i++) {
+          headerRow.cells[i].style.display = '';
+        }
+        for (var i = 0; i < dataRows.length; i++) {
+          for (var j = 0; j < dataRows[i].cells.length; j++) {
+            dataRows[i].cells[j].style.display = '';
+          }
+        }
+      }
+    }
+
+    window.addEventListener('load', adjustTableForMobile);
+    window.addEventListener('resize', adjustTableForMobile);
   </script>
 </head>      
 <body>
@@ -232,6 +289,7 @@ sWord = prompt("輸入正確密碼才能登入!")
           tbody.appendChild(row);
         });
         table.appendChild(tbody);
+        adjustTableForMobile();
       })
       .catch(function(error) {
         console.log('Error:', error.message);
