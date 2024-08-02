@@ -136,18 +136,15 @@ sWord = prompt("輸入正確密碼才能登入!")
       }
     }
 
-    function filterByRange(start, end) {
+    function filterByRange(ranges) {
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
       for (var i = 0; i < trs.length; i++) {
         var numberCell = trs[i].getElementsByTagName('td')[0];
         var number = parseInt(numberCell.textContent);
-        if (number >= start && number <= end) {
-          trs[i].style.display = '';
-        } else {
-          trs[i].style.display = 'none';
-        }
+        var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
+        trs[i].style.display = shouldDisplay ? '' : 'none';
       }
     }
   </script>
@@ -155,10 +152,10 @@ sWord = prompt("輸入正確密碼才能登入!")
 <body>
   <h1><b>Extension Number Search <font size="2">beta</font></h1>
   <div class="filter-links">
-    <a href="#" onclick="filterByRange(1, 16)">行政</a>
-    <a href="#" onclick="filterByRange(17, 70)">導師</a>
-    <a href="#" onclick="filterByRange(71, 109)">專任</a>
-    <a href="#" onclick="filterByRange(110, 130)">代理&短代</a>
+    <a href="#" onclick="filterByRange([[1, 16], [131, 146]])">行政</a>
+    <a href="#" onclick="filterByRange([[17, 70]])">導師</a>
+    <a href="#" onclick="filterByRange([[71, 109]])">專任</a>
+    <a href="#" onclick="filterByRange([[110, 130]])">代理&短代</a>
   </div>
   <div class="centerenter">
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
