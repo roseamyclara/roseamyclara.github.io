@@ -38,19 +38,24 @@
     }
     
     #artTable th, #artTable td {
-      text-align: center;
-      padding: 12px;
       text-align: left;
+      padding: 12px;
     }
     
     #artTable tr {
       border-bottom: 1px solid #ddd;
-      text-align: center;
+    }
+    
+    #artTable tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    #artTable tr:nth-child(odd) {
+      background-color: #ffffff;
     }
     
     #artTable tr.header, #artTable tr:hover {
-      background-color: #f1f1f1;
-      text-align: center;
+      background-color: #e6f3ff;
     }
     
     #artTable td {
@@ -136,15 +141,23 @@ sWord = prompt("輸入正確密碼才能登入!")
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
+      var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
-        trs[i].style.display = 'none';
+        var display = 'none';
 
         for (var i2 = 1; i2 < tds.length; i2++) {
           if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
-            trs[i].style.display = '';
-            continue;
+            display = '';
+            break;
           }
+        }
+
+        trs[i].style.display = display;
+        if (display === '') {
+          trs[i].classList.toggle('even', visibleCount % 2 === 0);
+          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          visibleCount++;
         }
       }
     }
@@ -153,11 +166,17 @@ sWord = prompt("輸入正確密碼才能登入!")
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
+      var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var numberCell = trs[i].getElementsByTagName('td')[0];
         var number = parseInt(numberCell.textContent);
         var shouldDisplay = ranges.some(range => number >= range[0] && number <= range[1]);
         trs[i].style.display = shouldDisplay ? '' : 'none';
+        if (shouldDisplay) {
+          trs[i].classList.toggle('even', visibleCount % 2 === 0);
+          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          visibleCount++;
+        }
       }
     }
   </script>
@@ -202,8 +221,9 @@ sWord = prompt("輸入正確密碼才能登入!")
       .then(function(data) {
         var table = document.getElementById('artTable');
         var tbody = document.createElement('tbody');
-        data.forEach(function(item) {
+        data.forEach(function(item, index) {
           var row = document.createElement('tr');
+          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           for (var key in item) {
             var cell = document.createElement('td');
             cell.textContent = item[key];
