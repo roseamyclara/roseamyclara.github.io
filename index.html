@@ -13,11 +13,13 @@
     body {
       font-family: 'Noto Sans TC', sans-serif;
       padding: 20px;
+      font-size: 16px;
     }
     
     .container {
       max-width: 1200px;
       margin: 0 auto;
+      padding: 0 15px;
     }
 
     #artInput {
@@ -27,7 +29,7 @@
       background-size: 25px;
       width: 100%;
       max-width: 500px;
-      font-size: 16px;
+      font-size: 1em;
       padding: 12px 20px 12px 40px;
       border: 1px solid #ddd;
       margin: 0 auto 20px;
@@ -36,20 +38,24 @@
       display: block;
     }
     
+    .table-responsive {
+      overflow-x: auto;
+    }
+
     #artTable {
       width: 100%;
       border-collapse: collapse;
-      font-size: 16px;
-      table-layout: auto; /* 允許自動調整列寬 */
+      font-size: 1em;
+      table-layout: auto;
     }
     
     #artTable th, #artTable td {
       text-align: left;
       padding: 12px;
       border-bottom: 1px solid #ddd;
-      white-space: nowrap; /* 防止內容換行 */
+      white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis; /* 內容過長時顯示省略號 */
+      text-overflow: ellipsis;
     }
     
     #artTable tr:nth-child(even) {
@@ -107,28 +113,6 @@
       background-color: #f2f2f2;
     }
 
-    @media screen and (max-width: 768px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      #artInput {
-        font-size: 14px;
-      }
-
-      #artTable {
-        font-size: 14px;
-      }
-
-      #artTable th, #artTable td {
-        padding: 8px;
-      }
-
-      .hide-mobile {
-        display: none;
-      }
-    }
-
     /* Password protection styles */
     #passwordPrompt {
       position: fixed;
@@ -148,11 +132,15 @@
       padding: 20px;
       border-radius: 5px;
       text-align: center;
+      width: 90%;
+      max-width: 400px;
     }
 
     #passwordInput {
       margin: 10px 0;
       padding: 5px;
+      width: 100%;
+      max-width: 300px;
     }
 
     #content {
@@ -163,6 +151,65 @@
       color: red;
       margin-top: 10px;
     }
+
+    /* 響應式設計 */
+    @media screen and (max-width: 768px) {
+      body {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      #artInput {
+        font-size: 0.9em;
+      }
+
+      #artTable {
+        font-size: 0.9em;
+      }
+
+      #artTable th, #artTable td {
+        padding: 8px;
+      }
+
+      .hide-mobile {
+        display: none;
+      }
+
+      .filter-links a {
+        padding: 3px 6px;
+        font-size: 0.9em;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      body {
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      #artInput {
+        font-size: 0.8em;
+      }
+
+      #artTable {
+        font-size: 0.8em;
+      }
+
+      #artTable th, #artTable td {
+        padding: 6px;
+      }
+
+      .filter-links a {
+        padding: 2px 4px;
+        font-size: 0.8em;
+      }
+    }
   </style>
 </head>      
 <body>
@@ -170,7 +217,7 @@
     <div id="passwordForm">
       <h2>請輸入密碼</h2>
       <input type="password" id="passwordInput">
-      <button onclick="checkPassword()">提交</button>
+      <button onclick="checkPassword()" class="btn btn-primary">提交</button>
       <div id="errorMessage"></div>
     </div>
   </div>
@@ -188,7 +235,7 @@
     </div>
 
     <div class="table-responsive">
-      <table id="artTable">
+      <table id="artTable" class="table">
         <thead>
           <tr class="header">
             <th>編號</th>
@@ -231,7 +278,6 @@
       }
     });
 
-    // Focus on password input when typing starts
     document.addEventListener('keydown', function(event) {
       if (document.getElementById('passwordPrompt').style.display !== 'none') {
         document.getElementById('passwordInput').focus();
@@ -249,7 +295,7 @@
         var tds = trs[i].getElementsByTagName('td');
         var display = 'none';
 
-        for (var i2 = 1; i2 < tds.length; i2++) {  // 從第二列開始搜索，跳過編號列
+        for (var i2 = 1; i2 < tds.length; i2++) {
           if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
             display = '';
             break;
@@ -260,7 +306,7 @@
         if (display === '') {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          tds[0].textContent = visibleCount + 1;  // 更新編號
+          tds[0].textContent = visibleCount + 1;
           visibleCount++;
         }
       }
@@ -279,7 +325,7 @@
         if (shouldDisplay) {
           trs[i].classList.toggle('even', visibleCount % 2 === 0);
           trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
-          numberCell.textContent = visibleCount + 1;  // 更新編號
+          numberCell.textContent = visibleCount + 1;
           visibleCount++;
         }
       }
@@ -313,7 +359,7 @@
             var cell = document.createElement('td');
             cell.textContent = cellContent;
             if (cellIndex === 0) {
-              cell.setAttribute('data-original-number', cellContent);  // 保存原始編號
+              cell.setAttribute('data-original-number', cellContent);
             }
             if (cellIndex === 3 || cellIndex === 4) {
               cell.classList.add('hide-mobile');
@@ -324,7 +370,6 @@
           tbody.appendChild(row);
         });
 
-        // 調整列寬
         adjustColumnWidths();
       })
       .catch(function(error) {
@@ -336,10 +381,8 @@
       var headerCells = table.querySelectorAll('th');
       var bodyCells = table.querySelectorAll('td');
 
-      // 重置所有列寬
       headerCells.forEach(cell => cell.style.width = 'auto');
 
-      // 計算每列的最大寬度
       var maxWidths = Array(headerCells.length).fill(0);
       bodyCells.forEach((cell, index) => {
         var cellWidth = cell.offsetWidth;
@@ -347,13 +390,11 @@
         maxWidths[colIndex] = Math.max(maxWidths[colIndex], cellWidth);
       });
 
-      // 設置每列的寬度
       headerCells.forEach((cell, index) => {
         cell.style.width = `${maxWidths[index]}px`;
       });
     }
 
-    // 在窗口大小改變時重新調整列寬
     window.addEventListener('resize', adjustColumnWidths);
   </script>
 </body>
