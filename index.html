@@ -48,11 +48,11 @@
       border-bottom: 1px solid #ddd;
     }
     
-    #artTable tr:nth-child(even) {
+    #artTable tr.even {
       background-color: #f2f2f2;
     }
     
-    #artTable tr:nth-child(odd) {
+    #artTable tr.odd {
       background-color: #ffffff;
     }
     
@@ -289,12 +289,14 @@
         var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
                             Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
         
-        trs[i].style.display = shouldDisplay ? '' : 'none';
         if (shouldDisplay) {
           visibleCount++;
+          trs[i].style.display = '';
           tds[0].textContent = visibleCount;
-          trs[i].classList.toggle('even', visibleCount % 2 === 0);
-          trs[i].classList.toggle('odd', visibleCount % 2 !== 0);
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
         }
       }
     }
