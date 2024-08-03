@@ -161,38 +161,6 @@
       color: red;
       margin-top: 10px;
     }
-
-    /* Dropdown styles */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      z-index: 1;
-      max-height: 300px;
-      overflow-y: auto;
-    }
-
-    .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #f1f1f1
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
   </style>
 </head>      
 <body>
@@ -211,12 +179,6 @@
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
 
     <div class="filter-links">
-      <div class="dropdown">
-        <button class="filter-btn" id="subjectBtn">科目</button>
-        <div id="subjectDropdown" class="dropdown-content">
-          <!-- Subject options will be dynamically added here -->
-        </div>
-      </div>
       <button class="filter-btn" onclick="toggleFilter('admin')">行政</button>
       <button class="filter-btn" onclick="toggleFilter('teacher')">導師</button>
       <button class="filter-btn" onclick="toggleFilter('specialty')">專任</button>
@@ -245,7 +207,6 @@
     var attemptCount = 0;
     var originalData = [];
     var currentFilters = {
-      subject: null,
       category: null
     };
 
@@ -287,8 +248,7 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
-        var shouldDisplay = (!currentFilters.subject || tds[3].textContent === currentFilters.subject) &&
-                            (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
+        var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
                             Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
         
         trs[i].style.display = shouldDisplay ? '' : 'none';
@@ -323,34 +283,6 @@
         document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.add('active');
       }
       artFunction();
-    }
-
-    function filterBySubject(subject) {
-      if (currentFilters.subject === subject) {
-        currentFilters.subject = null;
-        document.getElementById('subjectBtn').textContent = '科目';
-        document.getElementById('subjectBtn').classList.remove('active');
-      } else {
-        currentFilters.subject = subject;
-        document.getElementById('subjectBtn').textContent = subject;
-        document.getElementById('subjectBtn').classList.add('active');
-      }
-      artFunction();
-    }
-
-    function createSubjectFilters(data) {
-      var subjects = [...new Set(data.map(item => item['科目']))].filter(Boolean);
-      var dropdown = document.getElementById('subjectDropdown');
-      subjects.forEach(subject => {
-        var link = document.createElement('a');
-        link.href = '#';
-        link.textContent = subject;
-        link.onclick = function(e) {
-          e.preventDefault();
-          filterBySubject(subject);
-        };
-        dropdown.appendChild(link);
-      });
     }
 
     fetch('csvjson.json')
@@ -392,8 +324,6 @@
 
           tbody.appendChild(row);
         });
-
-        createSubjectFilters(data);
       })
       .catch(function(error) {
         console.log('Error:', error.message);
