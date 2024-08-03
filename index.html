@@ -237,7 +237,172 @@
   </style>
 </head>      
 <body>
-  <!-- 其餘的 HTML 內容保持不變 -->
-  <!-- 腳本部分也保持不變 -->
+  <div id="passwordPrompt">
+    <div id="passwordForm">
+      <h2>請輸入密碼</h2>
+      <input type="password" id="passwordInput" placeholder="輸入密碼...">
+      <button id="submitPassword" onclick="checkPassword()">確定</button>
+      <div id="errorMessage"></div>
+    </div>
+  </div>
+
+  <div id="content" class="container">
+    <h1>分機號碼查詢 <span class="beta-tag">beta</span></h1>
+    
+    <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
+
+    <div class="filter-links">
+      <button class="filter-btn" onclick="toggleFilter('admin')">行政</button>
+      <button class="filter-btn" onclick="toggleFilter('teacher')">導師</button>
+      <button class="filter-btn" onclick="toggleFilter('specialty')">專任</button>
+      <button class="filter-btn" onclick="toggleFilter('substitute')">代理&短代</button>
+    </div>
+
+    <div class="table-responsive">
+      <table id="artTable">
+        <thead>
+          <tr class="header">
+            <th>編號</th>
+            <th>職稱/班級</th>
+            <th>姓名</th>
+            <th class="hide-mobile">科目</th>
+            <th class="hide-mobile">分機</th>
+            <th>辦公室/廣播指令</th>
+            <th>手機</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+    var attemptCount = 0;
+    var originalData = [];
+    var currentFilters = {
+      category: null
+    };
+
+    function checkPassword() {
+      var password = document.getElementById('passwordInput').value;
+      if (password === 'fn112') {
+        document.getElementById('passwordPrompt').style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+      } else {
+        attemptCount++;
+        if (attemptCount >= 3) {
+          alert('密碼錯誤3次，頁面將關閉。');
+          window.close();
+        } else {
+          document.getElementById('errorMessage').textContent = `密碼錯誤，還有${3 - attemptCount}次機會。`;
+          document.getElementById('passwordInput').value = '';
+        }
+      }
+    }
+
+    document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        checkPassword();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (document.getElementById('passwordPrompt').style.display !== 'none') {
+        document.getElementById('passwordInput').focus();
+      }
+    });
+
+    function artFunction() {
+      var input = document.getElementById('artInput');
+      var filter = input.value.toUpperCase();
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        var tds = trs[i].getElementsByTagName('td');
+        var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
+                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
+        
+        if (shouldDisplay) {
+          visibleCount++;
+          trs[i].style.display = '';
+          tds[0].textContent = visibleCount;
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
+        }
+      }
+    }
+
+    function isInCategory(index, category) {
+      const ranges = {
+        admin: [[1, 16], [131, 146]],
+        teacher: [[17, 70]],
+        specialty: [[71, 109]],
+        substitute: [[110, 130]]
+      };
+      return ranges[category].some(range => index >= range[0] && index <= range[1]);
+    }
+
+    function toggleFilter(category) {
+      if (currentFilters.category === category) {
+        currentFilters.category = null;
+        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.remove('active');
+      } else {
+        if (currentFilters.category) {
+          document.querySelector(`button[onclick="toggleFilter('${currentFilters.category}')"]`).classList.remove('active');
+        }
+        currentFilters.category = category;
+        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.add('active');
+      }
+      artFunction();
+    }
+
+    fetch('csvjson.json')
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        originalData = data;
+        var table = document.getElementById('artTable');
+        var tbody = table.querySelector('tbody');
+        data.forEach(function(item, index) {
+          var row = document.createElement('tr');
+          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
+          
+          var cellsToCreate = [
+            index + 1,
+            item['職稱/班級'], 
+            item['姓名'], 
+            item['科目'], 
+            item['分機'], 
+            item['辦公室/廣播指令'], 
+            item['手機']
+          ];
+
+          cellsToCreate.forEach((cellContent, cellIndex) => {
+            var cell = document.createElement('td');
+            cell.textContent = cellContent;
+            if (cellIndex === 0) {
+              cell.setAttribute('data-original-index', index + 1);
+            }
+            if (cellIndex === 3 || cellIndex === 4) {
+              cell.classList.add('hide-mobile');
+            }
+            row.appendChild(cell);
+          });
+
+          tbody.appendChild(row);
+        });
+      })
+      .catch(function(error) {
+        console.log('Error:', error.message);
+      });
+  </script>
 </body>
 </html>
