@@ -13,7 +13,6 @@
     body {
       font-family: 'Noto Sans TC', sans-serif;
       padding: 20px;
-      font-size: 16px;
     }
     
     .container {
@@ -107,47 +106,28 @@
     }
 
     @media screen and (max-width: 768px) {
-      body {
-        font-size: 12px;
-        padding: 5px;
-      }
-
       h1 {
-        font-size: 1.5em;
+        font-size: 2em;
       }
 
       #artInput {
-        font-size: 12px;
-        padding: 8px 12px 8px 30px;
-        background-size: 18px;
+        font-size: 14px;
       }
 
       #artTable {
-        font-size: 10px;
+        font-size: 14px;
       }
 
       #artTable th, #artTable td {
-        padding: 4px 2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        padding: 8px;
       }
 
       .hide-mobile {
         display: none;
       }
-
-      .filter-btn {
-        font-size: 10px;
-        padding: 3px 6px;
-        margin: 2px;
-      }
-      
-      .table-responsive {
-        overflow-x: auto;
-      }
     }
 
+    /* Updated Password protection styles */
     #passwordPrompt {
       position: fixed;
       top: 0;
@@ -218,21 +198,6 @@
       color: #e74c3c;
       margin-top: 15px;
       font-size: 14px;
-    }
-
-    @media screen and (max-width: 768px) {
-      #passwordForm {
-        padding: 15px;
-      }
-
-      #passwordForm h2 {
-        font-size: 18px;
-      }
-
-      #passwordInput, #submitPassword {
-        font-size: 12px;
-        padding: 8px 15px;
-      }
     }
   </style>
 </head>      
