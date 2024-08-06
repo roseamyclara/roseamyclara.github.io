@@ -217,6 +217,7 @@
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
 
     <div class="filter-links">
+      <button class="filter-btn" onclick="toggleFilter('broadcast')">廣播指令</button>
       <button class="filter-btn" onclick="toggleFilter('admin')">行政</button>
       <button class="filter-btn" onclick="toggleFilter('teacher')">導師</button>
       <button class="filter-btn" onclick="toggleFilter('specialty')">專任</button>
@@ -303,6 +304,7 @@
 
     function isInCategory(index, category) {
       const ranges = {
+        broadcast: [[169, 227]],
         admin: [[1, 16], [131, 146]],
         teacher: [[17, 70]],
         specialty: [[71, 109]],
