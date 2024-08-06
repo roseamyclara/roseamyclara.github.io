@@ -9,7 +9,201 @@
   <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
   <style>
-    /* 保持原有的样式不变 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+    
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #artInput {
+      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
+      background-position: 10px center;
+      background-repeat: no-repeat;
+      background-size: 25px;
+      width: 100%;
+      max-width: 500px;
+      font-size: 16px;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin: 0 auto 20px;
+      text-align: center;
+      border-radius: 25px;
+      display: block;
+    }
+    
+    #artTable {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 16px;
+    }
+    
+    #artTable th, #artTable td {
+      text-align: left;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    #artTable tr.even {
+      background-color: #f2f2f2;
+    }
+    
+    #artTable tr.odd {
+      background-color: #ffffff;
+    }
+    
+    #artTable tr.header, #artTable tr:hover {
+      background-color: #e6f3ff;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 2.5em;
+      font-weight: 700;
+      margin: 30px 0;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    h1:hover {
+      color: #FF4500;
+      transform: scale(1.05);
+    }
+    
+    .beta-tag {
+      font-size: 0.4em;
+      vertical-align: super;
+      color: #FF4500;
+      font-weight: 400;
+    }
+
+    .filter-links {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .filter-btn {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #333;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background-color: #f1f1f1;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      color: #FF4500;
+      background-color: #e6f3ff;
+    }
+
+    #classSelect {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    @media screen and (max-width: 768px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      #artInput, #classSelect {
+        font-size: 14px;
+      }
+
+      #artTable {
+        font-size: 14px;
+      }
+
+      #artTable th, #artTable td {
+        padding: 8px;
+      }
+    }
+
+    #passwordPrompt {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    #passwordForm {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 90%;
+      width: 350px;
+    }
+
+    #passwordForm h2 {
+      color: #4a90e2;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #passwordInput {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #4a90e2;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    #passwordInput:focus {
+      border-color: #2ecc71;
+      box-shadow: 0 0 8px rgba(46,204,113,0.6);
+    }
+
+    #submitPassword {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      margin-top: 15px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    #submitPassword:hover {
+      background-color: #3498db;
+      transform: scale(1.05);
+    }
+
+    #content {
+      display: none;
+    }
+
+    #errorMessage {
+      color: #e74c3c;
+      margin-top: 15px;
+      font-size: 14px;
+    }
   </style>
 </head>      
 <body>
@@ -23,7 +217,33 @@
   </div>
 
   <div id="content" class="container">
-    <!-- 保持原有的内容不变 -->
+    <h1>班級任課教師查詢 <span class="beta-tag">beta</span></h1>
+    
+    <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
+
+    <div class="filter-links">
+      <button class="filter-btn" onclick="toggleFilter('1')">1年級</button>
+      <button class="filter-btn" onclick="toggleFilter('2')">2年級</button>
+      <button class="filter-btn" onclick="toggleFilter('3')">3年級</button>
+    </div>
+
+    <select id="classSelect" onchange="filterByClass()">
+      <option value="">選擇班級</option>
+      <!-- 班級選項將由 JavaScript 動態生成 -->
+    </select>
+
+    <div class="table-responsive">
+      <table id="artTable">
+        <thead>
+          <tr class="header">
+            <th>班級</th>
+            <th>科目</th>
+            <th>姓名</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
   
   <script>
@@ -33,16 +253,6 @@
       grade: null,
       class: null
     };
-
-    function checkDomain() {
-      var currentDomain = window.location.hostname;
-      if (currentDomain === 'roseamyclara.github.io') {
-        document.getElementById('passwordPrompt').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-      } else {
-        document.getElementById('passwordPrompt').style.display = 'flex';
-      }
-    }
 
     function checkPassword() {
       var password = document.getElementById('passwordInput').value;
@@ -73,39 +283,91 @@
       }
     });
 
-    // 其他函数保持不变
+    function artFunction() {
+      var input = document.getElementById('artInput');
+      var filter = input.value.toUpperCase();
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
 
-    // 在页面加载时检查域名
-    window.onload = function() {
-      checkDomain();
-      fetch('csvjson 任課教師.json')
-        .then(function(response) {
-          if (!response.ok) {
-            throw new Error('網絡響應不正常');
-          }
-          return response.json();
-        })
-        .then(function(data) {
-          originalData = data;
-          var table = document.getElementById('artTable');
-          var tbody = table.querySelector('tbody');
-          data.forEach(function(item, index) {
-            var row = document.createElement('tr');
-            row.classList.add(index % 2 === 0 ? 'even' : 'odd');
-            
-            ['班級', '科目', '姓名'].forEach(key => {
-              var cell = document.createElement('td');
-              cell.textContent = item[key];
-              row.appendChild(cell);
-            });
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        var tds = trs[i].getElementsByTagName('td');
+        var shouldDisplay = (!currentFilters.grade || tds[0].textContent.startsWith(currentFilters.grade)) &&
+                            (!currentFilters.class || tds[0].textContent === currentFilters.class) &&
+                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
+        
+        if (shouldDisplay) {
+          visibleCount++;
+          trs[i].style.display = '';
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
+        }
+      }
+    }
 
-            tbody.appendChild(row);
+    function toggleFilter(grade) {
+      if (currentFilters.grade === grade) {
+        currentFilters.grade = null;
+        document.querySelector(`button[onclick="toggleFilter('${grade}')"]`).classList.remove('active');
+      } else {
+        if (currentFilters.grade) {
+          document.querySelector(`button[onclick="toggleFilter('${currentFilters.grade}')"]`).classList.remove('active');
+        }
+        currentFilters.grade = grade;
+        document.querySelector(`button[onclick="toggleFilter('${grade}')"]`).classList.add('active');
+      }
+      updateClassSelect();
+      artFunction();
+    }
+
+    function filterByClass() {
+      currentFilters.class = document.getElementById('classSelect').value;
+      artFunction();
+    }
+
+    function updateClassSelect() {
+      var select = document.getElementById('classSelect');
+      select.innerHTML = '<option value="">選擇班級</option>';
+      if (currentFilters.grade) {
+        originalData.filter(item => item['班級'].startsWith(currentFilters.grade))
+                    .forEach(item => {
+                      var option = document.createElement('option');
+                      option.value = item['班級'];
+                      option.textContent = item['班級'];
+                      select.appendChild(option);
+                    });
+      }
+    }
+
+    fetch('csvjson 任課教師.json')
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('網絡響應不正常');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        originalData = data;
+        var table = document.getElementById('artTable');
+        var tbody = table.querySelector('tbody');
+        data.forEach(function(item, index) {
+          var row = document.createElement('tr');
+          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
+          
+          ['班級', '科目', '姓名'].forEach(key => {
+            var cell = document.createElement('td');
+            cell.textContent = item[key];
+            row.appendChild(cell);
           });
-        })
-        .catch(function(error) {
-          console.log('錯誤:', error.message);
+
+          tbody.appendChild(row);
         });
-    };
+      })
+      .catch(function(error) {
+        console.log('錯誤:', error.message);
+      });
   </script>
 </body>
 </html>
