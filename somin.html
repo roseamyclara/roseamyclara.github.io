@@ -195,6 +195,20 @@
       margin-top: 15px;
       font-size: 14px;
     }
+
+    .top-right-link {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 16px;
+      color: #4a90e2;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .top-right-link:hover {
+      color: #FF4500;
+    }
   </style>
 </head>      
 <body>
@@ -208,6 +222,7 @@
   </div>
 
   <div id="content" class="container">
+    <a href="https://roseamyclara.github.io/" class="top-right-link" target="_blank">分機號碼</a>
     <h1>班級任課教師查詢 <span class="beta-tag">beta</span></h1>
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
@@ -287,17 +302,35 @@
       }
     }
 
+    function filterTable(className) {
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+      
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        if (className === 'all' || trs[i].getElementsByTagName('td')[0].textContent === className) {
+          visibleCount++;
+          trs[i].style.display = '';
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
+        }
+      }
+    }
+
     function toggleFilter(className) {
       var buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(button => button.classList.remove('active'));
 
       if (currentFilter === className) {
         currentFilter = null;
+        filterTable('all');
       } else {
         currentFilter = className;
         document.querySelector(`button[data-class="${className}"]`).classList.add('active');
+        filterTable(className);
       }
-      artFunction();
     }
 
     function createClassFilters(classes) {
