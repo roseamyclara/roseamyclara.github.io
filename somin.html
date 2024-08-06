@@ -83,27 +83,49 @@
       font-weight: 400;
     }
 
-    .filter-links {
-      text-align: center;
+    .dropdown {
+      position: relative;
+      display: inline-block;
       margin-bottom: 20px;
     }
 
-    .filter-btn {
-      display: inline-block;
-      margin: 5px;
-      padding: 5px 10px;
-      text-decoration: none;
-      color: #333;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      transition: all 0.3s ease;
+    .dropbtn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
       cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-content a:hover {
       background-color: #f1f1f1;
     }
 
-    .filter-btn:hover, .filter-btn.active {
-      color: #FF4500;
-      background-color: #e6f3ff;
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #3e8e41;
     }
 
     @media screen and (max-width: 768px) {
@@ -212,8 +234,11 @@
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
 
-    <div id="classFilters" class="filter-links">
-      <!-- Class filter buttons will be dynamically added here -->
+    <div class="dropdown">
+      <button class="dropbtn">選擇班級</button>
+      <div id="classDropdown" class="dropdown-content">
+        <!-- Class options will be dynamically added here -->
+      </div>
     </div>
 
     <div class="table-responsive">
@@ -287,28 +312,35 @@
       }
     }
 
-    function toggleFilter(className) {
-      var buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(button => button.classList.remove('active'));
-
-      if (currentFilter === className) {
-        currentFilter = null;
-      } else {
-        currentFilter = className;
-        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
-      }
+    function filterByClass(className) {
+      currentFilter = className;
+      document.querySelector('.dropbtn').textContent = className || '選擇班級';
       artFunction();
     }
 
-    function createClassFilters(classes) {
-      var filterContainer = document.getElementById('classFilters');
+    function createClassFilters(data) {
+      var classes = [...new Set(data.map(item => item['班級']))].filter(Boolean).sort();
+      var dropdown = document.getElementById('classDropdown');
+      
+      // Add "All Classes" option
+      var allClassesLink = document.createElement('a');
+      allClassesLink.href = '#';
+      allClassesLink.textContent = '所有班級';
+      allClassesLink.onclick = function(e) {
+        e.preventDefault();
+        filterByClass(null);
+      };
+      dropdown.appendChild(allClassesLink);
+
       classes.forEach(className => {
-        var button = document.createElement('button');
-        button.textContent = className;
-        button.className = 'filter-btn';
-        button.setAttribute('data-class', className);
-        button.onclick = function() { toggleFilter(className); };
-        filterContainer.appendChild(button);
+        var link = document.createElement('a');
+        link.href = '#';
+        link.textContent = className;
+        link.onclick = function(e) {
+          e.preventDefault();
+          filterByClass(className);
+        };
+        dropdown.appendChild(link);
       });
     }
 
@@ -323,7 +355,6 @@
         originalData = data;
         var table = document.getElementById('artTable');
         var tbody = table.querySelector('tbody');
-        var classes = new Set();
         data.forEach(function(item, index) {
           var row = document.createElement('tr');
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
@@ -335,9 +366,8 @@
           });
 
           tbody.appendChild(row);
-          classes.add(item['班級']);
         });
-        createClassFilters(Array.from(classes).sort());
+        createClassFilters(data);
       })
       .catch(function(error) {
         console.log('錯誤:', error.message);
