@@ -222,7 +222,7 @@
   </div>
 
   <div id="content" class="container">
-    <a href="https://roseamyclara.github.io/" class="top-right-link">分機號碼</a>
+    <a href="https://roseamyclara.github.io/" class="top-right-link" target="_blank">分機號碼</a>
     <h1>班級任課教師查詢 <span class="beta-tag">beta</span></h1>
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
@@ -250,15 +250,6 @@
     var originalData = [];
     var currentFilter = null;
 
-    // 檢查引用頁面
-    function checkReferrer() {
-      var referrer = document.referrer;
-      if (referrer.includes('https://roseamyclara.github.io/')) {
-        document.getElementById('passwordPrompt').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-      }
-    }
-
     function checkPassword() {
       var password = document.getElementById('passwordInput').value;
       if (password === 'fn112') {
@@ -279,6 +270,12 @@
     document.getElementById('passwordInput').addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
         checkPassword();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (document.getElementById('passwordPrompt').style.display !== 'none') {
+        document.getElementById('passwordInput').focus();
       }
     });
 
@@ -306,25 +303,44 @@
     }
 
     function filterTable(className) {
-      currentFilter = className === 'all' ? null : className;
-      artFunction();
+      var table = document.getElementById('artTable');
+      var trs = table.tBodies[0].getElementsByTagName('tr');
+      
+      var visibleCount = 0;
+      for (var i = 0; i < trs.length; i++) {
+        if (className === 'all' || trs[i].getElementsByTagName('td')[0].textContent === className) {
+          visibleCount++;
+          trs[i].style.display = '';
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
+        }
+      }
+    }
+
+    function toggleFilter(className) {
+      var buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(button => button.classList.remove('active'));
+
+      if (currentFilter === className) {
+        currentFilter = null;
+        filterTable('all');
+      } else {
+        currentFilter = className;
+        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
+        filterTable(className);
+      }
     }
 
     function createClassFilters(classes) {
       var filterContainer = document.getElementById('classFilters');
-      filterContainer.innerHTML = ''; // Clear existing filters
-      
-      var allButton = document.createElement('button');
-      allButton.textContent = '全部';
-      allButton.className = 'filter-btn';
-      allButton.onclick = function() { filterTable('all'); };
-      filterContainer.appendChild(allButton);
-
       classes.forEach(className => {
         var button = document.createElement('button');
         button.textContent = className;
         button.className = 'filter-btn';
-        button.onclick = function() { filterTable(className); };
+        button.setAttribute('data-class', className);
+        button.onclick = function() { toggleFilter(className); };
         filterContainer.appendChild(button);
       });
     }
@@ -359,9 +375,6 @@
       .catch(function(error) {
         console.log('錯誤:', error.message);
       });
-
-    // 在頁面加載時檢查引用頁面
-    window.onload = checkReferrer;
   </script>
 </body>
 </html>
