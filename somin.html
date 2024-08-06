@@ -280,101 +280,85 @@
     });
 
     function artFunction() {
-      var input = document.getElementById('artInput');
+      var input = document.getElementById("artInput");
       var filter = input.value.toUpperCase();
-      var table = document.getElementById('artTable');
-      var trs = table.tBodies[0].getElementsByTagName('tr');
+      var table = document.getElementById("artTable");
+      var trs = table.getElementsByTagName("tr");
 
-      var visibleCount = 0;
-      for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        var shouldDisplay = (!currentFilter || tds[0].textContent === currentFilter) &&
-                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
-        
-        if (shouldDisplay) {
-          visibleCount++;
-          trs[i].style.display = '';
-          trs[i].classList.remove('even', 'odd');
-          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
-        } else {
-          trs[i].style.display = 'none';
+      for (var i = 1; i < trs.length; i++) {
+        var tr = trs[i];
+        tr.style.display = "none";
+        var tds = tr.getElementsByTagName("td");
+        for (var j = 0; j < tds.length; j++) {
+          var td = tds[j];
+          if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              tr.style.display = "";
+              break;
+            }
+          }
         }
       }
     }
 
-    function filterTable(className) {
-      var table = document.getElementById('artTable');
-      var trs = table.tBodies[0].getElementsByTagName('tr');
+    function generateFilterButtons(data) {
+      var classSet = new Set();
+      data.forEach(function(row) {
+        classSet.add(row[0]);
+      });
       
-      var visibleCount = 0;
-      for (var i = 0; i < trs.length; i++) {
-        if (className === 'all' || trs[i].getElementsByTagName('td')[0].textContent === className) {
-          visibleCount++;
-          trs[i].style.display = '';
-          trs[i].classList.remove('even', 'odd');
-          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
-        } else {
-          trs[i].style.display = 'none';
-        }
-      }
-    }
-
-    function toggleFilter(className) {
-      var buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(button => button.classList.remove('active'));
-
-      if (currentFilter === className) {
-        currentFilter = null;
-        filterTable('all');
-      } else {
-        currentFilter = className;
-        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
-        filterTable(className);
-      }
-    }
-
-    function createClassFilters(classes) {
-      var filterContainer = document.getElementById('classFilters');
-      classes.forEach(className => {
-        var button = document.createElement('button');
-        button.textContent = className;
+      var classFilters = document.getElementById("classFilters");
+      classFilters.innerHTML = '';
+      classSet.forEach(function(className) {
+        var button = document.createElement("button");
         button.className = 'filter-btn';
-        button.setAttribute('data-class', className);
-        button.onclick = function() { toggleFilter(className); };
-        filterContainer.appendChild(button);
+        button.textContent = className;
+        button.onclick = function() {
+          filterByClass(className);
+        };
+        classFilters.appendChild(button);
       });
     }
 
-    fetch('csvjson 任課教師.json')
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('網絡響應不正常');
-        }
-        return response.json();
-      })
-      .then(function(data) {
-        originalData = data;
-        var table = document.getElementById('artTable');
-        var tbody = table.querySelector('tbody');
-        var classes = new Set();
-        data.forEach(function(item, index) {
-          var row = document.createElement('tr');
-          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
-          
-          ['班級', '科目', '姓名'].forEach(key => {
-            var cell = document.createElement('td');
-            cell.textContent = item[key];
-            row.appendChild(cell);
-          });
+    function filterByClass(className) {
+      var table = document.getElementById("artTable");
+      var tbody = table.getElementsByTagName("tbody")[0];
+      tbody.innerHTML = '';
 
-          tbody.appendChild(row);
-          classes.add(item['班級']);
-        });
-        createClassFilters(Array.from(classes).sort());
-      })
-      .catch(function(error) {
-        console.log('錯誤:', error.message);
+      originalData.forEach(function(row) {
+        if (row[0] === className || className === null) {
+          var tr = document.createElement('tr');
+          row.forEach(function(cell) {
+            var td = document.createElement('td');
+            td.textContent = cell;
+            tr.appendChild(td);
+          });
+          tbody.appendChild(tr);
+        }
       });
+
+      var buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(function(button) {
+        button.classList.remove('active');
+      });
+
+      if (className) {
+        document.querySelector(`.filter-btn:contains('${className}')`).classList.add('active');
+      } else {
+        document.querySelector(`.filter-btn:contains('全部')`).classList.add('active');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('output.json')
+        .then(response => response.json())
+        .then(data => {
+          originalData = data;
+          generateFilterButtons(data);
+          filterByClass(null);
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+    });
   </script>
 </body>
 </html>
