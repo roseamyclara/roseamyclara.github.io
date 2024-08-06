@@ -21,6 +21,22 @@
       margin: 0 auto;
     }
 
+    #extensionLink {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      background-color: #4a90e2;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    #extensionLink:hover {
+      background-color: #3498db;
+    }
+
     #artInput {
       background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
       background-position: 10px center;
@@ -208,6 +224,7 @@
   </div>
 
   <div id="content" class="container">
+    <a href="https://roseamyclara.github.io" id="extensionLink" target="_blank">分機查詢</a>
     <h1>班級任課教師查詢 <span class="beta-tag">beta</span></h1>
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
@@ -251,6 +268,18 @@
         }
       }
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var currentDomain = window.location.hostname;
+      var extensionLink = document.getElementById('extensionLink');
+      
+      if (currentDomain === 'roseamyclara.github.io') {
+        extensionLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('passwordPrompt').style.display = 'flex';
+        });
+      }
+    });
 
     document.getElementById('passwordInput').addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
