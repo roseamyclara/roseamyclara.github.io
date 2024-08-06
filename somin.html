@@ -106,21 +106,12 @@
       background-color: #e6f3ff;
     }
 
-    #classSelect {
-      display: block;
-      margin: 20px auto;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
     @media screen and (max-width: 768px) {
       h1 {
         font-size: 2em;
       }
 
-      #artInput, #classSelect {
+      #artInput {
         font-size: 14px;
       }
 
@@ -221,16 +212,9 @@
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
 
-    <div class="filter-links">
-      <button class="filter-btn" onclick="toggleFilter('1')">1年級</button>
-      <button class="filter-btn" onclick="toggleFilter('2')">2年級</button>
-      <button class="filter-btn" onclick="toggleFilter('3')">3年級</button>
+    <div id="classFilters" class="filter-links">
+      <!-- Class filter buttons will be dynamically added here -->
     </div>
-
-    <select id="classSelect" onchange="filterByClass()">
-      <option value="">選擇班級</option>
-      <!-- 班級選項將由 JavaScript 動態生成 -->
-    </select>
 
     <div class="table-responsive">
       <table id="artTable">
@@ -249,10 +233,7 @@
   <script>
     var attemptCount = 0;
     var originalData = [];
-    var currentFilters = {
-      grade: null,
-      class: null
-    };
+    var currentFilter = null;
 
     function checkPassword() {
       var password = document.getElementById('passwordInput').value;
@@ -292,8 +273,7 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
-        var shouldDisplay = (!currentFilters.grade || tds[0].textContent.startsWith(currentFilters.grade)) &&
-                            (!currentFilters.class || tds[0].textContent === currentFilters.class) &&
+        var shouldDisplay = (!currentFilter || tds[0].textContent === currentFilter) &&
                             Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
         
         if (shouldDisplay) {
@@ -307,38 +287,29 @@
       }
     }
 
-    function toggleFilter(grade) {
-      if (currentFilters.grade === grade) {
-        currentFilters.grade = null;
-        document.querySelector(`button[onclick="toggleFilter('${grade}')"]`).classList.remove('active');
+    function toggleFilter(className) {
+      if (currentFilter === className) {
+        currentFilter = null;
+        document.querySelector(`button[onclick="toggleFilter('${className}')"]`).classList.remove('active');
       } else {
-        if (currentFilters.grade) {
-          document.querySelector(`button[onclick="toggleFilter('${currentFilters.grade}')"]`).classList.remove('active');
+        if (currentFilter) {
+          document.querySelector(`button[onclick="toggleFilter('${currentFilter}')"]`).classList.remove('active');
         }
-        currentFilters.grade = grade;
-        document.querySelector(`button[onclick="toggleFilter('${grade}')"]`).classList.add('active');
+        currentFilter = className;
+        document.querySelector(`button[onclick="toggleFilter('${className}')"]`).classList.add('active');
       }
-      updateClassSelect();
       artFunction();
     }
 
-    function filterByClass() {
-      currentFilters.class = document.getElementById('classSelect').value;
-      artFunction();
-    }
-
-    function updateClassSelect() {
-      var select = document.getElementById('classSelect');
-      select.innerHTML = '<option value="">選擇班級</option>';
-      if (currentFilters.grade) {
-        originalData.filter(item => item['班級'].startsWith(currentFilters.grade))
-                    .forEach(item => {
-                      var option = document.createElement('option');
-                      option.value = item['班級'];
-                      option.textContent = item['班級'];
-                      select.appendChild(option);
-                    });
-      }
+    function createClassFilters(classes) {
+      var filterContainer = document.getElementById('classFilters');
+      classes.forEach(className => {
+        var button = document.createElement('button');
+        button.textContent = className;
+        button.className = 'filter-btn';
+        button.onclick = function() { toggleFilter(className); };
+        filterContainer.appendChild(button);
+      });
     }
 
     fetch('csvjson 任課教師.json')
@@ -352,6 +323,7 @@
         originalData = data;
         var table = document.getElementById('artTable');
         var tbody = table.querySelector('tbody');
+        var classes = new Set();
         data.forEach(function(item, index) {
           var row = document.createElement('tr');
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
@@ -363,7 +335,9 @@
           });
 
           tbody.appendChild(row);
+          classes.add(item['班級']);
         });
+        createClassFilters(Array.from(classes).sort());
       })
       .catch(function(error) {
         console.log('錯誤:', error.message);
