@@ -290,13 +290,13 @@
     function toggleFilter(className) {
       if (currentFilter === className) {
         currentFilter = null;
-        document.querySelector(`button[onclick="toggleFilter('${className}')"]`).classList.remove('active');
+        document.querySelector(`button[data-class="${className}"]`).classList.remove('active');
       } else {
         if (currentFilter) {
-          document.querySelector(`button[onclick="toggleFilter('${currentFilter}')"]`).classList.remove('active');
+          document.querySelector(`button[data-class="${currentFilter}"]`).classList.remove('active');
         }
         currentFilter = className;
-        document.querySelector(`button[onclick="toggleFilter('${className}')"]`).classList.add('active');
+        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
       }
       artFunction();
     }
@@ -307,6 +307,7 @@
         var button = document.createElement('button');
         button.textContent = className;
         button.className = 'filter-btn';
+        button.setAttribute('data-class', className);
         button.onclick = function() { toggleFilter(className); };
         filterContainer.appendChild(button);
       });
