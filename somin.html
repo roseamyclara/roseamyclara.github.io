@@ -274,7 +274,7 @@
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
         var shouldDisplay = (!currentFilter || tds[0].textContent === currentFilter) &&
-                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
+                            (filter === '' || Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1));
         
         if (shouldDisplay) {
           visibleCount++;
