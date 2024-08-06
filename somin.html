@@ -274,74 +274,57 @@
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
         var shouldDisplay = (!currentFilter || tds[0].textContent === currentFilter) &&
-                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
-        
-        if (shouldDisplay) {
-          visibleCount++;
-          trs[i].style.display = '';
-          trs[i].classList.remove('even', 'odd');
-          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
-        } else {
-          trs[i].style.display = 'none';
+                            Array.from(tds).some(td => td.textContent.toUpperCase().includes(filter));
+        trs[i].style.display = shouldDisplay ? '' : 'none';
+        if (shouldDisplay) visibleCount++;
+      }
+      
+      var oddRow = false;
+      for (var i = 0; i < trs.length; i++) {
+        if (trs[i].style.display !== 'none') {
+          trs[i].className = oddRow ? 'odd' : 'even';
+          oddRow = !oddRow;
         }
       }
     }
 
-    function toggleFilter(className) {
-      var buttons = document.querySelectorAll('.filter-btn');
-      buttons.forEach(button => button.classList.remove('active'));
-
-      if (currentFilter === className) {
-        currentFilter = null;
-      } else {
-        currentFilter = className;
-        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
-      }
-      artFunction();
-    }
-
-    function createClassFilters(classes) {
-      var filterContainer = document.getElementById('classFilters');
-      classes.forEach(className => {
-        var button = document.createElement('button');
-        button.textContent = className;
-        button.className = 'filter-btn';
-        button.setAttribute('data-class', className);
-        button.onclick = function() { toggleFilter(className); };
-        filterContainer.appendChild(button);
-      });
-    }
-
-    fetch('csvjson 任課教師.json')
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('網絡響應不正常');
-        }
-        return response.json();
-      })
-      .then(function(data) {
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
         originalData = data;
-        var table = document.getElementById('artTable');
-        var tbody = table.querySelector('tbody');
-        var classes = new Set();
-        data.forEach(function(item, index) {
-          var row = document.createElement('tr');
-          row.classList.add(index % 2 === 0 ? 'even' : 'odd');
-          
-          ['班級', '科目', '姓名'].forEach(key => {
-            var cell = document.createElement('td');
-            cell.textContent = item[key];
-            row.appendChild(cell);
-          });
-
-          tbody.appendChild(row);
-          classes.add(item['班級']);
+        var table = document.getElementById('artTable').getElementsByTagName('tbody')[0];
+        table.innerHTML = '';
+        data.forEach((item, index) => {
+          var row = table.insertRow();
+          row.className = index % 2 === 0 ? 'even' : 'odd';
+          row.insertCell().appendChild(document.createTextNode(item.class));
+          row.insertCell().appendChild(document.createTextNode(item.subject));
+          row.insertCell().appendChild(document.createTextNode(item.teacher));
         });
-        createClassFilters(Array.from(classes).sort());
+
+        var classFilters = document.getElementById('classFilters');
+        var uniqueClasses = Array.from(new Set(data.map(item => item.class)));
+        uniqueClasses.forEach(className => {
+          var filterBtn = document.createElement('span');
+          filterBtn.className = 'filter-btn';
+          filterBtn.textContent = className;
+          filterBtn.onclick = function() {
+            if (currentFilter === className) {
+              currentFilter = null;
+              filterBtn.classList.remove('active');
+            } else {
+              currentFilter = className;
+              document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+              filterBtn.classList.add('active');
+            }
+            artFunction();
+          };
+          classFilters.appendChild(filterBtn);
+        });
+
+        artFunction();
       })
-      .catch(function(error) {
-        console.log('錯誤:', error.message);
-      });
+      .catch(error => console.error('Error fetching data:', error));
   </script>
 </body>
 </html>
