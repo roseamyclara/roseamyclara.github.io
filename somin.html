@@ -288,13 +288,12 @@
     }
 
     function toggleFilter(className) {
+      var buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(button => button.classList.remove('active'));
+
       if (currentFilter === className) {
         currentFilter = null;
-        document.querySelector(`button[data-class="${className}"]`).classList.remove('active');
       } else {
-        if (currentFilter) {
-          document.querySelector(`button[data-class="${currentFilter}"]`).classList.remove('active');
-        }
         currentFilter = className;
         document.querySelector(`button[data-class="${className}"]`).classList.add('active');
       }
