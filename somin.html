@@ -147,7 +147,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba(0,0,0,0.8);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       z-index: 1000;
@@ -203,7 +203,7 @@
     }
 
     #content {
-      display: none;
+      display: block;
     }
 
     #errorMessage {
@@ -224,7 +224,7 @@
   </div>
 
   <div id="content" class="container">
-    <a href="https://roseamyclara.github.io" id="extensionLink" target="_blank">分機查詢</a>
+    <a href="#" id="extensionLink">分機查詢</a>
     <h1>班級任課教師查詢 <span class="beta-tag">beta</span></h1>
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
@@ -256,7 +256,7 @@
       var password = document.getElementById('passwordInput').value;
       if (password === 'fn112') {
         document.getElementById('passwordPrompt').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
+        window.location.href = 'https://roseamyclara.github.io/';
       } else {
         attemptCount++;
         if (attemptCount >= 3) {
@@ -270,15 +270,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-      var currentDomain = window.location.hostname;
       var extensionLink = document.getElementById('extensionLink');
       
-      if (currentDomain === 'roseamyclara.github.io') {
-        extensionLink.addEventListener('click', function(e) {
-          e.preventDefault();
-          document.getElementById('passwordPrompt').style.display = 'flex';
-        });
-      }
+      extensionLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('passwordPrompt').style.display = 'flex';
+      });
     });
 
     document.getElementById('passwordInput').addEventListener('keyup', function(event) {
