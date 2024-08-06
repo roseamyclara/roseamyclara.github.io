@@ -9,202 +9,12 @@
   <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-    
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-      padding: 20px;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    #artInput {
-      background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
-      background-position: 10px center;
-      background-repeat: no-repeat;
-      background-size: 25px;
-      width: 100%;
-      max-width: 500px;
-      font-size: 16px;
-      padding: 12px 20px 12px 40px;
-      border: 1px solid #ddd;
-      margin: 0 auto 20px;
-      text-align: center;
-      border-radius: 25px;
-      display: block;
-    }
-    
-    #artTable {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 16px;
-    }
-    
-    #artTable th, #artTable td {
-      text-align: left;
-      padding: 12px;
-      border-bottom: 1px solid #ddd;
-    }
-    
-    #artTable tr.even {
-      background-color: #f2f2f2;
-    }
-    
-    #artTable tr.odd {
-      background-color: #ffffff;
-    }
-    
-    #artTable tr.header, #artTable tr:hover {
-      background-color: #e6f3ff;
-    }
-    
-    h1 {
-      text-align: center;
-      color: #4a4a4a;
-      font-size: 2.5em;
-      font-weight: 700;
-      margin: 30px 0;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-      transition: all 0.3s ease;
-    }
-    
-    h1:hover {
-      color: #FF4500;
-      transform: scale(1.05);
-    }
-    
-    .beta-tag {
-      font-size: 0.4em;
-      vertical-align: super;
-      color: #FF4500;
-      font-weight: 400;
-    }
-
-    .filter-links {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .filter-btn {
-      display: inline-block;
-      margin: 5px;
-      padding: 5px 10px;
-      text-decoration: none;
-      color: #333;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      background-color: #f1f1f1;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      color: #FF4500;
-      background-color: #e6f3ff;
-    }
-
-    @media screen and (max-width: 768px) {
-      h1 {
-        font-size: 2em;
-      }
-
-      #artInput {
-        font-size: 14px;
-      }
-
-      #artTable {
-        font-size: 14px;
-      }
-
-      #artTable th, #artTable td {
-        padding: 8px;
-      }
-    }
-
-    #passwordPrompt {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    #passwordForm {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      max-width: 90%;
-      width: 350px;
-    }
-
-    #passwordForm h2 {
-      color: #4a90e2;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    #passwordInput {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 2px solid #4a90e2;
-      border-radius: 25px;
-      font-size: 16px;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    #passwordInput:focus {
-      border-color: #2ecc71;
-      box-shadow: 0 0 8px rgba(46,204,113,0.6);
-    }
-
-    #submitPassword {
-      background-color: #4a90e2;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      margin-top: 15px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-
-    #submitPassword:hover {
-      background-color: #3498db;
-      transform: scale(1.05);
-    }
-
-    #content {
-      display: none;
-    }
-
-    #errorMessage {
-      color: #e74c3c;
-      margin-top: 15px;
-      font-size: 14px;
-    }
+    /* ... 保持原有的樣式不變 ... */
   </style>
 </head>      
 <body>
   <div id="passwordPrompt">
-    <div id="passwordForm">
-      <h2>請輸入密碼</h2>
-      <input type="password" id="passwordInput" placeholder="輸入密碼...">
-      <button id="submitPassword" onclick="checkPassword()">確定</button>
-      <div id="errorMessage"></div>
-    </div>
+    <!-- ... 保持密碼提示部分不變 ... -->
   </div>
 
   <div id="content" class="container">
@@ -212,8 +22,8 @@
     
     <input type="text" id="artInput" onkeyup="artFunction()" placeholder="班級, 科目, 姓名..." title="Search">
 
-    <div id="classFilters" class="filter-links">
-      <!-- Class filter buttons will be dynamically added here -->
+    <div id="subjectFilters" class="filter-links">
+      <!-- 科目篩選按鈕將被動態添加到這裡 -->
     </div>
 
     <div class="table-responsive">
@@ -236,20 +46,7 @@
     var currentFilter = null;
 
     function checkPassword() {
-      var password = document.getElementById('passwordInput').value;
-      if (password === 'fn112') {
-        document.getElementById('passwordPrompt').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-      } else {
-        attemptCount++;
-        if (attemptCount >= 3) {
-          alert('密碼錯誤3次，頁面將關閉。');
-          window.close();
-        } else {
-          document.getElementById('errorMessage').textContent = `密碼錯誤，還有${3 - attemptCount}次機會。`;
-          document.getElementById('passwordInput').value = '';
-        }
-      }
+      // ... 保持密碼檢查函數不變 ...
     }
 
     document.getElementById('passwordInput').addEventListener('keyup', function(event) {
@@ -273,7 +70,7 @@
       var visibleCount = 0;
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
-        var shouldDisplay = (!currentFilter || tds[0].textContent === currentFilter) &&
+        var shouldDisplay = (!currentFilter || tds[1].textContent === currentFilter) &&
                             Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
         
         if (shouldDisplay) {
@@ -287,27 +84,27 @@
       }
     }
 
-    function toggleFilter(className) {
+    function toggleFilter(subject) {
       var buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(button => button.classList.remove('active'));
 
-      if (currentFilter === className) {
+      if (currentFilter === subject) {
         currentFilter = null;
       } else {
-        currentFilter = className;
-        document.querySelector(`button[data-class="${className}"]`).classList.add('active');
+        currentFilter = subject;
+        document.querySelector(`button[data-subject="${subject}"]`).classList.add('active');
       }
       artFunction();
     }
 
-    function createClassFilters(classes) {
-      var filterContainer = document.getElementById('classFilters');
-      classes.forEach(className => {
+    function createSubjectFilters(subjects) {
+      var filterContainer = document.getElementById('subjectFilters');
+      subjects.forEach(subject => {
         var button = document.createElement('button');
-        button.textContent = className;
+        button.textContent = subject;
         button.className = 'filter-btn';
-        button.setAttribute('data-class', className);
-        button.onclick = function() { toggleFilter(className); };
+        button.setAttribute('data-subject', subject);
+        button.onclick = function() { toggleFilter(subject); };
         filterContainer.appendChild(button);
       });
     }
@@ -323,7 +120,7 @@
         originalData = data;
         var table = document.getElementById('artTable');
         var tbody = table.querySelector('tbody');
-        var classes = new Set();
+        var subjects = new Set();
         data.forEach(function(item, index) {
           var row = document.createElement('tr');
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
@@ -335,9 +132,9 @@
           });
 
           tbody.appendChild(row);
-          classes.add(item['班級']);
+          subjects.add(item['科目']);
         });
-        createClassFilters(Array.from(classes).sort());
+        createSubjectFilters(Array.from(subjects).sort());
       })
       .catch(function(error) {
         console.log('錯誤:', error.message);
