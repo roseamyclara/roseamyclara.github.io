@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>學校分機查詢</title>
-  <!-- 引入 Bootstrap CSS 以實現響應式設計 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- 更新到最新的 Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
   <!-- 設置搜索圖標作為網站圖標 -->
   <link rel="icon" href="https://cutewallpaper.org/24/search-icon-png/256513759.jpg">
   <link rel="shortcut icon" href="a198cd0c_e2f0_4c99_ba51_342624a24db9_WP4_icon.ico" type="image/x-icon"/>
@@ -13,7 +13,6 @@
     /* 導入 Google 字體以支持繁體中文字符 */
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
     
-    /* 基本的body和容器樣式 */
     body {
       font-family: 'Noto Sans TC', sans-serif;
       padding: 20px;
@@ -24,7 +23,6 @@
       margin: 0 auto;
     }
 
-    /* 搜索輸入框的樣式，包括背景圖片 */
     #artInput {
       background-image: url('https://www.vectorportal.com/img_novi/cute-turtle-vectorportal.jpg');
       background-position: 10px center;
@@ -41,7 +39,6 @@
       display: block;
     }
     
-    /* 主表格的樣式 */
     #artTable {
       width: 100%;
       border-collapse: collapse;
@@ -54,7 +51,6 @@
       border-bottom: 1px solid #ddd;
     }
     
-    /* 表格行的交替顏色 */
     #artTable tr.even {
       background-color: #f2f2f2;
     }
@@ -63,12 +59,10 @@
       background-color: #ffffff;
     }
     
-    /* 表頭和滑鼠懸停效果 */
     #artTable tr.header, #artTable tr:hover {
       background-color: #e6f3ff;
     }
     
-    /* 主標題樣式 */
     h1 {
       text-align: center;
       color: #4a4a4a;
@@ -79,13 +73,11 @@
       transition: all 0.3s ease;
     }
     
-    /* 主標題的滑鼠懸停效果 */
     h1:hover {
       color: #FF4500;
       transform: scale(1.05);
     }
     
-    /* Beta 標籤樣式 */
     .beta-tag {
       font-size: 0.4em;
       vertical-align: super;
@@ -93,7 +85,6 @@
       font-weight: 400;
     }
 
-    /* 過濾按鈕的樣式 */
     .filter-links {
       text-align: center;
       margin-bottom: 20px;
@@ -117,7 +108,6 @@
       background-color: #e6f3ff;
     }
 
-    /* 針對移動設備的響應式設計 */
     @media screen and (max-width: 768px) {
       h1 {
         font-size: 2em;
@@ -140,7 +130,6 @@
       }
     }
 
-    /* 密碼保護遮罩的樣式 */
     #passwordPrompt {
       position: fixed;
       top: 0;
@@ -220,7 +209,7 @@
     <div id="passwordForm">
       <h2>請輸入密碼</h2>
       <input type="password" id="passwordInput" placeholder="輸入密碼...">
-      <button id="submitPassword" onclick="checkPassword()">確定</button>
+      <button id="submitPassword">確定</button>
       <div id="errorMessage"></div>
     </div>
   </div>
@@ -230,15 +219,15 @@
     <h1>分機號碼查詢 <span class="beta-tag">beta</span></h1>
     
     <!-- 搜索輸入框 -->
-    <input type="text" id="artInput" onkeyup="artFunction()" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
+    <input type="text" id="artInput" placeholder="職稱, 姓名, 辦公室,分機..." title="Work">
 
     <!-- 過濾按鈕 -->
     <div class="filter-links">
-      <button class="filter-btn" onclick="toggleFilter('broadcast')">廣播指令</button>
-      <button class="filter-btn" onclick="toggleFilter('admin')">行政</button>
-      <button class="filter-btn" onclick="toggleFilter('teacher')">導師</button>
-      <button class="filter-btn" onclick="toggleFilter('specialty')">專任</button>
-      <button class="filter-btn" onclick="toggleFilter('substitute')">代理&短代</button>
+      <button class="filter-btn" data-category="broadcast">廣播指令</button>
+      <button class="filter-btn" data-category="admin">行政</button>
+      <button class="filter-btn" data-category="teacher">導師</button>
+      <button class="filter-btn" data-category="specialty">專任</button>
+      <button class="filter-btn" data-category="substitute">代理&短代</button>
     </div>
 
     <!-- 主表格 -->
@@ -261,15 +250,15 @@
   </div>
   
   <script>
-    var attemptCount = 0;
-    var originalData = [];
-    var currentFilters = {
+    let attemptCount = 0;
+    let originalData = [];
+    let currentFilters = {
       category: null
     };
 
     // 檢查輸入密碼的函數
     function checkPassword() {
-      var password = document.getElementById('passwordInput').value;
+      const password = document.getElementById('passwordInput').value;
       if (password === 'fn112') {
         document.getElementById('passwordPrompt').style.display = 'none';
         document.getElementById('content').style.display = 'block';
@@ -285,66 +274,30 @@
       }
     }
 
-    // 為密碼輸入框添加回車鍵事件監聽器
-    document.getElementById('passwordInput').addEventListener('keyup', function(event) {
-      if (event.key === 'Enter') {
-        checkPassword();
+    // 根據搜索輸入和類別過濾表格的函數
+    function artFunction() {
+      const input = document.getElementById('artInput');
+      const filter = input.value.trim().replace(/\s+/g, '').toUpperCase();
+      const table = document.getElementById('artTable');
+      const trs = table.tBodies[0].getElementsByTagName('tr');
+
+      let visibleCount = 0;
+      for (let i = 0; i < trs.length; i++) {
+        const tds = trs[i].getElementsByTagName('td');
+        const shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
+                              Array.from(tds).some(td => td.textContent.trim().replace(/\s+/g, '').toUpperCase().indexOf(filter) > -1);
+        
+        if (shouldDisplay) {
+          visibleCount++;
+          trs[i].style.display = '';
+          tds[0].textContent = visibleCount;
+          trs[i].classList.remove('even', 'odd');
+          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+        } else {
+          trs[i].style.display = 'none';
+        }
       }
-    });
-
-    // 頁面加載時聚焦於密碼輸入框
-    document.addEventListener('keydown', function(event) {
-      if (document.getElementById('passwordPrompt').style.display !== 'none') {
-        document.getElementById('passwordInput').focus();
-      }
-    });
-
-    // 根據搜索輸入和類別過濾表格的函數（更新版）
-function artFunction() {
-  var input = document.getElementById('artInput');
-  // 去除前導和尾隨空格，然後去除所有內部空格
-  var filter = input.value.trim().replace(/\s+/g, '').toUpperCase();
-  var table = document.getElementById('artTable');
-  var trs = table.tBodies[0].getElementsByTagName('tr');
-
-  var visibleCount = 0;
-  for (var i = 0; i < trs.length; i++) {
-    var tds = trs[i].getElementsByTagName('td');
-    var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
-                        Array.from(tds).some(td => td.textContent.trim().replace(/\s+/g, '').toUpperCase().indexOf(filter) > -1);
-    
-    if (shouldDisplay) {
-      visibleCount++;
-      trs[i].style.display = '';
-      tds[0].textContent = visibleCount;
-      trs[i].classList.remove('even', 'odd');
-      trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
-    } else {
-      trs[i].style.display = 'none';
     }
-  }
-}
-
-// 添加新的事件監聽器
-document.addEventListener('DOMContentLoaded', function() {
-  var input = document.getElementById('artInput');
-  
-  // 監聽input的value變化
-  input.addEventListener('input', function() {
-    this.value = this.value.trim();
-  });
-  
-  // 監聽粘貼事件
-  input.addEventListener('paste', function(e) {
-    e.preventDefault();
-    var pastedText = (e.clipboardData || window.clipboardData).getData('text');
-    this.value = pastedText.trim();
-    artFunction(); // 立即觸發搜索
-  });
-});
-Last edited just now
-
-
 
     // 檢查項目是否屬於特定類別的函數
     function isInCategory(index, category) {
@@ -362,34 +315,34 @@ Last edited just now
     function toggleFilter(category) {
       if (currentFilters.category === category) {
         currentFilters.category = null;
-        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.remove('active');
+        document.querySelector(`button[data-category="${category}"]`).classList.remove('active');
       } else {
         if (currentFilters.category) {
-          document.querySelector(`button[onclick="toggleFilter('${currentFilters.category}')"]`).classList.remove('active');
+          document.querySelector(`button[data-category="${currentFilters.category}"]`).classList.remove('active');
         }
         currentFilters.category = category;
-        document.querySelector(`button[onclick="toggleFilter('${category}')"]`).classList.add('active');
+        document.querySelector(`button[data-category="${category}"]`).classList.add('active');
       }
       artFunction();
     }
 
     // 從 JSON 文件加載數據並填充表格
     fetch('csvjson.json')
-      .then(function(response) {
+      .then(response => {
         if (!response.ok) {
           throw new Error('網絡響應不正常');
         }
         return response.json();
       })
-      .then(function(data) {
+      .then(data => {
         originalData = data;
-        var table = document.getElementById('artTable');
-        var tbody = table.querySelector('tbody');
-        data.forEach(function(item, index) {
-          var row = document.createElement('tr');
+        const table = document.getElementById('artTable');
+        const tbody = table.querySelector('tbody');
+        data.forEach((item, index) => {
+          const row = document.createElement('tr');
           row.classList.add(index % 2 === 0 ? 'even' : 'odd');
           
-          var cellsToCreate = [
+          const cellsToCreate = [
             index + 1,
             item['職稱/班級'], 
             item['姓名'], 
@@ -400,7 +353,7 @@ Last edited just now
           ];
 
           cellsToCreate.forEach((cellContent, cellIndex) => {
-            var cell = document.createElement('td');
+            const cell = document.createElement('td');
             cell.textContent = cellContent;
             if (cellIndex === 0) {
               cell.setAttribute('data-original-index', index + 1);
@@ -414,12 +367,47 @@ Last edited just now
           tbody.appendChild(row);
         });
       })
-      .catch(function(error) {
+      .catch(error => {
         console.log('錯誤:', error.message);
       });
-      document.getElementById('artInput').addEventListener('blur', function() {
+
+    // 事件監聽器
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('artInput');
+      
+      input.addEventListener('input', function() {
         this.value = this.value.trim();
-});
+        artFunction();
+      });
+      
+      input.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+        this.value = pastedText.trim();
+        artFunction();
+      });
+
+      document.getElementById('submitPassword').addEventListener('click', checkPassword);
+
+      document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          checkPassword();
+        }
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          toggleFilter(this.getAttribute('data-category'));
+        });
+      });
+    });
+
+    // 頁面加載時聚焦於密碼輸入框
+    window.addEventListener('load', function() {
+      if (document.getElementById('passwordPrompt').style.display !== 'none') {
+        document.getElementById('passwordInput').focus();
+      }
+    });
   </script>
 </body>
 </html>
