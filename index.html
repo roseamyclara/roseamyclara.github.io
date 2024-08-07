@@ -395,6 +395,9 @@
       .catch(function(error) {
         console.log('錯誤:', error.message);
       });
+      document.getElementById('artInput').addEventListener('blur', function() {
+        this.value = this.value.trim();
+});
   </script>
 </body>
 </html>
