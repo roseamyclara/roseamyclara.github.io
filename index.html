@@ -255,13 +255,27 @@
     let currentFilters = {
       category: null
     };
+    let inactivityTimer;
+    const INACTIVITY_TIMEOUT = 10 * 60 * 1000; // 10 minutes in milliseconds
 
-    // 檢查輸入密碼的函數
+    function resetInactivityTimer() {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(lockPage, INACTIVITY_TIMEOUT);
+    }
+
+    function lockPage() {
+      document.getElementById('passwordPrompt').style.display = 'flex';
+      document.getElementById('content').style.display = 'none';
+      document.getElementById('passwordInput').value = '';
+      attemptCount = 0;
+    }
+
     function checkPassword() {
       const password = document.getElementById('passwordInput').value;
       if (password === 'fn112') {
         document.getElementById('passwordPrompt').style.display = 'none';
         document.getElementById('content').style.display = 'block';
+        resetInactivityTimer();
       } else {
         attemptCount++;
         if (attemptCount >= 3) {
@@ -274,7 +288,6 @@
       }
     }
 
-    // 根據搜索輸入和類別過濾表格的函數
     function artFunction() {
       const input = document.getElementById('artInput');
       const filter = input.value.trim().replace(/\s+/g, '').toUpperCase();
@@ -297,9 +310,9 @@
           trs[i].style.display = 'none';
         }
       }
+      resetInactivityTimer();
     }
 
-    // 檢查項目是否屬於特定類別的函數
     function isInCategory(index, category) {
       const ranges = {
         broadcast: [[168, 226]],
@@ -311,7 +324,6 @@
       return ranges[category].some(range => index >= range[0] && index <= range[1]);
     }
 
-    // 切換過濾器的函數
     function toggleFilter(category) {
       if (currentFilters.category === category) {
         currentFilters.category = null;
@@ -324,9 +336,54 @@
         document.querySelector(`button[data-category="${category}"]`).classList.add('active');
       }
       artFunction();
+      resetInactivityTimer();
     }
 
-    // 從 JSON 文件加載數據並填充表格
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('artInput');
+      
+      input.addEventListener('input', function() {
+        this.value = this.value.trim();
+        artFunction();
+      });
+      
+      input.addEventListener('paste', function(e) {
+        e.preventDefault();
+        const pastedText = (e.clipboardData || window.clipboardData).getData('text');
+        this.value = pastedText.trim();
+        artFunction();
+      });
+
+      document.getElementById('submitPassword').addEventListener('click', checkPassword);
+
+      document.getElementById('passwordInput').addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          checkPassword();
+        }
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          toggleFilter(this.getAttribute('data-category'));
+        });
+      });
+
+      // Add event listeners for resetting inactivity timer
+      document.addEventListener('mousemove', resetInactivityTimer);
+      document.addEventListener('keypress', resetInactivityTimer);
+    });
+
+    // Initialize inactivity timer on page load
+    window.addEventListener('load', function() {
+      if (document.getElementById('passwordPrompt').style.display !== 'none') {
+        document.getElementById('passwordInput').focus();
+      } else {
+        resetInactivityTimer();
+      }
+    });
+
+    // Fetch data from JSON file
     fetch('csvjson.json')
       .then(response => {
         if (!response.ok) {
@@ -363,51 +420,12 @@
             }
             row.appendChild(cell);
           });
-
           tbody.appendChild(row);
         });
       })
       .catch(error => {
         console.log('錯誤:', error.message);
       });
-
-    // 事件監聽器
-    document.addEventListener('DOMContentLoaded', () => {
-      const input = document.getElementById('artInput');
-      
-      input.addEventListener('input', function() {
-        this.value = this.value.trim();
-        artFunction();
-      });
-      
-      input.addEventListener('paste', function(e) {
-        e.preventDefault();
-        const pastedText = (e.clipboardData || window.clipboardData).getData('text');
-        this.value = pastedText.trim();
-        artFunction();
-      });
-
-      document.getElementById('submitPassword').addEventListener('click', checkPassword);
-
-      document.getElementById('passwordInput').addEventListener('keyup', function(event) {
-        if (event.key === 'Enter') {
-          checkPassword();
-        }
-      });
-
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-          toggleFilter(this.getAttribute('data-category'));
-        });
-      });
-    });
-
-    // 頁面加載時聚焦於密碼輸入框
-    window.addEventListener('load', function() {
-      if (document.getElementById('passwordPrompt').style.display !== 'none') {
-        document.getElementById('passwordInput').focus();
-      }
-    });
   </script>
 </body>
 </html>
