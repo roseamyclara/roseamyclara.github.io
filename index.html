@@ -299,10 +299,10 @@
       }
     });
 
-    // 根據搜索輸入和類別過濾表格的函數
+    // 根據搜索輸入和類別過濾表格的函數（更新版）
     function artFunction() {
       var input = document.getElementById('artInput');
-      var filter = input.value.toUpperCase();
+      var filter = input.value.replace(/\s+/g, '').toUpperCase(); // 去除所有空格
       var table = document.getElementById('artTable');
       var trs = table.tBodies[0].getElementsByTagName('tr');
 
@@ -310,7 +310,7 @@
       for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName('td');
         var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
-                            Array.from(tds).some(td => td.textContent.toUpperCase().indexOf(filter) > -1);
+                            Array.from(tds).some(td => td.textContent.replace(/\s+/g, '').toUpperCase().indexOf(filter) > -1); // 在比較時也去除空格
         
         if (shouldDisplay) {
           visibleCount++;
@@ -396,4 +396,5 @@
         console.log('錯誤:', error.message);
       });
   </script>
-</body
+</body>
+</html>
