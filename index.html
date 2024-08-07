@@ -300,7 +300,7 @@
     });
 
     // 根據搜索輸入和類別過濾表格的函數（更新版）
-    function artFunction() {
+function artFunction() {
   var input = document.getElementById('artInput');
   // 去除前導和尾隨空格，然後去除所有內部空格
   var filter = input.value.trim().replace(/\s+/g, '').toUpperCase();
@@ -324,6 +324,28 @@
     }
   }
 }
+
+// 添加新的事件監聽器
+document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('artInput');
+  
+  // 監聽input的value變化
+  input.addEventListener('input', function() {
+    this.value = this.value.trim();
+  });
+  
+  // 監聽粘貼事件
+  input.addEventListener('paste', function(e) {
+    e.preventDefault();
+    var pastedText = (e.clipboardData || window.clipboardData).getData('text');
+    this.value = pastedText.trim();
+    artFunction(); // 立即觸發搜索
+  });
+});
+Last edited just now
+
+
+
     // 檢查項目是否屬於特定類別的函數
     function isInCategory(index, category) {
       const ranges = {
