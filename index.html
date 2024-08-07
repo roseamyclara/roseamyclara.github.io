@@ -301,29 +301,29 @@
 
     // 根據搜索輸入和類別過濾表格的函數（更新版）
     function artFunction() {
-      var input = document.getElementById('artInput');
-      var filter = input.value.replace(/\s+/g, '').toUpperCase(); // 去除所有空格
-      var table = document.getElementById('artTable');
-      var trs = table.tBodies[0].getElementsByTagName('tr');
+  var input = document.getElementById('artInput');
+  // 去除前導和尾隨空格，然後去除所有內部空格
+  var filter = input.value.trim().replace(/\s+/g, '').toUpperCase();
+  var table = document.getElementById('artTable');
+  var trs = table.tBodies[0].getElementsByTagName('tr');
 
-      var visibleCount = 0;
-      for (var i = 0; i < trs.length; i++) {
-        var tds = trs[i].getElementsByTagName('td');
-        var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
-                            Array.from(tds).some(td => td.textContent.replace(/\s+/g, '').toUpperCase().indexOf(filter) > -1); // 在比較時也去除空格
-        
-        if (shouldDisplay) {
-          visibleCount++;
-          trs[i].style.display = '';
-          tds[0].textContent = visibleCount;
-          trs[i].classList.remove('even', 'odd');
-          trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
-        } else {
-          trs[i].style.display = 'none';
-        }
-      }
+  var visibleCount = 0;
+  for (var i = 0; i < trs.length; i++) {
+    var tds = trs[i].getElementsByTagName('td');
+    var shouldDisplay = (!currentFilters.category || isInCategory(parseInt(tds[0].getAttribute('data-original-index')), currentFilters.category)) &&
+                        Array.from(tds).some(td => td.textContent.trim().replace(/\s+/g, '').toUpperCase().indexOf(filter) > -1);
+    
+    if (shouldDisplay) {
+      visibleCount++;
+      trs[i].style.display = '';
+      tds[0].textContent = visibleCount;
+      trs[i].classList.remove('even', 'odd');
+      trs[i].classList.add(visibleCount % 2 === 0 ? 'even' : 'odd');
+    } else {
+      trs[i].style.display = 'none';
     }
-
+  }
+}
     // 檢查項目是否屬於特定類別的函數
     function isInCategory(index, category) {
       const ranges = {
