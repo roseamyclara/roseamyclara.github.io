@@ -136,7 +136,7 @@
     </div>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYsmWPXQgrZyjYh2E1WtX-ZYfPWs86x6HRAYyee1yMgjAT4oGt6bet2FP28GTI4KIe/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzc8jC20PwKfwNobO1WQxcnpGdhezuJTvcAtHrw_3s5l0t04ShxfG-JKuL_4qtEJp3O/exec';
 
         const shopDrinks = {
             '快樂茶飲': ['珍珠奶茶', '四季春茶', '檸檬綠茶', '芋頭鮮奶'],
@@ -169,32 +169,36 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
-            axios.post(SCRIPT_URL, data)
-                .then(response => {
-                    console.log('Response:', response);
-                    if (response.data && response.data.result === 'success') {
-                        alert('您的訂單已成功送出！稍後請至櫃台取餐。');
-                        this.reset();
-                        document.querySelectorAll('.drink-option').forEach(el => el.classList.remove('selected'));
-                        document.getElementById('drinkOptions').innerHTML = '';
-                    } else {
-                        console.error('Unexpected response:', response);
-                        alert('訂單處理出現異常，請稍後再試。');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error details:', error);
-                    if (error.response) {
-                        console.error('Server responded with:', error.response.status, error.response.data);
-                        alert(`訂單送出時發生錯誤 (${error.response.status}): ${JSON.stringify(error.response.data)}`);
-                    } else if (error.request) {
-                        console.error('No response received:', error.request);
-                        alert('無法連接到伺服器，請檢查您的網絡連接。');
-                    } else {
-                        console.error('Error setting up the request:', error.message);
-                        alert(`發生錯誤: ${error.message}`);
-                    }
-                });
+            axios.post(SCRIPT_URL, JSON.stringify(data), {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Response:', response);
+                if (response.data && response.data.result === 'success') {
+                    alert('您的訂單已成功送出！稍後請至櫃台取餐。');
+                    this.reset();
+                    document.querySelectorAll('.drink-option').forEach(el => el.classList.remove('selected'));
+                    document.getElementById('drinkOptions').innerHTML = '';
+                } else {
+                    console.error('Unexpected response:', response);
+                    alert('訂單處理出現異常：' + (response.data ? response.data.message : '未知錯誤'));
+                }
+            })
+            .catch(error => {
+                console.error('Error details:', error);
+                if (error.response) {
+                    console.error('Server responded with:', error.response.status, error.response.data);
+                    alert(`訂單送出時發生錯誤 (${error.response.status}): ${JSON.stringify(error.response.data)}`);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                    alert('無法連接到伺服器，請檢查您的網絡連接。');
+                } else {
+                    console.error('Error setting up the request:', error.message);
+                    alert(`發生錯誤: ${error.message}`);
+                }
+            });
         });
     </script>
 </body>
