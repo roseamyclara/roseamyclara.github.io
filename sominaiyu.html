@@ -3,61 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>訂飲料系統</title>
+    <title>多店訂飲料系統</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; }
-        form { display: flex; flex-direction: column; }
-        label, input, select, button { margin-bottom: 10px; }
-        button { cursor: pointer; }
+        body {
+            font-family: 'Taipei Sans TC', 'Microsoft JhengHei', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #ff6b6b;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #4a4a4a;
+            font-weight: bold;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #4ecdc4;
+        }
+        button {
+            background-color: #4ecdc4;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45b7aa;
+        }
+        .shop-select {
+            margin-bottom: 20px;
+        }
+        #drinkOptions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .drink-option {
+            background-color: #e9ecef;
+            border: 2px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .drink-option:hover, .drink-option.selected {
+            background-color: #4ecdc4;
+            color: white;
+            border-color: #45b7aa;
+        }
     </style>
 </head>
 <body>
-    <h1>訂飲料系統</h1>
-    <form id="orderForm">
-        <label for="name">姓名：</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="drink">飲料：</label>
-        <select id="drink" name="drink" required>
-            <option value="">請選擇飲料</option>
-            <option value="珍珠奶茶">珍珠奶茶</option>
-            <option value="四季春茶">四季春茶</option>
-            <option value="芒果冰沙">芒果冰沙</option>
-            <option value="抹茶拿鐵">抹茶拿鐵</option>
-        </select>
-        
-        <label for="size">大小：</label>
-        <select id="size" name="size" required>
-            <option value="">請選擇大小</option>
-            <option value="小">小</option>
-            <option value="中">中</option>
-            <option value="大">大</option>
-        </select>
-        
-        <label for="sugar">糖度：</label>
-        <select id="sugar" name="sugar" required>
-            <option value="">請選擇糖度</option>
-            <option value="無糖">無糖</option>
-            <option value="微糖">微糖</option>
-            <option value="半糖">半糖</option>
-            <option value="全糖">全糖</option>
-        </select>
-        
-        <label for="ice">冰塊：</label>
-        <select id="ice" name="ice" required>
-            <option value="">請選擇冰塊</option>
-            <option value="去冰">去冰</option>
-            <option value="微冰">微冰</option>
-            <option value="少冰">少冰</option>
-            <option value="正常冰">正常冰</option>
-        </select>
-        
-        <button type="submit">提交訂單</button>
-    </form>
+    <div class="container">
+        <h1>多店訂飲料系統</h1>
+        <form id="orderForm">
+            <div class="shop-select">
+                <label for="shop">選擇飲料店：</label>
+                <select id="shop" name="shop" required>
+                    <option value="">請選擇飲料店</option>
+                    <option value="快樂茶飲">快樂茶飲</option>
+                    <option value="清涼一下">清涼一下</option>
+                    <option value="果漾飲品">果漾飲品</option>
+                </select>
+            </div>
+
+            <label for="name">您的大名：</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label>選擇飲料：</label>
+            <div id="drinkOptions"></div>
+            <input type="hidden" id="drink" name="drink" required>
+            
+            <label for="size">杯型大小：</label>
+            <select id="size" name="size" required>
+                <option value="">請選擇大小</option>
+                <option value="小杯">小杯</option>
+                <option value="中杯">中杯</option>
+                <option value="大杯">大杯</option>
+            </select>
+            
+            <label for="sugar">甜度：</label>
+            <select id="sugar" name="sugar" required>
+                <option value="">請選擇甜度</option>
+                <option value="無糖">無糖</option>
+                <option value="微糖">微糖</option>
+                <option value="半糖">半糖</option>
+                <option value="全糖">全糖</option>
+            </select>
+            
+            <label for="ice">冰塊：</label>
+            <select id="ice" name="ice" required>
+                <option value="">請選擇冰塊</option>
+                <option value="去冰">去冰</option>
+                <option value="微冰">微冰</option>
+                <option value="少冰">少冰</option>
+                <option value="正常冰">正常冰</option>
+            </select>
+            
+            <button type="submit">送出訂單</button>
+        </form>
+    </div>
 
     <script>
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYsmWPXQgrZyjYh2E1WtX-ZYfPWs86x6HRAYyee1yMgjAT4oGt6bet2FP28GTI4KIe/exec';
+
+        const shopDrinks = {
+            '快樂茶飲': ['珍珠奶茶', '四季春茶', '檸檬綠茶', '芋頭鮮奶'],
+            '清涼一下': ['百香果綠茶', '蜂蜜檸檬', '芒果冰沙', '藍莓優格'],
+            '果漾飲品': ['草莓牛奶', '蘋果醋', '葡萄柚綠茶', '蜜桃蘆薈']
+        };
+
+        document.getElementById('shop').addEventListener('change', function() {
+            const shop = this.value;
+            const drinkOptions = document.getElementById('drinkOptions');
+            drinkOptions.innerHTML = '';
+
+            if (shop in shopDrinks) {
+                shopDrinks[shop].forEach(drink => {
+                    const option = document.createElement('div');
+                    option.className = 'drink-option';
+                    option.textContent = drink;
+                    option.onclick = function() {
+                        document.querySelectorAll('.drink-option').forEach(el => el.classList.remove('selected'));
+                        this.classList.add('selected');
+                        document.getElementById('drink').value = drink;
+                    };
+                    drinkOptions.appendChild(option);
+                });
+            }
+        });
 
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -66,12 +171,29 @@
             
             axios.post(SCRIPT_URL, data)
                 .then(response => {
-                    alert('訂單已成功提交！');
-                    this.reset();
+                    console.log('Response:', response);
+                    if (response.data && response.data.result === 'success') {
+                        alert('您的訂單已成功送出！稍後請至櫃台取餐。');
+                        this.reset();
+                        document.querySelectorAll('.drink-option').forEach(el => el.classList.remove('selected'));
+                        document.getElementById('drinkOptions').innerHTML = '';
+                    } else {
+                        console.error('Unexpected response:', response);
+                        alert('訂單處理出現異常，請稍後再試。');
+                    }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    alert('提交訂單時發生錯誤，請稍後再試。');
+                    console.error('Error details:', error);
+                    if (error.response) {
+                        console.error('Server responded with:', error.response.status, error.response.data);
+                        alert(`訂單送出時發生錯誤 (${error.response.status}): ${JSON.stringify(error.response.data)}`);
+                    } else if (error.request) {
+                        console.error('No response received:', error.request);
+                        alert('無法連接到伺服器，請檢查您的網絡連接。');
+                    } else {
+                        console.error('Error setting up the request:', error.message);
+                        alert(`發生錯誤: ${error.message}`);
+                    }
                 });
         });
     </script>
