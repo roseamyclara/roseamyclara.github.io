@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂飲料系統</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; }
+        form { display: flex; flex-direction: column; }
+        label, input, select, button { margin-bottom: 10px; }
+        button { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>訂飲料系統</h1>
+    <form id="orderForm">
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="drink">飲料：</label>
+        <select id="drink" name="drink" required>
+            <option value="">請選擇飲料</option>
+            <option value="珍珠奶茶">珍珠奶茶</option>
+            <option value="四季春茶">四季春茶</option>
+            <option value="芒果冰沙">芒果冰沙</option>
+            <option value="抹茶拿鐵">抹茶拿鐵</option>
+        </select>
+        
+        <label for="size">大小：</label>
+        <select id="size" name="size" required>
+            <option value="">請選擇大小</option>
+            <option value="小">小</option>
+            <option value="中">中</option>
+            <option value="大">大</option>
+        </select>
+        
+        <label for="sugar">糖度：</label>
+        <select id="sugar" name="sugar" required>
+            <option value="">請選擇糖度</option>
+            <option value="無糖">無糖</option>
+            <option value="微糖">微糖</option>
+            <option value="半糖">半糖</option>
+            <option value="全糖">全糖</option>
+        </select>
+        
+        <label for="ice">冰塊：</label>
+        <select id="ice" name="ice" required>
+            <option value="">請選擇冰塊</option>
+            <option value="去冰">去冰</option>
+            <option value="微冰">微冰</option>
+            <option value="少冰">少冰</option>
+            <option value="正常冰">正常冰</option>
+        </select>
+        
+        <button type="submit">提交訂單</button>
+    </form>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyYsmWPXQgrZyjYh2E1WtX-ZYfPWs86x6HRAYyee1yMgjAT4oGt6bet2FP28GTI4KIe/exec';
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            axios.post(SCRIPT_URL, data)
+                .then(response => {
+                    alert('訂單已成功提交！');
+                    this.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('提交訂單時發生錯誤，請稍後再試。');
+                });
+        });
+    </script>
+</body>
+</html>
