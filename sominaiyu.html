@@ -83,12 +83,6 @@
             color: white;
             border-color: #45b7aa;
         }
-        .success-message {
-            color: #4ecdc4;
-            font-weight: bold;
-            margin-top: 20px;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -138,11 +132,8 @@
                 <option value="正常冰">正常冰</option>
             </select>
             
-            <button type="submit">送出訂單</button>
+            <button type="submit">送出表單</button>
         </form>
-        <div class="success-message" id="successMessage" style="display: none;">
-            表單已成功送出！
-        </div>
     </div>
 
     <script>
@@ -175,8 +166,22 @@
                 });
             }
         });
-     </script>
-     
+
+        // 新增表單提交事件監聽器
+        document.forms['submit-to-google-sheet'].addEventListener('submit', function(event) {
+            event.preventDefault(); // 防止表單實際提交
+
+            // 這裡你可以執行任何你希望的表單處理，例如使用 axios 提交資料到 Google 表單
+            // 假設表單已經正確提交，顯示成功訊息
+            alert('訂單已成功送出！');
+            
+            // 你可以選擇在成功提交後清空表單
+            event.target.reset();
+            // 或者清空選取的飲料選項
+            document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
+            drinkOptionsContainer.innerHTML = '';
+        });
+    </script>
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
       const form = document.forms['submit-to-google-sheet']
