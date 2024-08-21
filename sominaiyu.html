@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>多店訂飲料系統</title>
+    <title>手搖飲團訂系統</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <style>
         /* 保持現有樣式 */
@@ -83,6 +83,12 @@
             color: white;
             border-color: #45b7aa;
         }
+        .price-display {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 <body>
@@ -93,9 +99,7 @@
                 <label for="shop">選擇飲料店：</label>
                 <select id="shop" name="shop" required>
                     <option value="">請選擇飲料店</option>
-                    <option value="快樂茶飲">快樂茶飲</option>
-                    <option value="清涼一下">清涼一下</option>
-                    <option value="果漾飲品">果漾飲品</option>
+                    <option value="麻古茶坊">麻古茶坊</option>
                 </select>
             </div>
 
@@ -109,9 +113,8 @@
             <label for="size">杯型大小：</label>
             <select id="size" name="size" required>
                 <option value="">請選擇大小</option>
-                <option value="小杯">小杯</option>
-                <option value="中杯">中杯</option>
-                <option value="大杯">大杯</option>
+                <option value="M">中杯</option>
+                <option value="L">大杯</option>
             </select>
             
             <label for="sugar">甜度：</label>
@@ -131,6 +134,8 @@
                 <option value="少冰">少冰</option>
                 <option value="正常冰">正常冰</option>
             </select>
+
+            <div class="price-display">總金額: <span id="totalPrice">0</span> 元</div>
             
             <button type="submit">送出訂單</button>
         </form>
@@ -140,12 +145,32 @@
         const shopSelect = document.getElementById('shop');
         const drinkOptionsContainer = document.getElementById('drinkOptions');
         const drinkInput = document.getElementById('drink');
+        const sizeSelect = document.getElementById('size');
+        const priceDisplay = document.getElementById('totalPrice');
 
         const drinkOptions = {
-            "快樂茶飲": ["紅茶", "綠茶", "奶茶"],
-            "清涼一下": ["檸檬茶", "百香綠", "四季春"],
-            "果漾飲品": ["芒果汁", "草莓奶昔", "柳橙汁"]
+            "麻古茶坊": {
+                "芝芝金萱": { "M": 50, "L": 65 },
+                "芝芝蜜香": { "M": 55, "L": 70 },
+                "百香莓口果": { "M": 55, "L": 75 },
+                "葡萄柚綠茶": { "M": 65, "L": 95 },
+                "帝山金萱茶": { "M": 30, "L": 45 }
+                // Add more drinks as needed
+            }
         };
+
+        function updatePrice() {
+            const selectedDrink = drinkInput.value;
+            const selectedSize = sizeSelect.value;
+            const selectedShop = shopSelect.value;
+
+            if (selectedDrink && selectedSize && drinkOptions[selectedShop][selectedDrink]) {
+                const price = drinkOptions[selectedShop][selectedDrink][selectedSize];
+                priceDisplay.textContent = price ? price : '0';
+            } else {
+                priceDisplay.textContent = '0';
+            }
+        }
 
         shopSelect.addEventListener('change', function() {
             const selectedShop = this.value;
@@ -153,7 +178,7 @@
             drinkInput.value = '';
 
             if (selectedShop && drinkOptions[selectedShop]) {
-                drinkOptions[selectedShop].forEach(drink => {
+                Object.keys(drinkOptions[selectedShop]).forEach(drink => {
                     const drinkOption = document.createElement('div');
                     drinkOption.className = 'drink-option';
                     drinkOption.textContent = drink;
@@ -161,22 +186,28 @@
                         document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
                         this.classList.add('selected');
                         drinkInput.value = drink;
+                        updatePrice();
                     });
                     drinkOptionsContainer.appendChild(drinkOption);
                 });
             }
         });
-     </script>
-     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
-      const form = document.forms['submit-to-google-sheet']
-    
-      form.addEventListener('submit', e => {
-        e.preventDefault()
-        fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', { method: 'POST', body: new FormData(form)})
-          .then(response => console.log('Success!', response))
-          .catch(error => console.error('Error!', error.message))
-      })
+
+        sizeSelect.addEventListener('change', updatePrice);
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        })
     </script>
 </body>
 </html>
