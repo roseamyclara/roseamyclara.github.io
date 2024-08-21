@@ -148,35 +148,24 @@
         };
 
         shopSelect.addEventListener('change', function() {
-        const selectedShop = this.value;
-        drinkOptionsContainer.innerHTML = '';
-        drinkInput.value = '';
+            const selectedShop = this.value;
+            drinkOptionsContainer.innerHTML = '';
+            drinkInput.value = '';
 
-        if (selectedShop && drinkOptions[selectedShop]) {
-            drinkOptions[selectedShop].forEach(drink => {
-                const drinkOption = document.createElement('div');
-                drinkOption.className = 'drink-option';
-                drinkOption.textContent = drink;
-                drinkOption.addEventListener('click', function() {
-                    document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-                    drinkInput.value = drink;
+            if (selectedShop && drinkOptions[selectedShop]) {
+                drinkOptions[selectedShop].forEach(drink => {
+                    const drinkOption = document.createElement('div');
+                    drinkOption.className = 'drink-option';
+                    drinkOption.textContent = drink;
+                    drinkOption.addEventListener('click', function() {
+                        document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        drinkInput.value = drink;
+                    });
+                    drinkOptionsContainer.appendChild(drinkOption);
                 });
-                drinkOptionsContainer.appendChild(drinkOption);
-            });
-        }
-    });
-
-    const form = document.forms['submit-to-google-sheet'];
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                alert('您的表單已成功送出!');
-                form.reset();
-            })
-            .catch(error => console.error('Error!', error.message));
-    });
+            }
+        });
      </script>
      <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
