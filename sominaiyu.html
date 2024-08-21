@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>手搖飲團訂系統</title>
+    <title>多店訂飲料系統</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <style>
         /* 保持現有樣式 */
@@ -154,8 +154,16 @@
                 "芝芝蜜香": { "M": 55, "L": 70 },
                 "百香莓口果": { "M": 55, "L": 75 },
                 "葡萄柚綠茶": { "M": 65, "L": 95 },
-                "帝山金萱茶": { "M": 30, "L": 45 }
-                // Add more drinks as needed
+                "帝山金萱茶": { "M": 30, "L": 45 },
+                "紅心芭樂梅梅": { "M": 70, "L": 90 },
+                "芝芝莓果": { "M": 65, "L": 85 },
+                "草莓厚奶": { "M": 75, "L": 95 },
+                "芝芝青茶": { "M": 50, "L": 65 },
+                "葡萄柚綠": { "M": 65, "L": 95 },
+                "四季春青茶": { "M": 35, "L": 45 },
+                "醇香奶茶": { "M": 50, "L": 65 },
+                "經典紅茶": { "M": 30, "L": 45 }
+                // 可以根据需要添加更多的飲料選項
             }
         };
 
@@ -201,12 +209,18 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault()
-            fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', {
+            fetch(scriptURL, {
                 method: 'POST',
                 body: new FormData(form)
             })
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
+            .then(response => {
+                alert('訂單送出成功！');
+                console.log('Success!', response);
+            })
+            .catch(error => {
+                alert('訂單送出失敗，請稍後再試！');
+                console.error('Error!', error.message);
+            });
         })
     </script>
 </body>
