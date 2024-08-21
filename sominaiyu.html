@@ -167,16 +167,15 @@
             }
         });
 
-        const form = document.forms['submit-to-google-sheet'];
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', {
-                method: 'POST',
-                body: new FormData(form)
-            })
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message))
-        });
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
+      const form = document.forms['submit-to-google-sheet']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
     </script>
 </body>
 </html>
