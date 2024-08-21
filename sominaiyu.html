@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>多店訂飲料系統</title>
-    <form name="submit-to-google-sheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
     <style>
+        /* 保持現有樣式 */
         body {
             font-family: 'Taipei Sans TC', 'Microsoft JhengHei', sans-serif;
             background-color: #f0f8ff;
@@ -137,15 +137,46 @@
     </div>
 
     <script>
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
-      const form = document.forms['submit-to-google-sheet']
-    
-      form.addEventListener('submit', e => {
-        e.preventDefault()
-        fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', { method: 'POST', body: new FormData(form)})
-          .then(response => console.log('Success!', response))
-          .catch(error => console.error('Error!', error.message))
-      })
+        const shopSelect = document.getElementById('shop');
+        const drinkOptionsContainer = document.getElementById('drinkOptions');
+        const drinkInput = document.getElementById('drink');
+
+        const drinkOptions = {
+            "快樂茶飲": ["紅茶", "綠茶", "奶茶"],
+            "清涼一下": ["檸檬茶", "百香綠", "四季春"],
+            "果漾飲品": ["芒果汁", "草莓奶昔", "柳橙汁"]
+        };
+
+        shopSelect.addEventListener('change', function() {
+            const selectedShop = this.value;
+            drinkOptionsContainer.innerHTML = '';
+            drinkInput.value = '';
+
+            if (selectedShop && drinkOptions[selectedShop]) {
+                drinkOptions[selectedShop].forEach(drink => {
+                    const drinkOption = document.createElement('div');
+                    drinkOption.className = 'drink-option';
+                    drinkOption.textContent = drink;
+                    drinkOption.addEventListener('click', function() {
+                        document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
+                        this.classList.add('selected');
+                        drinkInput.value = drink;
+                    });
+                    drinkOptionsContainer.appendChild(drinkOption);
+                });
+            }
+        });
+
+        const form = document.forms['submit-to-google-sheet'];
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        });
     </script>
-  </body>
+</body>
 </html>
