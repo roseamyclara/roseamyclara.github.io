@@ -136,7 +136,8 @@
             </select>
 
             <div class="price-display">總金額: <span id="totalPrice">0</span> 元</div>
-            
+            <input type="hidden" id="price" name="price">
+
             <button type="submit">送出訂單</button>
         </form>
     </div>
@@ -147,6 +148,7 @@
         const drinkInput = document.getElementById('drink');
         const sizeSelect = document.getElementById('size');
         const priceDisplay = document.getElementById('totalPrice');
+        const priceInput = document.getElementById('price');
 
         const drinkOptions = {
             "麻古茶坊": {
@@ -163,7 +165,6 @@
                 "四季春青茶": { "M": 35, "L": 45 },
                 "醇香奶茶": { "M": 50, "L": 65 },
                 "經典紅茶": { "M": 30, "L": 45 }
-                // 可以根据需要添加更多的飲料選項
             }
         };
 
@@ -175,8 +176,10 @@
             if (selectedDrink && selectedSize && drinkOptions[selectedShop][selectedDrink]) {
                 const price = drinkOptions[selectedShop][selectedDrink][selectedSize];
                 priceDisplay.textContent = price ? price : '0';
+                priceInput.value = price ? price : '0';
             } else {
                 priceDisplay.textContent = '0';
+                priceInput.value = '0';
             }
         }
 
@@ -208,20 +211,16 @@
         const form = document.forms['submit-to-google-sheet']
 
         form.addEventListener('submit', e => {
-            e.preventDefault()
+            e.preventDefault();
+            alert('訂單送出成功！'); // 提示窗在表单提交前弹出
+
             fetch(scriptURL, {
                 method: 'POST',
                 body: new FormData(form)
             })
-            .then(response => {
-                alert('訂單送出成功！');
-                console.log('Success!', response);
-            })
-            .catch(error => {
-                alert('訂單送出失敗，請稍後再試！');
-                console.error('Error!', error.message);
-            });
-        })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message));
+        });
     </script>
 </body>
 </html>
