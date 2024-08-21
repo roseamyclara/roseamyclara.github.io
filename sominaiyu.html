@@ -83,6 +83,12 @@
             color: white;
             border-color: #45b7aa;
         }
+        .success-message {
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -134,6 +140,9 @@
             
             <button type="submit">送出訂單</button>
         </form>
+        <div class="success-message" id="successMessage" style="display: none;">
+            表單已成功送出！
+        </div>
     </div>
 
     <script>
@@ -167,7 +176,8 @@
             }
         });
      </script>
-     <script>
+     
+    <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
       const form = document.forms['submit-to-google-sheet']
     
