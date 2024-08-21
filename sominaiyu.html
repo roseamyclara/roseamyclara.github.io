@@ -18,7 +18,7 @@
     
       form.addEventListener('submit', e => {
         e.preventDefault()
-        fetch(https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec, { method: 'POST', body: new FormData(form)})
+        fetch('https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec', { method: 'POST', body: new FormData(form)})
           .then(response => console.log('Success!', response))
           .catch(error => console.error('Error!', error.message))
       })
