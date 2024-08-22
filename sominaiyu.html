@@ -194,93 +194,80 @@
                     "金萱三合一": { "M": 40, "L": 55 }
                 },
                 "獨家特調": {
-                    "梅子冰茶": { "M": 45, "L": 55 },
-                    "梅子多多綠": { "M": 45, "L": 55 },
-                    "冬瓜柚茶": { "M": 30, "L": 45 },
-                    "冬瓜檸檬": { "M": 45, "L": 65 }
-                },
-                "奶茶系列": {
-                    "雷簡奶茶": { "M": 45, "L": 65 },
-                    "波霸奶茶": { "M": 45, "L": 65 },
-                    "烏龍奶茶": { "M": 45, "L": 65 },
-                    "玫瑰奶茶": { "M": 45, "L": 65 },
-                    "布丁奶茶": { "M": 45, "L": 65 },
-                    "抹茶奶茶": { "M": 45, "L": 65 }
-                },
-                "香草系列": {
-                    "紅茶拿鐵": { "M": 55, "L": 75 },
-                    "檸檬拿鐵": { "M": 55, "L": 75 },
-                    "蜂蜜拿鐵": { "M": 55, "L": 75 },
-                    "布丁拿鐵": { "M": 55, "L": 75 },
-                    "抹茶拿鐵": { "M": 55, "L": 75 }
+                    "梅子冰茶": { "M": 45, "L": 60 },
+                    "玫瑰蘋果冰茶": { "M": 55, "L": 70 },
+                    "情人果冰茶": { "M": 60, "L": 75 },
+                    "黃金烏龍拿鐵": { "M": 65, "L": 80 },
+                    "桂花蜜烏龍": { "M": 65, "L": 80 }
                 }
             }
         };
+
+        shopSelect.addEventListener('change', function() {
+            const selectedShop = shopSelect.value;
+            drinkOptionsContainer.innerHTML = '';
+            
+            if (selectedShop && drinkOptions[selectedShop]) {
+                for (const category in drinkOptions[selectedShop]) {
+                    for (const drink in drinkOptions[selectedShop][category]) {
+                        const drinkDiv = document.createElement('div');
+                        drinkDiv.className = 'drink-option';
+                        drinkDiv.textContent = drink;
+                        drinkDiv.dataset.drink = drink;
+                        drinkDiv.addEventListener('click', function() {
+                            const selectedDrinkElement = document.querySelector('.drink-option.selected');
+                            if (selectedDrinkElement) {
+                                selectedDrinkElement.classList.remove('selected');
+                            }
+                            drinkDiv.classList.add('selected');
+                            drinkInput.value = drink;
+                            updatePrice();
+                        });
+                        drinkOptionsContainer.appendChild(drinkDiv);
+                    }
+                }
+            }
+        });
+
+        sizeSelect.addEventListener('change', updatePrice);
 
         function updatePrice() {
             const selectedDrink = drinkInput.value;
             const selectedSize = sizeSelect.value;
             const selectedShop = shopSelect.value;
 
-            if (selectedDrink && selectedSize && drinkOptions[selectedShop][selectedDrink]) {
-                const price = drinkOptions[selectedShop][selectedDrink][selectedSize];
-                priceDisplay.textContent = price ? price : '0';
-                priceInput.value = price ? price : '0';
+            if (selectedDrink && selectedSize && drinkOptions[selectedShop]) {
+                let price = null;
+                
+                // 遍历饮料店的所有类别
+                for (let category in drinkOptions[selectedShop]) {
+                    if (drinkOptions[selectedShop][category][selectedDrink]) {
+                        price = drinkOptions[selectedShop][category][selectedDrink][selectedSize];
+                        break;
+                    }
+                }
+
+                if (price) {
+                    priceDisplay.textContent = price;
+                    priceInput.value = price;
+                } else {
+                    priceDisplay.textContent = '0';
+                    priceInput.value = '0';
+                }
             } else {
                 priceDisplay.textContent = '0';
                 priceInput.value = '0';
             }
         }
 
-        shopSelect.addEventListener('change', function() {
-            const selectedShop = this.value;
-            drinkOptionsContainer.innerHTML = '';
-            drinkInput.value = '';
-
-            if (selectedShop && drinkOptions[selectedShop]) {
-                Object.keys(drinkOptions[selectedShop]).forEach(drinkCategory => {
-                    const categoryContainer = document.createElement('div');
-                    categoryContainer.className = 'drink-category';
-                    categoryContainer.textContent = drinkCategory;
-
-                    const drinkOptionsList = document.createElement('div');
-                    drinkOptionsList.className = 'drink-options-list';
-
-                    Object.keys(drinkOptions[selectedShop][drinkCategory]).forEach(drink => {
-                        const drinkOption = document.createElement('div');
-                        drinkOption.className = 'drink-option';
-                        drinkOption.textContent = drink;
-                        drinkOption.addEventListener('click', function() {
-                            document.querySelectorAll('.drink-option').forEach(opt => opt.classList.remove('selected'));
-                            this.classList.add('selected');
-                            drinkInput.value = drink;
-                            updatePrice();
-                        });
-                        drinkOptionsList.appendChild(drinkOption);
-                    });
-
-                    categoryContainer.appendChild(drinkOptionsList);
-                    drinkOptionsContainer.appendChild(categoryContainer);
-                });
-            }
-        });
-
-        sizeSelect.addEventListener('change', updatePrice);
-    </script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
-        const form = document.forms['submit-to-google-sheet']
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzyzp2B6hgKrOqNoq8LfQdIlZ4rsuWmOgZ1OKAu5dHnxt2_7sW8xdgN2uT8fxGr_znd/exec';
+        const form = document.forms['submit-to-google-sheet'];
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            alert('訂單送出成功！'); // 提示窗在表单提交前弹出
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new FormData(form)
-            })
-            .then(response => console.log('Success!', response))
-            .catch(error => console.error('Error!', error.message));
+            axios.post(scriptURL, new FormData(form))
+                .then(response => alert('訂單已成功提交！'))
+                .catch(error => console.error('Error!', error.message));
         });
     </script>
 </body>
