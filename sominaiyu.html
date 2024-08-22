@@ -275,14 +275,20 @@
             }
         }
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzyzp2B6hgKrOqNoq8LfQdIlZ4rsuWmOgZ1OKAu5dHnxt2_7sW8xdgN2uT8fxGr_znd/exec';
-        const form = document.forms['submit-to-google-sheet'];
+        <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbywHajd7aJpKau0j8EEyfU1iKIH4RracM-l906T-H2vlqpz2kAz6vKwywye0SAAxDAFwQ/exec'
+        const form = document.forms['submit-to-google-sheet']
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            axios.post(scriptURL, new FormData(form))
-                .then(response => alert('訂單已成功提交！'))
-                .catch(error => console.error('Error!', error.message));
+            alert('訂單送出成功！'); // 提示窗在表单提交前弹出
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message));
         });
     </script>
 </body>
