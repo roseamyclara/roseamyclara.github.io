@@ -64,10 +64,16 @@
             margin-bottom: 20px;
         }
         #drinkOptions {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
             margin-bottom: 15px;
+        }
+        .category {
+            margin-bottom: 20px;
+        }
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4ecdc4;
         }
         .drink-option {
             background-color: #e9ecef;
@@ -77,6 +83,7 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
+            margin-bottom: 10px;
         }
         .drink-option:hover, .drink-option.selected {
             background-color: #4ecdc4;
@@ -190,11 +197,10 @@
                     "熟成紅茶": { "M": 30, "L": 45 },
                     "烏龍茶": { "M": 30, "L": 45 },
                     "綠茶": { "M": 30, "L": 45 },
-                    "古早味冬瓜茶": { "M": 30, "L": 45 },
-                    "金萱三合一": { "M": 40, "L": 55 }
+                    "冬瓜露": { "M": 30, "L": 45 }
                 },
                 "獨家特調": {
-                    "梅子冰茶": { "M": 45, "L": 60 },
+                    "冬瓜紅茶": { "M": 50, "L": 60 },
                     "玫瑰蘋果冰茶": { "M": 55, "L": 70 },
                     "情人果冰茶": { "M": 60, "L": 75 },
                     "黃金烏龍拿鐵": { "M": 65, "L": 80 },
@@ -209,6 +215,14 @@
             
             if (selectedShop && drinkOptions[selectedShop]) {
                 for (const category in drinkOptions[selectedShop]) {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
+
+                    const categoryTitle = document.createElement('div');
+                    categoryTitle.className = 'category-title';
+                    categoryTitle.textContent = category;
+                    categoryDiv.appendChild(categoryTitle);
+
                     for (const drink in drinkOptions[selectedShop][category]) {
                         const drinkDiv = document.createElement('div');
                         drinkDiv.className = 'drink-option';
@@ -223,8 +237,10 @@
                             drinkInput.value = drink;
                             updatePrice();
                         });
-                        drinkOptionsContainer.appendChild(drinkDiv);
+                        categoryDiv.appendChild(drinkDiv);
                     }
+
+                    drinkOptionsContainer.appendChild(categoryDiv);
                 }
             }
         });
@@ -239,7 +255,6 @@
             if (selectedDrink && selectedSize && drinkOptions[selectedShop]) {
                 let price = null;
                 
-                // 遍历饮料店的所有类别
                 for (let category in drinkOptions[selectedShop]) {
                     if (drinkOptions[selectedShop][category][selectedDrink]) {
                         price = drinkOptions[selectedShop][category][selectedDrink][selectedSize];
