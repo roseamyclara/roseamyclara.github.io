@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的景品收藏</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --accent-color: #FFD166;
+            --dark-color: #2A2A2A;
+            --light-color: #FFFFFF;
+            --bg-color: #F8F9FA;
+            --card-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            --hover-shadow: 0 12px 28px rgba(0,0,0,0.2);
+            --gradient: linear-gradient(120deg, #FF6B6B, #4ECDC4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-bottom-left-radius: 50% 2rem;
+            border-bottom-right-radius: 50% 2rem;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            background-color: var(--light-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-color);
+            opacity: 0.8;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .search-box {
+            flex-grow: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+            background-color: var(--light-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-btn {
+            background-color: var(--light-color);
+            border: none;
+            border-radius: 2rem;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+        
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .sort-options select {
+            padding: 0.7rem 1.2rem;
+            border: none;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            background-color: var(--light-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            appearance: none;
+            padding-right: 2.5rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23FF6B6B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+        }
+        
+        .sort-options select:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .figure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .figure-card {
+            background-color: var(--light-color);
+            border-radius: 1.2rem;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .figure-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+        
+        .figure-image {
+            height: 250px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .figure-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .figure-card:hover .figure-image img {
+            transform: scale(1.05);
+        }
+        
+        .figure-details {
+            padding: 1.8rem;
+            position: relative;
+        }
+        
+        .figure-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            line-height: 1.3;
+        }
+        
+        .figure-character {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .figure-series {
+            color: var(--dark-color);
+            font-style: italic;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        .figure-manufacturer {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+        }
+        
+        .figure-manufacturer strong {
+            margin-right: 0.3rem;
+        }
+        
+        .figure-line {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            opacity: 0.7;
+            display: flex;
+            align-items: center;
+        }
+        
+        .figure-line strong {
+            margin-right: 0.3rem;
+        }
+        
+        .figure-price {
+            font-weight: 800;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-top: 0.75rem;
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background-color: rgba(78, 205, 196, 0.1);
+            border-radius: 1rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .tag {
+            background-color: rgba(255, 107, 107, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        footer {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top-left-radius: 50% 2rem;
+            border-top-right-radius: 50% 2rem;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--card-shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .figure-grid {
+                grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                max-width: 100%;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>我的景品收藏</h1>
+            <p>✨ 展示我個人的動漫景品收藏 ✨</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value">17</div>
+                <div class="stat-label">總收藏數</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10</div>
+                <div class="stat-label">系列數</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">6</div>
+                <div class="stat-label">製造商數</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">NT$ 6,468</div>
+                <div class="stat-label">總價值</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search" placeholder="搜尋景品、系列或角色名稱...">
+                <span class="search-icon">🔍</span>
+            </div>
+            
+            <div class="sort-options">
+                <select id="sort-select">
+                    <option value="name">按名稱排序</option>
+                    <option value="price-low">價格由低到高</option>
+                    <option value="price-high">價格由高到低</option>
+                    <option value="series">按系列排序</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="filter-options">
+            <button class="filter-btn active" data-filter="all">全部</button>
+            <button class="filter-btn" data-filter="series-魔女之旅">魔女之旅</button>
+            <button class="filter-btn" data-filter="series-約會大作戰">約會大作戰</button>
+            <button class="filter-btn" data-filter="series-莉可麗絲">莉可麗絲</button>
+            <button class="filter-btn" data-filter="mfr-TAiTO">TAiTO</button>
+            <button class="filter-btn" data-filter="mfr-FuRyu">FuRyu</button>
+            <button class="filter-btn" data-filter="price-low">低於300元</button>
+            <button class="filter-btn" data-filter="price-mid">300-500元</button>
+            <button class="filter-btn" data-filter="price-high">500元以上</button>
+        </div>
+        
+        <div class="figure-grid" id="figure-grid">
+            <!-- 景品卡片將通過JavaScript生成 -->
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 我的景品收藏 | 最後更新日期: 2025/04/27</p>
+        </div>
+    </footer>
+    
+    <a href="#" class="back-to-top" id="back-to-top">↑</a>
+    
+    <script>
+        // 景品資料
+        const figures = [
+            {
+                name: "超級索尼子 兔女郎造型",
+                character: "索尼子",
+                series: "超級索尼子",
+                manufacturer: "FuRyu",
+                line: "BiCute Bunnies",
+                price: 400,
+                description: "兔女郎造型",
+                image: "https://www.hpoi.net/upload/1/d/b/17534.jpg",
+                tags: ["兔女郎"]
+            },
+            {
+                name: "魔女之旅 伊蕾娜～櫻花和服～新裝版",
+                character: "伊蕾娜",
+                series: "魔女之旅",
+                manufacturer: "TAiTO",
+                line: "Coreful",
+                price: 250,
+                description: "櫻花和服造型",
+                image: "https://www.hpoi.net/upload/4/d/c/96587.jpg", 
+                tags: ["和服"]
+            },
+            {
+                name: "約會大作戰第四季 夜刀神十香人偶—鏖殺公—",
+                character: "夜刀神十香",
+                series: "約會大作戰",
+                manufacturer: "TAiTO",
+                line: "藝術家傑作 (AMP)",
+                price: 490,
+                description: "鏖殺公造型",
+                image: "https://www.hpoi.net/upload/1/a/a/60651.jpg",
+                tags: ["靈裝"]
+            },
+            {
+                name: "2.5次元的誘惑 獨特魅力 莉莉艾露 天使學校篇練習裝",
+                character: "莉莉艾露",
+                series: "2.5次元的誘惑",
+                manufacturer: "眼鏡廠",
+                line: "GLITTER＆GLAMOURS",
+                price: 269,
+                description: "天使學校篇練習裝",
+                image: "https://www.hpoi.net/upload/0/5/6/95542.jpg", 
+                tags: ["校服"]
+            },
+            {
+                name: "Re:從零開始的異世界生活 雷姆～貓咪居家服～新裝版",
+                character: "雷姆",
+                series: "Re:從零開始的異世界生活",
+                manufacturer: "TAiTO",
+                line: "Desktop Cute",
+                price: 309,
+                description: "貓咪居家服",
+                image: "https://www.hpoi.net/upload/2/8/0/82387.jpg", 
+                tags: ["居家服", "動物"]
+            },
+            {
+                name: "約會大作戰第五季 時崎狂三～小惡魔～新裝版",
+                character: "時崎狂三",
+                series: "約會大作戰",
+                manufacturer: "TAiTO",
+                line: "Coreful",
+                price: 380,
+                description: "小惡魔造型",
+                image: "https://www.hpoi.net/upload/9/5/7/79687.jpg", 
+                tags: ["小惡魔"]
+            },
+            {
+                name: "莉可麗絲 Luminasta「錦木千束-出遊浴衣」",
+                character: "錦木千束",
+                series: "莉可麗絲",
+                manufacturer: "SEGA",
+                line: "Luminasta",
+                price: 460,
+                description: "出遊浴衣造型",
+                image: "https://www.hpoi.net/upload/6/a/1/42173.jpg", 
+                tags: ["浴衣"]
+            },
+            {
+                name: "狼與辛香料‎ Merchant Meets the Wise Wolf 赫蘿 2024款",
+                character: "赫蘿",
+                series: "狼與辛香料",
+                manufacturer: "良笑社",
+                line: "POP UP PARADE",
+                price: 830,
+                description: "2024款造型",
+                image: "https://www.hpoi.net/upload/3/f/6/62145.jpg", 
+                tags: ["狼耳", "獸娘"]
+            },
+            {
+                name: "我推的孩子 黑川茜",
+                character: "黑川茜",
+                series: "我推的孩子",
+                manufacturer: "FuRyu",
+                line: "Trio-Try-iT",
+                price: 428,
+                description: "標準造型",
+                image: "https://www.hpoi.net/upload/9/3/4/31844.jpg", 
+                tags: ["偶像"]
+            },
+            {
+                name: "魔女之旅 伊蕾娜～便裝造型～",
+                character: "伊蕾娜",
+                series: "魔女之旅",
+                manufacturer: "TAiTO",
+                line: "Desktop Cute",
+                price: 405,
+                description: "便裝造型",
+                image: "https://www.hpoi.net/upload/9/a/5/72621.jpg", 
+                tags: ["便裝"]
+            },
+            {
+                name: "青春豬頭少年不會夢到兔女郎學姊 櫻島麻衣～兔女郎造型～",
+                character: "櫻島麻衣",
+                series: "青春豬頭少年不會夢到兔女郎學姊",
+                manufacturer: "TAiTO",
+                line: "藝術家傑作 (AMP)",
+                price: 369,
+                description: "兔女郎造型",
+                image: "https://www.hpoi.net/upload/3/3/4/40523.jpg", 
+                tags: ["兔女郎"]
+            },
+            {
+                name: "約會大作戰第四季 時崎狂三人偶—刻刻帝—",
+                character: "時崎狂三",
+                series: "約會大作戰",
+                manufacturer: "TAiTO",
+                line: "藝術家傑作 (AMP)",
+                price: 500,
+                description: "刻刻帝造型",
+                image: "https://www.hpoi.net/upload/3/6/6/38946.jpg", 
+                tags: ["靈裝"]
+            },
+            {
+                name: "刀劍神域 代碼寄存器 莉法 水著",
+                character: "莉法/桐谷直葉",
+                series: "刀劍神域",
+                manufacturer: "眼鏡廠",
+                line: "EXQ",
+                price: 230,
+                description: "水著造型",
+                image: "https://www.hpoi.net/upload/0/3/9/70319.jpg", 
+                tags: ["泳裝"]
+            },
+            {
+                name: "五等分的新娘 ∬ 中野三玖 ~制服ver.~ Renewal",
+                character: "中野三玖",
+                series: "五等分的新娘",
+                manufacturer: "TAiTO",
+                line: "Coreful",
+                price: 266,
+                description: "制服版本",
+                image: "https://www.hpoi.net/upload/8/a/7/53478.jpg", 
+                tags: ["校服"]
+            },
+            {
+                name: "不起眼女主角培育法Fine 加藤惠 女僕裝Ver.",
+                character: "加藤惠",
+                series: "不起眼女主角培育法",
+                manufacturer: "TAiTO",
+                line: "Coreful",
+                price: 400,
+                description: "女僕裝版本",
+                image: "https://www.hpoi.net/upload/7/a/1/79846.jpg", 
+                tags: ["女僕裝"]
+            },
+            {
+                name: "宅里的藏品 手辦收藏展示",
+                character: "全部角色",
+                series: "我的手辦展示",
+                manufacturer: "自製",
+                line: "收藏系列",
+                price: 0,
+                description: "所有景品的展示",
+                image: "https://www.hpoi.net/upload/7/5/6/69237.jpg",
+                tags: ["收藏", "展示"]
+            }
+        ];
+
+        // 渲染所有景品
+        function renderFigures(figureList) {
+            const grid = document.getElementById('figure-grid');
+            grid.innerHTML = '';
+            
+            if(figureList.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; padding: 2rem; font-size: 1.2rem;">沒有符合條件的景品 😢</div>';
+                return;
+            }
+            
+            figureList.forEach(figure => {
+                const card = document.createElement('div');
+                card.className = 'figure-card';
+                card.dataset.series = figure.series;
+                card.dataset.manufacturer = figure.manufacturer;
+                card.dataset.price = figure.price;
+                
+                // 使用錯誤處理來確保圖片顯示
+                const imgSrc = figure.image || "/api/placeholder/280/200";
+                
+                card.innerHTML = `
+                    <div class="figure-image">
+                        <img src="${imgSrc}" alt="${figure.name}" onerror="this.onerror=null; this.src='/api/placeholder/280/200';">
+                    </div>
+                    <div class="figure-details">
+                        <div class="figure-name">${figure.name}</div>
+                        <div class="figure-character">${figure.character}</div>
+                        <div class="figure-series">${figure.series}</div>
+                        <div class="figure-manufacturer">
+                            <strong>製造商:</strong> ${figure.manufacturer}
+                        </div>
+                        <div class="figure-line">
+                            <strong>系列:</strong> ${figure.line}
+                        </div>
+                        <div class="figure-price">NT$ ${figure.price}</div>
+                        <div class="tags">
+                            ${figure.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+        
+        // 初始化頁面
+        document.addEventListener('DOMContentLoaded', () => {
+            // 初始渲染所有景品
+            renderFigures(figures);
+            
+            // 搜尋功能
+            document.getElementById('search').addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filteredFigures = figures.filter(figure => 
+                    figure.name.toLowerCase().includes(searchTerm) || 
+                    figure.character.toLowerCase().includes(searchTerm) || 
+                    figure.series.toLowerCase().includes(searchTerm)
+                );
+                renderFigures(filteredFigures);
+            });
+            
+            // 排序功能
+            document.getElementById('sort-select').addEventListener('change', (e) => {
+                const sortValue = e.target.value;
+                let sortedFigures = [...figures];
+                
+                switch(sortValue) {
+                    case 'name':
+                        sortedFigures.sort((a, b) => a.character.localeCompare(b.character));
+                        break;
+                    case 'price-low':
+                        sortedFigures.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        sortedFigures.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'series':
+                        sortedFigures.sort((a, b) => a.series.localeCompare(b.series));
+                        break;
+                }
+                
+                renderFigures(sortedFigures);
+            });
+            
+            // 過濾功能
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 更新按鈕狀態
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    let filteredFigures = [...figures];
+                    
+                    if(filter === 'all') {
+                        // 全部顯示
+                    } else if(filter.startsWith('series-')) {
+                        const series = filter.replace('series-', '');
+                        filteredFigures = figures.filter(fig => fig.series === series);
+                    } else if(filter.startsWith('mfr-')) {
+                        const mfr = filter.replace('mfr-', '');
+                        filteredFigures = figures.filter(fig => fig.manufacturer === mfr);
+                    } else if(filter === 'price-low') {
+                        filteredFigures = figures.filter(fig => fig.price < 300);
+                    } else if(filter === 'price-mid') {
+                        filteredFigures = figures.filter(fig => fig.price >= 300 && fig.price <= 500);
+                    } else if(filter === 'price-high') {
+                        filteredFigures = figures.filter(fig => fig.price > 500);
+                    }
+                    
+                    renderFigures(filteredFigures);
+                });
+            });
+            
+            // 返回頂部按鈕
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
