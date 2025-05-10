@@ -172,42 +172,44 @@
         }
         
         .tag-cloud-section {
-            background-color: transparent; /* 區塊背景透明 */
+            background-color: transparent; 
         }
 
-        /* --- 修改：一般固定式標籤雲容器 --- */
         #tagCloud {
-            display: flex; /* 使用 flex佈局使標籤並排 */
-            flex-wrap: wrap; /* 自動換行 */
+            display: flex; 
+            flex-wrap: wrap; 
             gap: 10px; /* 標籤間的間距 */
-            align-items: center; /* 垂直居中對齊 (如果標籤字體大小不同) */
-            padding-top: 10px; /* 與標題的間距 */
+            align-items: center; 
+            padding-top: 10px; 
         }
 
+        /* --- 修改：標籤背景透明化 --- */
         #tagCloud .tag {
             display: inline-block; 
-            padding: 6px 12px;
-            background-color: #e9f5ff; /* 淺藍色背景，讓藍色字體更易讀 */
-            color: #007bff; /* --- 修改：初始文字為藍色 --- */
-            border-radius: 15px;
+            padding: 6px 12px; /* 保留padding讓點擊區域大一些，但背景是透明的 */
+            background-color: transparent; /* --- 主要修改：背景透明 --- */
+            color: #007bff; /* 初始文字為藍色 */
+            border-radius: 15px; /* 保留圓角，但因為沒背景色所以不明顯，除非有hover效果 */
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease, font-weight 0.2s ease; /* 過渡效果 */
             text-decoration: none;
             font-weight: 500;
             white-space: nowrap; 
-            border: none; /* --- 修改：移除框線 --- */
+            border: none; /* 確保沒有框線 */
         }
 
-        /* --- 修改：滑鼠停留和點擊後的文字顏色 --- */
         #tagCloud .tag:hover {
-            background-color: #d1e7ff; /* 滑鼠懸停時背景變化 */
-            color: #0056b3; /* --- 修改：滑鼠停留時文字顏色變深藍 --- */
-            transform: scale(1.05);
+            /* background-color: transparent; /* 保持背景透明 */
+            color: #0056b3; /* 滑鼠停留時文字顏色變深藍 */
+            text-decoration: underline; /* 增加下劃線作為hover提示 */
+            transform: scale(1.05); /* 輕微放大 */
         }
-        #tagCloud .tag.active { /* 選中狀態 */
-            background-color: #007bff; 
-            color: #ffffff; /* --- 修改：選中時文字顏色變為白色 --- */
-            font-weight: 700;
+
+        #tagCloud .tag.active { 
+            /* background-color: transparent; /* 保持背景透明 */
+            color: #e63946; /* 選中時文字顏色變為紅色 (與價格同色系，醒目) */
+            font-weight: 700; /* 加粗 */
+            text-decoration: none; /* 選中時移除下劃線 (如果hover有加的話) */
         }
 
         .stats-section {
@@ -369,7 +371,6 @@
                 });
             }
 
-            // --- 修改：生成一般固定式標籤雲 ---
             function generateTagCloud() {
                 const characterCounts = {};
                 figuresData.forEach(figure => {
@@ -391,35 +392,33 @@
                 const minCount = Math.min(...counts);
                 const maxCount = Math.max(...counts);
                 
-                // 字體大小範圍和計算邏輯
-                const baseFontSize = 13; // 基礎字體大小 (px)
-                const fontSizeRange = 12; // 字體大小變化總範圍 (px) (例如：13px 到 13+12=25px)
+                const baseFontSize = 13; 
+                const fontSizeRange = 12; 
 
                 for (const character of uniqueCharacters) {
                     const count = characterCounts[character];
                     const tagEl = document.createElement('a');
                     tagEl.className = 'tag';
                     tagEl.textContent = character;
-                    tagEl.href = '#'; // 避免頁面跳轉
+                    tagEl.href = '#'; 
 
                     let finalFontSize = baseFontSize;
-                    if (maxCount > minCount) { // 避免除以0
+                    if (maxCount > minCount) { 
                         finalFontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
-                    } else if (counts.length > 0) { // 如果所有標籤計數相同 (且只有一種計數)
-                         finalFontSize = baseFontSize + fontSizeRange / 2; // 給個中間大小
+                    } else if (counts.length > 0) { 
+                         finalFontSize = baseFontSize + fontSizeRange / 2; 
                     }
-                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; // 確保不小於基礎字體
+                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; 
 
                     tagEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (tagEl.classList.contains('active')) { // 如果點擊的是已啟用的標籤
-                            currentCharacterFilter = null; // 清除篩選
+                        if (tagEl.classList.contains('active')) { 
+                            currentCharacterFilter = null; 
                             tagEl.classList.remove('active');
-                        } else { // 點擊的是未啟用的標籤
+                        } else { 
                             currentCharacterFilter = character;
-                            // 移除其他標籤的 active class
                             document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
-                            tagEl.classList.add('active'); // 為當前點擊的標籤添加 active class
+                            tagEl.classList.add('active'); 
                         }
                         applyFiltersAndSearch();
                     });
