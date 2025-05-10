@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f8f9fa; /* 更柔和的背景色 */
+            background-color: #f8f9fa; 
             color: #343a40;
             line-height: 1.6;
             font-size: 16px;
@@ -23,14 +23,14 @@
 
         .container {
             width: 95%;
-            max-width: 1400px; /* 稍微加寬以容納側邊欄 */
+            max-width: 1400px; 
             margin: 0 auto;
             padding: 0 15px;
         }
 
         /* --- 頁首 Header --- */
         header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); /* 漸層藍色 */
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); 
             color: #fff;
             padding: 25px 0;
             text-align: center;
@@ -54,7 +54,7 @@
             max-width: 500px;
             padding: 12px 20px;
             border: none;
-            border-radius: 25px; /* 更圓潤的邊角 */
+            border-radius: 25px; 
             font-size: 1em;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease;
@@ -67,13 +67,13 @@
         /* --- 主要內容區域 Main Content --- */
         .main-container {
             display: flex;
-            flex-wrap: wrap; /* 在小螢幕上換行 */
+            flex-wrap: wrap; 
             gap: 25px;
         }
 
         .sidebar {
-            flex: 1 1 280px; /* flex-grow, flex-shrink, flex-basis */
-            background-color: #ffffff;
+            flex: 1 1 280px; 
+            background-color: #ffffff; /* 側邊欄本身背景白色 */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -89,7 +89,7 @@
             border-bottom: 2px solid #007bff;
             position: relative;
         }
-        .sidebar h2::after { /* 小裝飾線 */
+        .sidebar h2::after { 
             content: '';
             position: absolute;
             bottom: -2px;
@@ -99,9 +99,8 @@
             background-color: #0056b3;
         }
 
-
         .product-grid-container {
-            flex: 3 1 600px; /* 佔用更多空間 */
+            flex: 3 1 600px; 
         }
 
         /* 景品卡片 Product Card */
@@ -128,9 +127,12 @@
 
         .product-card img {
             width: 100%;
-            height: 280px; /* 增加圖片高度 */
-            object-fit: cover;
-            border-bottom: 1px solid #eee; /* 圖片與文字間的分隔 */
+            /* --- 修改：圖片顯示比例 360x520 --- */
+            aspect-ratio: 360 / 520; 
+            object-fit: cover; /* 保持 cover 以填滿，可能會裁切 */
+            /* object-fit: contain; /* 若不想裁切，但可能有白邊，可選用這個 */
+            background-color: #f0f0f0; /* 圖片未載入時的背景色 */
+            border-bottom: 1px solid #eee;
         }
 
         .product-info {
@@ -140,23 +142,22 @@
             flex-direction: column;
         }
 
-        .product-info h3 { /* 品名 */
+        .product-info h3 { 
             font-size: 1.15em;
             font-weight: 700;
             color: #333;
             margin-bottom: 8px;
             line-height: 1.4;
-            /* 最多顯示兩行 */
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            min-height: calc(1.4em * 2); /* 確保至少兩行的高度 */
+            min-height: calc(1.4em * 2); 
         }
 
         .product-info p {
-            font-size: 0.85em; /* 略小字體 */
+            font-size: 0.85em; 
             color: #555;
             margin-bottom: 5px;
             line-height: 1.5;
@@ -167,41 +168,63 @@
         .product-info .price {
             font-size: 1.4em;
             font-weight: 700;
-            color: #e63946; /* 鮮明紅色 */
-            margin-top: auto; /* 將價格推到底部 */
+            color: #e63946; 
+            margin-top: auto; 
             padding-top: 10px;
             text-align: right;
         }
-
-        /* 標籤雲 Tag Cloud */
-        .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            align-items: center;
+        
+        /* --- 修改：標籤雲區塊背景透明 --- */
+        .tag-cloud-section {
+            background-color: transparent; /* 使此區塊背景透明，會顯示 .sidebar 的背景 (如果 sidebar 有背景色的話) */
+                                          /* 若要完全透到 body 背景，則 sidebar 也需調整 */
         }
-        .tag-cloud .tag {
-            padding: 6px 12px;
-            background-color: #e9f5ff; /* 淡藍色背景 */
-            color: #0056b3; /* 深藍色文字 */
+
+        /* --- 修改：球形標籤雲容器 --- */
+        .tag-cloud-container-wrapper { /* 新增外層容器方便定位與設定大小 */
+            width: 100%; /* 或固定寬度 e.g., 250px */
+            height: 280px; /* 需要給定一個高度 */
+            margin: 20px auto; /* 上下間距及置中 */
+            position: relative; /* 給絕對定位的 tags 作為參考 */
+            /* border: 1px dashed #ccc; /* 測試用，顯示範圍 */
+        }
+
+        #tagCloud { /* 原來的 tagCloud div 作為球體容器 */
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* background-color: rgba(0,0,0,0.02); /* 測試用，球體範圍可見度 */
+        }
+
+        #tagCloud .tag {
+            position: absolute; /* 標籤將使用絕對定位 */
+            display: inline-block; /* 使 padding 生效 */
+            padding: 5px 10px;
+            /* 個別標籤背景保持，或依需求調整為透明 */
+            background-color: #e9f5ff; 
+            color: #0056b3; 
             border-radius: 15px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.2s ease-out, color 0.2s ease, background-color 0.2s ease; /* 平滑過渡 */
             text-decoration: none;
             font-weight: 500;
-            border: 1px solid transparent;
+            white-space: nowrap; /* 防止文字換行 */
+            will-change: transform, opacity; /* 效能優化提示 */
         }
-        .tag-cloud .tag:hover {
+
+        #tagCloud .tag:hover {
             background-color: #007bff;
             color: #fff;
-            transform: scale(1.05);
+            transform: scale(1.1); /* 放大效果，注意會被 JS 的 transform 覆蓋 */
         }
-        .tag-cloud .tag.active {
+         /* 選中狀態由 JS 控制 active class (如果需要) */
+        #tagCloud .tag.active {
             background-color: #007bff;
             color: #fff;
             font-weight: 700;
             border: 1px solid #0056b3;
         }
+
 
         /* 統計區 Stats Section */
         .stats-section {
@@ -214,13 +237,13 @@
         }
         .stats-section span {
             font-weight: 700;
-            color: #2a9d8f; /* 統計數字用不同顏色 */
+            color: #2a9d8f; 
             margin-left: 5px;
         }
 
         /* 無結果提示 */
         .no-results {
-            grid-column: 1 / -1; /* 佔滿整行 */
+            grid-column: 1 / -1; 
             text-align: center;
             padding: 40px;
             font-size: 1.2em;
@@ -238,7 +261,7 @@
         }
 
         /* 響應式調整 */
-        @media (max-width: 992px) { /* 平板 */
+        @media (max-width: 992px) { 
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
@@ -247,12 +270,12 @@
             }
         }
 
-        @media (max-width: 768px) { /* 大型手機 */
+        @media (max-width: 768px) { 
             .main-container {
                 flex-direction: column;
             }
             .sidebar {
-                flex-basis: auto; /* 取消固定寬度 */
+                flex-basis: auto; 
                 margin-bottom: 20px;
             }
              header h1 {
@@ -262,21 +285,17 @@
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
              .product-card img {
-                height: 220px;
+                /* aspect-ratio 保持，高度會自動調整 */
             }
         }
-         @media (max-width: 480px) { /* 小型手機 */
+         @media (max-width: 480px) { 
             .product-grid {
-                grid-template-columns: 1fr; /* 單欄顯示 */
+                grid-template-columns: 1fr; 
             }
             .search-container input[type="text"] {
                 width: 90%;
             }
-            .product-card img {
-                height: 250px;
-            }
         }
-
     </style>
 </head>
 <body>
@@ -293,8 +312,10 @@
         <aside class="sidebar">
             <section class="tag-cloud-section">
                 <h2>角色標籤雲</h2>
-                <div id="tagCloud" class="tag-cloud">
-                    </div>
+                <div class="tag-cloud-container-wrapper">
+                    <div id="tagCloud" class="tag-cloud"> 
+                        </div>
+                </div>
             </section>
             <section class="stats-section">
                 <h2>收藏統計</h2>
@@ -319,192 +340,53 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- 景品資料 ---
-            // 請將您先前整合的16筆景品資料完整地放在這裡
-            // 確保每筆資料都有 id, name, manufacturer, series, work, character, price, imageUrl
             const figuresData = [
-                {
-                    id: 1,
-                    name: "超级索尼子 兔女郎造型",
-                    manufacturer: "FuRyu",
-                    series: "BiCute Bunnies",
-                    work: "超级索尼子",
-                    character: "索尼子",
-                    price: 400,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg"
-                },
-                {
-                    id: 2,
-                    name: "魔女之旅 伊蕾娜～櫻花和服～新裝版",
-                    manufacturer: "TAiTO",
-                    series: "Coreful",
-                    work: "魔女之旅",
-                    character: "伊蕾娜",
-                    price: 250,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg"
-                },
-                {
-                    id: 3,
-                    name: "約會大作戰第四季 夜刀神十香人偶—鏖殺公—",
-                    manufacturer: "TAiTO",
-                    series: "藝術家傑作 (AMP)",
-                    work: "約會大作戰",
-                    character: "夜刀神十香",
-                    price: 490,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg"
-                },
-                {
-                    id: 4,
-                    name: "2.5次元的誘惑 獨特魅力 莉莉艾露 天使學校篇練習裝",
-                    manufacturer: "眼鏡廠", // Banpresto
-                    series: "GLITTER＆GLAMOURS",
-                    work: "2.5次元的誘惑",
-                    character: "莉莉艾露",
-                    price: 269,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg"
-                },
-                {
-                    id: 5,
-                    name: "Re:從零開始的異世界生活 雷姆～貓咪居家服～新裝版",
-                    manufacturer: "TAiTO",
-                    series: "Desktop Cute",
-                    work: "Re:從零開始的異世界生活",
-                    character: "雷姆",
-                    price: 309,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg"
-                },
-                {
-                    id: 6,
-                    name: "約會大作戰第五季 時崎狂三～小惡魔～新裝版",
-                    manufacturer: "TAiTO",
-                    series: "Coreful",
-                    work: "約會大作戰",
-                    character: "時崎狂三",
-                    price: 380,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/60337e8735014698954434df208afa22.jpg"
-                },
-                {
-                    id: 7,
-                    name: "莉可麗絲「錦木千束-出遊浴衣」",
-                    manufacturer: "SEGA",
-                    series: "Luminasta",
-                    work: "莉可麗絲",
-                    character: "錦木千束",
-                    price: 460,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/2e9d4817fcb9490cab8171511643d3f8.jpg"
-                },
-                {
-                    id: 8,
-                    name: "狼與辛香料‎ 赫蘿 2024款",
-                    manufacturer: "良笑社", // Good Smile Company
-                    series: "POP UP PARADE",
-                    work: "狼與辛香料",
-                    character: "赫蘿",
-                    price: 830,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/4d75db48e8f54cc7b8a4a7194fad55ab.jpg"
-                },
-                {
-                    id: 9,
-                    name: "我推的孩子 黑川茜",
-                    manufacturer: "FuRyu",
-                    series: "Trio-Try-iT",
-                    work: "我推的孩子",
-                    character: "黑川茜",
-                    price: 428,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/209edd6d2d8f453685c9cf53c620bdf6.jpg"
-                },
-                {
-                    id: 10,
-                    name: "魔女之旅 伊蕾娜～便裝造型～",
-                    manufacturer: "TAiTO",
-                    series: "Desktop Cute",
-                    work: "魔女之旅",
-                    character: "伊蕾娜",
-                    price: 405,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2024/09/889979f2650b421fa26830c21a773c11.jpg"
-                },
-                {
-                    id: 11,
-                    name: "青春豬頭少年不會夢到兔女郎學姊 櫻島麻衣～兔女郎造型～",
-                    manufacturer: "TAiTO",
-                    series: "藝術家傑作 (AMP)",
-                    work: "青春豬頭少年不會夢到兔女郎學姊",
-                    character: "櫻島麻衣",
-                    price: 369,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/01/1d2f4579e554491cb52c8723f3a3bb44.jpg"
-                },
-                {
-                    id: 12,
-                    name: "約會大作戰第四季 時崎狂三人偶—刻刻帝—",
-                    manufacturer: "TAiTO",
-                    series: "藝術家傑作 (AMP)",
-                    work: "約會大作戰",
-                    character: "時崎狂三",
-                    price: 500,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/a7956aaeb3444fca91fa62c347e54ea3.jpg"
-                },
-                {
-                    id: 13,
-                    name: "刀劍神域 代碼寄存器 莉法 水著",
-                    manufacturer: "眼鏡廠", // Banpresto
-                    series: "EXQ",
-                    work: "刀劍神域",
-                    character: "莉法/桐谷直葉",
-                    price: 230,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2018/04/b00ea949b4ac4ecf89ebaf042265a030.jpg"
-                },
-                {
-                    id: 14,
-                    name: "五等分的新娘 ∬ 中野三玖 ~制服ver.~ Renewal",
-                    manufacturer: "TAiTO",
-                    series: "Coreful",
-                    work: "五等分的新娘",
-                    character: "中野三玖",
-                    price: 266,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2022/04/238a63f3c9a2438d82669bf803559d5b.jpg"
-                },
-                {
-                    id: 15,
-                    name: "不起眼女主角培育法Fine 加藤惠 女僕裝Ver.",
-                    manufacturer: "TAiTO",
-                    series: "Coreful",
-                    work: "不起眼女主角培育法",
-                    character: "加藤惠",
-                    price: 400,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg"
-                },
-                {
-                    id: 16,
-                    name: "魔女之旅 伊蕾娜～魔女服造型～",
-                    manufacturer: "TAiTO",
-                    series: "藝術家傑作 (AMP)",
-                    work: "魔女之旅",
-                    character: "伊蕾娜",
-                    price: 368,
-                    imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg"
-                }
+                { id: 1, name: "超级索尼子 兔女郎造型", manufacturer: "FuRyu", series: "BiCute Bunnies", work: "超级索尼子", character: "索尼子", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg" },
+                { id: 2, name: "魔女之旅 伊蕾娜～櫻花和服～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "魔女之旅", character: "伊蕾娜", price: 250, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg" },
+                { id: 3, name: "約會大作戰第四季 夜刀神十香人偶—鏖殺公—", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "夜刀神十香", price: 490, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg" },
+                { id: 4, name: "2.5次元的誘惑 獨特魅力 莉莉艾露 天使學校篇練習裝", manufacturer: "眼鏡廠", series: "GLITTER＆GLAMOURS", work: "2.5次元的誘惑", character: "莉莉艾露", price: 269, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg" },
+                { id: 5, name: "Re:從零開始的異世界生活 雷姆～貓咪居家服～新裝版", manufacturer: "TAiTO", series: "Desktop Cute", work: "Re:從零開始的異世界生活", character: "雷姆", price: 309, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg" },
+                { id: 6, name: "約會大作戰第五季 時崎狂三～小惡魔～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "約會大作戰", character: "時崎狂三", price: 380, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/60337e8735014698954434df208afa22.jpg" },
+                { id: 7, name: "莉可麗絲「錦木千束-出遊浴衣」", manufacturer: "SEGA", series: "Luminasta", work: "莉可麗絲", character: "錦木千束", price: 460, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/2e9d4817fcb9490cab8171511643d3f8.jpg" },
+                { id: 8, name: "狼與辛香料‎ 赫蘿 2024款", manufacturer: "良笑社", series: "POP UP PARADE", work: "狼與辛香料", character: "赫蘿", price: 830, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/4d75db48e8f54cc7b8a4a7194fad55ab.jpg" },
+                { id: 9, name: "我推的孩子 黑川茜", manufacturer: "FuRyu", series: "Trio-Try-iT", work: "我推的孩子", character: "黑川茜", price: 428, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/209edd6d2d8f453685c9cf53c620bdf6.jpg" },
+                { id: 10, name: "魔女之旅 伊蕾娜～便裝造型～", manufacturer: "TAiTO", series: "Desktop Cute", work: "魔女之旅", character: "伊蕾娜", price: 405, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/09/889979f2650b421fa26830c21a773c11.jpg" },
+                { id: 11, name: "青春豬頭少年不會夢到兔女郎學姊 櫻島麻衣～兔女郎造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "青春豬頭少年不會夢到兔女郎學姊", character: "櫻島麻衣", price: 369, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/01/1d2f4579e554491cb52c8723f3a3bb44.jpg" },
+                { id: 12, name: "約會大作戰第四季 時崎狂三人偶—刻刻帝—", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "時崎狂三", price: 500, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/a7956aaeb3444fca91fa62c347e54ea3.jpg" },
+                { id: 13, name: "刀劍神域 代碼寄存器 莉法 水著", manufacturer: "眼鏡廠", series: "EXQ", work: "刀劍神域", character: "莉法/桐谷直葉", price: 230, imageUrl: "https://r.hpoi.net/gk/cover/n/2018/04/b00ea949b4ac4ecf89ebaf042265a030.jpg" },
+                { id: 14, name: "五等分的新娘 ∬ 中野三玖 ~制服ver.~ Renewal", manufacturer: "TAiTO", series: "Coreful", work: "五等分的新娘", character: "中野三玖", price: 266, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/04/238a63f3c9a2438d82669bf803559d5b.jpg" },
+                { id: 15, name: "不起眼女主角培育法Fine 加藤惠 女僕裝Ver.", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法", character: "加藤惠", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg" },
+                { id: 16, name: "魔女之旅 伊蕾娜～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg" }
             ];
 
             const productGrid = document.getElementById('productGrid');
             const searchInput = document.getElementById('searchInput');
-            const tagCloudContainer = document.getElementById('tagCloud');
+            const tagCloudEl = document.getElementById('tagCloud'); // 球體容器
             const totalItemsEl = document.getElementById('totalItems');
             const totalSpentEl = document.getElementById('totalSpent');
             const averagePriceEl = document.getElementById('averagePrice');
 
-            let currentCharacterFilter = null; // 用於標籤過濾
+            let currentCharacterFilter = null;
+            
+            // --- 球形標籤雲相關變數 ---
+            let tags3D = []; // 儲存標籤的3D資訊和DOM元素
+            const radius = 120; // 球體半徑 (px)，可根據 .tag-cloud-container-wrapper 大小調整
+            let angleX = 0.002; // X軸旋轉速度
+            let angleY = 0.002; // Y軸旋轉速度
+            let centerX = 0;
+            let centerY = 0;
+            let animationFrameId;
 
-            // 渲染景品卡片到頁面
+            // 渲染景品卡片
             function renderFigures(figuresToDisplay) {
-                productGrid.innerHTML = ''; // 清空現有內容
+                productGrid.innerHTML = '';
                 if (!figuresToDisplay || figuresToDisplay.length === 0) {
                     productGrid.innerHTML = '<p class="no-results">嗚～找不到符合條件的景品耶！</p>';
                     return;
                 }
-
                 figuresToDisplay.forEach(figure => {
                     const card = document.createElement('div');
                     card.className = 'product-card';
-                    // 使用 dataset 存儲 id，方便未來擴展
                     card.dataset.id = figure.id;
                     card.innerHTML = `
                         <img src="${figure.imageUrl}" alt="${figure.name}" loading="lazy">
@@ -523,86 +405,183 @@
                 });
             }
 
-            // 生成角色標籤雲
-            function generateTagCloud() {
+            // --- 修改：生成球形標籤雲 ---
+            function createSphericalTagCloud() {
                 const characterCounts = {};
                 figuresData.forEach(figure => {
-                    // 如果一個景品有多個角色標籤 (例如 "莉法/桐谷直葉")，可以拆分
                     const characters = figure.character.split('/');
                     characters.forEach(char => {
                         const trimmedChar = char.trim();
                         if (trimmedChar) {
-                             characterCounts[trimmedChar] = (characterCounts[trimmedChar] || 0) + 1;
+                            characterCounts[trimmedChar] = (characterCounts[trimmedChar] || 0) + 1;
                         }
                     });
                 });
 
-                const counts = Object.values(characterCounts);
-                if (counts.length === 0) return; // 沒有角色資料
+                const uniqueCharacters = Object.keys(characterCounts);
+                if (uniqueCharacters.length === 0) return;
 
+                tagCloudEl.innerHTML = ''; // 清空舊標籤
+                tags3D = []; // 重置3D標籤陣列
+
+                const counts = Object.values(characterCounts);
                 const minCount = Math.min(...counts);
                 const maxCount = Math.max(...counts);
-                // 調整字體大小範圍和計算邏輯，使其更活潑
-                const baseFontSize = 13; // 基礎字體大小 (px)
-                const fontSizeRange = 15; // 字體大小變化範圍 (px)
+                const baseFontSize = 12; // 基礎字體大小
+                const fontSizeRange = 8;  // 字體大小變化範圍 (基於數量)
 
-                tagCloudContainer.innerHTML = '';
-
-                const allTag = document.createElement('a');
-                allTag.className = 'tag active'; // 預設選中"全部"
-                allTag.textContent = '全部角色';
-                allTag.href = '#';
-                allTag.style.fontSize = `${baseFontSize + 2}px`; // "全部"標籤略大
-                allTag.addEventListener('click', (e) => {
+                // "全部角色" 標籤 (平面顯示，不參與球體)
+                const allTagButton = document.createElement('a');
+                allTagButton.className = 'tag all-characters-button'; // 給一個特殊class方便樣式
+                allTagButton.textContent = '全部角色';
+                allTagButton.href = '#';
+                allTagButton.style.fontSize = `${baseFontSize + 2}px`;
+                allTagButton.style.position = 'absolute'; // 簡單定位在左上角
+                allTagButton.style.top = '0px';
+                allTagButton.style.left = '0px';
+                allTagButton.style.zIndex = '100'; // 確保在最上層
+                allTagButton.addEventListener('click', (e) => {
                     e.preventDefault();
                     currentCharacterFilter = null;
-                    document.querySelectorAll('.tag-cloud .tag.active').forEach(t => t.classList.remove('active'));
-                    allTag.classList.add('active');
+                     // 如果有 active class 管理，也需要更新
+                    document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
                     applyFiltersAndSearch();
                 });
-                tagCloudContainer.appendChild(allTag);
+                tagCloudEl.appendChild(allTagButton);
 
-                for (const character in characterCounts) {
+
+                // 初始化標籤的3D位置
+                const numTags = uniqueCharacters.length;
+                for (let i = 0; i < numTags; i++) {
+                    const character = uniqueCharacters[i];
+                    const tagEl = document.createElement('a');
+                    tagEl.className = 'tag';
+                    tagEl.textContent = character;
+                    tagEl.href = '#';
+
                     const count = characterCounts[character];
-                    const tag = document.createElement('a');
-                    tag.className = 'tag';
-                    tag.textContent = character;
-                    tag.href = '#';
-
-                    let fontSize = baseFontSize;
+                    let initialFontSize = baseFontSize;
                     if (maxCount > minCount) {
-                        fontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
-                    } else if (counts.length > 0) { // 如果所有標籤計數相同
-                        fontSize = baseFontSize + fontSizeRange / 2;
+                        initialFontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
+                    } else if (counts.length > 0) {
+                        initialFontSize = baseFontSize + fontSizeRange / 2;
                     }
-                    tag.style.fontSize = `${Math.max(baseFontSize - 2, Math.min(baseFontSize + fontSizeRange, fontSize))}px`; // 限制字體大小在合理範圍
+                    tagEl.dataset.baseFontSize = initialFontSize; // 存儲基礎字體大小
 
-                    tag.addEventListener('click', (e) => {
+                    tagEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (currentCharacterFilter === character) { // 如果再次點擊已選中的標籤，則取消篩選
+                        if (currentCharacterFilter === character) {
                             currentCharacterFilter = null;
-                            tag.classList.remove('active');
-                            allTag.classList.add('active'); // 返回 "全部" 狀態
+                            tagEl.classList.remove('active');
                         } else {
                             currentCharacterFilter = character;
-                            document.querySelectorAll('.tag-cloud .tag.active').forEach(t => t.classList.remove('active'));
-                            tag.classList.add('active');
+                            document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
+                            tagEl.classList.add('active');
                         }
                         applyFiltersAndSearch();
                     });
-                    tagCloudContainer.appendChild(tag);
+                    
+                    tagCloudEl.appendChild(tagEl);
+
+                    // 球面座標分佈 (斐波那契晶格或黃金分割螺旋)
+                    const phi = Math.acos(-1 + (2 * i) / numTags);
+                    const theta = Math.sqrt(numTags * Math.PI) * phi;
+
+                    tags3D.push({
+                        el: tagEl,
+                        x: radius * Math.cos(theta) * Math.sin(phi),
+                        y: radius * Math.sin(theta) * Math.sin(phi),
+                        z: radius * Math.cos(phi)
+                    });
                 }
+                
+                // 設定球體容器的中心點
+                const rect = tagCloudEl.getBoundingClientRect();
+                centerX = rect.width / 2;
+                centerY = rect.height / 2;
+
+                if(animationFrameId) cancelAnimationFrame(animationFrameId); // 取消之前的動畫幀
+                updateTagsPosition(); // 開始動畫
             }
 
-            // 更新統計數據
-            function updateStatistics(figuresToUpdateStats) {
-                // 統計數據始終基於完整的 figuresData，除非有特殊需求
-                const itemsToStat = figuresData; // 或者 figuresToUpdateStats 如果要統計當前顯示的
+            function rotateX(point, angle) {
+                const rad = angle * Math.PI / 180;
+                const y = point.y * Math.cos(rad) - point.z * Math.sin(rad);
+                const z = point.y * Math.sin(rad) + point.z * Math.cos(rad);
+                return { x: point.x, y: y, z: z };
+            }
+
+            function rotateY(point, angle) {
+                const rad = angle * Math.PI / 180;
+                const x = point.x * Math.cos(rad) + point.z * Math.sin(rad);
+                const z = -point.x * Math.sin(rad) + point.z * Math.cos(rad);
+                return { x: x, y: point.y, z: z };
+            }
+            
+            function updateTagsPosition() {
+                tags3D.forEach(tagData => {
+                    // 旋轉 (這裡的 angleX, angleY 作為旋轉量，而不是固定速度)
+                    let x = tagData.x;
+                    let y = tagData.y;
+                    let z = tagData.z;
+
+                    // 繞Y軸旋轉 (水平)
+                    const rotY = angleY * (Math.PI / 180);
+                    let newX = x * Math.cos(rotY) + z * Math.sin(rotY);
+                    let newZ = -x * Math.sin(rotY) + z * Math.cos(rotY);
+                    x = newX;
+                    z = newZ;
+
+                    // 繞X軸旋轉 (垂直)
+                    const rotX = angleX * (Math.PI / 180);
+                    let newY = y * Math.cos(rotX) - z * Math.sin(rotX);
+                    newZ = y * Math.sin(rotX) + z * Math.cos(rotX);
+                    y = newY;
+                    z = newZ;
+                    
+                    // 簡單透視投影
+                    const scale = (radius * 2) / (radius * 2 + z); // 調整 (radius*2) 這個 "焦距"
+                    const displayX = x * scale + centerX;
+                    const displayY = y * scale + centerY;
+                    
+                    const baseFontSize = parseFloat(tagData.el.dataset.baseFontSize) || 12;
+                    const finalFontSize = Math.max(6, baseFontSize * scale * 0.8); // 0.8 是額外縮放因子
+
+                    tagData.el.style.transform = `translate(${displayX - tagData.el.offsetWidth / 2}px, ${displayY - tagData.el.offsetHeight / 2}px) scale(${scale})`;
+                    tagData.el.style.zIndex = Math.round(scale * 100);
+                    tagData.el.style.opacity = Math.max(0.2, scale * 0.9); // 透明度也隨深度變化
+                    tagData.el.style.fontSize = `${finalFontSize}px`;
+                });
+                animationFrameId = requestAnimationFrame(updateTagsPosition);
+            }
+
+            // 滑鼠互動
+            tagCloudEl.addEventListener('mousemove', (e) => {
+                const rect = tagCloudEl.getBoundingClientRect();
+                // 滑鼠位置相對於球體中心，並正規化到 -1 到 1
+                const mouseX = (e.clientX - rect.left - centerX) / centerX; 
+                const mouseY = (e.clientY - rect.top - centerY) / centerY;
                 
+                // 更新旋轉角度，乘以一個係數來控制靈敏度
+                angleY = mouseX * 2.5; // 水平旋轉由滑鼠X位置控制
+                angleX = -mouseY * 2.5; // 垂直旋轉由滑鼠Y位置控制 (負號使方向自然)
+            });
+
+            tagCloudEl.addEventListener('mouseleave', () => {
+                 // 當滑鼠離開時，可以讓它緩慢恢復到預設旋轉或繼續輕微自動旋轉
+                // 這裡簡化為減緩旋轉，可以自行擴展
+                // angleX = 0.05; 
+                // angleY = 0.05;
+            });
+
+
+            // 更新統計數據
+            function updateStatistics() {
+                const itemsToStat = figuresData;
                 totalItemsEl.textContent = itemsToStat.length;
                 const totalCost = itemsToStat.reduce((sum, figure) => sum + figure.price, 0);
-                totalSpentEl.textContent = totalCost.toLocaleString(); // 增加千分位符號
-                averagePriceEl.textContent = itemsToStat.length > 0 ? (totalCost / itemsToStat.length).toFixed(2).toLocaleString() : 0;
+                totalSpentEl.textContent = totalCost.toLocaleString();
+                averagePriceEl.textContent = itemsToStat.length > 0 ? (totalCost / itemsToStat.length).toFixed(0).toLocaleString() : 0;
             }
 
             // 處理搜尋和過濾邏輯
@@ -610,14 +589,12 @@
                 const searchTerm = searchInput.value.toLowerCase().trim();
                 let filteredFigures = figuresData;
 
-                // 1. 角色標籤過濾
                 if (currentCharacterFilter) {
                     filteredFigures = filteredFigures.filter(figure =>
                         figure.character.split('/').map(c => c.trim()).includes(currentCharacterFilter)
                     );
                 }
 
-                // 2. 關鍵字搜尋 (品名, 角色, 作品, 製造商, 系列)
                 if (searchTerm) {
                     filteredFigures = filteredFigures.filter(figure =>
                         figure.name.toLowerCase().includes(searchTerm) ||
@@ -628,18 +605,15 @@
                     );
                 }
                 renderFigures(filteredFigures);
-                // 注意：統計數據通常基於所有收藏品。
-                // 如果希望統計數據反映當前篩選/搜尋結果，則傳入 filteredFigures
-                // updateStatistics(filteredFigures); 
             }
 
             // 事件監聽
             searchInput.addEventListener('input', applyFiltersAndSearch);
 
             // 初始化
-            renderFigures(figuresData); // 初始渲染所有景品
-            generateTagCloud();
-            updateStatistics(figuresData); // 初始統計所有景品
+            renderFigures(figuresData);
+            createSphericalTagCloud(); // 改為調用新的球形標籤雲函數
+            updateStatistics(); 
         });
     </script>
 </body>
