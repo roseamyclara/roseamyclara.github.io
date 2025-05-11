@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>figure collection</title> {/* 修改後的標題文字 */}
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet"> {/* 新增 Press Start 2P 字體 */}
+    <title>figure collection</title> {/* 標題修改 */}
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- 基本重置與全域設定 --- */
         *, *::before, *::after {
@@ -14,9 +14,9 @@
         }
 
         body {
-            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif; /* 優先使用 M PLUS Rounded 1c */
-            background-color: #f8f9fa;
-            color: #343a40;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
+            background-color: #FFF8F0; /* 柔和的米白色背景，更自然 */
+            color: #5D4037; /* 主要文字顏色 - 深棕色 */
             line-height: 1.6;
             font-size: 16px;
         }
@@ -25,77 +25,75 @@
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px; /* 調整容器左右 padding */
         }
 
         /* --- 頁首 Header --- */
         header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: #fff;
+            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); /* 活潑自然的漸變：淺桃色到珊瑚粉 */
+            color: #5D4037; /* Header 文字顏色 - 深棕色 */
             padding: 25px 0;
-            /* text-align: center; */ /* 移除置中 */
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        header .container { /* 讓 header 內的 container 內容靠左 */
-            text-align: left;
+            text-align: left; /* 標題及內容靠左 */
+            margin-bottom: 30px; /* 增加與下方內容的間距 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 更柔和的陰影 */
         }
 
         header h1 {
-            font-family: 'Press Start 2P', cursive; /* 套用八位元字體 */
-            font-size: 2.2em; /* 調整字體大小以適應八位元風格 */
-            font-weight: normal; /* 八位元字體通常不需要粗體 */
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2); /* 可調整陰影以符合復古感 */
-            /* text-align: left; */ /* 確保標題靠左，如果 container 已設定則可省略 */
-            margin-bottom: 15px; /* 與搜尋框的間距 */
+            font-size: 2.6em; /* 略微調整字號 */
+            font-weight: 700;
+            letter-spacing: 0.5px; /* 調整字間距 */
+            text-shadow: none; /* 移除文字陰影，更簡潔現代 */
+            margin-bottom: 20px; /* 標題與搜尋框的間距 */
         }
 
         .search-container {
-            margin-top: 15px;
-            /* text-align: left; */ /* 確保搜尋框在 h1 下方靠左 */
+            margin-top: 0; /* search input 現在直接在 h1 下方 */
         }
 
         .search-container input[type="text"] {
             width: 60%;
             max-width: 500px;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
+            padding: 14px 22px; /* 調整 padding */
+            border: 1px solid #f0e2d2; /* 邊框顏色配合主題 */
+            border-radius: 30px; /* 更圓潤的邊角 */
             font-size: 1em;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s ease;
-            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif; /* 搜尋框字體維持原設定 */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* 細微陰影 */
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            background-color: #fff;
+            color: #5D4037;
+        }
+        .search-container input[type="text"]::placeholder {
+            color: #a08c84; /* Placeholder 顏色調整 */
         }
         .search-container input[type="text"]:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25), 0 2px 8px rgba(0,0,0,0.15);
+            border-color: #fcb69f; /* Focus 時的邊框顏色 - 主題色 */
+            box-shadow: 0 0 0 4px rgba(252, 182, 159, 0.3), 0 2px 8px rgba(0,0,0,0.1); /* Focus 光暈效果 */
         }
 
         /* --- 主要內容區域 Main Content --- */
         .main-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 25px;
+            gap: 30px; /* 增加側邊欄與主內容的間距 */
         }
 
         .sidebar {
             flex: 1 1 280px;
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 25px; /* 調整 padding */
+            border-radius: 16px; /* 更大的圓角 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); /* 柔和陰影 */
             height: fit-content;
         }
 
         .sidebar h2 {
-            font-size: 1.5em;
-            color: #007bff;
+            font-size: 1.6em; /* 調整字號 */
+            color: #ff7043; /* 活潑的橙色 */
             margin-top: 0;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #007bff;
+            margin-bottom: 18px; /* 調整間距 */
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff7043;
             position: relative;
         }
         .sidebar h2::after {
@@ -103,9 +101,9 @@
             position: absolute;
             bottom: -2px;
             left: 0;
-            width: 50px;
+            width: 60px; /* 調整長度 */
             height: 2px;
-            background-color: #0056b3;
+            background-color: #fcb69f; /* 輔助的漸變色之一 */
         }
 
         .product-grid-container {
@@ -115,44 +113,44 @@
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 25px;
+            gap: 30px; /* 卡片間距 */
         }
 
         .product-card {
             background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 16px; /* 統一圓角風格 */
+            box-shadow: 0 6px 16px rgba(180, 150, 130, 0.12); /* 帶有暖色調的陰影，更自然 */
             overflow: hidden;
-            transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的過渡 */
             display: flex;
             flex-direction: column;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px); /* 懸停效果調整 */
+            box-shadow: 0 10px 24px rgba(180, 150, 130, 0.18);
         }
 
         .product-card img {
             width: 100%;
             aspect-ratio: 360 / 520;
             object-fit: cover;
-            background-color: #f0f0f0;
-            border-bottom: 1px solid #eee;
+            background-color: #fdf6f0; /* 圖片背景色 */
+            border-bottom: 1px solid #f0e2d2; /* 分隔線顏色 */
         }
 
         .product-info {
-            padding: 18px;
+            padding: 20px; /* 卡片內部 padding */
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .product-info h3 {
-            font-size: 1.15em;
+            font-size: 1.2em; /* 品名文字大小 */
             font-weight: 700;
-            color: #333;
-            margin-bottom: 8px;
+            color: #4E342E; /* 深一點的棕色 */
+            margin-bottom: 10px;
             line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
@@ -163,90 +161,91 @@
         }
 
         .product-info p {
-            font-size: 0.85em;
-            color: #555;
-            margin-bottom: 5px;
+            font-size: 0.88em; /* 詳細資訊文字大小 */
+            color: #795548; /* 柔和的棕色 */
+            margin-bottom: 6px;
             line-height: 1.5;
         }
         .product-info p strong {
-            color: #333;
+            color: #5D4037; /* 強調文字顏色 */
         }
         .product-info .price {
-            font-size: 1.4em;
+            font-size: 1.45em; /* 價格文字大小 */
             font-weight: 700;
-            color: #e63946;
+            color: #EF5350; /* 活潑的紅橙色 */
             margin-top: auto;
-            padding-top: 10px;
+            padding-top: 12px;
             text-align: right;
         }
 
         .tag-cloud-section {
-            background-color: transparent; /* 區塊背景透明 */
+            background-color: transparent;
+            margin-bottom: 25px; /* 與統計區塊的間隔 */
         }
-
-        /* --- 修改：一般固定式標籤雲容器 --- */
+        
         #tagCloud {
-            display: flex; /* 使用 flex佈局使標籤並排 */
-            flex-wrap: wrap; /* 自動換行 */
-            gap: 10px; /* 標籤間的間距 */
-            align-items: center; /* 垂直居中對齊 (如果標籤字體大小不同) */
-            padding-top: 10px; /* 與標題的間距 */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px; /* 標籤間的間距 */
+            align-items: center;
+            padding-top: 10px;
         }
 
         #tagCloud .tag {
             display: inline-block;
-            padding: 6px 12px;
-            background-color: #e9f5ff; /* 淺藍色背景，讓藍色字體更易讀 */
-            color: #007bff; /* --- 修改：初始文字為藍色 --- */
-            border-radius: 15px;
+            padding: 7px 16px; /* 標籤內邊距 */
+            background-color: #FFF0E1; /* 非常淺的橙色背景 */
+            color: #D84315; /* 深橙色文字 */
+            border-radius: 20px; /* 圓潤標籤 */
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
             font-weight: 500;
             white-space: nowrap;
-            border: none; /* --- 修改：移除框線 --- */
+            border: none;
+            box-shadow: 0 2px 5px rgba(216, 67, 21, 0.1); /* 標籤細微陰影 */
         }
 
-        /* --- 修改：滑鼠停留和點擊後的文字顏色 --- */
         #tagCloud .tag:hover {
-            background-color: #d1e7ff; /* 滑鼠懸停時背景變化 */
-            color: #0056b3; /* --- 修改：滑鼠停留時文字顏色變深藍 --- */
-            transform: scale(1.05);
+            background-color: #ffcc80; /* 滑鼠懸停時背景變亮橙 */
+            color: #A03000; /* 滑鼠懸停時文字顏色變深 */
+            transform: scale(1.08) translateY(-2px); /* 更明顯的懸停效果 */
+            box-shadow: 0 4px 8px rgba(216, 67, 21, 0.15);
         }
-        #tagCloud .tag.active { /* 選中狀態 */
-            background-color: #007bff;
-            color: #ffffff; /* --- 修改：選中時文字顏色變為白色 --- */
+        #tagCloud .tag.active {
+            background-color: #ff7043; /* 選中狀態 - 主題橙色 */
+            color: #ffffff; /* 選中時文字顏色變為白色 */
             font-weight: 700;
+            box-shadow: 0 3px 7px rgba(255, 112, 67, 0.3);
         }
 
-        .stats-section {
-            margin-top: 25px;
-        }
         .stats-section p {
-            margin: 10px 0;
+            margin: 12px 0; /* 統計資訊行間距 */
             font-size: 1em;
-            color: #495057;
+            color: #6D4C41; /* 文字顏色 */
         }
         .stats-section span {
-            font-weight: 700;
-            color: #2a9d8f;
-            margin-left: 5px;
+            font-weight: 600; /* 統計數值字重 */
+            color: #ff8a65; /* 統計數值顏色 - 活潑的橙色 */
+            margin-left: 8px;
         }
 
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 40px;
-            font-size: 1.2em;
-            color: #777;
+            padding: 50px 20px; /* 調整 padding */
+            font-size: 1.25em;
+            color: #8d6e63; /* 文字顏色 */
+            background-color: #fffaf6; /* 淡淡的背景 */
+            border-radius: 12px;
         }
 
         footer {
             text-align: center;
-            padding: 25px 0;
-            margin-top: 30px;
-            background-color: #343a40;
-            color: #f8f9fa;
+            padding: 30px 0; /* 調整 padding */
+            margin-top: 40px;
+            background-color: #4E342E; /* 頁腳背景 - 深棕色 */
+            color: #FFF0E1; /* 頁腳文字 - 淺奶油色 */
             font-size: 0.9em;
         }
 
@@ -265,24 +264,32 @@
             }
             .sidebar {
                 flex-basis: auto;
-                margin-bottom: 20px;
+                margin-bottom: 25px;
             }
             header h1 {
-                font-size: 1.8em; /* 在小螢幕上再調整一下字體大小 */
+                font-size: 2.2em;
             }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
+             .search-container input[type="text"] {
+                width: 85%;
+            }
         }
         @media (max-width: 480px) {
             .product-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 手機版單欄顯示 */
+                gap: 20px;
             }
             .search-container input[type="text"] {
-                width: 90%;
+                width: 100%; /* 搜尋框佔滿寬度 */
+                padding: 12px 18px;
             }
-             header h1 {
-                font-size: 1.5em; /* 在更小螢幕上進一步調整 */
+            header h1 {
+                font-size: 2em;
+            }
+            .product-info {
+                padding: 15px;
             }
         }
     </style>
@@ -290,7 +297,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>figure collection</h1> {/* 修改後的標題文字 */}
+            <h1>figure collection</h1> {/* 標題修改 */}
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
@@ -302,7 +309,7 @@
             <section class="tag-cloud-section">
                 <h2>角色標籤雲</h2>
                 <div id="tagCloud" class="tag-cloud">
-                </div>
+                    </div>
             </section>
             <section class="stats-section">
                 <h2>收藏統計</h2>
@@ -316,7 +323,7 @@
 
         <main class="product-grid-container">
             <div id="productGrid" class="product-grid">
-            </div>
+                </div>
         </main>
     </div>
 
@@ -381,7 +388,6 @@
                 });
             }
 
-            // --- 修改：生成一般固定式標籤雲 ---
             function generateTagCloud() {
                 const characterCounts = {};
                 figuresData.forEach(figure => {
@@ -402,36 +408,34 @@
                 const counts = Object.values(characterCounts);
                 const minCount = Math.min(...counts);
                 const maxCount = Math.max(...counts);
-
-                // 字體大小範圍和計算邏輯
-                const baseFontSize = 13; // 基礎字體大小 (px)
-                const fontSizeRange = 12; // 字體大小變化總範圍 (px) (例如：13px 到 13+12=25px)
+                
+                const baseFontSize = 13; 
+                const fontSizeRange = 10; // 字體大小變化範圍調整 (e.g., 13px to 13+10=23px)
 
                 for (const character of uniqueCharacters) {
                     const count = characterCounts[character];
                     const tagEl = document.createElement('a');
                     tagEl.className = 'tag';
                     tagEl.textContent = character;
-                    tagEl.href = '#'; // 避免頁面跳轉
+                    tagEl.href = '#'; 
 
                     let finalFontSize = baseFontSize;
-                    if (maxCount > minCount) { // 避免除以0
+                    if (maxCount > minCount) { 
                         finalFontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
-                    } else if (counts.length > 0) { // 如果所有標籤計數相同 (且只有一種計數)
-                            finalFontSize = baseFontSize + fontSizeRange / 2; // 給個中間大小
+                    } else if (counts.length > 0) { 
+                        finalFontSize = baseFontSize + fontSizeRange / 2; 
                     }
-                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; // 確保不小於基礎字體
+                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; 
 
                     tagEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (tagEl.classList.contains('active')) { // 如果點擊的是已啟用的標籤
-                            currentCharacterFilter = null; // 清除篩選
+                        if (tagEl.classList.contains('active')) { 
+                            currentCharacterFilter = null; 
                             tagEl.classList.remove('active');
-                        } else { // 點擊的是未啟用的標籤
+                        } else { 
                             currentCharacterFilter = character;
-                            // 移除其他標籤的 active class
                             document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
-                            tagEl.classList.add('active'); // 為當前點擊的標籤添加 active class
+                            tagEl.classList.add('active'); 
                         }
                         applyFiltersAndSearch();
                     });
@@ -440,7 +444,7 @@
             }
 
             function updateStatistics() {
-                const itemsToStat = figuresData;
+                const itemsToStat = figuresData; 
                 totalItemsEl.textContent = itemsToStat.length;
                 const totalCost = itemsToStat.reduce((sum, figure) => sum + figure.price, 0);
                 totalSpentEl.textContent = totalCost.toLocaleString();
