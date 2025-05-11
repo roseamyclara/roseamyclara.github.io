@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>figure collection</title> {/* 標題修改 */}
+    <title>figure collection</title>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- 基本重置與全域設定 --- */
@@ -15,8 +15,8 @@
 
         body {
             font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
-            background-color: #FFF8F0; /* 柔和的米白色背景，更自然 */
-            color: #5D4037; /* 主要文字顏色 - 深棕色 */
+            background-color: #F0F8FF; /* AliceBlue - 非常淺的藍色背景 */
+            color: #2c3e50; /* 主要文字顏色 - 深藍灰 */
             line-height: 1.6;
             font-size: 16px;
         }
@@ -25,75 +25,75 @@
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px; /* 調整容器左右 padding */
+            padding: 0 20px;
         }
 
         /* --- 頁首 Header --- */
         header {
-            background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%); /* 活潑自然的漸變：淺桃色到珊瑚粉 */
-            color: #5D4037; /* Header 文字顏色 - 深棕色 */
+            background: linear-gradient(135deg, #76b8f5 0%, #4A90E2 100%); /* 天空藍到中藍色漸變 */
+            color: #FFFFFF; /* Header 文字顏色 - 白色 */
             padding: 25px 0;
-            text-align: left; /* 標題及內容靠左 */
-            margin-bottom: 30px; /* 增加與下方內容的間距 */
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* 更柔和的陰影 */
+            text-align: left;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2); /* 藍色調陰影 */
         }
 
         header h1 {
-            font-size: 2.6em; /* 略微調整字號 */
+            font-size: 2.6em;
             font-weight: 700;
-            letter-spacing: 0.5px; /* 調整字間距 */
-            text-shadow: none; /* 移除文字陰影，更簡潔現代 */
-            margin-bottom: 20px; /* 標題與搜尋框的間距 */
+            letter-spacing: 0.5px;
+            text-shadow: none;
+            margin-bottom: 20px;
         }
 
         .search-container {
-            margin-top: 0; /* search input 現在直接在 h1 下方 */
+            margin-top: 0;
         }
 
         .search-container input[type="text"] {
             width: 60%;
             max-width: 500px;
-            padding: 14px 22px; /* 調整 padding */
-            border: 1px solid #f0e2d2; /* 邊框顏色配合主題 */
-            border-radius: 30px; /* 更圓潤的邊角 */
+            padding: 14px 22px;
+            border: 1px solid #B0C4DE; /* 淺鋼藍色邊框 */
+            border-radius: 30px;
             font-size: 1em;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.06); /* 細微陰影 */
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
-            background-color: #fff;
-            color: #5D4037;
+            background-color: #FFFFFF;
+            color: #2c3e50; /* 輸入文字顏色 */
         }
         .search-container input[type="text"]::placeholder {
-            color: #a08c84; /* Placeholder 顏色調整 */
+            color: #778899; /* 亮石板灰 Placeholder */
         }
         .search-container input[type="text"]:focus {
             outline: none;
-            border-color: #fcb69f; /* Focus 時的邊框顏色 - 主題色 */
-            box-shadow: 0 0 0 4px rgba(252, 182, 159, 0.3), 0 2px 8px rgba(0,0,0,0.1); /* Focus 光暈效果 */
+            border-color: #4A90E2; /* Focus 主藍色邊框 */
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.25), 0 2px 8px rgba(0,0,0,0.1);
         }
 
         /* --- 主要內容區域 Main Content --- */
         .main-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px; /* 增加側邊欄與主內容的間距 */
+            gap: 30px;
         }
 
         .sidebar {
             flex: 1 1 280px;
             background-color: #ffffff;
-            padding: 25px; /* 調整 padding */
-            border-radius: 16px; /* 更大的圓角 */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); /* 柔和陰影 */
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); /* 柔和中性陰影 */
             height: fit-content;
         }
 
         .sidebar h2 {
-            font-size: 1.6em; /* 調整字號 */
-            color: #ff7043; /* 活潑的橙色 */
+            font-size: 1.6em;
+            color: #4A90E2; /* 主藍色 */
             margin-top: 0;
-            margin-bottom: 18px; /* 調整間距 */
+            margin-bottom: 18px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #ff7043;
+            border-bottom: 2px solid #4A90E2; /* 主藍色底線 */
             position: relative;
         }
         .sidebar h2::after {
@@ -101,9 +101,9 @@
             position: absolute;
             bottom: -2px;
             left: 0;
-            width: 60px; /* 調整長度 */
+            width: 60px;
             height: 2px;
-            background-color: #fcb69f; /* 輔助的漸變色之一 */
+            background-color: #76b8f5; /* 輔助淺藍色 */
         }
 
         .product-grid-container {
@@ -113,43 +113,43 @@
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 30px; /* 卡片間距 */
+            gap: 30px;
         }
 
         .product-card {
             background-color: #ffffff;
-            border-radius: 16px; /* 統一圓角風格 */
-            box-shadow: 0 6px 16px rgba(180, 150, 130, 0.12); /* 帶有暖色調的陰影，更自然 */
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.1); /* 藍色調陰影 */
             overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 更平滑的過渡 */
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
             flex-direction: column;
         }
 
         .product-card:hover {
-            transform: translateY(-10px); /* 懸停效果調整 */
-            box-shadow: 0 10px 24px rgba(180, 150, 130, 0.18);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 24px rgba(74, 144, 226, 0.18); /* 懸停時更明顯的藍色調陰影 */
         }
 
         .product-card img {
             width: 100%;
             aspect-ratio: 360 / 520;
             object-fit: cover;
-            background-color: #fdf6f0; /* 圖片背景色 */
-            border-bottom: 1px solid #f0e2d2; /* 分隔線顏色 */
+            background-color: #F0F8FF; /* 圖片區域淺藍背景 */
+            border-bottom: 1px solid #DDEBFF; /* 更淺的藍色分隔線 */
         }
 
         .product-info {
-            padding: 20px; /* 卡片內部 padding */
+            padding: 20px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
 
         .product-info h3 {
-            font-size: 1.2em; /* 品名文字大小 */
+            font-size: 1.2em;
             font-weight: 700;
-            color: #4E342E; /* 深一點的棕色 */
+            color: #1c3d5a; /* 深藍近黑，增加對比 */
             margin-bottom: 10px;
             line-height: 1.4;
             display: -webkit-box;
@@ -161,18 +161,18 @@
         }
 
         .product-info p {
-            font-size: 0.88em; /* 詳細資訊文字大小 */
-            color: #795548; /* 柔和的棕色 */
+            font-size: 0.88em;
+            color: #526B7E; /* 藍灰色文字 */
             margin-bottom: 6px;
             line-height: 1.5;
         }
         .product-info p strong {
-            color: #5D4037; /* 強調文字顏色 */
+            color: #2c3e50; /* 強調文字，深藍灰 */
         }
         .product-info .price {
-            font-size: 1.45em; /* 價格文字大小 */
+            font-size: 1.45em;
             font-weight: 700;
-            color: #EF5350; /* 活潑的紅橙色 */
+            color: #EF5350; /* 保留紅橙色作為活潑點綴 */
             margin-top: auto;
             padding-top: 12px;
             text-align: right;
@@ -180,72 +180,72 @@
 
         .tag-cloud-section {
             background-color: transparent;
-            margin-bottom: 25px; /* 與統計區塊的間隔 */
+            margin-bottom: 25px;
         }
         
         #tagCloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px; /* 標籤間的間距 */
+            gap: 12px;
             align-items: center;
             padding-top: 10px;
         }
 
         #tagCloud .tag {
             display: inline-block;
-            padding: 7px 16px; /* 標籤內邊距 */
-            background-color: #FFF0E1; /* 非常淺的橙色背景 */
-            color: #D84315; /* 深橙色文字 */
-            border-radius: 20px; /* 圓潤標籤 */
+            padding: 7px 16px;
+            background-color: #E0F2FE; /* 非常淺的藍色背景 */
+            color: #0277BD; /* 中等藍色文字 */
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.25s ease;
             text-decoration: none;
             font-weight: 500;
             white-space: nowrap;
             border: none;
-            box-shadow: 0 2px 5px rgba(216, 67, 21, 0.1); /* 標籤細微陰影 */
+            box-shadow: 0 2px 5px rgba(2, 119, 189, 0.1); /* 標籤細微藍色調陰影 */
         }
 
         #tagCloud .tag:hover {
-            background-color: #ffcc80; /* 滑鼠懸停時背景變亮橙 */
-            color: #A03000; /* 滑鼠懸停時文字顏色變深 */
-            transform: scale(1.08) translateY(-2px); /* 更明顯的懸停效果 */
-            box-shadow: 0 4px 8px rgba(216, 67, 21, 0.15);
+            background-color: #B3E5FC; /* 滑鼠懸停時背景變淺藍 */
+            color: #01579B; /* 滑鼠懸停時文字顏色變深藍 */
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 4px 8px rgba(1, 87, 155, 0.15);
         }
         #tagCloud .tag.active {
-            background-color: #ff7043; /* 選中狀態 - 主題橙色 */
-            color: #ffffff; /* 選中時文字顏色變為白色 */
+            background-color: #007BFF; /* 選中狀態 - 主藍色 */
+            color: #FFFFFF; /* 選中時文字顏色變為白色 */
             font-weight: 700;
-            box-shadow: 0 3px 7px rgba(255, 112, 67, 0.3);
+            box-shadow: 0 3px 7px rgba(0, 123, 255, 0.3);
         }
 
         .stats-section p {
-            margin: 12px 0; /* 統計資訊行間距 */
+            margin: 12px 0;
             font-size: 1em;
-            color: #6D4C41; /* 文字顏色 */
+            color: #526B7E; /* 藍灰色文字 */
         }
         .stats-section span {
-            font-weight: 600; /* 統計數值字重 */
-            color: #ff8a65; /* 統計數值顏色 - 活潑的橙色 */
+            font-weight: 600;
+            color: #17A2B8; /* 統計數值顏色 - 青藍色 */
             margin-left: 8px;
         }
 
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 50px 20px; /* 調整 padding */
+            padding: 50px 20px;
             font-size: 1.25em;
-            color: #8d6e63; /* 文字顏色 */
-            background-color: #fffaf6; /* 淡淡的背景 */
+            color: #526B7E; /* 藍灰色文字 */
+            background-color: #F8FBFF; /* 淡淡的淺藍背景 */
             border-radius: 12px;
         }
 
         footer {
             text-align: center;
-            padding: 30px 0; /* 調整 padding */
+            padding: 30px 0;
             margin-top: 40px;
-            background-color: #4E342E; /* 頁腳背景 - 深棕色 */
-            color: #FFF0E1; /* 頁腳文字 - 淺奶油色 */
+            background-color: #2c3e50; /* 頁腳背景 - 深藍灰 */
+            color: #FFFFFF; /* 頁腳文字 - 白色，對比更清晰 */
             font-size: 0.9em;
         }
 
@@ -278,11 +278,11 @@
         }
         @media (max-width: 480px) {
             .product-grid {
-                grid-template-columns: 1fr; /* 手機版單欄顯示 */
+                grid-template-columns: 1fr;
                 gap: 20px;
             }
             .search-container input[type="text"] {
-                width: 100%; /* 搜尋框佔滿寬度 */
+                width: 100%;
                 padding: 12px 18px;
             }
             header h1 {
@@ -297,7 +297,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>figure collection</h1> {/* 標題修改 */}
+            <h1>figure collection</h1>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
@@ -328,7 +328,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 景品收藏家 (可替換成您的名字)</p>
+        <p>&copy; 2025 Goldfish</p>
     </footer>
 
     <script>
@@ -410,7 +410,7 @@
                 const maxCount = Math.max(...counts);
                 
                 const baseFontSize = 13; 
-                const fontSizeRange = 10; // 字體大小變化範圍調整 (e.g., 13px to 13+10=23px)
+                const fontSizeRange = 10;
 
                 for (const character of uniqueCharacters) {
                     const count = characterCounts[character];
