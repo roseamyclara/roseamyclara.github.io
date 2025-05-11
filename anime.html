@@ -49,6 +49,16 @@
             letter-spacing: 0.5px;
             text-shadow: none;
             margin-bottom: 15px; /* 與下一行搜尋框的間距 */
+            display: flex; /* 為了更好地對齊 SVG 和文字 */
+            align-items: center; /* 垂直對齊 SVG 和文字 */
+        }
+
+        header h1 .hand-drawn-heart {
+            width: 0.8em; /* 相對於 h1 font-size，使其隨標題大小縮放 */
+            height: 0.8em;
+            margin-left: 0.2em; /* 與文字的間距 */
+            vertical-align: -0.08em; /* 微調垂直對齊，根據實際效果調整 */
+            /* fill: currentColor; 由 SVG 內部 path 繼承 */
         }
 
         .search-container {
@@ -306,7 +316,7 @@
 </head>
 <body>
     <header>
-        <div class="container"> <h1>figure collection</h1>
+        <div class="container"> <h1>figure collection <svg class="hand-drawn-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95"><path fill="currentColor" d="M81.41,13.87C74.05,6.51,63.36,5.73,53.79,11.85C51.93,13.05,50.29,14.49,49,16.05 c-1.29-1.56-2.93-3-4.79-4.2C34.64,5.73,23.95,6.51,16.59,13.87C8.17,22.29,7.5,34.37,13.75,43.6 c2.85,4.2,6.89,8.03,11.51,11.73L49,79.65l23.74-24.32c4.62-3.7,8.66-7.53,11.51-11.73 C91.5,34.37,90.83,22.29,81.41,13.87z"/></svg></h1>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
@@ -336,7 +346,7 @@
     </div>
 
     <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Goldenfish</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script>Ｇoldenfish</p>
     </footer>
 
     <script>
