@@ -21,79 +21,91 @@
             font-size: 16px;
         }
 
-        .container {
+        .container { /* 通用 container 樣式，主要用於限制寬度和居中 */
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
+            /* padding 由具體的 header .container 和 main-container .container 設定 */
         }
 
         /* --- 頁首 Header --- */
         header {
-            background: linear-gradient(135deg, #76b8f5 0%, #4A90E2 100%); /* 天空藍到中藍色漸變 */
-            color: #FFFFFF; /* Header 文字顏色 - 白色 */
-            padding: 25px 0;
-            text-align: left;
+            background: linear-gradient(135deg, #76b8f5 0%, #4A90E2 100%);
+            color: #FFFFFF;
+            padding: 20px 0; /* 調整上下 padding */
+            /* text-align: left; -> 由 flex 控制內部對齊 */
             margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2); /* 藍色調陰影 */
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+        }
+
+        header .container { /* 此處的 .container 專用於 header 內部佈局 */
+            /* width, max-width, margin:0 auto 已由通用 .container 繼承或等效 */
+            padding: 0 20px; /* header 內部左右 padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 2.6em;
+            font-size: 2.4em;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-shadow: none;
-            margin-bottom: 20px;
+            margin-bottom: 0; /* 因 flex align-items 控制垂直對齊 */
         }
 
         .search-container {
-            margin-top: 0;
+            width: 300px; /* 縮小搜尋框容器寬度 */
         }
 
         .search-container input[type="text"] {
-            width: 60%;
-            max-width: 500px;
-            padding: 14px 22px;
-            border: 1px solid #B0C4DE; /* 淺鋼藍色邊框 */
-            border-radius: 30px;
-            font-size: 1em;
+            width: 100%; /* input 填滿其容器 */
+            padding: 10px 18px;
+            border: 1px solid #B0C4DE;
+            border-radius: 22px;
+            font-size: 0.9em;
             box-shadow: 0 2px 6px rgba(0,0,0,0.05);
             transition: box-shadow 0.3s ease, border-color 0.3s ease;
             background-color: #FFFFFF;
-            color: #2c3e50; /* 輸入文字顏色 */
+            color: #2c3e50;
         }
         .search-container input[type="text"]::placeholder {
-            color: #778899; /* 亮石板灰 Placeholder */
+            color: #778899;
         }
         .search-container input[type="text"]:focus {
             outline: none;
-            border-color: #4A90E2; /* Focus 主藍色邊框 */
-            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.25), 0 2px 8px rgba(0,0,0,0.1);
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.25), 0 2px 8px rgba(0,0,0,0.1);
         }
 
         /* --- 主要內容區域 Main Content --- */
-        .main-container {
+        .main-container.container { /* class="main-container container" */
+             padding: 0 20px; /* 確保主要內容區域也有左右 padding */
+        }
+        .main-container { /* 若HTML中是 <div class="main-container container">, 此選擇器優先級較低 */
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
+            /* margin: 0 auto; 和 width: 95%; max-width: 1400px; 由 .container class 提供 */
         }
+
 
         .sidebar {
             flex: 1 1 280px;
             background-color: #ffffff;
             padding: 25px;
             border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06); /* 柔和中性陰影 */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
             height: fit-content;
         }
 
         .sidebar h2 {
             font-size: 1.6em;
-            color: #4A90E2; /* 主藍色 */
+            color: #4A90E2;
             margin-top: 0;
             margin-bottom: 18px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #4A90E2; /* 主藍色底線 */
+            border-bottom: 2px solid #4A90E2;
             position: relative;
         }
         .sidebar h2::after {
@@ -103,7 +115,7 @@
             left: 0;
             width: 60px;
             height: 2px;
-            background-color: #76b8f5; /* 輔助淺藍色 */
+            background-color: #76b8f5;
         }
 
         .product-grid-container {
@@ -119,7 +131,7 @@
         .product-card {
             background-color: #ffffff;
             border-radius: 16px;
-            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.1); /* 藍色調陰影 */
+            box-shadow: 0 6px 16px rgba(74, 144, 226, 0.1);
             overflow: hidden;
             transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             display: flex;
@@ -128,15 +140,15 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 24px rgba(74, 144, 226, 0.18); /* 懸停時更明顯的藍色調陰影 */
+            box-shadow: 0 10px 24px rgba(74, 144, 226, 0.18);
         }
 
         .product-card img {
             width: 100%;
             aspect-ratio: 360 / 520;
             object-fit: cover;
-            background-color: #F0F8FF; /* 圖片區域淺藍背景 */
-            border-bottom: 1px solid #DDEBFF; /* 更淺的藍色分隔線 */
+            background-color: #F0F8FF;
+            border-bottom: 1px solid #DDEBFF;
         }
 
         .product-info {
@@ -149,7 +161,7 @@
         .product-info h3 {
             font-size: 1.2em;
             font-weight: 700;
-            color: #1c3d5a; /* 深藍近黑，增加對比 */
+            color: #1c3d5a;
             margin-bottom: 10px;
             line-height: 1.4;
             display: -webkit-box;
@@ -162,17 +174,17 @@
 
         .product-info p {
             font-size: 0.88em;
-            color: #526B7E; /* 藍灰色文字 */
+            color: #526B7E;
             margin-bottom: 6px;
             line-height: 1.5;
         }
         .product-info p strong {
-            color: #2c3e50; /* 強調文字，深藍灰 */
+            color: #2c3e50;
         }
         .product-info .price {
             font-size: 1.45em;
             font-weight: 700;
-            color: #EF5350; /* 保留紅橙色作為活潑點綴 */
+            color: #EF5350;
             margin-top: auto;
             padding-top: 12px;
             text-align: right;
@@ -182,7 +194,7 @@
             background-color: transparent;
             margin-bottom: 25px;
         }
-        
+
         #tagCloud {
             display: flex;
             flex-wrap: wrap;
@@ -194,8 +206,8 @@
         #tagCloud .tag {
             display: inline-block;
             padding: 7px 16px;
-            background-color: #E0F2FE; /* 非常淺的藍色背景 */
-            color: #0277BD; /* 中等藍色文字 */
+            background-color: #E0F2FE;
+            color: #0277BD;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -203,18 +215,18 @@
             font-weight: 500;
             white-space: nowrap;
             border: none;
-            box-shadow: 0 2px 5px rgba(2, 119, 189, 0.1); /* 標籤細微藍色調陰影 */
+            box-shadow: 0 2px 5px rgba(2, 119, 189, 0.1);
         }
 
         #tagCloud .tag:hover {
-            background-color: #B3E5FC; /* 滑鼠懸停時背景變淺藍 */
-            color: #01579B; /* 滑鼠懸停時文字顏色變深藍 */
+            background-color: #B3E5FC;
+            color: #01579B;
             transform: scale(1.08) translateY(-2px);
             box-shadow: 0 4px 8px rgba(1, 87, 155, 0.15);
         }
         #tagCloud .tag.active {
-            background-color: #007BFF; /* 選中狀態 - 主藍色 */
-            color: #FFFFFF; /* 選中時文字顏色變為白色 */
+            background-color: #007BFF;
+            color: #FFFFFF;
             font-weight: 700;
             box-shadow: 0 3px 7px rgba(0, 123, 255, 0.3);
         }
@@ -222,11 +234,11 @@
         .stats-section p {
             margin: 12px 0;
             font-size: 1em;
-            color: #526B7E; /* 藍灰色文字 */
+            color: #526B7E;
         }
         .stats-section span {
             font-weight: 600;
-            color: #17A2B8; /* 統計數值顏色 - 青藍色 */
+            color: #17A2B8;
             margin-left: 8px;
         }
 
@@ -235,8 +247,8 @@
             text-align: center;
             padding: 50px 20px;
             font-size: 1.25em;
-            color: #526B7E; /* 藍灰色文字 */
-            background-color: #F8FBFF; /* 淡淡的淺藍背景 */
+            color: #526B7E;
+            background-color: #F8FBFF;
             border-radius: 12px;
         }
 
@@ -244,8 +256,8 @@
             text-align: center;
             padding: 30px 0;
             margin-top: 40px;
-            background-color: #2c3e50; /* 頁腳背景 - 深藍灰 */
-            color: #FFFFFF; /* 頁腳文字 - 白色，對比更清晰 */
+            background-color: #2c3e50;
+            color: #FFFFFF;
             font-size: 0.9em;
         }
 
@@ -253,40 +265,43 @@
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
-            .search-container input[type="text"] {
-                width: 70%;
-            }
         }
 
         @media (max-width: 768px) {
-            .main-container {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            header h1 {
+                font-size: 2.2em;
+                margin-bottom: 15px;
+            }
+            .search-container {
+                width: 100%; /* 搜尋框容器在小螢幕佔滿寬度 */
+            }
+
+            .main-container { /* 如果HTML是 <div class="main-container container"> */
                 flex-direction: column;
             }
             .sidebar {
                 flex-basis: auto;
                 margin-bottom: 25px;
             }
-            header h1 {
-                font-size: 2.2em;
-            }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
-             .search-container input[type="text"] {
-                width: 85%;
-            }
         }
         @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .search-container input[type="text"] {
+                 padding: 10px 15px;
+                 font-size: 0.85em;
+            }
             .product-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
-            }
-            .search-container input[type="text"] {
-                width: 100%;
-                padding: 12px 18px;
-            }
-            header h1 {
-                font-size: 2em;
             }
             .product-info {
                 padding: 15px;
@@ -296,16 +311,14 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>figure collection</h1>
+        <div class="container"> <h1>figure collection</h1>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
         </div>
     </header>
 
-    <div class="main-container container">
-        <aside class="sidebar">
+    <div class="main-container container"> <aside class="sidebar">
             <section class="tag-cloud-section">
                 <h2>角色標籤雲</h2>
                 <div id="tagCloud" class="tag-cloud">
@@ -328,7 +341,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2025 Goldfish</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> 景品收藏家 (可替換成您的名字)</p>
     </footer>
 
     <script>
@@ -408,8 +421,8 @@
                 const counts = Object.values(characterCounts);
                 const minCount = Math.min(...counts);
                 const maxCount = Math.max(...counts);
-                
-                const baseFontSize = 13; 
+
+                const baseFontSize = 13;
                 const fontSizeRange = 10;
 
                 for (const character of uniqueCharacters) {
@@ -417,25 +430,25 @@
                     const tagEl = document.createElement('a');
                     tagEl.className = 'tag';
                     tagEl.textContent = character;
-                    tagEl.href = '#'; 
+                    tagEl.href = '#';
 
                     let finalFontSize = baseFontSize;
-                    if (maxCount > minCount) { 
+                    if (maxCount > minCount) {
                         finalFontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
-                    } else if (counts.length > 0) { 
-                        finalFontSize = baseFontSize + fontSizeRange / 2; 
+                    } else if (counts.length > 0) {
+                        finalFontSize = baseFontSize + fontSizeRange / 2;
                     }
-                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; 
+                    tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`;
 
                     tagEl.addEventListener('click', (e) => {
                         e.preventDefault();
-                        if (tagEl.classList.contains('active')) { 
-                            currentCharacterFilter = null; 
+                        if (tagEl.classList.contains('active')) {
+                            currentCharacterFilter = null;
                             tagEl.classList.remove('active');
-                        } else { 
+                        } else {
                             currentCharacterFilter = character;
                             document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
-                            tagEl.classList.add('active'); 
+                            tagEl.classList.add('active');
                         }
                         applyFiltersAndSearch();
                     });
@@ -444,7 +457,7 @@
             }
 
             function updateStatistics() {
-                const itemsToStat = figuresData; 
+                const itemsToStat = figuresData;
                 totalItemsEl.textContent = itemsToStat.length;
                 const totalCost = itemsToStat.reduce((sum, figure) => sum + figure.price, 0);
                 totalSpentEl.textContent = totalCost.toLocaleString();
