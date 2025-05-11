@@ -21,29 +21,26 @@
             font-size: 16px;
         }
 
-        .container { /* 通用 container 樣式，主要用於限制寬度和居中 */
+        .container { /* 通用 container 樣式 */
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
-            /* padding 由具體的 header .container 和 main-container .container 設定 */
         }
 
         /* --- 頁首 Header --- */
         header {
             background: linear-gradient(135deg, #76b8f5 0%, #4A90E2 100%);
             color: #FFFFFF;
-            padding: 20px 0; /* 調整上下 padding */
-            /* text-align: left; -> 由 flex 控制內部對齊 */
+            padding: 20px 0;
             margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
         }
 
-        header .container { /* 此處的 .container 專用於 header 內部佈局 */
-            /* width, max-width, margin:0 auto 已由通用 .container 繼承或等效 */
-            padding: 0 20px; /* header 內部左右 padding */
+        header .container { /* Header 內部的 container */
+            padding: 0 20px; /* 內部左右 padding */
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column; /* 標題和搜尋框垂直排列 */
+            align-items: flex-start; /* 標題預設靠左 */
         }
 
         header h1 {
@@ -51,11 +48,12 @@
             font-weight: 700;
             letter-spacing: 0.5px;
             text-shadow: none;
-            margin-bottom: 0; /* 因 flex align-items 控制垂直對齊 */
+            margin-bottom: 15px; /* 與下一行搜尋框的間距 */
         }
 
         .search-container {
-            width: 300px; /* 縮小搜尋框容器寬度 */
+            width: 300px; /* 搜尋框寬度 */
+            align-self: flex-end; /* 在垂直佈局中，使其自身在交叉軸（水平方向）上靠右 */
         }
 
         .search-container input[type="text"] {
@@ -79,14 +77,13 @@
         }
 
         /* --- 主要內容區域 Main Content --- */
-        .main-container.container { /* class="main-container container" */
-             padding: 0 20px; /* 確保主要內容區域也有左右 padding */
+        .main-container.container {
+             padding: 0 20px; /* 主要內容區域的左右 padding */
         }
-        .main-container { /* 若HTML中是 <div class="main-container container">, 此選擇器優先級較低 */
+        .main-container {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            /* margin: 0 auto; 和 width: 95%; max-width: 1400px; 由 .container class 提供 */
         }
 
 
@@ -268,19 +265,17 @@
         }
 
         @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+            /* header .container flex-direction: column and align-items: flex-start is already set */
             header h1 {
                 font-size: 2.2em;
-                margin-bottom: 15px;
+                /* margin-bottom: 15px; is already set */
             }
             .search-container {
-                width: 100%; /* 搜尋框容器在小螢幕佔滿寬度 */
+                width: 100%; /* 在較小螢幕，搜尋框容器佔滿寬度 */
+                align-self: flex-start; /* 在較小螢幕，搜尋框靠左 (覆蓋大螢幕的 flex-end) */
             }
 
-            .main-container { /* 如果HTML是 <div class="main-container container"> */
+            .main-container {
                 flex-direction: column;
             }
             .sidebar {
@@ -341,7 +336,7 @@
     </div>
 
     <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> 景品收藏家 (可替換成您的名字)</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Goldfish</p>
     </footer>
 
     <script>
