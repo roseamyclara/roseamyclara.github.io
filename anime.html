@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>figure collection</title>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>figure collection</title> {/* 修改後的標題文字 */}
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Press+Start+2P&display=swap" rel="stylesheet"> {/* 新增 Press Start 2P 字體 */}
     <style>
         /* --- 基本重置與全域設定 --- */
         *, *::before, *::after {
@@ -33,20 +33,28 @@
             background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: #fff;
             padding: 25px 0;
-            text-align: center;
+            /* text-align: center; */ /* 移除置中 */
             margin-bottom: 25px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        header .container { /* 讓 header 內的 container 內容靠左 */
+            text-align: left;
+        }
+
         header h1 {
-            font-size: 2.8em;
-            font-weight: 700;
+            font-family: 'Press Start 2P', cursive; /* 套用八位元字體 */
+            font-size: 2.2em; /* 調整字體大小以適應八位元風格 */
+            font-weight: normal; /* 八位元字體通常不需要粗體 */
             letter-spacing: 1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.2); /* 可調整陰影以符合復古感 */
+            /* text-align: left; */ /* 確保標題靠左，如果 container 已設定則可省略 */
+            margin-bottom: 15px; /* 與搜尋框的間距 */
         }
 
         .search-container {
             margin-top: 15px;
+            /* text-align: left; */ /* 確保搜尋框在 h1 下方靠左 */
         }
 
         .search-container input[type="text"] {
@@ -58,6 +66,7 @@
             font-size: 1em;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif; /* 搜尋框字體維持原設定 */
         }
         .search-container input[type="text"]:focus {
             outline: none;
@@ -259,18 +268,21 @@
                 margin-bottom: 20px;
             }
             header h1 {
-                font-size: 2.2em;
+                font-size: 1.8em; /* 在小螢幕上再調整一下字體大小 */
             }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
-         @media (max-width: 480px) {
+        @media (max-width: 480px) {
             .product-grid {
                 grid-template-columns: 1fr;
             }
             .search-container input[type="text"] {
                 width: 90%;
+            }
+             header h1 {
+                font-size: 1.5em; /* 在更小螢幕上進一步調整 */
             }
         }
     </style>
@@ -278,7 +290,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>figure collection</h1>
+            <h1>figure collection</h1> {/* 修改後的標題文字 */}
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
@@ -290,7 +302,7 @@
             <section class="tag-cloud-section">
                 <h2>角色標籤雲</h2>
                 <div id="tagCloud" class="tag-cloud">
-                    </div>
+                </div>
             </section>
             <section class="stats-section">
                 <h2>收藏統計</h2>
@@ -304,7 +316,7 @@
 
         <main class="product-grid-container">
             <div id="productGrid" class="product-grid">
-                </div>
+            </div>
         </main>
     </div>
 
