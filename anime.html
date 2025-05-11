@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的景品收藏</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Ｍy figure collection</title>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- 基本重置與全域設定 --- */
         *, *::before, *::after {
@@ -14,8 +14,8 @@
         }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f8f9fa; 
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif; /* 優先使用 M PLUS Rounded 1c */
+            background-color: #f8f9fa;
             color: #343a40;
             line-height: 1.6;
             font-size: 16px;
@@ -23,14 +23,14 @@
 
         .container {
             width: 95%;
-            max-width: 1400px; 
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
         }
 
         /* --- 頁首 Header --- */
         header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); 
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: #fff;
             padding: 25px 0;
             text-align: center;
@@ -54,7 +54,7 @@
             max-width: 500px;
             padding: 12px 20px;
             border: none;
-            border-radius: 25px; 
+            border-radius: 25px;
             font-size: 1em;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s ease;
@@ -67,12 +67,12 @@
         /* --- 主要內容區域 Main Content --- */
         .main-container {
             display: flex;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             gap: 25px;
         }
 
         .sidebar {
-            flex: 1 1 280px; 
+            flex: 1 1 280px;
             background-color: #ffffff;
             padding: 20px;
             border-radius: 12px;
@@ -89,7 +89,7 @@
             border-bottom: 2px solid #007bff;
             position: relative;
         }
-        .sidebar h2::after { 
+        .sidebar h2::after {
             content: '';
             position: absolute;
             bottom: -2px;
@@ -100,7 +100,7 @@
         }
 
         .product-grid-container {
-            flex: 3 1 600px; 
+            flex: 3 1 600px;
         }
 
         .product-grid {
@@ -126,8 +126,8 @@
 
         .product-card img {
             width: 100%;
-            aspect-ratio: 360 / 520; 
-            object-fit: cover; 
+            aspect-ratio: 360 / 520;
+            object-fit: cover;
             background-color: #f0f0f0;
             border-bottom: 1px solid #eee;
         }
@@ -139,7 +139,7 @@
             flex-direction: column;
         }
 
-        .product-info h3 { 
+        .product-info h3 {
             font-size: 1.15em;
             font-weight: 700;
             color: #333;
@@ -150,11 +150,11 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            min-height: calc(1.4em * 2); 
+            min-height: calc(1.4em * 2);
         }
 
         .product-info p {
-            font-size: 0.85em; 
+            font-size: 0.85em;
             color: #555;
             margin-bottom: 5px;
             line-height: 1.5;
@@ -165,12 +165,12 @@
         .product-info .price {
             font-size: 1.4em;
             font-weight: 700;
-            color: #e63946; 
-            margin-top: auto; 
+            color: #e63946;
+            margin-top: auto;
             padding-top: 10px;
             text-align: right;
         }
-        
+
         .tag-cloud-section {
             background-color: transparent; /* 區塊背景透明 */
         }
@@ -185,7 +185,7 @@
         }
 
         #tagCloud .tag {
-            display: inline-block; 
+            display: inline-block;
             padding: 6px 12px;
             background-color: #e9f5ff; /* 淺藍色背景，讓藍色字體更易讀 */
             color: #007bff; /* --- 修改：初始文字為藍色 --- */
@@ -194,7 +194,7 @@
             transition: all 0.2s ease;
             text-decoration: none;
             font-weight: 500;
-            white-space: nowrap; 
+            white-space: nowrap;
             border: none; /* --- 修改：移除框線 --- */
         }
 
@@ -205,7 +205,7 @@
             transform: scale(1.05);
         }
         #tagCloud .tag.active { /* 選中狀態 */
-            background-color: #007bff; 
+            background-color: #007bff;
             color: #ffffff; /* --- 修改：選中時文字顏色變為白色 --- */
             font-weight: 700;
         }
@@ -220,12 +220,12 @@
         }
         .stats-section span {
             font-weight: 700;
-            color: #2a9d8f; 
+            color: #2a9d8f;
             margin-left: 5px;
         }
 
         .no-results {
-            grid-column: 1 / -1; 
+            grid-column: 1 / -1;
             text-align: center;
             padding: 40px;
             font-size: 1.2em;
@@ -241,7 +241,7 @@
             font-size: 0.9em;
         }
 
-        @media (max-width: 992px) { 
+        @media (max-width: 992px) {
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             }
@@ -250,24 +250,24 @@
             }
         }
 
-        @media (max-width: 768px) { 
+        @media (max-width: 768px) {
             .main-container {
                 flex-direction: column;
             }
             .sidebar {
-                flex-basis: auto; 
+                flex-basis: auto;
                 margin-bottom: 20px;
             }
-             header h1 {
+            header h1 {
                 font-size: 2.2em;
             }
             .product-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
-         @media (max-width: 480px) { 
+         @media (max-width: 480px) {
             .product-grid {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
             }
             .search-container input[type="text"] {
                 width: 90%;
@@ -278,7 +278,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>我的景品收藏館</h1>
+            <h1>my figure collection</h1>
             <div class="search-container">
                 <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品、製造商...">
             </div>
@@ -289,7 +289,7 @@
         <aside class="sidebar">
             <section class="tag-cloud-section">
                 <h2>角色標籤雲</h2>
-                <div id="tagCloud" class="tag-cloud"> 
+                <div id="tagCloud" class="tag-cloud">
                     </div>
             </section>
             <section class="stats-section">
@@ -341,7 +341,7 @@
             const averagePriceEl = document.getElementById('averagePrice');
 
             let currentCharacterFilter = null;
-            
+
             function renderFigures(figuresToDisplay) {
                 productGrid.innerHTML = '';
                 if (!figuresToDisplay || figuresToDisplay.length === 0) {
@@ -385,12 +385,12 @@
                 const uniqueCharacters = Object.keys(characterCounts);
                 if (uniqueCharacters.length === 0) return;
 
-                tagCloudEl.innerHTML = ''; 
+                tagCloudEl.innerHTML = '';
 
                 const counts = Object.values(characterCounts);
                 const minCount = Math.min(...counts);
                 const maxCount = Math.max(...counts);
-                
+
                 // 字體大小範圍和計算邏輯
                 const baseFontSize = 13; // 基礎字體大小 (px)
                 const fontSizeRange = 12; // 字體大小變化總範圍 (px) (例如：13px 到 13+12=25px)
@@ -406,7 +406,7 @@
                     if (maxCount > minCount) { // 避免除以0
                         finalFontSize = baseFontSize + ((count - minCount) / (maxCount - minCount)) * fontSizeRange;
                     } else if (counts.length > 0) { // 如果所有標籤計數相同 (且只有一種計數)
-                         finalFontSize = baseFontSize + fontSizeRange / 2; // 給個中間大小
+                            finalFontSize = baseFontSize + fontSizeRange / 2; // 給個中間大小
                     }
                     tagEl.style.fontSize = `${Math.max(baseFontSize, finalFontSize)}px`; // 確保不小於基礎字體
 
@@ -426,7 +426,7 @@
                     tagCloudEl.appendChild(tagEl);
                 }
             }
-            
+
             function updateStatistics() {
                 const itemsToStat = figuresData;
                 totalItemsEl.textContent = itemsToStat.length;
@@ -460,8 +460,8 @@
             searchInput.addEventListener('input', applyFiltersAndSearch);
 
             renderFigures(figuresData);
-            generateTagCloud(); 
-            updateStatistics(); 
+            generateTagCloud();
+            updateStatistics();
         });
     </script>
 </body>
