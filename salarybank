@@ -1,0 +1,142 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // --- Data ---
+    const personnelData = [
+        { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+        { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
+        { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
+        { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
+        { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
+        { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
+        { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
+        { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
+        { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
+        { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
+        { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
+        { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
+        { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
+        { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
+        { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
+        { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
+        { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
+        { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
+        { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
+        { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
+        { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
+        { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" }, // Note: Duplicate entry as per request
+        { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
+    ];
+
+    // --- DOM Elements ---
+    const categoryList = document.getElementById('category-list');
+    const tableBody = document.getElementById('personnel-table-body');
+
+    // --- Functions ---
+
+    /**
+     * Populates the table with personnel data.
+     * @param {Array} data - Array of personnel objects to display.
+     */
+    function populateTable(data) {
+        tableBody.innerHTML = ''; // Clear existing rows
+        if (data.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">沒有符合條件的資料</td></tr>';
+            return;
+        }
+        data.forEach(person => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${person.category}</td>
+                <td>${person.name}</td>
+                <td class="id-cell" title="點擊複製號碼">${person.id}</td>
+                <td>${person.bank}</td>
+            `;
+            // Add event listener directly to the ID cell for copying
+            const idCell = row.querySelector('.id-cell');
+            if (idCell) {
+                idCell.addEventListener('click', () => copyIdNumber(person.id, idCell));
+            }
+            tableBody.appendChild(row);
+        });
+    }
+
+    /**
+     * Populates the category filter list.
+     */
+    function populateCategories() {
+        const categories = ['顯示全部', ...new Set(personnelData.map(p => p.category))]; // Get unique categories + "Show All"
+        categoryList.innerHTML = ''; // Clear existing list
+
+        categories.forEach((category, index) => {
+            const li = document.createElement('li');
+            li.textContent = category;
+            li.dataset.category = category === '顯示全部' ? 'all' : category;
+            if (index === 0) {
+                li.classList.add('active'); // Make "Show All" active by default
+            }
+            li.addEventListener('click', handleCategoryClick);
+            categoryList.appendChild(li);
+        });
+    }
+
+    /**
+     * Handles clicks on category list items.
+     * @param {Event} event - The click event object.
+     */
+    function handleCategoryClick(event) {
+        const clickedLi = event.target;
+        const selectedCategory = clickedLi.dataset.category;
+
+        // Update active class on sidebar
+        document.querySelectorAll('#category-list li').forEach(li => li.classList.remove('active'));
+        clickedLi.classList.add('active');
+
+        // Filter and repopulate table
+        let filteredData;
+        if (selectedCategory === 'all') {
+            filteredData = personnelData; // Show all
+        } else {
+            filteredData = personnelData.filter(person => person.category === selectedCategory);
+        }
+        populateTable(filteredData);
+    }
+
+    /**
+     * Copies the numeric part of the ID to the clipboard.
+     * @param {string} fullId - The full ID string (e.g., B260036897).
+     * @param {HTMLElement} cellElement - The table cell element that was clicked.
+     */
+    function copyIdNumber(fullId, cellElement) {
+        if (!fullId || fullId.length <= 1) {
+            console.error('Invalid ID format:', fullId);
+            return;
+        }
+        const idNumber = fullId.substring(1); // Get digits after the first letter
+
+        // Use the modern Clipboard API
+        navigator.clipboard.writeText(idNumber)
+            .then(() => {
+                // Provide visual feedback
+                const originalText = cellElement.textContent;
+                const originalTitle = cellElement.title;
+                cellElement.textContent = '已複製!';
+                cellElement.style.backgroundColor = '#90ee90'; // Light green feedback
+                cellElement.title = `已複製: ${idNumber}`;
+
+                // Revert after a short delay
+                setTimeout(() => {
+                    cellElement.textContent = originalText;
+                    cellElement.style.backgroundColor = ''; // Revert background
+                    cellElement.title = originalTitle;
+                }, 1500); // Revert after 1.5 seconds
+            })
+            .catch(err => {
+                console.error('無法複製到剪貼簿:', err);
+                // Optionally provide error feedback to the user
+                alert(`複製失敗: ${err.message}`);
+            });
+    }
+
+    // --- Initial Setup ---
+    populateCategories();
+    populateTable(personnelData); // Load all data initially
+});
