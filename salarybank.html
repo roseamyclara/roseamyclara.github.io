@@ -3,20 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人員清單</title>
+    <title>人員清單 - 請登入</title>
     <style>
-        /* Basic Reset & Defaults */
-        * {
-            box-sizing: border-box;
+        /* --- Styles for Password Prompt --- */
+        body.login-prompt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0056b3; /* Blue background for login */
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif; /* Modern font stack */
+        #login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        #login-container h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        #login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        #login-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        #login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        #login-error {
+            color: red;
+            margin-top: 10px;
+            font-size: 0.9em;
+            min-height: 1.2em; /* Reserve space to prevent layout shift */
+        }
+
+        /* --- Styles for Main Application (initially hidden) --- */
+        body.app-loaded {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             line-height: 1.6;
-            background-color: #f4f7f9; /* Light background */
+            background-color: #f4f7f9;
             color: #333;
+            /* Reset flex properties from login prompt if any */
+            display: block;
+            justify-content: initial;
+            align-items: initial;
+            min-height: initial;
         }
 
         .container {
@@ -26,19 +81,18 @@
             background-color: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            overflow: hidden; /* Contain child elements */
+            overflow: hidden;
         }
 
-        /* Sidebar Styling (Tag Cloud Area) */
         .sidebar {
-            flex: 0 0 220px; /* Fixed width sidebar */
-            background-color: #eef3f8; /* Light blue background */
+            flex: 0 0 220px;
+            background-color: #eef3f8;
             padding: 20px;
-            border-right: 1px solid #d1ddee; /* Subtle border */
+            border-right: 1px solid #d1ddee;
         }
 
         .sidebar h2 {
-            color: #0056b3; /* Main blue color */
+            color: #0056b3;
             margin-bottom: 15px;
             font-size: 1.2em;
             border-bottom: 2px solid #b3d1ff;
@@ -47,6 +101,7 @@
 
         #category-list {
             list-style: none;
+            padding: 0; /* Ensure no default padding */
         }
 
         #category-list li {
@@ -58,31 +113,29 @@
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
             font-size: 0.95em;
-            color: #0056b3; /* Blue text */
+            color: #0056b3;
         }
 
         #category-list li:hover {
-            background-color: #d6eaff; /* Lighter blue on hover */
+            background-color: #d6eaff;
             color: #003d80;
         }
 
         #category-list li.active {
-            background-color: #0056b3; /* Active category background */
-            color: #ffffff; /* White text */
+            background-color: #0056b3;
+            color: #ffffff;
             font-weight: bold;
             border-color: #004080;
         }
 
         #category-list li:active {
-            transform: scale(0.98); /* Slight press effect */
+            transform: scale(0.98);
         }
 
-
-        /* Main Content Area */
         .main-content {
-            flex: 1; /* Takes remaining space */
+            flex: 1;
             padding: 20px 30px;
-            overflow-x: auto; /* Add scrollbars if table is too wide */
+            overflow-x: auto;
         }
 
         .main-content h1 {
@@ -96,24 +149,23 @@
             width: 100%;
         }
 
-        /* Table Styling */
         table {
             width: 100%;
-            border-collapse: collapse; /* Clean borders */
+            border-collapse: collapse;
             margin-top: 15px;
             font-size: 0.9em;
         }
 
         thead {
-            background-color: #007bff; /* Primary blue header */
+            background-color: #007bff;
             color: #ffffff;
         }
 
         th, td {
             padding: 12px 15px;
             text-align: left;
-            border: 1px solid #d1ddee; /* Lighter borders */
-            vertical-align: middle; /* Align text vertically */
+            border: 1px solid #d1ddee;
+            vertical-align: middle;
         }
 
         th {
@@ -121,17 +173,16 @@
         }
 
         tbody tr:nth-child(even) {
-            background-color: #f8faff; /* Subtle row striping */
+            background-color: #f8faff;
         }
 
         tbody tr:hover {
-            background-color: #e2eefa; /* Row hover effect */
+            background-color: #e2eefa;
         }
 
-        /* ID Cell Specific Styling */
         .id-cell {
             cursor: pointer;
-            font-family: 'Courier New', Courier, monospace; /* Monospace for ID */
+            font-family: 'Courier New', Courier, monospace;
             color: #0056b3;
             font-weight: 500;
             transition: background-color 0.2s;
@@ -139,101 +190,114 @@
 
         .id-cell:hover {
             text-decoration: underline;
-            background-color: #cce5ff; /* Highlight on hover */
+            background-color: #cce5ff;
         }
 
-        /* Responsive adjustments (Optional but recommended) */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
                 margin: 10px;
             }
-
             .sidebar {
-                flex: 0 0 auto; /* Reset flex basis */
+                flex: 0 0 auto;
                 width: 100%;
                 border-right: none;
                 border-bottom: 1px solid #d1ddee;
             }
-
             .main-content {
                 padding: 15px;
             }
-
             th, td {
                 padding: 10px 8px;
                 font-size: 0.85em;
             }
         }
+
+        /* Initially hide main content wrapper */
+        #app-wrapper {
+            display: none;
+        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <aside class="sidebar">
-            <h2>類別篩選</h2>
-            <ul id="category-list">
-                </ul>
-        </aside>
-        <main class="main-content">
-            <h1>人員資料</h1>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>類別</th>
-                            <th>姓名</th>
-                            <th>身分證字號 (點擊複製數字)</th>
-                            <th>薪轉銀行</th>
-                        </tr>
-                    </thead>
-                    <tbody id="personnel-table-body">
-                        </tbody>
-                </table>
-            </div>
-        </main>
+<body class="login-prompt">
+
+    <div id="login-container">
+        <h2>請輸入密碼</h2>
+        <input type="password" id="password-input" placeholder="密碼">
+        <button id="login-button">登入</button>
+        <div id="login-error"></div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Data ---
-            const personnelData = [
-                { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
-                { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
-                { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
-                { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
-                { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
-                { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
-                { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
-                { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
-                { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
-                { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
-                { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
-                { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
-                { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
-                { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
-                { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
-                { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
-                { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
-                { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
-                { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
-                { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
-                { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
-                { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" },
-                { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
-            ];
+    <div id="app-wrapper">
+        </div>
 
-            // --- DOM Elements ---
+    <script>
+        const CORRECT_PASSWORD = "fn132";
+
+        // --- Data (kept here to be loaded after auth) ---
+        const personnelData = [
+            { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+            { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
+            { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
+            { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
+            { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
+            { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
+            { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
+            { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
+            { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
+            { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
+            { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
+            { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
+            { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
+            { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
+            { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
+            { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
+            { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
+            { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
+            { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
+            { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
+            { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
+            { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+            { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
+        ];
+
+        function initializeAppInterface() {
+            const appWrapper = document.getElementById('app-wrapper');
+            // HTML structure for the main application
+            appWrapper.innerHTML = `
+                <div class="container">
+                    <aside class="sidebar">
+                        <h2>類別篩選</h2>
+                        <ul id="category-list">
+                            </ul>
+                    </aside>
+                    <main class="main-content">
+                        <h1>人員資料</h1>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>類別</th>
+                                        <th>姓名</th>
+                                        <th>身分證字號 (點擊複製數字)</th>
+                                        <th>薪轉銀行</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="personnel-table-body">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </main>
+                </div>
+            `;
+
+            // Now that the DOM elements for the app exist, we can select them
             const categoryList = document.getElementById('category-list');
             const tableBody = document.getElementById('personnel-table-body');
 
-            // --- Functions ---
-
-            /**
-             * Populates the table with personnel data.
-             * @param {Array} data - Array of personnel objects to display.
-             */
+            // --- App Functions (defined within this scope or passed as arguments if needed) ---
             function populateTable(data) {
-                tableBody.innerHTML = ''; // Clear existing rows
+                tableBody.innerHTML = '';
                 if (data.length === 0) {
                     tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">沒有符合條件的資料</td></tr>';
                     return;
@@ -254,13 +318,9 @@
                 });
             }
 
-            /**
-             * Populates the category filter list.
-             */
             function populateCategories() {
                 const categories = ['顯示全部', ...new Set(personnelData.map(p => p.category))];
-                categoryList.innerHTML = ''; 
-
+                categoryList.innerHTML = '';
                 categories.forEach((category, index) => {
                     const li = document.createElement('li');
                     li.textContent = category;
@@ -273,49 +333,31 @@
                 });
             }
 
-            /**
-             * Handles clicks on category list items.
-             * @param {Event} event - The click event object.
-             */
             function handleCategoryClick(event) {
                 const clickedLi = event.target;
                 const selectedCategory = clickedLi.dataset.category;
-
                 document.querySelectorAll('#category-list li').forEach(li => li.classList.remove('active'));
                 clickedLi.classList.add('active');
-
-                let filteredData;
-                if (selectedCategory === 'all') {
-                    filteredData = personnelData;
-                } else {
-                    filteredData = personnelData.filter(person => person.category === selectedCategory);
-                }
+                let filteredData = (selectedCategory === 'all') ? personnelData : personnelData.filter(person => person.category === selectedCategory);
                 populateTable(filteredData);
             }
 
-            /**
-             * Copies the numeric part of the ID to the clipboard.
-             * @param {string} fullId - The full ID string (e.g., B260036897).
-             * @param {HTMLElement} cellElement - The table cell element that was clicked.
-             */
             function copyIdNumber(fullId, cellElement) {
                 if (!fullId || fullId.length <= 1) {
                     console.error('Invalid ID format:', fullId);
                     return;
                 }
-                const idNumber = fullId.substring(1); 
-
+                const idNumber = fullId.substring(1);
                 navigator.clipboard.writeText(idNumber)
                     .then(() => {
                         const originalText = cellElement.textContent;
                         const originalTitle = cellElement.title;
                         cellElement.textContent = '已複製!';
-                        cellElement.style.backgroundColor = '#90ee90'; 
+                        cellElement.style.backgroundColor = '#90ee90';
                         cellElement.title = `已複製: ${idNumber}`;
-
                         setTimeout(() => {
                             cellElement.textContent = originalText;
-                            cellElement.style.backgroundColor = ''; 
+                            cellElement.style.backgroundColor = '';
                             cellElement.title = originalTitle;
                         }, 1500);
                     })
@@ -325,9 +367,43 @@
                     });
             }
 
-            // --- Initial Setup ---
+            // --- Initial Setup for the App ---
             populateCategories();
             populateTable(personnelData);
+        }
+
+
+        // --- Login Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginContainer = document.getElementById('login-container');
+            const appWrapper = document.getElementById('app-wrapper');
+            const passwordInput = document.getElementById('password-input');
+            const loginButton = document.getElementById('login-button');
+            const loginError = document.getElementById('login-error');
+
+            function attemptLogin() {
+                const enteredPassword = passwordInput.value;
+                if (enteredPassword === CORRECT_PASSWORD) {
+                    loginContainer.style.display = 'none'; // Hide login form
+                    document.body.classList.remove('login-prompt');
+                    document.body.classList.add('app-loaded');
+                    document.title = '人員清單'; // Change page title
+                    appWrapper.style.display = 'block'; // Show app content
+                    initializeAppInterface(); // Initialize the main application
+                } else {
+                    loginError.textContent = '密碼錯誤，請重試。';
+                    passwordInput.value = ''; // Clear password field
+                    passwordInput.focus();
+                }
+            }
+
+            loginButton.addEventListener('click', attemptLogin);
+            passwordInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    attemptLogin();
+                }
+            });
+            passwordInput.focus(); // Focus on password field on load
         });
     </script>
 </body>
