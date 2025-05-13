@@ -149,13 +149,24 @@
             font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             color: #0062cc; /* Slightly brighter blue */
             font-size: 2em; /* Larger font size */
-            font-weight: 800; /* Boldest weight for M PLUS Rounded 1c for emphasis */
-            text-align: left; /* Changed from center to left */
+            font-weight: 700; /* Changed from 800 to 700 */
+            text-align: left; 
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #a0c7ff; /* Adjusted border */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+            border-bottom: 3px solid #a0c7ff; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+            display: flex; /* For aligning icon and text */
+            align-items: center; /* Vertically align icon and text */
         }
+
+        .main-content h1 .title-icon {
+            width: 0.9em; /* Relative to h1 font size */
+            height: 0.9em;
+            margin-right: 0.3em; /* Space between icon and text */
+            fill: currentColor; /* Star color matches text color */
+            /* transform: translateY(0.05em); /* Fine-tune vertical alignment if needed */
+        }
+
 
         .table-container {
             width: 100%;
@@ -174,7 +185,7 @@
         }
         
         thead th {
-             font-weight: 700; /* Bolder headers */
+             font-weight: 700; 
         }
 
         th, td {
@@ -220,7 +231,11 @@
                 font-size: 1.2em;
             }
             .main-content h1 {
-                font-size: 1.7em; /* Adjust for smaller screens */
+                font-size: 1.7em; 
+            }
+            .main-content h1 .title-icon {
+                width: 0.8em;
+                height: 0.8em;
             }
             .main-content {
                 padding: 15px;
@@ -288,7 +303,7 @@
             loginContainer.style.display = 'block';
             document.body.classList.remove('app-loaded');
             document.body.classList.add('login-prompt');
-            document.title = '編制外教師 - 請登入'; // Updated title
+            document.title = '編制外教師 - 請登入';
             
             if(passwordInput) {
                 passwordInput.value = '';
@@ -297,7 +312,7 @@
             if(loginError) loginError.textContent = '工作階段已逾時(30分鐘)，請重新登入。';
 
             ['click', 'keypress'].forEach(eventType => {
-                appWrapper.removeEventListener(eventType, resetAutoLockTimer);
+                if (appWrapper) appWrapper.removeEventListener(eventType, resetAutoLockTimer);
             });
         }
 
@@ -311,6 +326,13 @@
         }
 
         function initializeAppInterface() {
+            // Star SVG with a slightly irregular, "hand-drawn" feel
+            const starSVG = `
+                <svg class="title-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M244.4 10.7C249.7-3.6 262.3-3.6 267.6 10.7L322.9 160.7L484.3 174.9C500.3 176.3 506.9 195.6 495.9 207.5L377.6 324.5L410.1 484.1C413.2 499.9 396.3 511.3 381.8 503.1L256 423.1L130.2 503.1C115.7 511.3 98.8 499.9 101.9 484.1L134.4 324.5L16.1 207.5C5.1 195.6 11.7 176.3 27.7 174.9L189.1 160.7L244.4 10.7z" />
+                </svg>
+            `;
+
             appWrapper.innerHTML = `
                 <div class="container">
                     <aside class="sidebar">
@@ -318,7 +340,7 @@
                         <ul id="category-list"></ul>
                     </aside>
                     <main class="main-content">
-                        <h1>編制外教師</h1>
+                        <h1>${starSVG}編制外教師</h1>
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -444,7 +466,7 @@
 
                     document.body.classList.remove('login-prompt');
                     document.body.classList.add('app-loaded');
-                    document.title = '編制外教師'; // Updated title
+                    document.title = '編制外教師';
                     appWrapper.style.display = 'block';
                     initializeAppInterface();
                 } else {
