@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編制外教師薪轉銀行查詢 - 請登入</title>
+    <title>編制外教師 - 請登入</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
 
@@ -150,7 +150,7 @@
             color: #0062cc; /* Slightly brighter blue */
             font-size: 2em; /* Larger font size */
             font-weight: 800; /* Boldest weight for M PLUS Rounded 1c for emphasis */
-            text-align: center; /* Center the title */
+            text-align: left; /* Changed from center to left */
             margin-bottom: 25px;
             padding-bottom: 15px;
             border-bottom: 3px solid #a0c7ff; /* Adjusted border */
@@ -288,13 +288,13 @@
             loginContainer.style.display = 'block';
             document.body.classList.remove('app-loaded');
             document.body.classList.add('login-prompt');
-            document.title = '編制外教師薪轉銀行查詢 - 請登入';
+            document.title = '編制外教師 - 請登入'; // Updated title
             
             if(passwordInput) {
                 passwordInput.value = '';
                 passwordInput.focus();
             }
-            if(loginError) loginError.textContent = '工作階段已逾時(30分鐘)，請重新登入。'; // Updated message
+            if(loginError) loginError.textContent = '工作階段已逾時(30分鐘)，請重新登入。';
 
             ['click', 'keypress'].forEach(eventType => {
                 appWrapper.removeEventListener(eventType, resetAutoLockTimer);
@@ -318,7 +318,7 @@
                         <ul id="category-list"></ul>
                     </aside>
                     <main class="main-content">
-                        <h1>編制外教師薪轉銀行查詢</h1>
+                        <h1>編制外教師</h1>
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -444,7 +444,7 @@
 
                     document.body.classList.remove('login-prompt');
                     document.body.classList.add('app-loaded');
-                    document.title = '編制外教師薪轉銀行查詢';
+                    document.title = '編制外教師'; // Updated title
                     appWrapper.style.display = 'block';
                     initializeAppInterface();
                 } else {
