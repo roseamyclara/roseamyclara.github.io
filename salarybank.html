@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編制外教師 薪轉銀行查詢 - 請登入</title>
+    <title>編制外教師薪轉銀行查詢 - 請登入</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
         /* --- Styles for Password Prompt --- */
         body.login-prompt {
             display: flex;
@@ -12,7 +14,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #0056b3; /* Blue background for login */
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -28,6 +30,7 @@
         #login-container h2 {
             color: #0056b3;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         #login-container input[type="password"] {
@@ -37,6 +40,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1em;
+            font-family: 'Nunito', sans-serif;
         }
 
         #login-container button {
@@ -47,6 +51,8 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 1em;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
             transition: background-color 0.3s ease;
         }
 
@@ -63,7 +69,7 @@
 
         /* --- Styles for Main Application (initially hidden) --- */
         body.app-loaded {
-            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             line-height: 1.6;
             background-color: #f4f7f9;
             color: #333;
@@ -91,11 +97,13 @@
         }
 
         .sidebar h2 {
-            color: #0056b3;
+            color: #0056b3; /* Main blue color */
             margin-bottom: 15px;
-            font-size: 1.2em;
+            font-size: 1.3em; /* Slightly larger */
+            font-weight: 700;
             border-bottom: 2px solid #b3d1ff;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
+            text-align: center;
         }
 
         #category-list {
@@ -112,23 +120,23 @@
             cursor: pointer;
             transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
             font-size: 0.95em;
-            color: #0056b3;
+            color: #0056b3; /* Blue text */
         }
 
         #category-list li:hover {
-            background-color: #d6eaff;
+            background-color: #d6eaff; /* Lighter blue on hover */
             color: #003d80;
         }
 
         #category-list li.active {
-            background-color: #0056b3;
-            color: #ffffff;
-            font-weight: bold;
+            background-color: #0056b3; /* Active category background */
+            color: #ffffff; /* White text */
+            font-weight: 700; /* Bolder for active */
             border-color: #004080;
         }
 
         #category-list li:active {
-            transform: scale(0.98);
+            transform: scale(0.98); /* Slight press effect */
         }
 
         .main-content {
@@ -138,11 +146,15 @@
         }
 
         .main-content h1 {
-            color: #0056b3;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #b3d1ff;
-            padding-bottom: 10px;
-            line-height: 1.3; /* Adjust for multi-line title */
+            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            color: #0062cc; /* Slightly brighter blue */
+            font-size: 2em; /* Larger font size */
+            font-weight: 700; /* Bold */
+            text-align: center; /* Center the title */
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #a0c7ff; /* Adjusted border */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
         }
 
         .table-container {
@@ -160,16 +172,16 @@
             background-color: #007bff;
             color: #ffffff;
         }
+        
+        thead th {
+             font-weight: 700; /* Bolder headers */
+        }
 
         th, td {
             padding: 12px 15px;
             text-align: left;
             border: 1px solid #d1ddee;
             vertical-align: middle;
-        }
-
-        th {
-            font-weight: bold;
         }
 
         tbody tr:nth-child(even) {
@@ -204,6 +216,12 @@
                 border-right: none;
                 border-bottom: 1px solid #d1ddee;
             }
+            .sidebar h2 {
+                font-size: 1.2em;
+            }
+            .main-content h1 {
+                font-size: 1.7em; /* Adjust for smaller screens */
+            }
             .main-content {
                 padding: 15px;
             }
@@ -232,6 +250,8 @@
 
     <script>
         const CORRECT_PASSWORD = "fn132";
+        const LOCK_TIMEOUT = 10 * 60 * 1000; // 10 minutes in milliseconds
+        let autoLockTimer = null;
 
         const personnelData = [
             { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
@@ -258,9 +278,39 @@
             { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" },
             { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
         ];
+        
+        let loginContainer, appWrapper, passwordInput, loginError;
+
+        function lockPage() {
+            if (autoLockTimer) clearTimeout(autoLockTimer);
+            
+            appWrapper.style.display = 'none';
+            loginContainer.style.display = 'block';
+            document.body.classList.remove('app-loaded');
+            document.body.classList.add('login-prompt');
+            document.title = '編制外教師薪轉銀行查詢 - 請登入'; // Updated title
+            
+            if(passwordInput) {
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+            if(loginError) loginError.textContent = '工作階段已逾時，請重新登入。';
+
+            ['click', 'keypress'].forEach(eventType => {
+                appWrapper.removeEventListener(eventType, resetAutoLockTimer);
+            });
+        }
+
+        function startAutoLockTimer() {
+            if (autoLockTimer) clearTimeout(autoLockTimer);
+            autoLockTimer = setTimeout(lockPage, LOCK_TIMEOUT);
+        }
+
+        function resetAutoLockTimer() {
+            startAutoLockTimer();
+        }
 
         function initializeAppInterface() {
-            const appWrapper = document.getElementById('app-wrapper');
             appWrapper.innerHTML = `
                 <div class="container">
                     <aside class="sidebar">
@@ -268,7 +318,7 @@
                         <ul id="category-list"></ul>
                     </aside>
                     <main class="main-content">
-                        <h1>編制外教師<br>-<br>薪轉銀行查詢</h1>
+                        <h1>編制外教師薪轉銀行查詢</h1>
                         <div class="table-container">
                             <table>
                                 <thead>
@@ -288,7 +338,7 @@
 
             const categoryList = document.getElementById('category-list');
             const tableBody = document.getElementById('personnel-table-body');
-            let currentActiveCategory = null; // To track the currently active category filter
+            let currentActiveCategory = null;
 
             function populateTable(data) {
                 tableBody.innerHTML = '';
@@ -306,20 +356,26 @@
                     `;
                     const idCell = row.querySelector('.id-cell');
                     if (idCell) {
-                        idCell.addEventListener('click', () => copyIdNumber(person.id, idCell));
+                        idCell.addEventListener('click', () => {
+                            copyIdNumber(person.id, idCell);
+                            // resetAutoLockTimer(); // This is now handled by the general appWrapper listener
+                        });
                     }
                     tableBody.appendChild(row);
                 });
             }
 
             function populateCategories() {
-                const categories = [...new Set(personnelData.map(p => p.category))]; // Unique categories
+                const categories = [...new Set(personnelData.map(p => p.category))];
                 categoryList.innerHTML = '';
                 categories.forEach(category => {
                     const li = document.createElement('li');
                     li.textContent = category;
                     li.dataset.category = category;
-                    li.addEventListener('click', handleCategoryClick);
+                    li.addEventListener('click', (event) => {
+                        handleCategoryClick(event);
+                        // resetAutoLockTimer(); // This is now handled by the general appWrapper listener
+                    });
                     categoryList.appendChild(li);
                 });
             }
@@ -328,15 +384,12 @@
                 const clickedLi = event.target;
                 const selectedCategory = clickedLi.dataset.category;
 
-                // If the clicked category is already active, deactivate it and show all
                 if (clickedLi.classList.contains('active')) {
                     clickedLi.classList.remove('active');
                     currentActiveCategory = null;
                     populateTable(personnelData);
                 } else {
-                    // Deactivate any previously active category
                     document.querySelectorAll('#category-list li.active').forEach(li => li.classList.remove('active'));
-                    // Activate the new one
                     clickedLi.classList.add('active');
                     currentActiveCategory = selectedCategory;
                     const filteredData = personnelData.filter(person => person.category === selectedCategory);
@@ -370,27 +423,34 @@
             }
 
             populateCategories();
-            populateTable(personnelData); // Initially show all data
+            populateTable(personnelData);
+            
+            ['click', 'keypress'].forEach(eventType => { // Add general activity listeners
+                appWrapper.addEventListener(eventType, resetAutoLockTimer);
+            });
+            startAutoLockTimer(); // Start timer when app is initialized
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const loginContainer = document.getElementById('login-container');
-            const appWrapper = document.getElementById('app-wrapper');
-            const passwordInput = document.getElementById('password-input');
+            loginContainer = document.getElementById('login-container');
+            appWrapper = document.getElementById('app-wrapper');
+            passwordInput = document.getElementById('password-input');
+            loginError = document.getElementById('login-error');
             const loginButton = document.getElementById('login-button');
-            const loginError = document.getElementById('login-error');
 
             function attemptLogin() {
                 const enteredPassword = passwordInput.value;
                 if (enteredPassword === CORRECT_PASSWORD) {
                     loginContainer.style.display = 'none';
+                    if(loginError) loginError.textContent = '';
+
                     document.body.classList.remove('login-prompt');
                     document.body.classList.add('app-loaded');
-                    document.title = '編制外教師-薪轉銀行查詢'; // Update title after login
+                    document.title = '編制外教師薪轉銀行查詢'; // Updated title
                     appWrapper.style.display = 'block';
                     initializeAppInterface();
                 } else {
-                    loginError.textContent = '密碼錯誤，請重試。';
+                    if(loginError) loginError.textContent = '密碼錯誤，請重試。';
                     passwordInput.value = '';
                     passwordInput.focus();
                 }
