@@ -1,142 +1,334 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Data ---
-    const personnelData = [
-        { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
-        { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
-        { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
-        { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
-        { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
-        { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
-        { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
-        { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
-        { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
-        { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
-        { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
-        { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
-        { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
-        { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
-        { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
-        { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
-        { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
-        { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
-        { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
-        { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
-        { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
-        { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" }, // Note: Duplicate entry as per request
-        { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
-    ];
-
-    // --- DOM Elements ---
-    const categoryList = document.getElementById('category-list');
-    const tableBody = document.getElementById('personnel-table-body');
-
-    // --- Functions ---
-
-    /**
-     * Populates the table with personnel data.
-     * @param {Array} data - Array of personnel objects to display.
-     */
-    function populateTable(data) {
-        tableBody.innerHTML = ''; // Clear existing rows
-        if (data.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">沒有符合條件的資料</td></tr>';
-            return;
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人員清單</title>
+    <style>
+        /* Basic Reset & Defaults */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        data.forEach(person => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${person.category}</td>
-                <td>${person.name}</td>
-                <td class="id-cell" title="點擊複製號碼">${person.id}</td>
-                <td>${person.bank}</td>
-            `;
-            // Add event listener directly to the ID cell for copying
-            const idCell = row.querySelector('.id-cell');
-            if (idCell) {
-                idCell.addEventListener('click', () => copyIdNumber(person.id, idCell));
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif; /* Modern font stack */
+            line-height: 1.6;
+            background-color: #f4f7f9; /* Light background */
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden; /* Contain child elements */
+        }
+
+        /* Sidebar Styling (Tag Cloud Area) */
+        .sidebar {
+            flex: 0 0 220px; /* Fixed width sidebar */
+            background-color: #eef3f8; /* Light blue background */
+            padding: 20px;
+            border-right: 1px solid #d1ddee; /* Subtle border */
+        }
+
+        .sidebar h2 {
+            color: #0056b3; /* Main blue color */
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #b3d1ff;
+            padding-bottom: 5px;
+        }
+
+        #category-list {
+            list-style: none;
+        }
+
+        #category-list li {
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            background-color: #ffffff;
+            border: 1px solid #d1ddee;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+            font-size: 0.95em;
+            color: #0056b3; /* Blue text */
+        }
+
+        #category-list li:hover {
+            background-color: #d6eaff; /* Lighter blue on hover */
+            color: #003d80;
+        }
+
+        #category-list li.active {
+            background-color: #0056b3; /* Active category background */
+            color: #ffffff; /* White text */
+            font-weight: bold;
+            border-color: #004080;
+        }
+
+        #category-list li:active {
+            transform: scale(0.98); /* Slight press effect */
+        }
+
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1; /* Takes remaining space */
+            padding: 20px 30px;
+            overflow-x: auto; /* Add scrollbars if table is too wide */
+        }
+
+        .main-content h1 {
+            color: #0056b3;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #b3d1ff;
+            padding-bottom: 10px;
+        }
+
+        .table-container {
+            width: 100%;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Clean borders */
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        thead {
+            background-color: #007bff; /* Primary blue header */
+            color: #ffffff;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #d1ddee; /* Lighter borders */
+            vertical-align: middle; /* Align text vertically */
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8faff; /* Subtle row striping */
+        }
+
+        tbody tr:hover {
+            background-color: #e2eefa; /* Row hover effect */
+        }
+
+        /* ID Cell Specific Styling */
+        .id-cell {
+            cursor: pointer;
+            font-family: 'Courier New', Courier, monospace; /* Monospace for ID */
+            color: #0056b3;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .id-cell:hover {
+            text-decoration: underline;
+            background-color: #cce5ff; /* Highlight on hover */
+        }
+
+        /* Responsive adjustments (Optional but recommended) */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin: 10px;
             }
-            tableBody.appendChild(row);
-        });
-    }
 
-    /**
-     * Populates the category filter list.
-     */
-    function populateCategories() {
-        const categories = ['顯示全部', ...new Set(personnelData.map(p => p.category))]; // Get unique categories + "Show All"
-        categoryList.innerHTML = ''; // Clear existing list
-
-        categories.forEach((category, index) => {
-            const li = document.createElement('li');
-            li.textContent = category;
-            li.dataset.category = category === '顯示全部' ? 'all' : category;
-            if (index === 0) {
-                li.classList.add('active'); // Make "Show All" active by default
+            .sidebar {
+                flex: 0 0 auto; /* Reset flex basis */
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid #d1ddee;
             }
-            li.addEventListener('click', handleCategoryClick);
-            categoryList.appendChild(li);
+
+            .main-content {
+                padding: 15px;
+            }
+
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>類別篩選</h2>
+            <ul id="category-list">
+                </ul>
+        </aside>
+        <main class="main-content">
+            <h1>人員資料</h1>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>類別</th>
+                            <th>姓名</th>
+                            <th>身分證字號 (點擊複製數字)</th>
+                            <th>薪轉銀行</th>
+                        </tr>
+                    </thead>
+                    <tbody id="personnel-table-body">
+                        </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Data ---
+            const personnelData = [
+                { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+                { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
+                { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
+                { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
+                { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
+                { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
+                { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
+                { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
+                { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
+                { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
+                { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
+                { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
+                { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
+                { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
+                { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
+                { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
+                { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
+                { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
+                { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
+                { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
+                { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
+                { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+                { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
+            ];
+
+            // --- DOM Elements ---
+            const categoryList = document.getElementById('category-list');
+            const tableBody = document.getElementById('personnel-table-body');
+
+            // --- Functions ---
+
+            /**
+             * Populates the table with personnel data.
+             * @param {Array} data - Array of personnel objects to display.
+             */
+            function populateTable(data) {
+                tableBody.innerHTML = ''; // Clear existing rows
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">沒有符合條件的資料</td></tr>';
+                    return;
+                }
+                data.forEach(person => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${person.category}</td>
+                        <td>${person.name}</td>
+                        <td class="id-cell" title="點擊複製號碼">${person.id}</td>
+                        <td>${person.bank}</td>
+                    `;
+                    const idCell = row.querySelector('.id-cell');
+                    if (idCell) {
+                        idCell.addEventListener('click', () => copyIdNumber(person.id, idCell));
+                    }
+                    tableBody.appendChild(row);
+                });
+            }
+
+            /**
+             * Populates the category filter list.
+             */
+            function populateCategories() {
+                const categories = ['顯示全部', ...new Set(personnelData.map(p => p.category))];
+                categoryList.innerHTML = ''; 
+
+                categories.forEach((category, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = category;
+                    li.dataset.category = category === '顯示全部' ? 'all' : category;
+                    if (index === 0) {
+                        li.classList.add('active');
+                    }
+                    li.addEventListener('click', handleCategoryClick);
+                    categoryList.appendChild(li);
+                });
+            }
+
+            /**
+             * Handles clicks on category list items.
+             * @param {Event} event - The click event object.
+             */
+            function handleCategoryClick(event) {
+                const clickedLi = event.target;
+                const selectedCategory = clickedLi.dataset.category;
+
+                document.querySelectorAll('#category-list li').forEach(li => li.classList.remove('active'));
+                clickedLi.classList.add('active');
+
+                let filteredData;
+                if (selectedCategory === 'all') {
+                    filteredData = personnelData;
+                } else {
+                    filteredData = personnelData.filter(person => person.category === selectedCategory);
+                }
+                populateTable(filteredData);
+            }
+
+            /**
+             * Copies the numeric part of the ID to the clipboard.
+             * @param {string} fullId - The full ID string (e.g., B260036897).
+             * @param {HTMLElement} cellElement - The table cell element that was clicked.
+             */
+            function copyIdNumber(fullId, cellElement) {
+                if (!fullId || fullId.length <= 1) {
+                    console.error('Invalid ID format:', fullId);
+                    return;
+                }
+                const idNumber = fullId.substring(1); 
+
+                navigator.clipboard.writeText(idNumber)
+                    .then(() => {
+                        const originalText = cellElement.textContent;
+                        const originalTitle = cellElement.title;
+                        cellElement.textContent = '已複製!';
+                        cellElement.style.backgroundColor = '#90ee90'; 
+                        cellElement.title = `已複製: ${idNumber}`;
+
+                        setTimeout(() => {
+                            cellElement.textContent = originalText;
+                            cellElement.style.backgroundColor = ''; 
+                            cellElement.title = originalTitle;
+                        }, 1500);
+                    })
+                    .catch(err => {
+                        console.error('無法複製到剪貼簿:', err);
+                        alert(`複製失敗: ${err.message}`);
+                    });
+            }
+
+            // --- Initial Setup ---
+            populateCategories();
+            populateTable(personnelData);
         });
-    }
-
-    /**
-     * Handles clicks on category list items.
-     * @param {Event} event - The click event object.
-     */
-    function handleCategoryClick(event) {
-        const clickedLi = event.target;
-        const selectedCategory = clickedLi.dataset.category;
-
-        // Update active class on sidebar
-        document.querySelectorAll('#category-list li').forEach(li => li.classList.remove('active'));
-        clickedLi.classList.add('active');
-
-        // Filter and repopulate table
-        let filteredData;
-        if (selectedCategory === 'all') {
-            filteredData = personnelData; // Show all
-        } else {
-            filteredData = personnelData.filter(person => person.category === selectedCategory);
-        }
-        populateTable(filteredData);
-    }
-
-    /**
-     * Copies the numeric part of the ID to the clipboard.
-     * @param {string} fullId - The full ID string (e.g., B260036897).
-     * @param {HTMLElement} cellElement - The table cell element that was clicked.
-     */
-    function copyIdNumber(fullId, cellElement) {
-        if (!fullId || fullId.length <= 1) {
-            console.error('Invalid ID format:', fullId);
-            return;
-        }
-        const idNumber = fullId.substring(1); // Get digits after the first letter
-
-        // Use the modern Clipboard API
-        navigator.clipboard.writeText(idNumber)
-            .then(() => {
-                // Provide visual feedback
-                const originalText = cellElement.textContent;
-                const originalTitle = cellElement.title;
-                cellElement.textContent = '已複製!';
-                cellElement.style.backgroundColor = '#90ee90'; // Light green feedback
-                cellElement.title = `已複製: ${idNumber}`;
-
-                // Revert after a short delay
-                setTimeout(() => {
-                    cellElement.textContent = originalText;
-                    cellElement.style.backgroundColor = ''; // Revert background
-                    cellElement.title = originalTitle;
-                }, 1500); // Revert after 1.5 seconds
-            })
-            .catch(err => {
-                console.error('無法複製到剪貼簿:', err);
-                // Optionally provide error feedback to the user
-                alert(`複製失敗: ${err.message}`);
-            });
-    }
-
-    // --- Initial Setup ---
-    populateCategories();
-    populateTable(personnelData); // Load all data initially
-});
+    </script>
+</body>
+</html>
