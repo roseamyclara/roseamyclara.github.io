@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>人員清單 - 請登入</title>
+    <title>編制外教師-薪轉銀行查詢 - 請登入</title>
     <style>
         /* --- Styles for Password Prompt --- */
         body.login-prompt {
@@ -67,7 +67,6 @@
             line-height: 1.6;
             background-color: #f4f7f9;
             color: #333;
-            /* Reset flex properties from login prompt if any */
             display: block;
             justify-content: initial;
             align-items: initial;
@@ -101,7 +100,7 @@
 
         #category-list {
             list-style: none;
-            padding: 0; /* Ensure no default padding */
+            padding: 0;
         }
 
         #category-list li {
@@ -143,6 +142,7 @@
             margin-bottom: 20px;
             border-bottom: 2px solid #b3d1ff;
             padding-bottom: 10px;
+            line-height: 1.3; /* Adjust for multi-line title */
         }
 
         .table-container {
@@ -213,7 +213,6 @@
             }
         }
 
-        /* Initially hide main content wrapper */
         #app-wrapper {
             display: none;
         }
@@ -234,7 +233,6 @@
     <script>
         const CORRECT_PASSWORD = "fn132";
 
-        // --- Data (kept here to be loaded after auth) ---
         const personnelData = [
             { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
             { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
@@ -263,39 +261,35 @@
 
         function initializeAppInterface() {
             const appWrapper = document.getElementById('app-wrapper');
-            // HTML structure for the main application
             appWrapper.innerHTML = `
                 <div class="container">
                     <aside class="sidebar">
                         <h2>類別篩選</h2>
-                        <ul id="category-list">
-                            </ul>
+                        <ul id="category-list"></ul>
                     </aside>
                     <main class="main-content">
-                        <h1>人員資料</h1>
+                        <h1>編制外教師<br>-<br>薪轉銀行查詢</h1>
                         <div class="table-container">
                             <table>
                                 <thead>
                                     <tr>
                                         <th>類別</th>
                                         <th>姓名</th>
-                                        <th>身分證字號 (點擊複製數字)</th>
+                                        <th>身分證字號</th>
                                         <th>薪轉銀行</th>
                                     </tr>
                                 </thead>
-                                <tbody id="personnel-table-body">
-                                    </tbody>
+                                <tbody id="personnel-table-body"></tbody>
                             </table>
                         </div>
                     </main>
                 </div>
             `;
 
-            // Now that the DOM elements for the app exist, we can select them
             const categoryList = document.getElementById('category-list');
             const tableBody = document.getElementById('personnel-table-body');
+            let currentActiveCategory = null; // To track the currently active category filter
 
-            // --- App Functions (defined within this scope or passed as arguments if needed) ---
             function populateTable(data) {
                 tableBody.innerHTML = '';
                 if (data.length === 0) {
@@ -319,15 +313,12 @@
             }
 
             function populateCategories() {
-                const categories = ['顯示全部', ...new Set(personnelData.map(p => p.category))];
+                const categories = [...new Set(personnelData.map(p => p.category))]; // Unique categories
                 categoryList.innerHTML = '';
-                categories.forEach((category, index) => {
+                categories.forEach(category => {
                     const li = document.createElement('li');
                     li.textContent = category;
-                    li.dataset.category = category === '顯示全部' ? 'all' : category;
-                    if (index === 0) {
-                        li.classList.add('active');
-                    }
+                    li.dataset.category = category;
                     li.addEventListener('click', handleCategoryClick);
                     categoryList.appendChild(li);
                 });
@@ -336,10 +327,21 @@
             function handleCategoryClick(event) {
                 const clickedLi = event.target;
                 const selectedCategory = clickedLi.dataset.category;
-                document.querySelectorAll('#category-list li').forEach(li => li.classList.remove('active'));
-                clickedLi.classList.add('active');
-                let filteredData = (selectedCategory === 'all') ? personnelData : personnelData.filter(person => person.category === selectedCategory);
-                populateTable(filteredData);
+
+                // If the clicked category is already active, deactivate it and show all
+                if (clickedLi.classList.contains('active')) {
+                    clickedLi.classList.remove('active');
+                    currentActiveCategory = null;
+                    populateTable(personnelData);
+                } else {
+                    // Deactivate any previously active category
+                    document.querySelectorAll('#category-list li.active').forEach(li => li.classList.remove('active'));
+                    // Activate the new one
+                    clickedLi.classList.add('active');
+                    currentActiveCategory = selectedCategory;
+                    const filteredData = personnelData.filter(person => person.category === selectedCategory);
+                    populateTable(filteredData);
+                }
             }
 
             function copyIdNumber(fullId, cellElement) {
@@ -363,17 +365,14 @@
                     })
                     .catch(err => {
                         console.error('無法複製到剪貼簿:', err);
-                        alert(`複製失敗: ${err.message}`);
+                        alert(`複製失敗: ${err.message}. 請手動複製.`);
                     });
             }
 
-            // --- Initial Setup for the App ---
             populateCategories();
-            populateTable(personnelData);
+            populateTable(personnelData); // Initially show all data
         }
 
-
-        // --- Login Logic ---
         document.addEventListener('DOMContentLoaded', () => {
             const loginContainer = document.getElementById('login-container');
             const appWrapper = document.getElementById('app-wrapper');
@@ -384,15 +383,15 @@
             function attemptLogin() {
                 const enteredPassword = passwordInput.value;
                 if (enteredPassword === CORRECT_PASSWORD) {
-                    loginContainer.style.display = 'none'; // Hide login form
+                    loginContainer.style.display = 'none';
                     document.body.classList.remove('login-prompt');
                     document.body.classList.add('app-loaded');
-                    document.title = '人員清單'; // Change page title
-                    appWrapper.style.display = 'block'; // Show app content
-                    initializeAppInterface(); // Initialize the main application
+                    document.title = '編制外教師-薪轉銀行查詢'; // Update title after login
+                    appWrapper.style.display = 'block';
+                    initializeAppInterface();
                 } else {
                     loginError.textContent = '密碼錯誤，請重試。';
-                    passwordInput.value = ''; // Clear password field
+                    passwordInput.value = '';
                     passwordInput.focus();
                 }
             }
@@ -403,7 +402,7 @@
                     attemptLogin();
                 }
             });
-            passwordInput.focus(); // Focus on password field on load
+            passwordInput.focus();
         });
     </script>
 </body>
