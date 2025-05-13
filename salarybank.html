@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>編制外教師薪轉銀行查詢 - 請登入</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
 
         /* --- Styles for Password Prompt --- */
         body.login-prompt {
@@ -14,7 +14,7 @@
             align-items: center;
             min-height: 100vh;
             background-color: #0056b3; /* Blue background for login */
-            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -40,7 +40,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 1em;
-            font-family: 'Nunito', sans-serif;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
         }
 
         #login-container button {
@@ -51,7 +51,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 1em;
-            font-family: 'Nunito', sans-serif;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
             font-weight: 700;
             transition: background-color 0.3s ease;
         }
@@ -69,7 +69,7 @@
 
         /* --- Styles for Main Application (initially hidden) --- */
         body.app-loaded {
-            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             line-height: 1.6;
             background-color: #f4f7f9;
             color: #333;
@@ -146,10 +146,10 @@
         }
 
         .main-content h1 {
-            font-family: 'Nunito', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
+            font-family: 'M PLUS Rounded 1c', 'Helvetica Neue', Arial, 'Microsoft JhengHei', sans-serif;
             color: #0062cc; /* Slightly brighter blue */
             font-size: 2em; /* Larger font size */
-            font-weight: 700; /* Bold */
+            font-weight: 800; /* Boldest weight for M PLUS Rounded 1c for emphasis */
             text-align: center; /* Center the title */
             margin-bottom: 25px;
             padding-bottom: 15px;
@@ -250,7 +250,7 @@
 
     <script>
         const CORRECT_PASSWORD = "fn132";
-        const LOCK_TIMEOUT = 10 * 60 * 1000; // 10 minutes in milliseconds
+        const LOCK_TIMEOUT = 30 * 60 * 1000; // 30 minutes in milliseconds
         let autoLockTimer = null;
 
         const personnelData = [
@@ -288,13 +288,13 @@
             loginContainer.style.display = 'block';
             document.body.classList.remove('app-loaded');
             document.body.classList.add('login-prompt');
-            document.title = '編制外教師薪轉銀行查詢 - 請登入'; // Updated title
+            document.title = '編制外教師薪轉銀行查詢 - 請登入';
             
             if(passwordInput) {
                 passwordInput.value = '';
                 passwordInput.focus();
             }
-            if(loginError) loginError.textContent = '工作階段已逾時，請重新登入。';
+            if(loginError) loginError.textContent = '工作階段已逾時(30分鐘)，請重新登入。'; // Updated message
 
             ['click', 'keypress'].forEach(eventType => {
                 appWrapper.removeEventListener(eventType, resetAutoLockTimer);
@@ -358,7 +358,6 @@
                     if (idCell) {
                         idCell.addEventListener('click', () => {
                             copyIdNumber(person.id, idCell);
-                            // resetAutoLockTimer(); // This is now handled by the general appWrapper listener
                         });
                     }
                     tableBody.appendChild(row);
@@ -374,7 +373,6 @@
                     li.dataset.category = category;
                     li.addEventListener('click', (event) => {
                         handleCategoryClick(event);
-                        // resetAutoLockTimer(); // This is now handled by the general appWrapper listener
                     });
                     categoryList.appendChild(li);
                 });
@@ -425,10 +423,10 @@
             populateCategories();
             populateTable(personnelData);
             
-            ['click', 'keypress'].forEach(eventType => { // Add general activity listeners
+            ['click', 'keypress'].forEach(eventType => {
                 appWrapper.addEventListener(eventType, resetAutoLockTimer);
             });
-            startAutoLockTimer(); // Start timer when app is initialized
+            startAutoLockTimer();
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -446,7 +444,7 @@
 
                     document.body.classList.remove('login-prompt');
                     document.body.classList.add('app-loaded');
-                    document.title = '編制外教師薪轉銀行查詢'; // Updated title
+                    document.title = '編制外教師薪轉銀行查詢';
                     appWrapper.style.display = 'block';
                     initializeAppInterface();
                 } else {
