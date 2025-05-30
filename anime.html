@@ -119,7 +119,7 @@
 
         /* --- 主要內容區域 Main Content --- */
         .main-container.container {
-             padding: 0 20px; /* 主要內容區域的左右 padding */
+            padding: 0 20px; /* 主要內容區域的左右 padding */
         }
         .main-container {
             display: flex;
@@ -332,8 +332,8 @@
                 font-size: 2em;
             }
             .search-container input[type="text"] {
-                 padding: 10px 15px;
-                 font-size: 0.85em;
+                padding: 10px 15px;
+                font-size: 0.85em;
             }
             .product-grid {
                 grid-template-columns: 1fr;
@@ -367,7 +367,7 @@
             <section class="tag-cloud-section">
                 <h2>tag</h2>
                 <div id="tagCloud" class="tag-cloud">
-                    </div>
+                </div>
             </section>
             <section class="stats-section">
                 <h2>stats</h2>
@@ -381,7 +381,7 @@
 
         <main class="product-grid-container">
             <div id="productGrid" class="product-grid">
-                </div>
+            </div>
         </main>
     </div>
 
@@ -407,7 +407,8 @@
                 { id: 13, name: "水著", manufacturer: "眼鏡廠", series: "EXQ", work: "刀劍神域", character: "莉法/桐谷直葉", price: 230, imageUrl: "https://r.hpoi.net/gk/cover/n/2018/04/b00ea949b4ac4ecf89ebaf042265a030.jpg" },
                 { id: 14, name: " ~制服ver.~ Renewal", manufacturer: "TAiTO", series: "Coreful", work: "五等分的新娘", character: "中野三玖", price: 266, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/04/238a63f3c9a2438d82669bf803559d5b.jpg" },
                 { id: 15, name: "女僕裝Ver.", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法", character: "加藤惠", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg" },
-                { id: 16, name: "～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg" }
+                { id: 16, name: "～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg" },
+                { id: 17, name: "七海深奈實", manufacturer: "TAiTO", series: "Coreful", work: "弱角友崎同學", character: "七海深奈實", price: 355, imageUrl: "https://r.hpoi.net/gk/cover/n/2021/07/3a4e35c0c0f44cb99bb1d039836715ae.jpg?date=1638864678" }
             ];
 
             const productGrid = document.getElementById('productGrid');
@@ -533,9 +534,10 @@
 
             searchInput.addEventListener('input', applyFiltersAndSearch);
 
-            renderFigures(figuresData);
-            generateTagCloud();
+            // Initial render
             updateStatistics();
+            generateTagCloud();
+            renderFigures(figuresData);
         });
     </script>
 </body>
