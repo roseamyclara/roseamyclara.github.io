@@ -3,388 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>figure collection // Playful Clay REMIX</title>
+    <title>Figure Collection - UX 優化版</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 1. 設計理念：Claymorphism + Playful UI --- */
-        /* --- 2. 視覺設計：夏日冰淇淋色彩配置 --- */
-        :root {
-            --bg-color: #FDFBF7;
-            --container-color: #FFFFFF;
-            --primary-accent: #FF7A5A;
-            --secondary-accent: #4B89DA;
-            --text-color: #3D3B56;
-            --font-heading: 'Fredoka One', 'Noto Sans TC', sans-serif;
-            --font-body: 'Noto Sans TC', sans-serif;
-            --border-radius: 20px; /* 統一的圓角 */
-        }
-
-        /* --- 基本重置與全域設定 --- */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* 自定義基礎樣式 */
         body {
-            font-family: var(--font-body);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            font-size: 16px;
-            overflow-x: hidden;
-            animation: fadeIn 0.8s ease-in-out;
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans TC', sans-serif;
         }
-
-        .container {
-            width: 95%;
-            max-width: 1500px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* --- Claymorphism 黏土風格 Mixin --- */
-        .clay-card {
-            background: var(--container-color);
-            border-radius: var(--border-radius);
-            box-shadow: 10px 10px 20px rgba(174, 174, 192, 0.2), 
-                        -10px -10px 20px #ffffff;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-
-        /* --- 頁首 Header --- */
-        header {
-            padding: 40px 0;
-            margin-bottom: 40px;
-        }
-
-        header .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        header h1 {
-            font-family: var(--font-heading);
-            font-size: 3.5em;
-            font-weight: 400; /* Fredoka One is bold by default */
-            color: var(--primary-accent);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        header h1 .icon-heart {
-            width: 0.9em;
-            height: 0.9em;
-            fill: var(--secondary-accent);
-            transform: rotate(-10deg);
-        }
-
-        .search-container {
-            width: 350px;
-        }
-
-        .search-container input[type="text"] {
-            width: 100%;
-            padding: 15px 25px;
-            border-radius: 30px; /* 膠囊狀 */
-            font-size: 1em;
-            font-family: var(--font-body);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 2px solid #EAE6E1;
-            box-shadow: inset 4px 4px 8px rgba(174, 174, 192, 0.1);
-            transition: all 0.3s ease;
-        }
-        .search-container input[type="text"]::placeholder {
-            color: rgba(61, 59, 86, 0.4);
-        }
-        .search-container input[type="text"]:focus {
-            outline: none;
-            border-color: var(--secondary-accent);
-            box-shadow: inset 4px 4px 8px rgba(174, 174, 192, 0.1),
-                        0 0 0 4px rgba(75, 137, 218, 0.2);
-        }
-
-        /* --- 主要內容區域 --- */
-        .main-content-wrapper {
-            display: flex;
-            align-items: flex-start;
-            gap: 40px;
-        }
-        
-        .sidebar {
-            flex: 1 1 300px;
-            padding: 30px;
-            position: sticky;
-            top: 40px;
-        }
-        
-        .sidebar h2 {
-            font-family: var(--font-heading);
-            font-size: 2.2em;
-            color: var(--text-color);
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-        }
-
-        .product-grid-container {
-            flex: 3 1 70%;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 40px;
-        }
-        
-        .product-card {
-            display: flex;
-            flex-direction: column;
-            /* --- 3. 互動與動態效果：卡片載入 --- */
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-                        opacity 0.5s ease-out;
-        }
-        
-        .product-card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- 3. 互動與動態效果：卡片懸停 --- */
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 15px 15px 30px rgba(174, 174, 192, 0.25), 
-                        -15px -15px 30px #ffffff;
-        }
-
-        .product-card img {
-            width: 100%;
-            aspect-ratio: 1 / 1.2;
+        /* 讓圖片有最小高度，避免載入時佈局跳動 */
+        .product-card-img {
+            aspect-ratio: 360 / 520;
             object-fit: cover;
-            background-color: #F0F2F5; /* 圖片載入前的淺灰背景 */
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-        }
-        
-        .product-info {
-            padding: 20px 25px 25px 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-info h3 {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: var(--text-color);
-            margin-bottom: 10px;
-            line-height: 1.4;
-            min-height: calc(1.4em * 2);
-        }
-        
-        .product-info .details {
-            font-size: 0.9em;
-            color: rgba(61, 59, 86, 0.6);
-            margin-bottom: 10px;
-        }
-        .product-info .details strong {
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .product-info .price {
-            font-family: var(--font-heading);
-            font-size: 2.2em;
-            font-weight: 400;
-            color: var(--primary-accent);
-            margin-top: auto;
-            padding-top: 15px;
-            text-align: right;
-        }
-        
-        /* --- 標籤按鈕 --- */
-        #tagCloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: center;
-        }
-
-        #tagCloud .tag {
-            padding: 8px 18px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            border: 2px solid #EAE6E1;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
-            font-weight: 500;
-            white-space: nowrap;
-            box-shadow: 5px 5px 10px rgba(174, 174, 192, 0.15), 
-                        -5px -5px 10px #ffffff;
-        }
-
-        #tagCloud .tag:hover {
-            transform: translateY(-3px);
-            background-color: #fff;
-            box-shadow: 8px 8px 16px rgba(174, 174, 192, 0.2), 
-                        -8px -8px 16px #ffffff;
-        }
-
-        #tagCloud .tag:active {
-             transform: translateY(1px);
-             box-shadow: inset 4px 4px 8px rgba(174, 174, 192, 0.2);
-        }
-
-        #tagCloud .tag.active {
-            background-color: var(--secondary-accent);
-            border-color: var(--secondary-accent);
-            color: #FFFFFF;
-            font-weight: 700;
-            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .stats-section {
-             margin-top: 40px;
-        }
-
-        .stats-section p {
-            margin: 15px 0;
-            font-size: 1.1em;
-            font-weight: 500;
-            color: rgba(61, 59, 86, 0.7);
-        }
-        .stats-section span {
-            font-family: var(--font-heading);
-            font-weight: 400;
-            color: var(--text-color);
-            margin-left: 10px;
-            font-size: 1.4em;
-            background-color: #EFFF6D; /* 活潑的黃色背景 */
-            padding: 2px 8px;
-            border-radius: 8px;
-        }
-        
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 80px 20px;
-            font-size: 1.5em;
-            font-family: var(--font-heading);
-            color: rgba(61, 59, 86, 0.5);
-            background-color: rgba(255,255,255,0.5);
-            border-radius: var(--border-radius);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            background-color: transparent;
-            color: rgba(61, 59, 86, 0.4);
-            font-size: 0.9em;
-        }
-        
-        @media (max-width: 992px) {
-            .main-content-wrapper {
-                flex-direction: column;
-            }
-            .sidebar {
-                position: static;
-                width: 100%;
-                margin-bottom: 40px;
-            }
-            .product-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-             header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .search-container {
-                width: 100%;
-            }
-            header h1 {
-                font-size: 3em;
-            }
-        }
-        @media (max-width: 480px) {
-             header h1 {
-                font-size: 2.5em;
-            }
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
+            background-color: #f1f5f9; /* tailwind's slate-100 */
         }
     </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>figure collection
-                <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95">
-                    <path fill="currentColor" d="M81.41,13.87C74.05,6.51,63.36,5.73,53.79,11.85C51.93,13.05,50.29,14.49,49,16.05 c-1.29-1.56-2.93-3-4.79-4.2C34.64,5.73,23.95,6.51,16.59,13.87C8.17,22.29,7.5,34.37,13.75,43.6 c2.85,4.2,6.89,8.03,11.51,11.73L49,79.65l23.74-24.32c4.62-3.7,8.66-7.53,11.51-11.73 C91.5,34.37,90.83,22.29,81.41,13.87z"/>
-                </svg>
-            </h1>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="找找看喜歡的角色...">
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-20">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between py-4 gap-4">
+                <!-- 標題 -->
+                <h1 class="text-3xl font-bold text-sky-600 flex items-center gap-2">
+                    <span>Figure Collection</span>
+                    <svg class="w-7 h-7 text-pink-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228z" />
+                    </svg>
+                </h1>
+                <!-- 搜尋框 -->
+                <div class="relative w-full sm:w-72">
+                    <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border-2 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all duration-300">
+                    <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                    </svg>
+                </div>
             </div>
         </div>
     </header>
 
-    <div class="main-content-wrapper container">
-        <aside class="sidebar clay-card">
-            <section class="tag-cloud-section">
-                <h2>Tags</h2>
-                <div id="tagCloud" class="tag-cloud"></div>
-            </section>
-            <section class="stats-section">
-                <h2>Stats</h2>
-                <div id="stats">
-                    <p>總收藏數量:<span id="totalItems">0</span></p>
-                    <p>總花費金額: NT$<span id="totalSpent">0</span></p>
-                    <p>平均單價: NT$<span id="averagePrice">0</span></p>
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            
+            <!-- Sidebar -->
+            <aside class="lg:col-span-1 space-y-8">
+                <!-- Tag Cloud Section -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-xl font-bold text-slate-700 border-b-2 border-sky-200 pb-2 mb-4">TAGS</h2>
+                    <div id="tagCloud" class="flex flex-wrap gap-2">
+                        <!-- Tags will be injected here -->
+                    </div>
                 </div>
-            </section>
-        </aside>
 
-        <main class="product-grid-container">
-            <div id="productGrid" class="product-grid">
+                <!-- Stats Section -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h2 class="text-xl font-bold text-slate-700 border-b-2 border-sky-200 pb-2 mb-4">STATS</h2>
+                    <div id="stats" class="space-y-3 text-slate-600">
+                        <p class="flex justify-between">總收藏數量: <span id="totalItems" class="font-bold text-sky-600 text-lg">0</span></p>
+                        <p class="flex justify-between">總花費金額: <span class="font-bold text-sky-600 text-lg">NT$ <span id="totalSpent">0</span></span></p>
+                        <p class="flex justify-between">平均單價: <span class="font-bold text-sky-600 text-lg">NT$ <span id="averagePrice">0</span></span></p>
+                    </div>
                 </div>
-        </main>
+            </aside>
+
+            <!-- Product Grid -->
+            <main class="lg:col-span-3">
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <!-- Products will be injected here -->
+                </div>
+            </main>
+
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> GOLDENFISH // PLAYFUL CLAY REMIX</p>
+    <!-- Footer -->
+    <footer class="text-center py-6 mt-8 bg-slate-800 text-slate-400 text-sm">
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Goldenfish. All Rights Reserved.</p>
     </footer>
 
     <script>
-    // JavaScript 邏輯與前一版本相同，專注於功能，不受視覺風格變化影響
-    // 因此，這裡的 JS 程式碼可以完全重用
-    document.addEventListener('DOMContentLoaded', () => {
-        const figuresData = [
-            { id: 1, name: "兔女郎造型", manufacturer: "FuRyu", series: "BiCute Bunnies", work: "超级索尼子", character: "索尼子", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg" },
-            { id: 2, name: "櫻花和服～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "魔女之旅", character: "伊蕾娜", price: 250, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg" },
-            { id: 3, name: "～鏖殺公～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "夜刀神十香", price: 490, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg" },
-            { id: 4, name: "天使學校篇練習裝", manufacturer: "眼鏡廠", series: "GLITTER＆GLAMOURS", work: "2.5次元的誘惑", character: "莉莉艾露", price: 269, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg" },
-            { id: 5, name: "～貓咪居家服～新裝版", manufacturer: "TAiTO", series: "Desktop Cute", work: "Re:從零開始的異世界生活", character: "雷姆", price: 309, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg" },
+        document.addEventListener('DOMContentLoaded', () => {
+            const figuresData = [
+                { id: 1, name: "兔女郎造型", manufacturer: "FuRyu", series: "BiCute Bunnies", work: "超级索尼子", character: "索尼子", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg" },
+                { id: 2, name: "櫻花和服～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "魔女之旅", character: "伊蕾娜", price: 250, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg" },
+                { id: 3, name: "～鏖殺公～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "夜刀神十香", price: 490, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg" },
+                { id: 4, name: "天使學校篇練習裝", manufacturer: "眼鏡廠", series: "GLITTER＆GLAMOURS", work: "2.5次元的誘惑", character: "莉莉艾露", price: 269, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg" },
+                { id: 5, name: "～貓咪居家服～新裝版", manufacturer: "TAiTO", series: "Desktop Cute", work: "Re:從零開始的異世界生活", character: "雷姆", price: 309, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg" },
                 { id: 6, name: "～小惡魔～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "約會大作戰", character: "時崎狂三", price: 380, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/60337e8735014698954434df208afa22.jpg" },
                 { id: 7, name: "「出遊浴衣」", manufacturer: "SEGA", series: "Luminasta", work: "莉可麗絲", character: "錦木千束", price: 460, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/2e9d4817fcb9490cab8171511643d3f8.jpg" },
                 { id: 8, name: "赫蘿 2024款", manufacturer: "良笑社", series: "POP UP PARADE", work: "狼與辛香料", character: "赫蘿", price: 830, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/4d75db48e8f54cc7b8a4a7194fad55ab.jpg" },
@@ -397,127 +107,135 @@
                 { id: 15, name: "女僕裝Ver.", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法", character: "加藤惠", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg" },
                 { id: 16, name: "～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg" },
                 { id: 17, name: "七海深奈實", manufacturer: "TAiTO", series: "Coreful", work: "弱角友崎同學", character: "七海深奈實", price: 355, imageUrl: "https://r.hpoi.net/gk/cover/n/2021/07/3a4e35c0c0f44cb99bb1d039836715ae.jpg?date=1638864678" },
-                { id: 18, name: "～女主角服装～", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法 Fine", character: "加藤惠", price: 280, imageUrl: "https://r.hpoi.net/gk/cover/n/2021/08/9860b7692ed744d5ba7576a16c764c23.jpg" },
-        ];
+                // 新增的品項
+                { id: 18, name: "～女主角服装～", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法 Fine", character: "加藤惠", price: 280, imageUrl: "hhttps://r.hpoi.net/gk/cover/n/2020/11/85450070c93e4f6389add0b7f1898510.jpg?date=1655525544000"}
+            ];
 
-        const productGrid = document.getElementById('productGrid');
-        const searchInput = document.getElementById('searchInput');
-        const tagCloudEl = document.getElementById('tagCloud');
-        const totalItemsEl = document.getElementById('totalItems');
-        const totalSpentEl = document.getElementById('totalSpent');
-        const averagePriceEl = document.getElementById('averagePrice');
+            const productGrid = document.getElementById('productGrid');
+            const searchInput = document.getElementById('searchInput');
+            const tagCloudEl = document.getElementById('tagCloud');
+            const totalItemsEl = document.getElementById('totalItems');
+            const totalSpentEl = document.getElementById('totalSpent');
+            const averagePriceEl = document.getElementById('averagePrice');
 
-        let currentCharacterFilter = null;
-
-        function renderFigures(figuresToDisplay) {
-            productGrid.innerHTML = '';
-            if (!figuresToDisplay || figuresToDisplay.length === 0) {
-                productGrid.innerHTML = '<p class="no-results">哎呀，這個分類是空的！</p>';
-                return;
-            }
-            figuresToDisplay.forEach(figure => {
-                const card = document.createElement('div');
-                card.className = 'product-card clay-card';
-                card.dataset.id = figure.id;
-                card.innerHTML = `
-                    <img src="${figure.imageUrl}" alt="${figure.name}" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x480/FDFBF7/FF7A5A?text=圖片不見了';">
-                    <div class="product-info">
-                        <h3>${figure.name}</h3>
-                        <div class="details">
-                            <p><strong>角色:</strong> ${figure.character}</p>
-                            <p><strong>作品:</strong> ${figure.work}</p>
+            let currentCharacterFilter = null;
+            
+            // 渲染公仔卡片
+            function renderFigures(figuresToDisplay) {
+                productGrid.innerHTML = '';
+                if (!figuresToDisplay || figuresToDisplay.length === 0) {
+                    productGrid.innerHTML = `
+                        <div class="lg:col-span-3 sm:col-span-2 col-span-1 text-center bg-white rounded-2xl p-12 shadow-sm">
+                            <p class="text-xl text-slate-500">嗚～找不到符合條件的景品耶！</p>
                         </div>
-                        <p class="price">NT$ ${figure.price}</p>
-                    </div>
-                `;
-                productGrid.appendChild(card);
-            });
-            observeCards();
-        }
+                    `;
+                    return;
+                }
 
-        function observeCards() {
-            const cards = document.querySelectorAll('.product-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
+                figuresToDisplay.forEach(figure => {
+                    const card = document.createElement('div');
+                    card.className = 'group bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1';
+                    card.dataset.id = figure.id;
+                    card.innerHTML = `
+                        <img src="${figure.imageUrl}" alt="${figure.name}" loading="lazy" class="product-card-img w-full transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/360x520/f1f5f9/64748b?text=圖片載入失敗';">
+                        <div class="p-5 flex flex-col flex-grow">
+                            <h3 class="font-bold text-lg text-slate-800 mb-2 leading-tight h-14 overflow-hidden">${figure.name}</h3>
+                            <div class="text-sm text-slate-500 space-y-1 mb-4 flex-grow">
+                                <p><strong class="text-slate-600">角色:</strong> ${figure.character}</p>
+                                <p><strong class="text-slate-600">作品:</strong> ${figure.work}</p>
+                                <p><strong class="text-slate-600">製造商:</strong> ${figure.manufacturer}</p>
+                            </div>
+                            <p class="text-right text-2xl font-bold text-red-500 mt-2">NT$ ${figure.price.toLocaleString()}</p>
+                        </div>
+                    `;
+                    productGrid.appendChild(card);
                 });
-            }, { threshold: 0.1 });
-
-            cards.forEach(card => observer.observe(card));
-        }
-
-        function generateTagCloud() {
-             const characterCounts = {};
-             figuresData.forEach(figure => {
-                 const characters = figure.character.split('/');
-                 characters.forEach(char => {
-                     const trimmedChar = char.trim();
-                     if (trimmedChar) characterCounts[trimmedChar] = (characterCounts[trimmedChar] || 0) + 1;
-                 });
-             });
-
-             const uniqueCharacters = Object.keys(characterCounts).sort((a, b) => characterCounts[b] - characterCounts[a]);
-             if (uniqueCharacters.length === 0) return;
-
-             tagCloudEl.innerHTML = '';
-             for (const character of uniqueCharacters) {
-                 const tagEl = document.createElement('a');
-                 tagEl.className = 'tag';
-                 tagEl.textContent = character;
-                 tagEl.href = '#';
-                 
-                 tagEl.addEventListener('click', (e) => {
-                     e.preventDefault();
-                     if (tagEl.classList.contains('active')) {
-                         currentCharacterFilter = null;
-                         tagEl.classList.remove('active');
-                     } else {
-                         currentCharacterFilter = character;
-                         document.querySelectorAll('#tagCloud .tag.active').forEach(t => t.classList.remove('active'));
-                         tagEl.classList.add('active');
-                     }
-                     applyFiltersAndSearch();
-                 });
-                 tagCloudEl.appendChild(tagEl);
-             }
-        }
-
-        function updateStatistics() {
-            totalItemsEl.textContent = figuresData.length;
-            const totalCost = figuresData.reduce((sum, figure) => sum + figure.price, 0);
-            totalSpentEl.textContent = totalCost.toLocaleString();
-            averagePriceEl.textContent = figuresData.length > 0 ? (totalCost / figuresData.length).toFixed(0).toLocaleString() : 0;
-        }
-        
-        function applyFiltersAndSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            let filteredFigures = figuresData;
-
-            if (currentCharacterFilter) {
-                filteredFigures = filteredFigures.filter(figure =>
-                    figure.character.split('/').map(c => c.trim()).includes(currentCharacterFilter)
-                );
             }
 
-            if (searchTerm) {
-                filteredFigures = filteredFigures.filter(figure =>
-                    Object.values(figure).some(val => 
-                        String(val).toLowerCase().includes(searchTerm)
-                    )
-                );
+            // 產生標籤雲
+            function generateTagCloud() {
+                const characterCounts = {};
+                figuresData.forEach(figure => {
+                    figure.character.split('/').forEach(char => {
+                        const trimmedChar = char.trim();
+                        if (trimmedChar) {
+                            characterCounts[trimmedChar] = (characterCounts[trimmedChar] || 0) + 1;
+                        }
+                    });
+                });
+
+                tagCloudEl.innerHTML = '';
+                const sortedCharacters = Object.keys(characterCounts).sort((a, b) => characterCounts[b] - characterCounts[a]);
+                
+                sortedCharacters.forEach(character => {
+                    const count = characterCounts[character];
+                    const tagEl = document.createElement('a');
+                    tagEl.href = '#';
+                    tagEl.textContent = `${character} (${count})`;
+                    tagEl.className = 'px-3 py-1 text-sm font-medium rounded-full bg-sky-100 text-sky-700 transition-all duration-200 hover:bg-sky-200 hover:text-sky-800';
+                    
+                    tagEl.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const isActive = tagEl.classList.contains('active-tag');
+                        
+                        // 移除所有標籤的 active 狀態
+                        document.querySelectorAll('#tagCloud .active-tag').forEach(t => {
+                            t.classList.remove('active-tag', 'bg-sky-600', 'text-white');
+                            t.classList.add('bg-sky-100', 'text-sky-700');
+                        });
+
+                        if (isActive) {
+                            // 如果點擊的是已啟用的標籤，則取消篩選
+                            currentCharacterFilter = null;
+                        } else {
+                            // 否則，啟用新的篩選
+                            currentCharacterFilter = character;
+                            tagEl.classList.add('active-tag', 'bg-sky-600', 'text-white');
+                            tagEl.classList.remove('bg-sky-100', 'text-sky-700');
+                        }
+                        applyFiltersAndSearch();
+                    });
+                    tagCloudEl.appendChild(tagEl);
+                });
             }
-            renderFigures(filteredFigures);
-        }
+            
+            // 更新統計數據
+            function updateStatistics() {
+                totalItemsEl.textContent = figuresData.length;
+                const totalCost = figuresData.reduce((sum, figure) => sum + figure.price, 0);
+                totalSpentEl.textContent = totalCost.toLocaleString();
+                averagePriceEl.textContent = figuresData.length > 0 ? (totalCost / figuresData.length).toFixed(0).toLocaleString() : 0;
+            }
 
-        searchInput.addEventListener('input', applyFiltersAndSearch);
+            // 應用篩選與搜尋
+            function applyFiltersAndSearch() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let filteredFigures = figuresData;
 
-        updateStatistics();
-        generateTagCloud();
-        renderFigures(figuresData);
-    });
+                if (currentCharacterFilter) {
+                    filteredFigures = filteredFigures.filter(figure => 
+                        figure.character.split('/').map(c => c.trim()).includes(currentCharacterFilter)
+                    );
+                }
+
+                if (searchTerm) {
+                    filteredFigures = filteredFigures.filter(figure => 
+                        Object.values(figure).some(val => 
+                            String(val).toLowerCase().includes(searchTerm)
+                        )
+                    );
+                }
+                
+                renderFigures(filteredFigures);
+            }
+            
+            searchInput.addEventListener('input', applyFiltersAndSearch);
+
+            // 初始渲染
+            updateStatistics();
+            generateTagCloud();
+            renderFigures(figuresData);
+        });
     </script>
 </body>
 </html>
