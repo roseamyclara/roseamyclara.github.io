@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Figure Collection - UX 優化版</title>
-    <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -25,18 +23,15 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- Header -->
     <header class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-20">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col sm:flex-row items-center justify-between py-4 gap-4">
-                <!-- 標題 -->
                 <h1 class="text-3xl font-bold text-sky-600 flex items-center gap-2">
                     <span>Figure Collection</span>
                     <svg class="w-7 h-7 text-pink-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12.001 4.529c2.349-2.109 5.979-2.039 8.242.228 2.262 2.268 2.34 5.88.236 8.236l-8.48 8.492-8.478-8.492c-2.104-2.356-2.025-5.974.236-8.236 2.265-2.264 5.888-2.34 8.244-.228z" />
                     </svg>
                 </h1>
-                <!-- 搜尋框 -->
                 <div class="relative w-full sm:w-72">
                     <input type="text" id="searchInput" placeholder="搜尋品名、角色、作品..." class="w-full pl-10 pr-4 py-2 bg-slate-100 border-2 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 transition-all duration-300">
                     <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -47,21 +42,16 @@
         </div>
     </header>
 
-    <!-- Main Content -->
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
-            <!-- Sidebar -->
-            <aside class="lg:col-span-1 space-y-8">
-                <!-- Tag Cloud Section -->
+            <aside class="lg:col-span-1 space-y-8 lg:sticky lg:top-24 self-start">
                 <div class="bg-white p-6 rounded-2xl shadow-sm">
                     <h2 class="text-xl font-bold text-slate-700 border-b-2 border-sky-200 pb-2 mb-4">TAGS</h2>
                     <div id="tagCloud" class="flex flex-wrap gap-2">
-                        <!-- Tags will be injected here -->
-                    </div>
+                        </div>
                 </div>
 
-                <!-- Stats Section -->
                 <div class="bg-white p-6 rounded-2xl shadow-sm">
                     <h2 class="text-xl font-bold text-slate-700 border-b-2 border-sky-200 pb-2 mb-4">STATS</h2>
                     <div id="stats" class="space-y-3 text-slate-600">
@@ -72,43 +62,49 @@
                 </div>
             </aside>
 
-            <!-- Product Grid -->
             <main class="lg:col-span-3">
-                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                    <!-- Products will be injected here -->
+                <div class="flex justify-end mb-4">
+                    <select id="sortSelect" class="bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500">
+                        <option value="heat_desc">熱度排行</option>
+                        <option value="character_asc">角色排序 (A-Z)</option>
+                        <option value="price_desc">價格: 由高至低</option>
+                        <option value="price_asc">價格: 由低至高</option>
+                    </select>
                 </div>
+
+                <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    </div>
             </main>
 
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="text-center py-6 mt-8 bg-slate-800 text-slate-400 text-sm">
         <p>&copy; <script>document.write(new Date().getFullYear())</script> Goldenfish. All Rights Reserved.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // 在資料中加入 heat (熱度) 屬性，數字越大代表熱度越高
             const figuresData = [
-                { id: 1, name: "兔女郎造型", manufacturer: "FuRyu", series: "BiCute Bunnies", work: "超级索尼子", character: "索尼子", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg" },
-                { id: 2, name: "櫻花和服～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "魔女之旅", character: "伊蕾娜", price: 250, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg" },
-                { id: 3, name: "～鏖殺公～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "夜刀神十香", price: 490, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg" },
-                { id: 4, name: "天使學校篇練習裝", manufacturer: "眼鏡廠", series: "GLITTER＆GLAMOURS", work: "2.5次元的誘惑", character: "莉莉艾露", price: 269, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg" },
-                { id: 5, name: "～貓咪居家服～新裝版", manufacturer: "TAiTO", series: "Desktop Cute", work: "Re:從零開始的異世界生活", character: "雷姆", price: 309, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg" },
-                { id: 6, name: "～小惡魔～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "約會大作戰", character: "時崎狂三", price: 380, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/60337e8735014698954434df208afa22.jpg" },
-                { id: 7, name: "「出遊浴衣」", manufacturer: "SEGA", series: "Luminasta", work: "莉可麗絲", character: "錦木千束", price: 460, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/2e9d4817fcb9490cab8171511643d3f8.jpg" },
-                { id: 8, name: "赫蘿 2024款", manufacturer: "良笑社", series: "POP UP PARADE", work: "狼與辛香料", character: "赫蘿", price: 830, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/4d75db48e8f54cc7b8a4a7194fad55ab.jpg" },
-                { id: 9, name: "黑川茜", manufacturer: "FuRyu", series: "Trio-Try-iT", work: "我推的孩子", character: "黑川茜", price: 428, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/209edd6d2d8f453685c9cf53c620bdf6.jpg" },
-                { id: 10, name: "～便裝造型～", manufacturer: "TAiTO", series: "Desktop Cute", work: "魔女之旅", character: "伊蕾娜", price: 405, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/09/889979f2650b421fa26830c21a773c11.jpg" },
-                { id: 11, name: "～兔女郎造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "青春豬頭少年不會夢到兔女郎學姊", character: "櫻島麻衣", price: 369, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/01/1d2f4579e554491cb52c8723f3a3bb44.jpg" },
-                { id: 12, name: "～刻刻帝～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "時崎狂三", price: 500, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/a7956aaeb3444fca91fa62c347e54ea3.jpg" },
-                { id: 13, name: "水著", manufacturer: "眼鏡廠", series: "EXQ", work: "刀劍神域", character: "莉法/桐谷直葉", price: 230, imageUrl: "https://r.hpoi.net/gk/cover/n/2018/04/b00ea949b4ac4ecf89ebaf042265a030.jpg" },
-                { id: 14, name: " ~制服ver.~ Renewal", manufacturer: "TAiTO", series: "Coreful", work: "五等分的新娘", character: "中野三玖", price: 266, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/04/238a63f3c9a2438d82669bf803559d5b.jpg" },
-                { id: 15, name: "女僕裝Ver.", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法", character: "加藤惠", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg" },
-                { id: 16, name: "～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg" },
-                { id: 17, name: "七海深奈實", manufacturer: "TAiTO", series: "Coreful", work: "弱角友崎同學", character: "七海深奈實", price: 355, imageUrl: "https://r.hpoi.net/gk/cover/n/2021/07/3a4e35c0c0f44cb99bb1d039836715ae.jpg?date=1638864678" },
-                // 新增的品項
-                { id: 18, name: "～女主角服装～", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法 Fine", character: "加藤惠", price: 280, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/11/85450070c93e4f6389add0b7f1898510.jpg?date=1655525544"}
+                { id: 1, name: "兔女郎造型", manufacturer: "FuRyu", series: "BiCute Bunnies", work: "超级索尼子", character: "索尼子", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/09/21f62bcfe5e0497aae625bf12272a5a3.jpeg", heat: 80 },
+                { id: 2, name: "櫻花和服～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "魔女之旅", character: "伊蕾娜", price: 250, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/08/3f6fdafca5324b2385cac07979120f19.jpg", heat: 90 },
+                { id: 3, name: "～鏖殺公～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "夜刀神十香", price: 490, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/ae1215a9db814cef890b15a3a4469593.jpg", heat: 88 },
+                { id: 4, name: "天使學校篇練習裝", manufacturer: "眼鏡廠", series: "GLITTER＆GLAMOURS", work: "2.5次元的誘惑", character: "莉莉艾露", price: 269, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/03/873baaac416c44a9854fce9c68db2b19.jpg", heat: 70 },
+                { id: 5, name: "～貓咪居家服～新裝版", manufacturer: "TAiTO", series: "Desktop Cute", work: "Re:從零開始的異世界生活", character: "雷姆", price: 309, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/0d4b1bb9c05d4b32a72fce5e862e9487.jpg", heat: 99 },
+                { id: 6, name: "～小惡魔～新裝版", manufacturer: "TAiTO", series: "Coreful", work: "約會大作戰", character: "時崎狂三", price: 380, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/12/60337e8735014698954434df208afa22.jpg", heat: 98 },
+                { id: 7, name: "「出遊浴衣」", manufacturer: "SEGA", series: "Luminasta", work: "莉可麗絲", character: "錦木千束", price: 460, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/2e9d4817fcb9490cab8171511643d3f8.jpg", heat: 78 },
+                { id: 8, name: "赫蘿 2024款", manufacturer: "良笑社", series: "POP UP PARADE", work: "狼與辛香料", character: "赫蘿", price: 830, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/4d75db48e8f54cc7b8a4a7194fad55ab.jpg", heat: 92 },
+                { id: 9, name: "黑川茜", manufacturer: "FuRyu", series: "Trio-Try-iT", work: "我推的孩子", character: "黑川茜", price: 428, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/04/209edd6d2d8f453685c9cf53c620bdf6.jpg", heat: 82 },
+                { id: 10, name: "～便裝造型～", manufacturer: "TAiTO", series: "Desktop Cute", work: "魔女之旅", character: "伊蕾娜", price: 405, imageUrl: "https://r.hpoi.net/gk/cover/n/2024/09/889979f2650b421fa26830c21a773c11.jpg", heat: 89 },
+                { id: 11, name: "～兔女郎造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "青春豬頭少年不會夢到兔女郎學姊", character: "櫻島麻衣", price: 369, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/01/1d2f4579e554491cb52c8723f3a3bb44.jpg", heat: 95 },
+                { id: 12, name: "～刻刻帝～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "約會大作戰", character: "時崎狂三", price: 500, imageUrl: "https://r.hpoi.net/gk/cover/n/2023/11/a7956aaeb3444fca91fa62c347e54ea3.jpg", heat: 97 },
+                { id: 13, name: "水著", manufacturer: "眼鏡廠", series: "EXQ", work: "刀劍神域", character: "莉法/桐谷直葉", price: 230, imageUrl: "https://r.hpoi.net/gk/cover/n/2018/04/b00ea949b4ac4ecf89ebaf042265a030.jpg", heat: 60 },
+                { id: 14, name: " ~制服ver.~ Renewal", manufacturer: "TAiTO", series: "Coreful", work: "五等分的新娘", character: "中野三玖", price: 266, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/04/238a63f3c9a2438d82669bf803559d5b.jpg", heat: 75 },
+                { id: 15, name: "女僕裝Ver.", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法", character: "加藤惠", price: 400, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/11/cb6f83935f684891aede6af0338c5cad.jpg", heat: 85 },
+                { id: 16, name: "～魔女服造型～", manufacturer: "TAiTO", series: "藝術家傑作 (AMP)", work: "魔女之旅", character: "伊蕾娜", price: 368, imageUrl: "https://r.hpoi.net/gk/cover/n/2022/12/85d04bab62104593a4fc7edfdbe3bba9.jpg", heat: 91 },
+                { id: 17, name: "七海深奈實", manufacturer: "TAiTO", series: "Coreful", work: "弱角友崎同學", character: "七海深奈實", price: 355, imageUrl: "https://r.hpoi.net/gk/cover/n/2021/07/3a4e35c0c0f44cb99bb1d039836715ae.jpg?date=1638864678", heat: 65 },
+                { id: 18, name: "～女主角服装～", manufacturer: "TAiTO", series: "Coreful", work: "不起眼女主角培育法 Fine", character: "加藤惠", price: 280, imageUrl: "https://r.hpoi.net/gk/cover/n/2020/11/85450070c93e4f6389add0b7f1898510.jpg?date=1655525544", heat: 86 }
             ];
 
             const productGrid = document.getElementById('productGrid');
@@ -117,6 +113,7 @@
             const totalItemsEl = document.getElementById('totalItems');
             const totalSpentEl = document.getElementById('totalSpent');
             const averagePriceEl = document.getElementById('averagePrice');
+            const sortSelect = document.getElementById('sortSelect');
 
             let currentCharacterFilter = null;
             
@@ -178,17 +175,14 @@
                         e.preventDefault();
                         const isActive = tagEl.classList.contains('active-tag');
                         
-                        // 移除所有標籤的 active 狀態
                         document.querySelectorAll('#tagCloud .active-tag').forEach(t => {
                             t.classList.remove('active-tag', 'bg-sky-600', 'text-white');
                             t.classList.add('bg-sky-100', 'text-sky-700');
                         });
 
                         if (isActive) {
-                            // 如果點擊的是已啟用的標籤，則取消篩選
                             currentCharacterFilter = null;
                         } else {
-                            // 否則，啟用新的篩選
                             currentCharacterFilter = character;
                             tagEl.classList.add('active-tag', 'bg-sky-600', 'text-white');
                             tagEl.classList.remove('bg-sky-100', 'text-sky-700');
@@ -207,17 +201,19 @@
                 averagePriceEl.textContent = figuresData.length > 0 ? (totalCost / figuresData.length).toFixed(0).toLocaleString() : 0;
             }
 
-            // 應用篩選與搜尋
+            // 應用篩選與排序
             function applyFiltersAndSearch() {
                 const searchTerm = searchInput.value.toLowerCase().trim();
-                let filteredFigures = figuresData;
+                let filteredFigures = [...figuresData];
 
+                // 1. 應用標籤篩選
                 if (currentCharacterFilter) {
                     filteredFigures = filteredFigures.filter(figure => 
                         figure.character.split('/').map(c => c.trim()).includes(currentCharacterFilter)
                     );
                 }
 
+                // 2. 應用搜尋關鍵字
                 if (searchTerm) {
                     filteredFigures = filteredFigures.filter(figure => 
                         Object.values(figure).some(val => 
@@ -226,15 +222,36 @@
                     );
                 }
                 
+                // 3. 應用排序
+                const sortBy = sortSelect.value;
+                switch(sortBy) {
+                    case 'heat_desc':
+                        filteredFigures.sort((a, b) => b.heat - a.heat);
+                        break;
+                    case 'character_asc':
+                        // 使用 localeCompare 進行中文字符的正確排序
+                        filteredFigures.sort((a, b) => a.character.localeCompare(b.character, 'zh-Hant'));
+                        break;
+                    case 'price_desc':
+                        filteredFigures.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'price_asc':
+                        filteredFigures.sort((a, b) => a.price - a.price);
+                        break;
+                }
+                
+                // 4. 渲染最終結果
                 renderFigures(filteredFigures);
             }
             
+            // 監聽事件
             searchInput.addEventListener('input', applyFiltersAndSearch);
+            sortSelect.addEventListener('change', applyFiltersAndSearch);
 
             // 初始渲染
             updateStatistics();
             generateTagCloud();
-            renderFigures(figuresData);
+            applyFiltersAndSearch(); // 初始載入時即應用預設排序
         });
     </script>
 </body>
