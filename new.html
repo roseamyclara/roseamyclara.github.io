@@ -80,6 +80,11 @@ const App = () => {
   const [selectedCategory, setSelectedCategory] = useState("全部");
   const [staffData, setStaffData] = useState([]);
 
+  // 設定網頁標題
+  useEffect(() => {
+    document.title = "豐南國中教職員查詢系統";
+  }, []);
+
   useEffect(() => {
     const lines = RAW_CSV_DATA.split('\n').filter(line => line.trim() !== "");
     const parsedData = [];
@@ -105,7 +110,7 @@ const App = () => {
           
           if (group.name === "朱慧君") group.name = "朱惠君";
 
-          // 排除名單更新：加入警衛
+          // 排除名單
           if (
             group.name.includes("會長") || 
             group.loc.includes("會長") ||
