@@ -1,8 +1,56 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Search, User, MapPin, Building, Users, Filter, Clock, GraduationCap, Briefcase, UserPlus, Sparkles } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>豐南國中教職員查詢系統</title>
+    
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 引入 React 和 ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- 引入 Babel 用來解析 JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-// 原始資料
-const RAW_CSV_DATA = `
+    <!-- 設定 Tailwind 字型與基礎樣式 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // --- 圖示元件 (取代 lucide-react 依賴) ---
+        const Icon = ({ children, className }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+                {children}
+            </svg>
+        );
+
+        const Search = ({ className }) => <Icon className={className}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></Icon>;
+        const User = ({ className }) => <Icon className={className}><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></Icon>;
+        const MapPin = ({ className }) => <Icon className={className}><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></Icon>;
+        const Building = ({ className }) => <Icon className={className}><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M16 18h.01"/></Icon>;
+        const Users = ({ className }) => <Icon className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></Icon>;
+        const Filter = ({ className }) => <Icon className={className}><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></Icon>;
+        const Clock = ({ className }) => <Icon className={className}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></Icon>;
+        const GraduationCap = ({ className }) => <Icon className={className}><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 2 0 0 0 12 0v-3.5"/></Icon>;
+        const Briefcase = ({ className }) => <Icon className={className}><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></Icon>;
+        const UserPlus = ({ className }) => <Icon className={className}><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></Icon>;
+        const Sparkles = ({ className }) => <Icon className={className}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/><path d="M5 3v4"/><path d="M9 5H5"/><path d="M19 19v4"/><path d="M23 21h-4"/></Icon>;
+
+
+        // --- 原始資料 ---
+        const RAW_CSV_DATA = `
 校長,簡芳達,,701,翁晨薇,導一,801,謝奕萱,導三,901,許玉婷,導五,王佩琪,1專一17,蔡銘珂,33專二37,蘇文楷,輔導,劉藩郁,專一14
 教務主任,劉侑承,教務,702,林美妏,導一,802,蔡佩穎,導三,902,王姿惠,導五,宋佩容,2專一20,蔡孟芳,34專三60,胡少君,輔導,呂懷平,專三54
 學務主任,黃任宏,學務,703,陳思佑,導二,803,蕭文玲,導三,903,蔡美娟,導六,李美靜,3專二42,,,林芳蘭,專三50,徐佳宸,游泳池
@@ -37,359 +85,358 @@ const RAW_CSV_DATA = `
 工友,李慧玲,總務,游泳池,蔡銓韋,學務,,,,,,蔡榮誠,32專二33,,,,,,
 `;
 
-// 代理教師名單
-const PROXY_TEACHERS = [
-  "蘇文楷", "胡少君", "林芳蘭", "黃家敏", "簡夢禪", 
-  "蘇雯羿", "王文杏", "林育任", "蔡季真", "江季軒", 
-  "蔡智丞", "楊士鋒", "呂佩貞", "谷家榮", "張順閔", 
-  "蕭可音", "王明如", "翁有震", "陳鈺錡", "郭芃妤", 
-  "詹雅嵐", "黃懷瑩", "陳智惠"
-];
+        // 代理教師名單
+        const PROXY_TEACHERS = [
+        "蘇文楷", "胡少君", "林芳蘭", "黃家敏", "簡夢禪", 
+        "蘇雯羿", "王文杏", "林育任", "蔡季真", "江季軒", 
+        "蔡智丞", "楊士鋒", "呂佩貞", "谷家榮", "張順閔", 
+        "蕭可音", "王明如", "翁有震", "陳鈺錡", "郭芃妤", 
+        "詹雅嵐", "黃懷瑩", "陳智惠"
+        ];
 
-// 輔助函式：清理地點名稱
-const cleanLocation = (loc) => {
-  if (!loc) return "未知";
-  let clean = loc.trim();
-  
-  if (clean.includes("導")) {
-    clean = clean.replace(/導([一二三四五六])/g, "導師室$1");
-  } else if (clean.includes("專")) {
-    if (clean.match(/^\d+專/)) {
-        clean = clean.replace(/^\d+/, ""); 
-    }
-    clean = clean.replace("專一", "專任教師室一 ");
-    clean = clean.replace("專二", "專任教師室二 ");
-    clean = clean.replace("專三", "專任教師室三 ");
-  } else if (clean.match(/^\d+[\s\u4e00-\u9fa5]/)) {
-     clean = clean.replace(/^\d+\s*/, "");
-  }
-
-  if (clean.includes("教務")) clean = "教務處";
-  else if (clean.includes("學務")) clean = "學務處";
-  else if (clean.includes("總務")) clean = "總務處";
-  else if (clean.includes("輔導")) clean = "輔導室";
-  else if (clean.includes("會計")) clean = "會計室";
-  else if (clean.includes("人事")) clean = "人事室";
-  else if (clean.includes("午秘")) clean = "午餐秘書室";
-  
-  return clean;
-};
-
-const App = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("全部");
-  const [staffData, setStaffData] = useState([]);
-
-  // 設定網頁標題
-  useEffect(() => {
-    document.title = "豐南國中教職員查詢系統";
-  }, []);
-
-  useEffect(() => {
-    const lines = RAW_CSV_DATA.split('\n').filter(line => line.trim() !== "");
-    const parsedData = [];
-    let idCounter = 0;
-
-    lines.forEach(line => {
-      const cols = line.split(',').map(c => c.trim());
-      
-      const groups = [
-        { title: cols[0], name: cols[1], loc: cols[2] || cols[0], rawRole: '行政' },
-        { title: cols[3], name: cols[4], loc: cols[5], rawRole: '七年級' },
-        { title: cols[6], name: cols[7], loc: cols[8], rawRole: '八年級' },
-        { title: cols[9], name: cols[10], loc: cols[11], rawRole: '九年級' },
-        { title: "專任教師", name: cols[12], loc: cols[13], rawRole: '專任' },
-        { title: "專任教師", name: cols[14], loc: cols[15], rawRole: '專任' },
-        { title: cols[16] === "專任輔導教師" ? "專輔" : "教師/教助員", name: cols[16], loc: cols[17], rawRole: '其他' },
-        { title: "教師/教助員", name: cols[18], loc: cols[19], rawRole: '其他' },
-         { title: "教師/教助員", name: cols[20], loc: cols[21], rawRole: '其他' }
-      ];
-
-      groups.forEach(group => {
-        if (group.name && group.name.length > 0 && group.name !== "null" && group.name !== "undefined") {
-          
-          if (group.name === "朱慧君") group.name = "朱惠君";
-
-          // 排除名單
-          if (
-            group.name.includes("會長") || 
-            group.loc.includes("會長") ||
-            group.name.includes("校友會") || 
-            group.loc.includes("校友會") ||
-            group.name.includes("志工") || 
-            group.loc.includes("志工") ||
-            group.name.includes("警衛") || 
-            group.loc.includes("警衛") ||
-            group.name === "呂億昌" ||
-            group.name === "劉翁世昆" ||
-            group.name === "王文龍"
-          ) {
-            return;
-          }
-
-          let displayTitle = group.title;
-          let displayLoc = cleanLocation(group.loc);
-          let category = "其他";
-
-          // ----------------------------------------------------------------
-          // 特殊名單覆蓋 (Overrides)
-          // ----------------------------------------------------------------
-          
-          if (["吳孟樺"].includes(group.name)) {
-            category = "導師";
-            displayTitle = "資優班";
-          }
-          else if (PROXY_TEACHERS.includes(group.name)) {
-            category = "代理";
-            displayTitle = "代理教師";
+        // 輔助函式：清理地點名稱
+        const cleanLocation = (loc) => {
+            if (!loc) return "未知";
+            let clean = loc.trim();
             
-            if (["詹雅嵐", "陳智惠"].includes(group.name)) {
-                displayLoc = "資源中心";
-            } else if (["王明如"].includes(group.name)) {
-                displayLoc = "學務處";
+            if (clean.includes("導")) {
+                clean = clean.replace(/導([一二三四五六])/g, "導師室$1");
+            } else if (clean.includes("專")) {
+                if (clean.match(/^\d+專/)) {
+                    clean = clean.replace(/^\d+/, ""); 
+                }
+                clean = clean.replace("專一", "專任教師室一 ");
+                clean = clean.replace("專二", "專任教師室二 ");
+                clean = clean.replace("專三", "專任教師室三 ");
+            } else if (clean.match(/^\d+[\s\u4e00-\u9fa5]/)) {
+                clean = clean.replace(/^\d+\s*/, "");
             }
-          }
-          else if (["鄭照璇"].includes(group.name)) {
-            category = "行政";
-            displayTitle = "行政人員";
-          }
-          else if (["蔡銓韋"].includes(group.name)) {
-            category = "行政";
-            displayTitle = "游泳池管理員";
-          }
-          else if (["陳奕熏"].includes(group.name)) {
-            category = "實習";
-            displayTitle = "實習老師";
-            displayLoc = "教務處";
-          }
-          else if (["呂懷平", "陳尚季", "劉藩郁", "徐佳宸"].includes(group.name)) {
-            category = "短代";
-            displayTitle = "短代教師";
-          }
-          else if (group.name.includes("Gerardo")) {
-            displayLoc = "專任教師室一";
-            displayTitle = "專任教師";
-            category = "專任";
-          }
-          // ----------------------------------------------------------------
-          // 一般規則判斷
-          // ----------------------------------------------------------------
-          else {
-            if (group.rawRole === '行政' || displayTitle.includes("主任") || displayTitle.includes("組長") || displayTitle.includes("校長") || displayTitle.includes("幹事") || displayTitle.includes("護理師") || displayTitle.includes("工友") || displayTitle.includes("助理員") || displayTitle.includes("佐理員")) {
-              category = "行政";
-              if (!group.loc) {
-                  if (displayTitle.includes("教務")) displayLoc = "教務處";
-                  else if (displayTitle.includes("學務")) displayLoc = "學務處";
-                  else if (displayTitle.includes("總務")) displayLoc = "總務處";
-                  else if (displayTitle.includes("輔導")) displayLoc = "輔導室";
-                  else displayLoc = "行政辦公室";
-              }
-            } 
-            else if (group.rawRole.includes('年級') || (displayTitle && displayTitle.match(/^\d{3}$/))) {
-              category = "導師";
-              displayTitle = `${displayTitle}班 導師`;
-            } 
-            else if (
-              group.rawRole === '專任' || 
-              displayTitle.includes("專任教師") || 
-              displayLoc.includes("專任") || 
-              displayLoc.includes("教師室") ||
-              displayLoc.includes("游泳池") || 
-              displayLoc.includes("表藝") || 
-              displayLoc.includes("圖書館") || 
-              displayLoc.includes("(體)")
-            ) {
-              category = "專任";
-              if (displayTitle === "教師/教助員") displayTitle = "專任教師";
-            } 
-            else {
-               category = "教助員"; 
-               if(displayTitle === "教師/教助員" && displayLoc.includes("處")) category = "行政";
-            }
-          }
 
-          if(group.name === "專任輔導教師") return; 
-          
-          if ((category === "教助員" || category === "其他") && displayLoc === "未知") {
-             return;
-          }
-
-          parsedData.push({
-            id: idCounter++,
-            name: group.name,
-            title: displayTitle,
-            location: displayLoc,
-            category: category,
-            originalLoc: group.loc
-          });
-        }
-      });
-    });
-    
-    setStaffData(parsedData);
-  }, []);
-
-  const filteredData = useMemo(() => {
-    return staffData.filter(item => {
-      const matchesSearch = 
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        item.location.includes(searchTerm) || 
-        item.title.includes(searchTerm) ||
-        (item.originalLoc && item.originalLoc.includes(searchTerm));
-      
-      const matchesCategory = selectedCategory === "全部" || item.category === selectedCategory;
-
-      return matchesSearch && matchesCategory;
-    });
-  }, [searchTerm, selectedCategory, staffData]);
-
-  const categories = ["全部", "行政", "導師", "專任", "代理", "短代", "實習", "教助員"];
-
-  // 定義每個分類的樣式
-  const getCategoryStyle = (category) => {
-    switch(category) {
-      case '行政': return 'bg-purple-50 text-purple-600 border-purple-100';
-      case '導師': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
-      case '專任': return 'bg-orange-50 text-orange-600 border-orange-100';
-      case '代理': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
-      case '短代': return 'bg-sky-50 text-sky-600 border-sky-100';
-      case '實習': return 'bg-teal-50 text-teal-600 border-teal-100';
-      case '教助員': return 'bg-amber-50 text-amber-600 border-amber-100';
-      default: return 'bg-slate-50 text-slate-600 border-slate-100';
-    }
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 text-slate-800 font-sans selection:bg-blue-200">
-      {/* 浮動式 Header */}
-      <div className="sticky top-4 z-20 mx-4">
-        <header className="max-w-7xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 px-6 py-4 transition-all duration-300">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/30 text-white transform hover:rotate-3 transition-transform duration-300">
-                <Building className="w-6 h-6" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
-                  豐南國中
-                </h1>
-                <p className="text-slate-500 text-xs font-medium tracking-wide">教職員工辦公室查詢</p>
-              </div>
-            </div>
+            if (clean.includes("教務")) clean = "教務處";
+            else if (clean.includes("學務")) clean = "學務處";
+            else if (clean.includes("總務")) clean = "總務處";
+            else if (clean.includes("輔導")) clean = "輔導室";
+            else if (clean.includes("會計")) clean = "會計室";
+            else if (clean.includes("人事")) clean = "人事室";
+            else if (clean.includes("午秘")) clean = "午餐秘書室";
             
-            <div className="relative w-full md:w-96 group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full opacity-0 group-hover:opacity-50 transition duration-500 blur"></div>
-              <input
-                type="text"
-                placeholder="搜尋姓名、班級或處室..."
-                className="relative w-full pl-11 pr-4 py-2.5 bg-slate-50 border-0 rounded-full text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400/50 shadow-inner transition-all placeholder:text-slate-400"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <Search className="absolute left-4 top-3 w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
-            </div>
-          </div>
-        </header>
-      </div>
+            return clean;
+        };
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 pt-8 pb-12">
-        
-        {/* Category Filters */}
-        <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-            <div className="flex items-center gap-2 text-slate-400 font-bold text-sm uppercase tracking-wider px-2">
-                <Sparkles className="w-4 h-4" />
-                <span>Filters</span>
-            </div>
-            <div className="flex flex-wrap justify-center md:justify-start gap-2">
-            {categories.map(cat => (
-                <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform ${
-                    selectedCategory === cat
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 scale-105"
-                    : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 hover:border-blue-200 hover:text-blue-600 hover:-translate-y-0.5"
-                }`}
-                >
-                {cat}
-                </button>
-            ))}
-            </div>
-        </div>
+        const App = () => {
+            const [searchTerm, setSearchTerm] = useState("");
+            const [selectedCategory, setSelectedCategory] = useState("全部");
+            const [staffData, setStaffData] = useState([]);
 
-        {/* Stats */}
-        <div className="mb-6 px-2 text-sm font-medium text-slate-400 flex items-center justify-between">
-            <span>找到 <span className="text-blue-600 font-bold text-lg mx-1">{filteredData.length}</span> 位夥伴</span>
-            {searchTerm && <span className="text-xs bg-slate-200 px-2 py-1 rounded text-slate-500">搜尋中: {searchTerm}</span>}
-        </div>
+            useEffect(() => {
+                const lines = RAW_CSV_DATA.split('\n').filter(line => line.trim() !== "");
+                const parsedData = [];
+                let idCounter = 0;
 
-        {/* Results Grid */}
-        {filteredData.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            {filteredData.map((staff) => (
-              <div 
-                key={staff.id} 
-                className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-100 overflow-hidden"
-              >
-                {/* 裝飾背景泡泡 */}
-                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-full opacity-50 group-hover:scale-150 group-hover:from-blue-50 group-hover:to-indigo-50 transition-transform duration-500"></div>
+                lines.forEach(line => {
+                    const cols = line.split(',').map(c => c.trim());
+                    
+                    const groups = [
+                        { title: cols[0], name: cols[1], loc: cols[2] || cols[0], rawRole: '行政' },
+                        { title: cols[3], name: cols[4], loc: cols[5], rawRole: '七年級' },
+                        { title: cols[6], name: cols[7], loc: cols[8], rawRole: '八年級' },
+                        { title: cols[9], name: cols[10], loc: cols[11], rawRole: '九年級' },
+                        { title: "專任教師", name: cols[12], loc: cols[13], rawRole: '專任' },
+                        { title: "專任教師", name: cols[14], loc: cols[15], rawRole: '專任' },
+                        { title: cols[16] === "專任輔導教師" ? "專輔" : "教師/教助員", name: cols[16], loc: cols[17], rawRole: '其他' },
+                        { title: "教師/教助員", name: cols[18], loc: cols[19], rawRole: '其他' },
+                        { title: "教師/教助員", name: cols[20], loc: cols[21], rawRole: '其他' }
+                    ];
 
-                <div className="relative flex items-start justify-between mb-4">
-                  <div className={`p-2.5 rounded-xl border ${getCategoryStyle(staff.category)}`}>
-                    {staff.category === '行政' ? <Building className="w-5 h-5" /> :
-                     staff.category === '導師' ? <Users className="w-5 h-5" /> :
-                     staff.category === '專任' ? <User className="w-5 h-5" /> :
-                     staff.category === '代理' ? <UserPlus className="w-5 h-5" /> :
-                     staff.category === '短代' ? <Clock className="w-5 h-5" /> :
-                     staff.category === '實習' ? <GraduationCap className="w-5 h-5" /> :
-                     staff.category === '教助員' ? <Briefcase className="w-5 h-5" /> :
-                     <User className="w-5 h-5" />}
-                  </div>
-                  <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border shadow-sm ${
-                      staff.title === '資優班' 
-                        ? 'bg-pink-50 text-pink-600 border-pink-100' 
-                        : 'bg-white text-slate-500 border-slate-100'
-                  }`}>
-                    {staff.title.replace('班 導師', '班')}
-                  </span>
-                </div>
+                    groups.forEach(group => {
+                        if (group.name && group.name.length > 0 && group.name !== "null" && group.name !== "undefined") {
+                        
+                        if (group.name === "朱慧君") group.name = "朱惠君";
+
+                        // 排除名單
+                        if (
+                            group.name.includes("會長") || 
+                            group.loc.includes("會長") ||
+                            group.name.includes("校友會") || 
+                            group.loc.includes("校友會") ||
+                            group.name.includes("志工") || 
+                            group.loc.includes("志工") ||
+                            group.name.includes("警衛") || 
+                            group.loc.includes("警衛") ||
+                            group.name === "呂億昌" ||
+                            group.name === "劉翁世昆" ||
+                            group.name === "王文龍"
+                        ) {
+                            return;
+                        }
+
+                        let displayTitle = group.title;
+                        let displayLoc = cleanLocation(group.loc);
+                        let category = "其他";
+
+                        // ----------------------------------------------------------------
+                        // 特殊名單覆蓋 (Overrides)
+                        // ----------------------------------------------------------------
+                        
+                        if (["吳孟樺"].includes(group.name)) {
+                            category = "導師";
+                            displayTitle = "資優班";
+                        }
+                        else if (PROXY_TEACHERS.includes(group.name)) {
+                            category = "代理";
+                            displayTitle = "代理教師";
+                            
+                            if (["詹雅嵐", "陳智惠"].includes(group.name)) {
+                                displayLoc = "資源中心";
+                            } else if (["王明如"].includes(group.name)) {
+                                displayLoc = "學務處";
+                            }
+                        }
+                        else if (["鄭照璇"].includes(group.name)) {
+                            category = "行政";
+                            displayTitle = "行政人員";
+                        }
+                        else if (["蔡銓韋"].includes(group.name)) {
+                            category = "行政";
+                            displayTitle = "游泳池管理員";
+                        }
+                        else if (["陳奕熏"].includes(group.name)) {
+                            category = "實習";
+                            displayTitle = "實習老師";
+                            displayLoc = "教務處";
+                        }
+                        else if (["呂懷平", "陳尚季", "劉藩郁", "徐佳宸"].includes(group.name)) {
+                            category = "短代";
+                            displayTitle = "短代教師";
+                        }
+                        else if (group.name.includes("Gerardo")) {
+                            displayLoc = "專任教師室一";
+                            displayTitle = "專任教師";
+                            category = "專任";
+                        }
+                        // ----------------------------------------------------------------
+                        // 一般規則判斷
+                        // ----------------------------------------------------------------
+                        else {
+                            if (group.rawRole === '行政' || displayTitle.includes("主任") || displayTitle.includes("組長") || displayTitle.includes("校長") || displayTitle.includes("幹事") || displayTitle.includes("護理師") || displayTitle.includes("工友") || displayTitle.includes("助理員") || displayTitle.includes("佐理員")) {
+                            category = "行政";
+                            if (!group.loc) {
+                                if (displayTitle.includes("教務")) displayLoc = "教務處";
+                                else if (displayTitle.includes("學務")) displayLoc = "學務處";
+                                else if (displayTitle.includes("總務")) displayLoc = "總務處";
+                                else if (displayTitle.includes("輔導")) displayLoc = "輔導室";
+                                else displayLoc = "行政辦公室";
+                            }
+                            } 
+                            else if (group.rawRole.includes('年級') || (displayTitle && displayTitle.match(/^\d{3}$/))) {
+                            category = "導師";
+                            displayTitle = `${displayTitle}班 導師`;
+                            } 
+                            else if (
+                            group.rawRole === '專任' || 
+                            displayTitle.includes("專任教師") || 
+                            displayLoc.includes("專任") || 
+                            displayLoc.includes("教師室") || 
+                            displayLoc.includes("游泳池") || 
+                            displayLoc.includes("表藝") || 
+                            displayLoc.includes("圖書館") || 
+                            displayLoc.includes("(體)")
+                            ) {
+                            category = "專任";
+                            if (displayTitle === "教師/教助員") displayTitle = "專任教師";
+                            } 
+                            else {
+                            category = "教助員"; 
+                            if(displayTitle === "教師/教助員" && displayLoc.includes("處")) category = "行政";
+                            }
+                        }
+
+                        if(group.name === "專任輔導教師") return; 
+                        
+                        if ((category === "教助員" || category === "其他") && displayLoc === "未知") {
+                            return;
+                        }
+
+                        parsedData.push({
+                            id: idCounter++,
+                            name: group.name,
+                            title: displayTitle,
+                            location: displayLoc,
+                            category: category,
+                            originalLoc: group.loc
+                        });
+                        }
+                    });
+                });
                 
-                <h3 className="relative text-xl font-black text-slate-800 mb-2 tracking-tight group-hover:text-blue-700 transition-colors">
-                    {staff.name}
-                </h3>
+                setStaffData(parsedData);
+            }, []);
+
+            const filteredData = useMemo(() => {
+                return staffData.filter(item => {
+                const matchesSearch = 
+                    item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                    item.location.includes(searchTerm) || 
+                    item.title.includes(searchTerm) ||
+                    (item.originalLoc && item.originalLoc.includes(searchTerm));
                 
-                <div className="relative flex items-center text-slate-500 bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 group-hover:bg-blue-50/50 group-hover:border-blue-100 transition-colors">
-                  <MapPin className="w-4 h-4 mr-2 text-rose-500 flex-shrink-0" />
-                  <span className="font-semibold text-sm truncate" title={staff.location}>
-                    {staff.location}
-                  </span>
+                const matchesCategory = selectedCategory === "全部" || item.category === selectedCategory;
+
+                return matchesSearch && matchesCategory;
+                });
+            }, [searchTerm, selectedCategory, staffData]);
+
+            const categories = ["全部", "行政", "導師", "專任", "代理", "短代", "實習", "教助員"];
+
+            const getCategoryStyle = (category) => {
+                switch(category) {
+                    case '行政': return 'bg-purple-50 text-purple-600 border-purple-100';
+                    case '導師': return 'bg-emerald-50 text-emerald-600 border-emerald-100';
+                    case '專任': return 'bg-orange-50 text-orange-600 border-orange-100';
+                    case '代理': return 'bg-indigo-50 text-indigo-600 border-indigo-100';
+                    case '短代': return 'bg-sky-50 text-sky-600 border-sky-100';
+                    case '實習': return 'bg-teal-50 text-teal-600 border-teal-100';
+                    case '教助員': return 'bg-amber-50 text-amber-600 border-amber-100';
+                    default: return 'bg-slate-50 text-slate-600 border-slate-100';
+                }
+            };
+
+            return (
+                <div className="font-sans selection:bg-blue-200">
+                    {/* 浮動式 Header */}
+                    <div className="sticky top-4 z-20 mx-4">
+                        <header className="max-w-7xl mx-auto bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-white/50 px-6 py-4 transition-all duration-300">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div className="flex items-center gap-3">
+                            <div className="p-2.5 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl shadow-lg shadow-blue-500/30 text-white transform hover:rotate-3 transition-transform duration-300">
+                                <Building className="w-6 h-6" />
+                            </div>
+                            <div>
+                                <h1 className="text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
+                                豐南國中
+                                </h1>
+                                <p className="text-slate-500 text-xs font-medium tracking-wide">教職員工辦公室查詢</p>
+                            </div>
+                            </div>
+                            
+                            <div className="relative w-full md:w-96 group">
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-300 to-purple-300 rounded-full opacity-0 group-hover:opacity-50 transition duration-500 blur"></div>
+                            <input
+                                type="text"
+                                placeholder="搜尋姓名、班級或處室..."
+                                className="relative w-full pl-11 pr-4 py-2.5 bg-slate-50 border-0 rounded-full text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-400/50 shadow-inner transition-all placeholder:text-slate-400"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <Search className="absolute left-4 top-3 w-5 h-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                            </div>
+                        </div>
+                        </header>
+                    </div>
+
+                    {/* Main Content */}
+                    <main className="max-w-7xl mx-auto px-4 pt-8 pb-12">
+                        
+                        {/* Category Filters */}
+                        <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
+                            <div className="flex items-center gap-2 text-slate-400 font-bold text-sm uppercase tracking-wider px-2">
+                                <Sparkles className="w-4 h-4" />
+                                <span>Filters</span>
+                            </div>
+                            <div className="flex flex-wrap justify-center md:justify-start gap-2">
+                            {categories.map(cat => (
+                                <button
+                                key={cat}
+                                onClick={() => setSelectedCategory(cat)}
+                                className={`px-5 py-2 rounded-full text-sm font-bold tracking-wide transition-all duration-300 transform ${
+                                    selectedCategory === cat
+                                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 scale-105"
+                                    : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 hover:border-blue-200 hover:text-blue-600 hover:-translate-y-0.5"
+                                }`}
+                                >
+                                {cat}
+                                </button>
+                            ))}
+                            </div>
+                        </div>
+
+                        {/* Stats */}
+                        <div className="mb-6 px-2 text-sm font-medium text-slate-400 flex items-center justify-between">
+                            <span>找到 <span className="text-blue-600 font-bold text-lg mx-1">{filteredData.length}</span> 位夥伴</span>
+                            {searchTerm && <span className="text-xs bg-slate-200 px-2 py-1 rounded text-slate-500">搜尋中: {searchTerm}</span>}
+                        </div>
+
+                        {/* Results Grid */}
+                        {filteredData.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+                            {filteredData.map((staff) => (
+                            <div 
+                                key={staff.id} 
+                                className="group relative bg-white rounded-2xl shadow-sm border border-slate-100 p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 hover:border-indigo-100 overflow-hidden"
+                            >
+                                {/* 裝飾背景泡泡 */}
+                                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-24 h-24 bg-gradient-to-br from-slate-50 to-slate-100 rounded-full opacity-50 group-hover:scale-150 group-hover:from-blue-50 group-hover:to-indigo-50 transition-transform duration-500"></div>
+
+                                <div className="relative flex items-start justify-between mb-4">
+                                <div className={`p-2.5 rounded-xl border ${getCategoryStyle(staff.category)}`}>
+                                    {staff.category === '行政' ? <Building className="w-5 h-5" /> :
+                                    staff.category === '導師' ? <Users className="w-5 h-5" /> :
+                                    staff.category === '專任' ? <User className="w-5 h-5" /> :
+                                    staff.category === '代理' ? <UserPlus className="w-5 h-5" /> :
+                                    staff.category === '短代' ? <Clock className="w-5 h-5" /> :
+                                    staff.category === '實習' ? <GraduationCap className="w-5 h-5" /> :
+                                    staff.category === '教助員' ? <Briefcase className="w-5 h-5" /> :
+                                    <User className="w-5 h-5" />}
+                                </div>
+                                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border shadow-sm ${
+                                    staff.title === '資優班' 
+                                        ? 'bg-pink-50 text-pink-600 border-pink-100' 
+                                        : 'bg-white text-slate-500 border-slate-100'
+                                }`}>
+                                    {staff.title.replace('班 導師', '班')}
+                                </span>
+                                </div>
+                                
+                                <h3 className="relative text-xl font-black text-slate-800 mb-2 tracking-tight group-hover:text-blue-700 transition-colors">
+                                    {staff.name}
+                                </h3>
+                                
+                                <div className="relative flex items-center text-slate-500 bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 group-hover:bg-blue-50/50 group-hover:border-blue-100 transition-colors">
+                                <MapPin className="w-4 h-4 mr-2 text-rose-500 flex-shrink-0" />
+                                <span className="font-semibold text-sm truncate" title={staff.location}>
+                                    {staff.location}
+                                </span>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                        ) : (
+                        <div className="flex flex-col items-center justify-center py-24 text-slate-400 bg-white/50 rounded-3xl border border-dashed border-slate-200">
+                            <div className="bg-slate-100 p-4 rounded-full mb-4 animate-pulse">
+                                <Search className="w-8 h-8 opacity-40" />
+                            </div>
+                            <p className="text-lg font-medium">哎呀，找不到「{searchTerm}」</p>
+                            <p className="text-sm opacity-60">試試看其他關鍵字？</p>
+                        </div>
+                        )}
+                    </main>
+
+                    {/* Footer */}
+                    <footer className="bg-white/60 backdrop-blur border-t border-slate-200 mt-auto py-8">
+                        <div className="max-w-6xl mx-auto px-4 text-center">
+                        <p className="text-slate-600 font-medium text-sm">© 114學年度 豐南國中</p>
+                        <p className="mt-2 text-xs text-slate-400 font-mono bg-slate-100 inline-block px-3 py-1 rounded-full">
+                            Data Source: 114學年度第1學期教職員工名單座位表0911
+                        </p>
+                        </div>
+                    </footer>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-slate-400 bg-white/50 rounded-3xl border border-dashed border-slate-200">
-            <div className="bg-slate-100 p-4 rounded-full mb-4 animate-pulse">
-                <Search className="w-8 h-8 opacity-40" />
-            </div>
-            <p className="text-lg font-medium">哎呀，找不到「{searchTerm}」</p>
-            <p className="text-sm opacity-60">試試看其他關鍵字？</p>
-          </div>
-        )}
-      </main>
+            );
+        };
 
-      {/* Footer */}
-      <footer className="bg-white/60 backdrop-blur border-t border-slate-200 mt-auto py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <p className="text-slate-600 font-medium text-sm">© 114學年度 豐南國中</p>
-          <p className="mt-2 text-xs text-slate-400 font-mono bg-slate-100 inline-block px-3 py-1 rounded-full">
-            Data Source: 114學年度第1學期教職員工名單座位表0911
-          </p>
-        </div>
-      </footer>
-    </div>
-  );
-};
-
-export default App;
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
