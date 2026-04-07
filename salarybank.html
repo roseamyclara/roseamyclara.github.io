@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編制外教師 - 系統登入</title>
+    <title>編制外教師 - 系統管理</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
 
@@ -66,7 +66,7 @@
             min-height: 1.2em;
         }
 
-        /* --- 主程式介面樣式 (預設隱藏) --- */
+        /* --- 主程式介面樣式 --- */
         body.app-loaded {
             background-color: #f4f7f9;
             display: block;
@@ -156,6 +156,7 @@
             color: #0056b3;
             font-weight: bold;
             font-family: monospace;
+            transition: background 0.2s;
         }
         .id-cell:hover { text-decoration: underline; background: #cce5ff; }
 
@@ -213,7 +214,7 @@
             const passwordInput = document.getElementById('password-input');
             const loginError = document.getElementById('login-error');
             
-            // 使用 trim() 確保不會因為前後空格導致錯誤
+            // 使用 trim() 移除前後空白確保比對成功
             if (passwordInput.value.trim() === CORRECT_PASSWORD) {
                 document.body.classList.remove('login-prompt');
                 document.body.classList.add('app-loaded');
@@ -247,7 +248,7 @@
                                     <tr>
                                         <th>類別</th>
                                         <th>姓名</th>
-                                        <th>身分證字號 (點擊複製6位)</th>
+                                        <th>身分證字號 (點擊複製7位)</th>
                                         <th>薪轉銀行</th>
                                     </tr>
                                 </thead>
@@ -286,31 +287,35 @@
                 <tr>
                     <td>${p.category}</td>
                     <td>${p.name}</td>
-                    <td class="id-cell" onclick="copyId('${p.id}', this)">${p.id}</td>
+                    <td class="id-cell" title="點擊複製 7 位數字" onclick="copyId('${p.id}', this)">${p.id}</td>
                     <td>${p.bank}</td>
                 </tr>
             `).join('');
         }
 
-        // 複製邏輯：抓取第 2 碼到第 7 碼 (共 6 位數字)
+        // 修改點：現在截取第 2 碼到第 8 碼 (共 7 位數字)
         function copyId(fullId, el) {
-            const sixDigits = fullId.substring(1, 7);
-            navigator.clipboard.writeText(sixDigits).then(() => {
+            if (!fullId) return;
+            const sevenDigits = fullId.substring(1, 8); 
+            
+            navigator.clipboard.writeText(sevenDigits).then(() => {
                 const oldText = el.innerText;
-                el.innerText = "已複製 " + sixDigits;
-                el.style.color = "#28a745";
+                el.innerText = "已複製 " + sevenDigits;
+                el.style.backgroundColor = "#90ee90";
                 setTimeout(() => {
                     el.innerText = oldText;
-                    el.style.color = "";
+                    el.style.backgroundColor = "";
                 }, 1000);
+            }).catch(err => {
+                alert("複製失敗，請手動複製");
             });
         }
 
-        // 自動登出計時
+        // 自動登出計時 (30分鐘)
         function startTimer() {
             clearTimeout(autoLockTimer);
             autoLockTimer = setTimeout(() => {
-                alert("作業逾時，請重新登入");
+                alert("安全考量：工作階段已逾時，請重新登入。");
                 location.reload();
             }, LOCK_TIMEOUT);
         }
