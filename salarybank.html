@@ -1,22 +1,329 @@
-function attemptLogin() {
-    // 使用 .trim() 自動去掉使用者不小心輸入的前後空格
-    const enteredPassword = passwordInput.value.trim(); 
-    
-    if (enteredPassword === CORRECT_PASSWORD) {
-        loginContainer.style.display = 'none';
-        if(loginError) loginError.textContent = '';
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>編制外教師 - 系統登入</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap');
 
-        document.body.classList.remove('login-prompt');
-        document.body.classList.add('app-loaded');
-        document.title = '編制外教師';
-        appWrapper.style.display = 'block';
-        initializeAppInterface();
-    } else {
-        if(loginError) {
-            // 提示更具體一點，幫助檢查
-            loginError.textContent = '密碼錯誤。請注意大小寫及是否為半形字元。';
+        /* --- 登入介面樣式 --- */
+        body.login-prompt {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0056b3;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 0;
         }
-        passwordInput.value = '';
-        passwordInput.focus();
-    }
-}
+
+        #login-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 300px;
+        }
+
+        #login-container h2 {
+            color: #0056b3;
+            margin-bottom: 20px;
+        }
+
+        #login-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        #login-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 700;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        #login-container button:hover {
+            background-color: #0056b3;
+        }
+
+        #login-error {
+            color: #d9534f;
+            margin-top: 10px;
+            font-size: 0.9em;
+            min-height: 1.2em;
+        }
+
+        /* --- 主程式介面樣式 (預設隱藏) --- */
+        body.app-loaded {
+            background-color: #f4f7f9;
+            display: block;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        #app-wrapper {
+            display: none;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            flex: 0 0 220px;
+            background-color: #eef3f8;
+            padding: 20px;
+            border-right: 1px solid #d1ddee;
+        }
+
+        .sidebar h2 {
+            color: #0056b3;
+            font-size: 1.2em;
+            border-bottom: 2px solid #b3d1ff;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        #category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        #category-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #fff;
+            border: 1px solid #d1ddee;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #0056b3;
+            transition: all 0.2s;
+        }
+
+        #category-list li:hover { background: #d6eaff; }
+        #category-list li.active {
+            background: #0056b3;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px 30px;
+        }
+
+        .main-content h1 {
+            color: #0062cc;
+            border-bottom: 3px solid #a0c7ff;
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .title-icon { width: 30px; height: 30px; margin-right: 10px; fill: currentColor; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        thead { background: #007bff; color: #fff; }
+        th, td { padding: 12px; text-align: left; border: 1px solid #d1ddee; }
+        tbody tr:nth-child(even) { background: #f8faff; }
+        tbody tr:hover { background: #e2eefa; }
+
+        .id-cell {
+            cursor: pointer;
+            color: #0056b3;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .id-cell:hover { text-decoration: underline; background: #cce5ff; }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; }
+        }
+    </style>
+</head>
+<body class="login-prompt">
+
+    <div id="login-container">
+        <h2>系統登入</h2>
+        <input type="password" id="password-input" placeholder="請輸入密碼" autocomplete="off">
+        <button id="login-button">進入系統</button>
+        <div id="login-error"></div>
+    </div>
+
+    <div id="app-wrapper"></div>
+
+    <script>
+        // 設定區
+        const CORRECT_PASSWORD = "fn132";
+        const LOCK_TIMEOUT = 30 * 60 * 1000; 
+        let autoLockTimer = null;
+
+        const personnelData = [
+            { category: "華語文教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+            { category: "ELTA外師", name: "LE KHANH TUONG", id: "L800272340", bank: "郵局" },
+            { category: "ELTA外師", name: "LE TUAN DAT", id: "B800325526", bank: "國泰世華" },
+            { category: "手語教師", name: "申屠名俐", id: "F221938936", bank: "台灣銀行" },
+            { category: "短代教師", name: "呂懷平", id: "L122195393", bank: "土地銀行" },
+            { category: "短代教師", name: "劉承庭", id: "L124935108", bank: "土地銀行" },
+            { category: "短代教師", name: "劉藩郁", id: "L120034548", bank: "土地銀行" },
+            { category: "短代教師", name: "徐佳宸", id: "L125466497", bank: "土地銀行" },
+            { category: "教助員", name: "李聖心", id: "B220479792", bank: "土地銀行" },
+            { category: "教助員", name: "羅沛婷", id: "L223096104", bank: "土地銀行" },
+            { category: "治療師", name: "林芮怡", id: "K222082857", bank: "台灣銀行" },
+            { category: "治療師", name: "蘇秋溶", id: "V220304591", bank: "國泰世華" },
+            { category: "高關懷教師", name: "莊惠如", id: "B223419029", bank: "國泰世華" },
+            { category: "高關懷教師", name: "蕭乃源", id: "L120023849", bank: "新光銀行" },
+            { category: "社團教師", name: "林俞瑄", id: "B223478573", bank: "台灣銀行" },
+            { category: "社團教師", name: "施宇哲", id: "L124375040", bank: "土地銀行" },
+            { category: "社團教師", name: "張世豪", id: "L123563993", bank: "土地銀行" },
+            { category: "社團教師", name: "陳裕亮", id: "L122122470", bank: "土地銀行" },
+            { category: "本土語(族語)教師", name: "鍾美欄", id: "T222169927", bank: "土地銀行" },
+            { category: "本土語(族語)教師", name: "謝麗芬", id: "K221566372", bank: "台灣銀行" },
+            { category: "本土語(族語)教師", name: "陳淑蕙", id: "V220622647", bank: "台灣銀行" },
+            { category: "新住民語教師", name: "潘青心", id: "B260036897", bank: "郵局" },
+            { category: "新住民語教師", name: "溫琪琳", id: "L225196643", bank: "郵局" }
+        ];
+
+        // 登入邏輯
+        function attemptLogin() {
+            const passwordInput = document.getElementById('password-input');
+            const loginError = document.getElementById('login-error');
+            
+            // 使用 trim() 確保不會因為前後空格導致錯誤
+            if (passwordInput.value.trim() === CORRECT_PASSWORD) {
+                document.body.classList.remove('login-prompt');
+                document.body.classList.add('app-loaded');
+                document.getElementById('login-container').style.display = 'none';
+                document.getElementById('app-wrapper').style.display = 'block';
+                document.title = "編制外教師管理系統";
+                initializeApp();
+            } else {
+                loginError.textContent = "密碼錯誤，請重新輸入。";
+                passwordInput.value = "";
+                passwordInput.focus();
+            }
+        }
+
+        // 初始化主程式內容
+        function initializeApp() {
+            const appWrapper = document.getElementById('app-wrapper');
+            const starSVG = `<svg class="title-icon" viewBox="0 0 512 512"><path d="M244.4 10.7C249.7-3.6 262.3-3.6 267.6 10.7L322.9 160.7L484.3 174.9C500.3 176.3 506.9 195.6 495.9 207.5L377.6 324.5L410.1 484.1C413.2 499.9 396.3 511.3 381.8 503.1L256 423.1L130.2 503.1C115.7 511.3 98.8 499.9 101.9 484.1L134.4 324.5L16.1 207.5C5.1 195.6 11.7 176.3 27.7 174.9L189.1 160.7L244.4 10.7z"/></svg>`;
+
+            appWrapper.innerHTML = `
+                <div class="container">
+                    <aside class="sidebar">
+                        <h2>類別篩選</h2>
+                        <ul id="category-list"></ul>
+                    </aside>
+                    <main class="main-content">
+                        <h1>${starSVG} 編制外教師名冊</h1>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>類別</th>
+                                        <th>姓名</th>
+                                        <th>身分證字號 (點擊複製6位)</th>
+                                        <th>薪轉銀行</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-body"></tbody>
+                            </table>
+                        </div>
+                    </main>
+                </div>
+            `;
+
+            renderCategories();
+            renderTable(personnelData);
+            startTimer();
+        }
+
+        function renderCategories() {
+            const list = document.getElementById('category-list');
+            const categories = ["全部", ...new Set(personnelData.map(p => p.category))];
+            
+            list.innerHTML = categories.map(cat => `<li data-cat="${cat}">${cat}</li>`).join('');
+            
+            list.querySelectorAll('li').forEach(li => {
+                li.onclick = function() {
+                    list.querySelectorAll('li').forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                    const filtered = this.dataset.cat === "全部" ? personnelData : personnelData.filter(p => p.category === this.dataset.cat);
+                    renderTable(filtered);
+                };
+            });
+            list.querySelector('li').classList.add('active');
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById('table-body');
+            tbody.innerHTML = data.map(p => `
+                <tr>
+                    <td>${p.category}</td>
+                    <td>${p.name}</td>
+                    <td class="id-cell" onclick="copyId('${p.id}', this)">${p.id}</td>
+                    <td>${p.bank}</td>
+                </tr>
+            `).join('');
+        }
+
+        // 複製邏輯：抓取第 2 碼到第 7 碼 (共 6 位數字)
+        function copyId(fullId, el) {
+            const sixDigits = fullId.substring(1, 7);
+            navigator.clipboard.writeText(sixDigits).then(() => {
+                const oldText = el.innerText;
+                el.innerText = "已複製 " + sixDigits;
+                el.style.color = "#28a745";
+                setTimeout(() => {
+                    el.innerText = oldText;
+                    el.style.color = "";
+                }, 1000);
+            });
+        }
+
+        // 自動登出計時
+        function startTimer() {
+            clearTimeout(autoLockTimer);
+            autoLockTimer = setTimeout(() => {
+                alert("作業逾時，請重新登入");
+                location.reload();
+            }, LOCK_TIMEOUT);
+        }
+
+        // 事件監聽
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('login-button');
+            const input = document.getElementById('password-input');
+
+            btn.onclick = attemptLogin;
+            input.onkeypress = (e) => { if (e.key === 'Enter') attemptLogin(); };
+            input.focus();
+        });
+    </script>
+</body>
+</html>
