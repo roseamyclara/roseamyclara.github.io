@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE EATS | 城市美食探險</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* 全域變數設定 */
+        :root {
+            --primary: #FFC900;
+            --secondary: #FF90E8;
+            --accent: #3B3B98;
+            --bg: #F4F4F0;
+            --black: #000000;
+            --border-width: 3px;
+        }
+
+        /* 基礎重置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        /* 新粗獷主義共用陰影 */
+        .brutal-shadow {
+            box-shadow: 6px 6px 0px var(--black);
+            border: var(--border-width) solid var(--black);
+        }
+
+        /* Header */
+        header {
+            padding: 20px 40px;
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: var(--border-width) solid var(--black);
+        }
+
+        header h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section (主視覺區) */
+        .hero {
+            padding: 80px 40px;
+            background-color: var(--primary);
+            border-bottom: var(--border-width) solid var(--black);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 20px;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        /* 主內容網格區 */
+        .container {
+            padding: 60px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        /* 餐廳卡片設計 */
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        .card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 10px 10px 0px var(--black);
+        }
+
+        .card-header {
+            margin-bottom: 16px;
+        }
+
+        .card-title-zh {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .card-title-en {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 12px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 50px;
+            border: 2px solid var(--black);
+            background-color: var(--secondary);
+            transition: transform 0.2s;
+        }
+
+        .tag:hover {
+            transform: rotate(-3deg) scale(1.05);
+        }
+
+        .tag.price {
+            background-color: var(--bg);
+        }
+
+        .card-body {
+            flex-grow: 1;
+            margin-bottom: 24px;
+        }
+
+        .recommend-title {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .recommend-items {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Google Map 連結按鈕 */
+        .map-btn {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: var(--accent);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 12px 0;
+            border-radius: 8px;
+            transition: all 0.1s ease-in-out;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .map-btn:hover {
+            background-color: #2a2a72;
+        }
+
+        .map-btn:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px var(--black);
+        }
+
+        /* 頁尾 */
+        footer {
+            padding: 40px;
+            text-align: center;
+            background-color: var(--black);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 40px;
+        }
+
+        /* 動畫定義 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .hero { padding: 60px 20px; }
+            .container { padding: 40px 20px; }
+            .hero h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>VIBE EATS.</h1>
+        <div style="font-weight: 700;">Vancouver & Beyond</div>
+    </header>
+
+    <section class="hero">
+        <h2>Taste<br>The City</h2>
+        <p>不再煩惱下一餐吃什麼！我們精選了最潮、最好吃的美食清單，從隱藏版路邊攤到頂級無菜單料理，點擊卡片直接開啟導航，Eat hard, Play hard!</p>
+    </section>
+
+    <main class="container">
+        <div class="restaurant-grid" id="grid">
+            </div>
+    </main>
+
+    <footer>
+        STAY HUNGRY. © 2026 VIBE EATS.
+    </footer>
+
+    <script>
+        // 原始 CSV 資料 (已處理為字串格式)
+        const rawData = `Iron Goat Pub & Grill,鐵山羊酒吧烤肉店,CA$20-40,2,燒烤,烤肉排/炸魚薯條/蒜味乳酪麵包/艾爾啤酒起司沾醬,51.0963,-115.3456
+The Grizzly House,灰熊屋,CA$40-90,3,火鍋,傳統瑞士起司鍋/綜合野味拼盤(水牛/鹿肉/鴕鳥)/巧克力起司火鍋,51.1743,-115.5714
+Crazyweed Kitchen,瘋草廚房,CA$30-90,3,餐廳,越南風味豬肉球/柴燒羊肉披薩/烤肋眼牛排/泰式紅咖哩海鮮,51.0899,-115.3526
+Sauvage,野性法式餐廳,超過 CA$100,5,精緻料理,主廚盲測品嚐菜單(Tasting Menu)/熟成鴨胸/鹿肉韃靼,51.0886,-115.3537
+ankor restaurants,錨餐廳,超過 CA$100,5,餐廳,當季主廚套餐/炭烤章魚/慢燉牛小排/手工甜點,51.0905,-115.3560
+Bridgette Bar Canmore,布里奇特酒吧坎莫爾店,CA$20-80,3,餐廳,柴燒披薩/烤茄子/蒜香烤半雞/各式工藝調酒,51.0901,-115.3572
+The Bison Restaurant & Terrace,野牛餐廳與露台,超過 CA$100,5,餐廳,慢烤野牛肋排/野牛薄片生肉/班夫在地農產沙拉,51.1750,-115.5710
+Botanist,植物學家餐廳,超過 CA$100,5,餐廳,太平洋黑鱈魚/乾式熟成鴨胸/松露手工麵/植物系創意調酒,49.2878,-123.1162
+Farmer's Apprentice Restaurant,農夫學徒餐廳,超過 CA$100,5,太平洋西北部料理,季節性無菜單料理/當地有機農產沙拉/新鮮生蠔盤,49.2662,-123.1415
+Pajo's Fish & Chips at Rocky Point Park,帕喬炸魚薯條(落磯角公園店),CA$20-30,2,炸魚薯條,太平洋野生鱈魚薯條/野生鮭魚薯條/大蒜薯條/蛤蜊濃湯,49.2806,-122.8488
+OEB Breakfast Co. 分店一,OEB 早午餐 (分店一),CA$20-30,2,早午餐,靈魂碗(Soul in a Bowl)/經典班尼迪克蛋/松露鴨油炸薯塊,49.2748,-123.1188
+OEB Breakfast Co. 分店二,OEB 早午餐 (分店二),CA$20-30,2,餐廳,龍蝦可麗餅/鴨油炸薯條/培根炒蛋/法式吐司,49.2654,-123.0048
+Denny's Restaurant,丹尼斯美式餐廳,CA$20-30,2,餐廳,美式大早餐(Grand Slam)/楓糖鬆餅/經典起司漢堡/奶昔,49.2520,-122.8800
+Oakridge Park,橡樹嶺公園商場,無標示,3,商場,商場美食街各國料理/咖啡輕食/精緻烘焙麵包,49.2319,-123.1183
+Oddfish Restaurant,怪魚海鮮餐廳,CA$40-80,3,海鮮,每日現撈鮮魚料理/烤生蠔/蒜香白酒海鮮義大利麵,49.2718,-123.1517
+Fanny Bay Oyster Bar & Shellfish Market,范妮灣生蠔吧與海鮮市場,CA$30-90,3,生蠔料理,各式新鮮現剖生蠔拼盤/蛤蜊雜湊濃湯/酥炸魷魚/海膽,49.2789,-123.1166
+La Taqueria Brentwood,拉塔克利亞墨西哥夾餅(布倫特伍德店),CA$20-40,2,餐廳,經典豬肉玉米餅(Al Pastor)/炸魚塔可/瑪格麗特冰沙調酒,49.2683,-123.0011
+Sal y Limon,鹽與檸檬墨西哥餐廳,CA$10-20,1,墨西哥菜,烤肉墨西哥捲餅(Burritos)/起司餡餅(Quesadilla)/自製多口味莎莎醬,49.2558,-123.0898
+Chancho Tortilleria,豬豬墨西哥玉米餅,CA$20-30,2,墨西哥菜,慢燉豬肉塔可(Carnitas)/新鮮現做手工玉米餅/酪梨醬,49.2764,-123.1278
+Sushi Okeya Kyujiro,壽司屋 久次郎,超過 CA$100,5,日本菜,頂級江戶前無菜單壽司(Omakase)/北海道海膽手卷/藍鰭鮪魚大腹,49.2801,-123.1189
+Casereccio Foods Coffee/Pasta Bar,卡塞雷奇歐義大利麵吧,CA$20-30,2,意大利菜,現做手工義大利麵/義式傳統肉丸/提拉米蘇/義式濃縮咖啡,49.2651,-123.1601
+Nook Kitsilano,角落義式餐廳(基斯蘭奴店),CA$20-60,3,意大利菜,瑪格麗特披薩/奶油起司通心粉/義式肉腸披薩/麵包佐布拉塔起司,49.2682,-123.1558
+Shark Club Sports Bar & Grill,鯊魚俱樂部運動酒吧,CA$20-70,3,運動酒吧,水牛城辣味烤雞翅/經典牛肉漢堡/精釀啤酒拼盤/炸洋蔥圈,49.2798,-123.1158
+Taps and Tacos,啤酒與塔可,CA$20-30,2,墨西哥菜,韓式烤肉塔可/酥脆炸魚塔可/當地精釀啤酒/墨西哥烤玉米,49.2789,-122.8524
+Very bueno Tacos,超讚墨西哥塔可,CA$10-20,1,墨西哥夾餅,招牌牛肉塔可/炸碎肉捲(Taquitos)/特製秘方辣醬,49.2820,-123.1200
+Chuan Chili House,川府辣味,CA$10-20,1,中國菜,水煮牛肉/重慶辣子雞丁/麻婆豆腐/擔擔麵,49.2635,-123.1310
+品味長安,品味長安,超過 CA$100,5,中國菜,長安果木烤鴨/涼拌海蜇皮/紅燒鮑魚/精緻北方麵點,49.2736,-123.1352
+Zakkushi on Denman,串燒居酒屋(丹曼街店),CA$30-80,3,居酒屋,各式備長炭火烤雞肉串/和牛串燒/明太子奶油烏龍麵/梅酒,49.2905,-123.1378
+金魚,金魚居酒屋,CA$30-70,3,居酒屋,招牌豬肉角煮/綜合生魚片豪華定食/石燒神戶牛/抹茶甜點,49.2902,-123.1370
+Menya Raizo by Zakkushi,雷藏拉麵,CA$20-30,2,拉麵,豚骨魚介沾麵/濃郁雞白湯拉麵/日式炸雞(唐揚雞),49.2631,-123.1135
+Osteria Savio Volpe,聰明狐狸義式餐酒館,超過 CA$100,5,意大利菜,柴燒烤肉排/手工義大利餃(Ravioli)/提拉米蘇聖代/義式開胃菜拼盤,49.2555,-123.0907
+Magari by Oca,瑪加里義式餐廳,CA$60-100,4,意大利菜,每日現做手工義大利麵/松露奶油細麵/義式生牛肉(Carpaccio),49.2660,-123.0700
+Ask For Luigi Restaurant,找路易吉義式餐廳,CA$30-90,3,意大利菜,炸玉米抓餅(Polenta)/蛤蜊白酒麵/義式奶酪(Panna Cotta)/肉醬麵,49.2838,-123.0988
+The Sandbar Seafood Restaurant,沙洲海鮮餐廳,超過 CA$50,4,海鮮,豪華龍蝦海鮮塔/楓糖烤鮭魚/蛤蜊雜湊濃湯/烤牡蠣,49.2709,-123.1345
+Omnitsky's Kosher Delicatessen,奧姆尼茨基猶太熟食店,CA$20-30,2,熟食店,煙燻肉三明治/傳統雞湯麵(Matzo Ball Soup)/猶太薯餅(Latkes),49.2312,-123.1215
+Estrella's Montreal Deli,艾絲特蕾拉蒙特婁熟食店,CA$10-20,1,熟食店,蒙特婁煙燻肉三明治(Smoked Meat)/經典普丁(Poutine)/大酸黃瓜,49.1044,-122.6583
+La Belle Patate,美麗馬鈴薯魁北克餐廳,CA$10-20,1,魁北克餐廳,傳統肉汁起司薯條(Poutine)/魁北克煙燻肉/蒸熱狗,49.2831,-123.1332
+Radish restaurant,蘿蔔餐廳,CA$20-30,2,意大利菜,新鮮農產沙拉/精緻早午餐盤/義式輕食三明治/烘焙糕點,49.2680,-123.1670
+Royal Donair (Halal),皇家烤肉捲(清真),CA$10-20,1,餐廳,羊肉中東烤肉捲(Donair)/雞肉沙威瑪飯/蒜味烤馬鈴薯,49.2800,-122.8500
+Pasargad Restaurant,帕薩爾加德波斯餐廳,CA$20-30,2,波斯菜,烤番紅花雞肉串/波斯羊肉燉飯/傳統伊朗烤餅/石榴核桃燉肉,49.2785,-122.8229
+Pho Quynh Express,瓊越式火車頭河粉,CA$10-20,1,越南菜,招牌生牛肉河粉/香茅豬肉烤肉飯/越式炸春捲/越南冰咖啡,49.2630,-123.1320
+A&W Canada,A&W 加拿大速食餐廳,CA$10-20,1,漢堡飽,少年堡(Teen Burger)/冰沙士(Root Beer)/酥脆洋蔥圈,49.2825,-123.1180
+Popeyes Louisiana Kitchen,大力水手路易斯安那炸雞,CA$10-20,1,餐廳,路易斯安那辣味脆皮炸雞/招牌炸雞胸漢堡/肯瓊風味薯條,49.2818,-123.1250
+Gordon Ramsay Burger Vancouver,高登拉姆齊漢堡(溫哥華店),CA$20-40,3,漢堡飽,地獄廚房漢堡(Hell's Kitchen Burger)/松露帕瑪森薯條/焦糖奶昔,49.2330,-122.8535
+Pizzeria Spacca Napoli,斯帕卡拿坡里披薩,CA$20-30,2,意大利菜,正宗拿坡里瑪格麗特披薩/義式冷肉拼盤/傳統提拉米蘇,49.2785,-122.8465
+Juke Fried Chicken,Juke 炸雞店,CA$10-20,1,餐廳,無麩質脆皮炸雞/辣味涼拌高麗菜/招牌炸雞排堡/烤肋排,49.2795,-123.0990
+Elisa,艾麗莎牛排館,超過 CA$100,5,餐廳,柴燒頂級肋眼牛排/韃靼牛肉/龍蝦起司通心粉/經典馬丁尼,49.2750,-123.1215`;
+
+        // 解析資料並生成 HTML
+        const grid = document.getElementById('grid');
+        const rows = rawData.trim().split('\n');
+        
+        // 為了讓動畫有交錯效果，設定延遲時間
+        let delay = 0;
+
+        rows.forEach((row, index) => {
+            const cols = row.split(',');
+            if(cols.length === 8) {
+                const enName = cols[0];
+                const zhName = cols[1];
+                const price = cols[2];
+                const category = cols[4];
+                const recommends = cols[5].split('/').join(' • '); // 將斜線改為更有設計感的分隔點
+                const lat = cols[6];
+                const lng = cols[7];
+                
+                // 建立 Google Map 導航連結
+                const mapLink = `https://www.google.com/maps?q=${lat},${lng}`;
+
+                // 動態生成卡片 HTML
+                const cardHTML = `
+                    <div class="card brutal-shadow" style="animation-delay: ${delay}s;">
+                        <div class="card-header">
+                            <h3 class="card-title-zh">${zhName}</h3>
+                            <div class="card-title-en">${enName}</div>
+                            <div class="tags">
+                                <span class="tag">${category}</span>
+                                <span class="tag price">${price}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="recommend-title">Hot Picks 🔥</div>
+                            <div class="recommend-items">${recommends}</div>
+                        </div>
+                        <a href="${mapLink}" target="_blank" rel="noopener noreferrer" class="map-btn brutal-shadow">
+                            📍 Take Me There!
+                        </a>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+                delay += 0.05; // 漸進式增加延遲，創造骨牌般的載入動畫
+            }
+        });
+    </script>
+</body>
+</html>
