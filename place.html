@@ -3,410 +3,383 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>溫哥華 Day 1 - 史丹利公園海堤 (Google Maps 進階版)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <title>BC Explorer | 野生哥倫比亞探索指南</title>
+    <!-- 引入 Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
+        /* 視覺變數定義 */
+        :root {
+            --primary: #CCFF00;
+            --secondary: #B088FF;
+            --dark: #111111;
+            --bg: #F4F4F0;
+            --white: #FFFFFF;
+            --brutal-border: 3px solid var(--dark);
+            --brutal-shadow: 4px 4px 0px var(--dark);
+            --brutal-shadow-hover: 8px 8px 0px var(--dark);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
             font-family: 'Noto Sans TC', sans-serif;
-            display: flex;
+            background-color: var(--bg);
+            color: var(--dark);
             height: 100vh;
-            overflow: hidden;
-            background-color: #f8f9fa;
-        }
-
-        #map {
-            flex-grow: 1;
-            height: 100%;
-        }
-
-        .day-tabs {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 5;
-            display: flex;
-            gap: 10px;
-        }
-
-        .day-tab {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-            cursor: pointer;
-        }
-
-        .day-tab.active {
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .sidebar {
-            width: 380px;
-            background: white;
-            height: 100%;
-            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            position: relative;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, .space-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* 動態排版跑馬燈 */
+        .marquee {
+            width: 100%;
+            background-color: var(--dark);
+            color: var(--primary);
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: var(--brutal-border);
             z-index: 10;
         }
 
-        .sidebar-header {
-            padding: 24px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .sidebar-header h1 {
-            margin: 8px 0 12px 0;
-            font-size: 20px;
-            color: #222;
-        }
-
-        .route-btn {
-            background: #4285F4;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 12px;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .locations-list {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 16px;
-        }
-
-        /* 側邊欄景點卡片 */
-        .location-card {
-            display: flex;
-            padding: 12px;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            background: #fff;
-        }
-
-        .location-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: #ccc;
-        }
-
-        .location-img-wrapper {
-            width: 90px;
-            height: 90px;
-            margin-right: 14px;
-            flex-shrink: 0;
-        }
-
-        .location-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .location-info {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .location-title {
-            margin: 0 0 4px 0;
-            font-size: 16px;
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            font-family: 'Space Grotesk', sans-serif;
             font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
         }
 
-        .location-rating {
-            font-size: 13px;
-            color: #E7711B; /* Google 評論星星橘色 */
-            margin: 0 0 6px 0;
-            font-weight: 500;
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* 標籤導覽列 */
+        .nav-tabs {
             display: flex;
-            align-items: center;
-            gap: 4px;
+            padding: 20px;
+            gap: 15px;
+            background: var(--bg);
+            border-bottom: var(--brutal-border);
         }
 
-        .location-rating span.reviews-count {
-            color: #777;
-            font-weight: normal;
-            font-size: 12px;
-        }
-
-        .location-desc {
-            margin: 0;
-            font-size: 13px;
-            color: #555;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        /* ==================================
-           地圖上的自訂圖片標記 (模擬截圖效果)
-           ================================== */
-        .custom-image-marker {
-            position: relative;
-            width: 65px;
-            height: 65px;
+        .tab-btn {
+            background: var(--white);
+            border: var(--brutal-border);
+            box-shadow: var(--brutal-shadow);
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .custom-image-marker:hover {
-            transform: scale(1.1);
-            z-index: 100 !important;
-        }
-        .marker-photo {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            border: 3px solid white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            object-fit: cover;
-        }
-        .marker-badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #1a1a1a;
-            color: white;
-            border-radius: 50%;
-            width: 26px;
-            height: 26px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 13px;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        /* 氣泡視窗 */
-        .info-window-content {
-            max-width: 220px;
+            transition: all 0.2s ease;
             font-family: 'Noto Sans TC', sans-serif;
         }
-        .info-window-content img {
+
+        .tab-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: var(--brutal-shadow-hover);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+        }
+
+        /* 主要佈局 */
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 120px); /* 扣除 header */
+        }
+
+        /* 左側卡片清單區 */
+        .list-section {
+            width: 40%;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-right: var(--brutal-border);
+        }
+
+        /* 自訂捲軸 */
+        .list-section::-webkit-scrollbar { width: 8px; }
+        .list-section::-webkit-scrollbar-track { background: var(--bg); border-left: 1px solid var(--dark); }
+        .list-section::-webkit-scrollbar-thumb { background: var(--dark); }
+
+        .place-card {
+            background: var(--white);
+            border: var(--brutal-border);
+            box-shadow: var(--brutal-shadow);
+            border-radius: 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            animation: slideUp 0.4s ease forwards;
+            opacity: 0;
+        }
+
+        .place-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: var(--brutal-shadow-hover);
+            background: var(--secondary);
+            color: var(--white);
+        }
+
+        .place-card.active {
+            background: var(--dark);
+            color: var(--primary);
+        }
+
+        .card-img {
             width: 100%;
-            height: 120px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 8px;
+            border-bottom: var(--brutal-border);
+            filter: grayscale(20%) contrast(120%);
         }
-        .info-window-content h4 {
-            margin: 0 0 4px 0;
-            font-size: 15px;
+
+        .card-content {
+            padding: 15px;
         }
-        .info-window-rating {
-            font-size: 13px;
-            color: #E7711B;
-            margin-bottom: 6px;
+
+        .card-title-en {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .card-title-zh {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* 右側地圖區 */
+        .map-section {
+            width: 60%;
+            height: 100%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RWD 響應式設計 */
+        @media (max-width: 768px) {
+            .main-container { flex-direction: column-reverse; }
+            .list-section { width: 100%; height: 50%; border-right: none; border-top: var(--brutal-border); }
+            .map-section { width: 100%; height: 50%; }
+            .nav-tabs { overflow-x: auto; white-space: nowrap; }
         }
     </style>
 </head>
 <body>
 
-    <div class="day-tabs">
-        <div class="day-tab active">Day 1</div>
-        <div class="day-tab">Day 2</div>
-        <div class="day-tab">Day 3</div>
-    </div>
-
-    <div id="map"></div>
-
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h2>DAY 1</h2>
-            <h1>A：史丹利公園海堤與步道</h1>
-            <button class="route-btn" onclick="focusFullRoute()">🗺️ 顯示完整路線</button>
+    <!-- 動態跑馬燈 -->
+    <div class="marquee">
+        <div class="marquee-content">
+            EXPLORE BRITISH COLUMBIA /// START YOUR ADVENTURE /// VANCOUVER WALKS /// WILD CAMPING /// BANFF ROADTRIP /// EXPLORE BRITISH COLUMBIA /// START YOUR ADVENTURE /// VANCOUVER WALKS /// WILD CAMPING /// BANFF ROADTRIP ///
         </div>
-        <div class="locations-list" id="locations-container"></div>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&callback=initMap&v=weekly&libraries=places,marker" async defer></script>
-    
-    <script>
-        let map;
-        let infoWindow;
-        let placesService;
-        
-        // 景點資料 (圖片改用最穩定的維基百科資源)
-        const locations = [
-            {
-                id: 1,
-                name: "德文尼安海港公園",
-                searchName: "Devonian Harbour Park Vancouver",
-                lat: 49.293651,
-                lng: -123.132334,
-                desc: "緊鄰高豪港的水岸綠地，是進入海堤步道的起點。",
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Vancouver_-_Seawall_at_Stanley_Park.jpg/320px-Vancouver_-_Seawall_at_Stanley_Park.jpg"
-            },
-            {
-                id: 2,
-                name: "九點鐘大砲",
-                searchName: "Nine O'Clock Gun Vancouver",
-                lat: 49.298616,
-                lng: -123.118223,
-                desc: "擁有百年歷史的古老砲台，每日晚間九點準時鳴放。",
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/9_O%27Clock_Gun.jpg/320px-9_O%27Clock_Gun.jpg"
-            },
-            {
-                id: 3,
-                name: "布洛克頓角燈塔",
-                searchName: "Brockton Point Lighthouse",
-                lat: 49.301416,
-                lng: -123.115344,
-                desc: "紅白相間的水岸燈塔，能遠眺北岸山脈與內灣。",
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Brockton_Point_Lighthouse_-_Stanley_Park%2C_Vancouver.jpg/320px-Brockton_Point_Lighthouse_-_Stanley_Park%2C_Vancouver.jpg"
-            },
-            {
-                id: 4,
-                name: "觀景角",
-                searchName: "Prospect Point Lookout Vancouver",
-                lat: 49.314444,
-                lng: -123.142444,
-                desc: "史丹利公園的最高點，位於獅門橋正下方。",
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Prospect_Point_Lighthouse.jpg/320px-Prospect_Point_Lighthouse.jpg"
-            },
-            {
-                id: 5,
-                name: "海狸湖",
-                searchName: "Beaver Lake Stanley Park",
-                lat: 49.307194,
-                lng: -123.136139,
-                desc: "隱身於森林深處的淡水湖，湖面開滿優雅睡蓮。",
-                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Beaver_Lake%2C_Stanley_Park.jpg/320px-Beaver_Lake%2C_Stanley_Park.jpg"
-            }
-        ];
+    <!-- 主題切換導覽列 -->
+    <div class="nav-tabs">
+        <button class="tab-btn active" data-theme="walks">🚶 附近散步 (Walks)</button>
+        <button class="tab-btn" data-theme="camping">🏕️ 狂野露營 (Camping)</button>
+        <button class="tab-btn" data-theme="banff">⛰️ 班夫公路 (Banff)</button>
+    </div>
 
+    <div class="main-container">
+        <!-- 景點清單 -->
+        <div class="list-section" id="places-list">
+            <!-- 卡片由 JS 動態生成 -->
+        </div>
+
+        <!-- Google Map -->
+        <div class="map-section">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <!-- 載入 Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&callback=initMap"></script>
+
+    <script>
+        // --- 景點資料庫 (依照您的需求整理、翻譯並加上圖片/座標) ---
+        const locationsData = {
+            walks: [
+                { id: 1, en: "Stanley Park Seawall", zh: "史丹利公園海堤", desc: "溫哥華標誌性的海濱步道，可途經 Devonian Harbour Park、九點鐘大砲與燈塔。", lat: 49.3017, lng: -123.1417, img: "https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=600&q=80" },
+                { id: 2, en: "Pacific Spirit Regional Park", zh: "太平洋精神公園 & UBC", desc: "緊鄰 UBC 校區的原始森林步道，享受沉浸式森林浴。", lat: 49.2606, lng: -123.2460, img: "https://images.unsplash.com/photo-1596484552993-8e75ffbd674c?auto=format&fit=crop&w=600&q=80" },
+                { id: 3, en: "False Creek", zh: "福溪水上巴士與沿岸", desc: "搭乘可愛的水上巴士，沿著南北岸散步，之後可在 Kitsilano 或 Westend 用餐。", lat: 49.2699, lng: -123.1310, img: "https://images.unsplash.com/photo-1610408544469-804d9b4be16a?auto=format&fit=crop&w=600&q=80" },
+                { id: 4, en: "Grouse / Sea to Sky Mountain", zh: "松雞山與海天公路纜車", desc: "搭乘纜車直達山頂，俯瞰壯麗的大溫哥華與西海岸線。", lat: 49.3797, lng: -123.0815, img: "https://images.unsplash.com/photo-1629851610014-411a7db68128?auto=format&fit=crop&w=600&q=80" },
+                { id: 5, en: "Belcarra to Deep Cove", zh: "貝爾卡拉划船到深水灣", desc: "從 Buntzen Lake 划船到絕美的 Deep Cove，途中享受寧靜的峽灣水域。", lat: 49.3175, lng: -122.9234, img: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=600&q=80" }
+            ],
+            camping: [
+                { id: 6, en: "Pachena Bay Campground", zh: "帕切納灣露營地", desc: "位於溫哥華島西海岸，緊鄰絕美的 Pachena Bay Beach 與著名的西海岸步道起點。", lat: 48.7904, lng: -125.1215, img: "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=600&q=80" },
+                { id: 7, en: "Bamfield", zh: "班菲爾德原住民小鎮", desc: "奇特的小鎮，鎮區被海灣分為兩半，必須搭船橫跨。擁有豐富的海洋科學中心歷史。", lat: 48.8329, lng: -125.1362, img: "https://images.unsplash.com/photo-1510312305653-8ed496efce84?auto=format&fit=crop&w=600&q=80" },
+                { id: 8, en: "Mills Landing & Brady's Beach", zh: "木棧道與布雷迪海灘", desc: "漫步在小鎮專屬的木棧道上，前往遺世獨立的 Brady's Beach 秘境海灘。", lat: 48.8260, lng: -125.1480, img: "https://images.unsplash.com/photo-1495576775051-5af0d10aa8bf?auto=format&fit=crop&w=600&q=80" }
+            ],
+            banff: [
+                { id: 9, en: "Glacier National Park & Rogers Pass", zh: "冰川國家公園 & 羅傑斯通道", desc: "第一天的重點！欣賞壯闊的冰河景觀，駕車穿越充滿野生動物的高山公路。", lat: 51.2998, lng: -117.5218, img: "https://images.unsplash.com/photo-1510433230623-1492dce139bb?auto=format&fit=crop&w=600&q=80" },
+                { id: 10, en: "Lake Louise & Johnston Canyon", zh: "露易絲湖與強斯頓峽谷", desc: "洛磯山脈的藍寶石露易絲湖，搭配壯觀的峽谷瀑布步道。", lat: 51.4254, lng: -116.1773, img: "https://images.unsplash.com/photo-1549429598-a32039a099aa?auto=format&fit=crop&w=600&q=80" },
+                { id: 11, en: "Banff Town (Cave and Basin)", zh: "班夫小鎮與溫泉遺跡", desc: "在 Banff Avenue 散步，參觀博物館，或探訪國家公園發源地 Cave and Basin。", lat: 51.1784, lng: -115.5708, img: "https://images.unsplash.com/photo-1508233620467-f79a1e0237ce?auto=format&fit=crop&w=600&q=80" },
+                { id: 12, en: "Canmore (Grassi Lakes & Policeman's)", zh: "坎莫爾 (格拉西湖與河畔)", desc: "入住班夫門山度假酒店。漫步 Policeman’s Creek 木棧道，或去 Grassi Lakes 輕鬆健行。", lat: 51.0890, lng: -115.3590, img: "https://images.unsplash.com/photo-1502485542721-7f9e8a7de4d9?auto=format&fit=crop&w=600&q=80" }
+            ]
+        };
+
+        let map;
+        let markers = [];
+        let currentInfoWindow = null;
+
+        // 初始化地圖
         function initMap() {
-            // 初始化地圖，必須設定 mapId 才能使用圖片標記 (AdvancedMarkerElement)
+            // 預設中心點設定為溫哥華
+            const defaultCenter = { lat: 49.2827, lng: -123.1207 };
+            
+            // 採用略帶復古、對比強烈的客製化地圖樣式以符合設計理念
+            const brutalistMapStyle = [
+                { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
+                { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
+                { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
+                { featureType: "water", elementType: "geometry.fill", stylers: [{ color: "#b9d3c2" }] }
+            ];
+
             map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 14,
-                center: { lat: 49.302, lng: -123.130 },
-                mapId: "DEMO_MAP_ID", 
+                zoom: 10,
+                center: defaultCenter,
+                styles: brutalistMapStyle,
                 mapTypeControl: false,
                 streetViewControl: false
             });
 
-            infoWindow = new google.maps.InfoWindow();
-            placesService = new google.maps.places.PlacesService(map);
+            // 預設載入「附近散步」主題
+            loadTheme("walks");
+        }
 
-            // 繪製步行路線
-            const directionsService = new google.maps.DirectionsService();
-            const directionsRenderer = new google.maps.DirectionsRenderer({
-                map: map,
-                suppressMarkers: true, // 隱藏預設紅點，使用我們自訂的圖片標記
-                polylineOptions: { strokeColor: "#4285F4", strokeOpacity: 0.8, strokeWeight: 5 }
-            });
+        // 載入不同主題的資料
+        function loadTheme(theme) {
+            const listContainer = document.getElementById("places-list");
+            listContainer.innerHTML = ''; // 清空列表
+            clearMarkers(); // 清空地圖標記
 
-            const waypoints = locations.slice(1).map(loc => ({
-                location: { lat: loc.lat, lng: loc.lng },
-                stopover: true
-            }));
+            const places = locationsData[theme];
+            const bounds = new google.maps.LatLngBounds();
 
-            directionsService.route({
-                origin: { lat: locations[0].lat, lng: locations[0].lng },
-                destination: { lat: locations[0].lat, lng: locations[0].lng },
-                waypoints: waypoints,
-                travelMode: google.maps.TravelMode.WALKING
-            }, (response, status) => {
-                if (status === "OK") directionsRenderer.setDirections(response);
-            });
-
-            // 處理景點標記與介面
-            const container = document.getElementById("locations-container");
-
-            locations.forEach(loc => {
-                // 1. 建立地圖上的客製化 HTML 圖片標記 (AdvancedMarkerElement)
-                const markerContent = document.createElement("div");
-                markerContent.className = "custom-image-marker";
-                markerContent.innerHTML = `
-                    <img src="${loc.img}" class="marker-photo" alt="${loc.name}">
-                    <div class="marker-badge">${loc.id}</div>
-                `;
-
-                const marker = new google.maps.marker.AdvancedMarkerElement({
-                    map,
-                    position: { lat: loc.lat, lng: loc.lng },
-                    content: markerContent,
-                    title: loc.name
-                });
-
-                // 2. 建立右側卡片 (先給預設載入中的狀態)
-                const card = document.createElement("div");
-                card.className = "location-card";
+            places.forEach((place, index) => {
+                // 1. 建立左側列表卡片
+                const card = document.createElement('div');
+                card.className = 'place-card';
+                card.style.animationDelay = `${index * 0.1}s`; // 階梯式動畫延遲
                 card.innerHTML = `
-                    <div class="location-img-wrapper"><img src="${loc.img}" alt="${loc.name}"></div>
-                    <div class="location-info">
-                        <h3 class="location-title">${loc.id}. ${loc.name}</h3>
-                        <div class="location-rating" id="rating-${loc.id}">搜尋評論中...</div>
-                        <p class="location-desc">${loc.desc}</p>
+                    <img src="${place.img}" alt="${place.zh}" class="card-img">
+                    <div class="card-content">
+                        <div class="card-title-en">${place.en}</div>
+                        <div class="card-title-zh">${place.zh}</div>
+                        <div class="card-desc">${place.desc}</div>
                     </div>
                 `;
-                container.appendChild(card);
 
-                // 3. 呼叫 Places API 取得 Google Maps 上的真實星級與評論數
-                const request = {
-                    query: loc.searchName,
-                    fields: ['name', 'rating', 'user_ratings_total']
-                };
-
-                placesService.findPlaceFromQuery(request, (results, status) => {
-                    let ratingHtml = "⭐ 暫無評分資料";
-                    if (status === google.maps.places.PlacesServiceStatus.OK && results[0] && results[0].rating) {
-                        const rating = results[0].rating;
-                        const total = results[0].user_ratings_total;
-                        ratingHtml = `⭐ ${rating} <span class="reviews-count">(${total.toLocaleString()} 則評論)</span>`;
-                    }
-                    
-                    // 將抓到的星級更新到右側卡片
-                    document.getElementById(`rating-${loc.id}`).innerHTML = ratingHtml;
-
-                    // 設定點擊標記或卡片時彈出的氣泡視窗內容
-                    const infoContent = `
-                        <div class="info-window-content">
-                            <img src="${loc.img}" alt="${loc.name}">
-                            <h4>${loc.id}. ${loc.name}</h4>
-                            <div class="info-window-rating">${ratingHtml}</div>
-                            <p style="margin:0;font-size:13px;color:#555;">${loc.desc}</p>
-                        </div>
-                    `;
-
-                    // 綁定點擊事件
-                    const clickAction = () => {
-                        map.panTo({ lat: loc.lat, lng: loc.lng });
-                        map.setZoom(16);
-                        infoWindow.setContent(infoContent);
-                        infoWindow.open(map, marker);
-                    };
-
-                    marker.addListener("click", clickAction);
-                    card.onclick = clickAction;
+                // 2. 建立地圖標記 (Marker)
+                const position = { lat: place.lat, lng: place.lng };
+                const marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    title: place.zh,
+                    animation: google.maps.Animation.DROP // 標記掉落動畫
                 });
+                markers.push(marker);
+                bounds.extend(position);
+
+                // 3. 建立資訊視窗 (Info Window)
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div style="font-family:'Noto Sans TC',sans-serif; padding:5px;">
+                                <h3 style="margin:0 0 5px 0;">${place.zh}</h3>
+                                <p style="margin:0; font-size:0.9rem;">${place.en}</p>
+                              </div>`
+                });
+
+                // 4. 綁定互動事件：點擊卡片
+                card.addEventListener('click', () => {
+                    // 移除其他卡片的 active 狀態
+                    document.querySelectorAll('.place-card').forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+
+                    // 地圖平滑移動並放大
+                    map.panTo(position);
+                    map.setZoom(13);
+
+                    // 標記跳動動畫
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    setTimeout(() => marker.setAnimation(null), 1500);
+
+                    // 開啟資訊視窗
+                    if (currentInfoWindow) currentInfoWindow.close();
+                    infoWindow.open(map, marker);
+                    currentInfoWindow = infoWindow;
+                });
+
+                // 點擊地圖標記也觸發左側卡片點擊效果
+                marker.addListener('click', () => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    card.click();
+                });
+
+                listContainer.appendChild(card);
             });
+
+            // 自動縮放地圖以顯示該主題所有標記
+            if (places.length > 0) {
+                map.fitBounds(bounds);
+                // 避免單一景點縮放過大
+                const listener = google.maps.event.addListener(map, "idle", function() { 
+                    if (map.getZoom() > 14) map.setZoom(14); 
+                    google.maps.event.removeListener(listener); 
+                });
+            }
         }
 
-        function focusFullRoute() {
-            infoWindow.close();
-            map.setZoom(14);
-            map.panTo({ lat: 49.304, lng: -123.129 });
+        // 清除現有地圖標記
+        function clearMarkers() {
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
         }
+
+        // 綁定上方 Tab 按鈕切換事件
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // 更新按鈕狀態
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // 載入對應主題
+                const theme = e.target.getAttribute('data-theme');
+                loadTheme(theme);
+            });
+        });
     </script>
 </body>
 </html>
