@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>溫哥華 Day 1 - 史丹利公園海堤與步道 (Google Maps 版)</title>
+    <title>溫哥華 Day 1 - 史丹利公園海堤 (Google Maps 進階版)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -17,13 +17,11 @@
             background-color: #f8f9fa;
         }
 
-        /* 地圖區域 */
         #map {
             flex-grow: 1;
             height: 100%;
         }
 
-        /* 頂部天數切換標籤 */
         .day-tabs {
             position: absolute;
             top: 20px;
@@ -41,7 +39,6 @@
             font-size: 14px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
             cursor: pointer;
-            transition: 0.2s;
         }
 
         .day-tab.active {
@@ -49,7 +46,6 @@
             color: white;
         }
 
-        /* 右側景點資訊面板 */
         .sidebar {
             width: 380px;
             background: white;
@@ -66,43 +62,22 @@
             border-bottom: 1px solid #eee;
         }
 
-        .sidebar-header h2 {
-            margin: 0;
-            font-size: 14px;
-            color: #666;
-            letter-spacing: 1px;
-        }
-
         .sidebar-header h1 {
             margin: 8px 0 12px 0;
             font-size: 20px;
             color: #222;
         }
 
-        .sidebar-header p {
-            margin: 0;
-            font-size: 14px;
-            color: #555;
-            line-height: 1.5;
-        }
-
         .route-btn {
-            display: inline-block;
             background: #4285F4;
             color: white;
             padding: 8px 16px;
             border-radius: 8px;
-            text-decoration: none;
             font-size: 14px;
             margin-top: 12px;
             border: none;
             cursor: pointer;
             font-weight: 500;
-            transition: background 0.2s;
-        }
-
-        .route-btn:hover {
-            background: #357ae8;
         }
 
         .locations-list {
@@ -111,7 +86,7 @@
             padding: 16px;
         }
 
-        /* 景點卡片設計 */
+        /* 側邊欄景點卡片 */
         .location-card {
             display: flex;
             padding: 12px;
@@ -126,15 +101,20 @@
         .location-card:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border-color: #ccc;
-            background: #fafafa;
         }
 
-        .location-img {
+        .location-img-wrapper {
             width: 90px;
             height: 90px;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .location-img-wrapper img {
+            width: 100%;
+            height: 100%;
             border-radius: 8px;
             object-fit: cover;
-            margin-right: 14px;
         }
 
         .location-info {
@@ -148,46 +128,94 @@
             margin: 0 0 4px 0;
             font-size: 16px;
             font-weight: 700;
-            color: #222;
         }
 
-        .location-en {
+        .location-rating {
+            font-size: 13px;
+            color: #E7711B; /* Google 評論星星橘色 */
             margin: 0 0 6px 0;
-            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .location-rating span.reviews-count {
             color: #777;
+            font-weight: normal;
+            font-size: 12px;
         }
 
         .location-desc {
             margin: 0;
             font-size: 13px;
             color: #555;
-            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        /* 訊息視窗圖片樣式 */
+        /* ==================================
+           地圖上的自訂圖片標記 (模擬截圖效果)
+           ================================== */
+        .custom-image-marker {
+            position: relative;
+            width: 65px;
+            height: 65px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .custom-image-marker:hover {
+            transform: scale(1.1);
+            z-index: 100 !important;
+        }
+        .marker-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+        .marker-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 13px;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* 氣泡視窗 */
         .info-window-content {
-            max-width: 200px;
+            max-width: 220px;
             font-family: 'Noto Sans TC', sans-serif;
         }
         .info-window-content img {
             width: 100%;
-            height: 100px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 6px;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
         .info-window-content h4 {
             margin: 0 0 4px 0;
-            font-size: 14px;
+            font-size: 15px;
         }
-        .info-window-content p {
-            margin: 0;
-            font-size: 12px;
-            color: #666;
+        .info-window-rating {
+            font-size: 13px;
+            color: #E7711B;
+            margin-bottom: 6px;
         }
     </style>
 </head>
@@ -197,8 +225,6 @@
         <div class="day-tab active">Day 1</div>
         <div class="day-tab">Day 2</div>
         <div class="day-tab">Day 3</div>
-        <div class="day-tab">Day 4</div>
-        <div class="day-tab">Day 5</div>
     </div>
 
     <div id="map"></div>
@@ -207,183 +233,175 @@
         <div class="sidebar-header">
             <h2>DAY 1</h2>
             <h1>A：史丹利公園海堤與步道</h1>
-            <p>精選 5 大核心景點，沿著溫哥華美麗的海岸線步行，途經經典大砲與紅白燈塔，最後深入平緩寧靜的森林秘境湖泊。</p>
-            <button class="route-btn" onclick="focusFullRoute()">🗺️ 顯示完整步行路線</button>
+            <button class="route-btn" onclick="focusFullRoute()">🗺️ 顯示完整路線</button>
         </div>
-        <div class="locations-list" id="locations-container">
-            </div>
+        <div class="locations-list" id="locations-container"></div>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&callback=initMap&v=weekly" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&callback=initMap&v=weekly&libraries=places,marker" async defer></script>
     
     <script>
         let map;
         let infoWindow;
-        let directionsPositions = [];
+        let placesService;
         
-        // 1. 核心景點精確座標與資料（已修正海面偏移，皆位於步道與陸地上）
+        // 景點資料 (圖片改用最穩定的維基百科資源)
         const locations = [
             {
                 id: 1,
                 name: "德文尼安海港公園",
-                en: "Devonian Harbour Park",
+                searchName: "Devonian Harbour Park Vancouver",
                 lat: 49.293651,
                 lng: -123.132334,
-                desc: "緊鄰高豪港的水岸綠地，是進入史丹利公園海堤步道的完美起點。",
-                img: "https://images.unsplash.com/photo-1560944527-a4a429848713?auto=format&fit=crop&w=300&q=80"
+                desc: "緊鄰高豪港的水岸綠地，是進入海堤步道的起點。",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Vancouver_-_Seawall_at_Stanley_Park.jpg/320px-Vancouver_-_Seawall_at_Stanley_Park.jpg"
             },
             {
                 id: 2,
                 name: "九點鐘大砲",
-                en: "Nine O'Clock Gun",
+                searchName: "Nine O'Clock Gun Vancouver",
                 lat: 49.298616,
                 lng: -123.118223,
-                desc: "擁有歷史悠久的百年大砲，面向溫哥華市中心，每日晚間九點準時鳴放。",
-                img: "https://images.unsplash.com/photo-1596700589886-f4cf802144eb?auto=format&fit=crop&w=300&q=80"
+                desc: "擁有百年歷史的古老砲台，每日晚間九點準時鳴放。",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/9_O%27Clock_Gun.jpg/320px-9_O%27Clock_Gun.jpg"
             },
             {
                 id: 3,
                 name: "布洛克頓角燈塔",
-                en: "Brockton Point Lighthouse",
+                searchName: "Brockton Point Lighthouse",
                 lat: 49.301416,
                 lng: -123.115344,
-                desc: "經典的紅白相間水岸燈塔，能遠眺壯麗的北岸山脈與繁忙的布拉德內灣。",
-                img: "https://images.unsplash.com/photo-1520114033874-a4f728cce778?auto=format&fit=crop&w=300&q=80"
+                desc: "紅白相間的水岸燈塔，能遠眺北岸山脈與內灣。",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Brockton_Point_Lighthouse_-_Stanley_Park%2C_Vancouver.jpg/320px-Brockton_Point_Lighthouse_-_Stanley_Park%2C_Vancouver.jpg"
             },
             {
                 id: 4,
-                name: "觀景角燈塔",
-                en: "Prospect Point Lookout",
+                name: "觀景角",
+                searchName: "Prospect Point Lookout Vancouver",
                 lat: 49.314444,
                 lng: -123.142444,
-                desc: "公園最高點的絕佳觀景台，位於獅門橋正下方，可近距離感受宏偉的橋身結構。",
-                img: "https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=300&q=80"
+                desc: "史丹利公園的最高點，位於獅門橋正下方。",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Prospect_Point_Lighthouse.jpg/320px-Prospect_Point_Lighthouse.jpg"
             },
             {
                 id: 5,
                 name: "海狸湖",
-                en: "Beaver Lake",
+                searchName: "Beaver Lake Stanley Park",
                 lat: 49.307194,
                 lng: -123.136139,
-                desc: "隱身於密林深處的生態淡水湖，湖面開滿優雅的睡蓮，氛圍極其寧靜祥和。",
-                img: "https://images.unsplash.com/photo-1473445761369-a20401bb8d99?auto=format&fit=crop&w=300&q=80"
+                desc: "隱身於森林深處的淡水湖，湖面開滿優雅睡蓮。",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Beaver_Lake%2C_Stanley_Park.jpg/320px-Beaver_Lake%2C_Stanley_Park.jpg"
             }
         ];
 
-        const markers = {};
-
-        // 2. 地圖初始化函式
         function initMap() {
-            // 建立地圖，中心點預設在史丹利公園
+            // 初始化地圖，必須設定 mapId 才能使用圖片標記 (AdvancedMarkerElement)
             map = new google.maps.Map(document.getElementById("map"), {
                 zoom: 14,
                 center: { lat: 49.302, lng: -123.130 },
+                mapId: "DEMO_MAP_ID", 
                 mapTypeControl: false,
-                streetViewControl: false,
-                fullscreenControl: false,
-                // 使用乾淨現代的地圖樣式
-                styles: [
-                    { featureType: "poi.business", stylers: [{ visibility: "off" }] },
-                    { featureType: "transit", stylers: [{ visibility: "off" }] }
-                ]
+                streetViewControl: false
             });
 
             infoWindow = new google.maps.InfoWindow();
+            placesService = new google.maps.places.PlacesService(map);
 
-            // 3. 呼叫 Google 導航服務（自動修正路網，避免切過海面）
+            // 繪製步行路線
             const directionsService = new google.maps.DirectionsService();
             const directionsRenderer = new google.maps.DirectionsRenderer({
                 map: map,
-                suppressMarkers: true, // 隱藏預設圖標，改用我們自訂的數字標記
-                polylineOptions: {
-                    strokeColor: "#4285F4",
-                    strokeOpacity: 0.85,
-                    strokeWeight: 5
-                }
+                suppressMarkers: true, // 隱藏預設紅點，使用我們自訂的圖片標記
+                polylineOptions: { strokeColor: "#4285F4", strokeOpacity: 0.8, strokeWeight: 5 }
             });
 
-            // 設定步行路線節點 (從 1 出發，途經 2,3,4,5，最後回到 1 形成完美環狀線)
-            const origin = { lat: locations[0].lat, lng: locations[0].lng };
             const waypoints = locations.slice(1).map(loc => ({
                 location: { lat: loc.lat, lng: loc.lng },
                 stopover: true
             }));
 
             directionsService.route({
-                origin: origin,
-                destination: origin, // 回到起點
+                origin: { lat: locations[0].lat, lng: locations[0].lng },
+                destination: { lat: locations[0].lat, lng: locations[0].lng },
                 waypoints: waypoints,
-                travelMode: google.maps.TravelMode.WALKING // 強制設定為步行模式
+                travelMode: google.maps.TravelMode.WALKING
             }, (response, status) => {
-                if (status === "OK") {
-                    directionsRenderer.setDirections(response);
-                } else {
-                    console.error("導航路線渲染失敗，原因：" + status);
-                }
+                if (status === "OK") directionsRenderer.setDirections(response);
             });
 
-            // 4. 生成景點標記與右側卡片
+            // 處理景點標記與介面
             const container = document.getElementById("locations-container");
 
             locations.forEach(loc => {
-                const position = { lat: loc.lat, lng: loc.lng };
+                // 1. 建立地圖上的客製化 HTML 圖片標記 (AdvancedMarkerElement)
+                const markerContent = document.createElement("div");
+                markerContent.className = "custom-image-marker";
+                markerContent.innerHTML = `
+                    <img src="${loc.img}" class="marker-photo" alt="${loc.name}">
+                    <div class="marker-badge">${loc.id}</div>
+                `;
 
-                // 在地圖上繪製帶有數字的標記
-                const marker = new google.maps.Marker({
-                    position: position,
-                    map: map,
-                    label: {
-                        text: String(loc.id),
-                        color: "white",
-                        fontWeight: "bold"
-                    },
+                const marker = new google.maps.marker.AdvancedMarkerElement({
+                    map,
+                    position: { lat: loc.lat, lng: loc.lng },
+                    content: markerContent,
                     title: loc.name
                 });
 
-                markers[loc.id] = marker;
-
-                // 地圖標記點擊事件
-                marker.addListener("click", () => {
-                    openInfoWindow(loc, marker);
-                });
-
-                // 動態建立右側資訊卡片
+                // 2. 建立右側卡片 (先給預設載入中的狀態)
                 const card = document.createElement("div");
                 card.className = "location-card";
                 card.innerHTML = `
-                    <img src="${loc.img}" alt="${loc.name}" class="location-img">
+                    <div class="location-img-wrapper"><img src="${loc.img}" alt="${loc.name}"></div>
                     <div class="location-info">
                         <h3 class="location-title">${loc.id}. ${loc.name}</h3>
-                        <p class="location-en">${loc.en}</p>
+                        <div class="location-rating" id="rating-${loc.id}">搜尋評論中...</div>
                         <p class="location-desc">${loc.desc}</p>
                     </div>
                 `;
+                container.appendChild(card);
 
-                // 卡片點擊事件：平滑聚焦地圖並彈出地圖氣泡窗
-                card.onclick = () => {
-                    map.panTo(position);
-                    map.setZoom(16);
-                    openInfoWindow(loc, marker);
+                // 3. 呼叫 Places API 取得 Google Maps 上的真實星級與評論數
+                const request = {
+                    query: loc.searchName,
+                    fields: ['name', 'rating', 'user_ratings_total']
                 };
 
-                container.appendChild(card);
+                placesService.findPlaceFromQuery(request, (results, status) => {
+                    let ratingHtml = "⭐ 暫無評分資料";
+                    if (status === google.maps.places.PlacesServiceStatus.OK && results[0] && results[0].rating) {
+                        const rating = results[0].rating;
+                        const total = results[0].user_ratings_total;
+                        ratingHtml = `⭐ ${rating} <span class="reviews-count">(${total.toLocaleString()} 則評論)</span>`;
+                    }
+                    
+                    // 將抓到的星級更新到右側卡片
+                    document.getElementById(`rating-${loc.id}`).innerHTML = ratingHtml;
+
+                    // 設定點擊標記或卡片時彈出的氣泡視窗內容
+                    const infoContent = `
+                        <div class="info-window-content">
+                            <img src="${loc.img}" alt="${loc.name}">
+                            <h4>${loc.id}. ${loc.name}</h4>
+                            <div class="info-window-rating">${ratingHtml}</div>
+                            <p style="margin:0;font-size:13px;color:#555;">${loc.desc}</p>
+                        </div>
+                    `;
+
+                    // 綁定點擊事件
+                    const clickAction = () => {
+                        map.panTo({ lat: loc.lat, lng: loc.lng });
+                        map.setZoom(16);
+                        infoWindow.setContent(infoContent);
+                        infoWindow.open(map, marker);
+                    };
+
+                    marker.addListener("click", clickAction);
+                    card.onclick = clickAction;
+                });
             });
         }
 
-        // 5. 彈出地圖氣泡視窗（含圖片與介紹）
-        function openInfoWindow(loc, marker) {
-            const contentString = `
-                <div class="info-window-content">
-                    <img src="${loc.img}" alt="${loc.name}">
-                    <h4>${loc.id}. ${loc.name}</h4>
-                    <p>${loc.desc}</p>
-                </div>
-            `;
-            infoWindow.setContent(contentString);
-            infoWindow.open(map, marker);
-        }
-
-        // 6. 重置視野檢視完整路線
         function focusFullRoute() {
             infoWindow.close();
             map.setZoom(14);
