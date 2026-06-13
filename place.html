@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>溫哥華 Day 1 - 史丹利公園海堤與步道</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        /* 地圖區域 */
+        #map {
+            flex-grow: 1;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 頂部天數切換標籤 (模擬截圖左上角) */
+        .day-tabs {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .day-tab {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .day-tab.active {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* 右側景點資訊面板 */
+        .sidebar {
+            width: 380px;
+            background: white;
+            height: 100%;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-header h1 {
+            margin: 8px 0 12px 0;
+            font-size: 20px;
+            color: #222;
+        }
+
+        .sidebar-header p {
+            margin: 0;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .route-btn {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .locations-list {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 16px;
+        }
+
+        /* 景點卡片設計 */
+        .location-card {
+            display: flex;
+            padding: 12px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #fff;
+        }
+
+        .location-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #ddd;
+        }
+
+        .location-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 16px;
+            position: relative;
+        }
+
+        .location-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-title {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .location-en {
+            margin: 0 0 6px 0;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .location-desc {
+            margin: 0;
+            font-size: 13px;
+            color: #555;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 數字標記的 CSS 設計 */
+        .custom-number-marker {
+            background-color: #1a1a1a;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="day-tabs">
+        <div class="day-tab active">Day 1</div>
+        <div class="day-tab">Day 2</div>
+        <div class="day-tab">Day 3</div>
+        <div class="day-tab">Day 4</div>
+    </div>
+
+    <div id="map"></div>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>DAY 1</h2>
+            <h1>A：史丹利公園海堤與步道</h1>
+            <p>排好的順序，從高豪港出發，沿著海堤步道欣賞獅門橋與燈塔，最後深入寧靜的海狸湖。</p>
+            <div class="route-btn" onclick="fitBounds()">🗺️ 顯示完整路線</div>
+        </div>
+        <div class="locations-list" id="locations-container">
+            </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // 1. 定義景點資料 (依照截圖由上而下的順序)
+        const locations = [
+            {
+                id: 1,
+                name: "德文尼安海港公園",
+                en: "Devonian Harbour Park",
+                lat: 49.2934,
+                lng: -123.1310,
+                desc: "位於高豪港旁，擁有廣闊的草地與水岸風光，是進入史丹利公園的完美起點。",
+                img: "https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=150&q=80"
+            },
+            {
+                id: 2,
+                name: "九點鐘大砲",
+                en: "Nine O'Clock Gun",
+                lat: 49.2982,
+                lng: -123.1180,
+                desc: "擁有超過百年歷史的砲台，每天晚上九點會準時鳴砲，是溫哥華著名的歷史地標。",
+                img: "https://images.unsplash.com/photo-1560944527-a4a429848713?auto=format&fit=crop&w=150&q=80"
+            },
+            {
+                id: 3,
+                name: "布洛克頓角燈塔",
+                en: "Brockton Point Lighthouse",
+                lat: 49.3006,
+                lng: -123.1126,
+                desc: "建於1914年的紅白相間經典燈塔，是欣賞布拉德內灣與北岸山脈絕佳視野的地點。",
+                img: "https://images.unsplash.com/photo-1596700589886-f4cf802144eb?auto=format&fit=crop&w=150&q=80"
+            },
+            {
+                id: 4,
+                name: "觀景角燈塔",
+                en: "Prospect Point Lighthouse",
+                lat: 49.3142,
+                lng: -123.1413,
+                desc: "位於史丹利公園最北端，緊鄰獅門橋下方，可以近距離仰望宏偉的橋樑與船隻進出。",
+                img: "https://images.unsplash.com/photo-1520114033874-a4f728cce778?auto=format&fit=crop&w=150&q=80"
+            },
+            {
+                id: 5,
+                name: "海狸湖",
+                en: "Beaver Lake",
+                lat: 49.3050,
+                lng: -123.1400,
+                desc: "隱藏在史丹利公園茂密森林中的靜謐湖泊，湖面常佈滿睡蓮，生態非常豐富。",
+                img: "https://images.unsplash.com/photo-1473445761369-a20401bb8d99?auto=format&fit=crop&w=150&q=80"
+            }
+        ];
+
+        // 2. 初始化地圖 (中心點設在史丹利公園)
+        const map = L.map('map', {
+            zoomControl: false // 隱藏預設縮放按鈕讓畫面更乾淨
+        }).setView([49.302, -123.130], 14);
+
+        // 使用 CartoDB 的淺色地圖底圖，讓黑色數字標記更突出
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        }).addTo(map);
+
+        const markers = [];
+        const bounds = L.latLngBounds();
+
+        // 3. 繪製路線軌跡 (將所有點連接)
+        const latlngs = locations.map(loc => [loc.lat, loc.lng]);
+        // 加上終點回到起點的閉環
+        latlngs.push([locations[0].lat, locations[0].lng]); 
+        
+        L.polyline(latlngs, {
+            color: '#4285F4',
+            weight: 4,
+            opacity: 0.7,
+            dashArray: '8, 8' // 虛線效果模擬步行路線
+        }).addTo(map);
+
+        // 4. 動態生成地圖標記與右側卡片
+        const container = document.getElementById('locations-container');
+
+        locations.forEach(loc => {
+            // -- 在地圖上加入帶有數字的自訂標記 --
+            const icon = L.divIcon({
+                className: 'custom-number-marker',
+                html: loc.id,
+                iconSize: [28, 28],
+                iconAnchor: [14, 14]
+            });
+
+            const marker = L.marker([loc.lat, loc.lng], {icon: icon})
+                .bindPopup(`<b>${loc.id}. ${loc.name}</b><br>${loc.en}`)
+                .addTo(map);
+            
+            markers.push(marker);
+            bounds.extend([loc.lat, loc.lng]);
+
+            // -- 在右側面板生成景點卡片 --
+            const card = document.createElement('div');
+            card.className = 'location-card';
+            card.innerHTML = `
+                <img src="${loc.img}" alt="${loc.name}" class="location-img">
+                <div class="location-info">
+                    <h3 class="location-title">${loc.id}. ${loc.name}</h3>
+                    <p class="location-en">${loc.en}</p>
+                    <p class="location-desc">${loc.desc}</p>
+                </div>
+            `;
+
+            // 點擊卡片時地圖移動到該景點並展開提示窗
+            card.onclick = () => {
+                map.flyTo([loc.lat, loc.lng], 16, { duration: 1.5 });
+                marker.openPopup();
+            };
+
+            container.appendChild(card);
+        });
+
+        // 調整地圖視野以包含所有標記點
+        function fitBounds() {
+            map.flyToBounds(bounds, { padding: [50, 50], duration: 1 });
+        }
+        
+        // 初始載入時顯示全區
+        fitBounds();
+
+    </script>
+</body>
+</html>
