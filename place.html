@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>溫哥華 Day 1 - 史丹利公園海堤與步道</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>溫哥華 Day 1 - 史丹利公園海堤與步道 (Google Maps 版)</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -22,15 +21,14 @@
         #map {
             flex-grow: 1;
             height: 100%;
-            z-index: 1;
         }
 
-        /* 頂部天數切換標籤 (模擬截圖左上角) */
+        /* 頂部天數切換標籤 */
         .day-tabs {
             position: absolute;
             top: 20px;
             left: 20px;
-            z-index: 1000;
+            z-index: 5;
             display: flex;
             gap: 10px;
         }
@@ -41,7 +39,7 @@
             border-radius: 20px;
             font-weight: 500;
             font-size: 14px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
             cursor: pointer;
             transition: 0.2s;
         }
@@ -57,12 +55,10 @@
             background: white;
             height: 100%;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-            z-index: 1000;
             display: flex;
             flex-direction: column;
-            position: absolute;
-            right: 0;
-            top: 0;
+            position: relative;
+            z-index: 10;
         }
 
         .sidebar-header {
@@ -74,7 +70,6 @@
             margin: 0;
             font-size: 14px;
             color: #666;
-            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
@@ -93,14 +88,21 @@
 
         .route-btn {
             display: inline-block;
-            background: #1a1a1a;
+            background: #4285F4;
             color: white;
             padding: 8px 16px;
             border-radius: 8px;
             text-decoration: none;
             font-size: 14px;
             margin-top: 12px;
+            border: none;
             cursor: pointer;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .route-btn:hover {
+            background: #357ae8;
         }
 
         .locations-list {
@@ -123,16 +125,16 @@
 
         .location-card:hover {
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-color: #ddd;
+            border-color: #ccc;
+            background: #fafafa;
         }
 
         .location-img {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 8px;
             object-fit: cover;
-            margin-right: 16px;
-            position: relative;
+            margin-right: 14px;
         }
 
         .location-info {
@@ -159,23 +161,33 @@
             margin: 0;
             font-size: 13px;
             color: #555;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        /* 數字標記的 CSS 設計 */
-        .custom-number-marker {
-            background-color: #1a1a1a;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 24px;
+        /* 訊息視窗圖片樣式 */
+        .info-window-content {
+            max-width: 200px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        .info-window-content img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+        .info-window-content h4 {
+            margin: 0 0 4px 0;
+            font-size: 14px;
+        }
+        .info-window-content p {
+            margin: 0;
             font-size: 12px;
-            font-weight: bold;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: #666;
         }
     </style>
 </head>
@@ -186,6 +198,7 @@
         <div class="day-tab">Day 2</div>
         <div class="day-tab">Day 3</div>
         <div class="day-tab">Day 4</div>
+        <div class="day-tab">Day 5</div>
     </div>
 
     <div id="map"></div>
@@ -194,137 +207,188 @@
         <div class="sidebar-header">
             <h2>DAY 1</h2>
             <h1>A：史丹利公園海堤與步道</h1>
-            <p>排好的順序，從高豪港出發，沿著海堤步道欣賞獅門橋與燈塔，最後深入寧靜的海狸湖。</p>
-            <div class="route-btn" onclick="fitBounds()">🗺️ 顯示完整路線</div>
+            <p>精選 5 大核心景點，沿著溫哥華美麗的海岸線步行，途經經典大砲與紅白燈塔，最後深入平緩寧靜的森林秘境湖泊。</p>
+            <button class="route-btn" onclick="focusFullRoute()">🗺️ 顯示完整步行路線</button>
         </div>
         <div class="locations-list" id="locations-container">
             </div>
     </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&callback=initMap&v=weekly" async defer></script>
+    
     <script>
-        // 1. 定義景點資料 (依照截圖由上而下的順序)
+        let map;
+        let infoWindow;
+        let directionsPositions = [];
+        
+        // 1. 核心景點精確座標與資料（已修正海面偏移，皆位於步道與陸地上）
         const locations = [
             {
                 id: 1,
                 name: "德文尼安海港公園",
                 en: "Devonian Harbour Park",
-                lat: 49.2934,
-                lng: -123.1310,
-                desc: "位於高豪港旁，擁有廣闊的草地與水岸風光，是進入史丹利公園的完美起點。",
-                img: "https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=150&q=80"
+                lat: 49.293651,
+                lng: -123.132334,
+                desc: "緊鄰高豪港的水岸綠地，是進入史丹利公園海堤步道的完美起點。",
+                img: "https://images.unsplash.com/photo-1560944527-a4a429848713?auto=format&fit=crop&w=300&q=80"
             },
             {
                 id: 2,
                 name: "九點鐘大砲",
                 en: "Nine O'Clock Gun",
-                lat: 49.2982,
-                lng: -123.1180,
-                desc: "擁有超過百年歷史的砲台，每天晚上九點會準時鳴砲，是溫哥華著名的歷史地標。",
-                img: "https://images.unsplash.com/photo-1560944527-a4a429848713?auto=format&fit=crop&w=150&q=80"
+                lat: 49.298616,
+                lng: -123.118223,
+                desc: "擁有歷史悠久的百年大砲，面向溫哥華市中心，每日晚間九點準時鳴放。",
+                img: "https://images.unsplash.com/photo-1596700589886-f4cf802144eb?auto=format&fit=crop&w=300&q=80"
             },
             {
                 id: 3,
                 name: "布洛克頓角燈塔",
                 en: "Brockton Point Lighthouse",
-                lat: 49.3006,
-                lng: -123.1126,
-                desc: "建於1914年的紅白相間經典燈塔，是欣賞布拉德內灣與北岸山脈絕佳視野的地點。",
-                img: "https://images.unsplash.com/photo-1596700589886-f4cf802144eb?auto=format&fit=crop&w=150&q=80"
+                lat: 49.301416,
+                lng: -123.115344,
+                desc: "經典的紅白相間水岸燈塔，能遠眺壯麗的北岸山脈與繁忙的布拉德內灣。",
+                img: "https://images.unsplash.com/photo-1520114033874-a4f728cce778?auto=format&fit=crop&w=300&q=80"
             },
             {
                 id: 4,
                 name: "觀景角燈塔",
-                en: "Prospect Point Lighthouse",
-                lat: 49.3142,
-                lng: -123.1413,
-                desc: "位於史丹利公園最北端，緊鄰獅門橋下方，可以近距離仰望宏偉的橋樑與船隻進出。",
-                img: "https://images.unsplash.com/photo-1520114033874-a4f728cce778?auto=format&fit=crop&w=150&q=80"
+                en: "Prospect Point Lookout",
+                lat: 49.314444,
+                lng: -123.142444,
+                desc: "公園最高點的絕佳觀景台，位於獅門橋正下方，可近距離感受宏偉的橋身結構。",
+                img: "https://images.unsplash.com/photo-1559511260-66a654ae982a?auto=format&fit=crop&w=300&q=80"
             },
             {
                 id: 5,
                 name: "海狸湖",
                 en: "Beaver Lake",
-                lat: 49.3050,
-                lng: -123.1400,
-                desc: "隱藏在史丹利公園茂密森林中的靜謐湖泊，湖面常佈滿睡蓮，生態非常豐富。",
-                img: "https://images.unsplash.com/photo-1473445761369-a20401bb8d99?auto=format&fit=crop&w=150&q=80"
+                lat: 49.307194,
+                lng: -123.136139,
+                desc: "隱身於密林深處的生態淡水湖，湖面開滿優雅的睡蓮，氛圍極其寧靜祥和。",
+                img: "https://images.unsplash.com/photo-1473445761369-a20401bb8d99?auto=format&fit=crop&w=300&q=80"
             }
         ];
 
-        // 2. 初始化地圖 (中心點設在史丹利公園)
-        const map = L.map('map', {
-            zoomControl: false // 隱藏預設縮放按鈕讓畫面更乾淨
-        }).setView([49.302, -123.130], 14);
+        const markers = {};
 
-        // 使用 CartoDB 的淺色地圖底圖，讓黑色數字標記更突出
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-        }).addTo(map);
-
-        const markers = [];
-        const bounds = L.latLngBounds();
-
-        // 3. 繪製路線軌跡 (將所有點連接)
-        const latlngs = locations.map(loc => [loc.lat, loc.lng]);
-        // 加上終點回到起點的閉環
-        latlngs.push([locations[0].lat, locations[0].lng]); 
-        
-        L.polyline(latlngs, {
-            color: '#4285F4',
-            weight: 4,
-            opacity: 0.7,
-            dashArray: '8, 8' // 虛線效果模擬步行路線
-        }).addTo(map);
-
-        // 4. 動態生成地圖標記與右側卡片
-        const container = document.getElementById('locations-container');
-
-        locations.forEach(loc => {
-            // -- 在地圖上加入帶有數字的自訂標記 --
-            const icon = L.divIcon({
-                className: 'custom-number-marker',
-                html: loc.id,
-                iconSize: [28, 28],
-                iconAnchor: [14, 14]
+        // 2. 地圖初始化函式
+        function initMap() {
+            // 建立地圖，中心點預設在史丹利公園
+            map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: { lat: 49.302, lng: -123.130 },
+                mapTypeControl: false,
+                streetViewControl: false,
+                fullscreenControl: false,
+                // 使用乾淨現代的地圖樣式
+                styles: [
+                    { featureType: "poi.business", stylers: [{ visibility: "off" }] },
+                    { featureType: "transit", stylers: [{ visibility: "off" }] }
+                ]
             });
 
-            const marker = L.marker([loc.lat, loc.lng], {icon: icon})
-                .bindPopup(`<b>${loc.id}. ${loc.name}</b><br>${loc.en}`)
-                .addTo(map);
-            
-            markers.push(marker);
-            bounds.extend([loc.lat, loc.lng]);
+            infoWindow = new google.maps.InfoWindow();
 
-            // -- 在右側面板生成景點卡片 --
-            const card = document.createElement('div');
-            card.className = 'location-card';
-            card.innerHTML = `
-                <img src="${loc.img}" alt="${loc.name}" class="location-img">
-                <div class="location-info">
-                    <h3 class="location-title">${loc.id}. ${loc.name}</h3>
-                    <p class="location-en">${loc.en}</p>
-                    <p class="location-desc">${loc.desc}</p>
+            // 3. 呼叫 Google 導航服務（自動修正路網，避免切過海面）
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer({
+                map: map,
+                suppressMarkers: true, // 隱藏預設圖標，改用我們自訂的數字標記
+                polylineOptions: {
+                    strokeColor: "#4285F4",
+                    strokeOpacity: 0.85,
+                    strokeWeight: 5
+                }
+            });
+
+            // 設定步行路線節點 (從 1 出發，途經 2,3,4,5，最後回到 1 形成完美環狀線)
+            const origin = { lat: locations[0].lat, lng: locations[0].lng };
+            const waypoints = locations.slice(1).map(loc => ({
+                location: { lat: loc.lat, lng: loc.lng },
+                stopover: true
+            }));
+
+            directionsService.route({
+                origin: origin,
+                destination: origin, // 回到起點
+                waypoints: waypoints,
+                travelMode: google.maps.TravelMode.WALKING // 強制設定為步行模式
+            }, (response, status) => {
+                if (status === "OK") {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    console.error("導航路線渲染失敗，原因：" + status);
+                }
+            });
+
+            // 4. 生成景點標記與右側卡片
+            const container = document.getElementById("locations-container");
+
+            locations.forEach(loc => {
+                const position = { lat: loc.lat, lng: loc.lng };
+
+                // 在地圖上繪製帶有數字的標記
+                const marker = new google.maps.Marker({
+                    position: position,
+                    map: map,
+                    label: {
+                        text: String(loc.id),
+                        color: "white",
+                        fontWeight: "bold"
+                    },
+                    title: loc.name
+                });
+
+                markers[loc.id] = marker;
+
+                // 地圖標記點擊事件
+                marker.addListener("click", () => {
+                    openInfoWindow(loc, marker);
+                });
+
+                // 動態建立右側資訊卡片
+                const card = document.createElement("div");
+                card.className = "location-card";
+                card.innerHTML = `
+                    <img src="${loc.img}" alt="${loc.name}" class="location-img">
+                    <div class="location-info">
+                        <h3 class="location-title">${loc.id}. ${loc.name}</h3>
+                        <p class="location-en">${loc.en}</p>
+                        <p class="location-desc">${loc.desc}</p>
+                    </div>
+                `;
+
+                // 卡片點擊事件：平滑聚焦地圖並彈出地圖氣泡窗
+                card.onclick = () => {
+                    map.panTo(position);
+                    map.setZoom(16);
+                    openInfoWindow(loc, marker);
+                };
+
+                container.appendChild(card);
+            });
+        }
+
+        // 5. 彈出地圖氣泡視窗（含圖片與介紹）
+        function openInfoWindow(loc, marker) {
+            const contentString = `
+                <div class="info-window-content">
+                    <img src="${loc.img}" alt="${loc.name}">
+                    <h4>${loc.id}. ${loc.name}</h4>
+                    <p>${loc.desc}</p>
                 </div>
             `;
-
-            // 點擊卡片時地圖移動到該景點並展開提示窗
-            card.onclick = () => {
-                map.flyTo([loc.lat, loc.lng], 16, { duration: 1.5 });
-                marker.openPopup();
-            };
-
-            container.appendChild(card);
-        });
-
-        // 調整地圖視野以包含所有標記點
-        function fitBounds() {
-            map.flyToBounds(bounds, { padding: [50, 50], duration: 1 });
+            infoWindow.setContent(contentString);
+            infoWindow.open(map, marker);
         }
-        
-        // 初始載入時顯示全區
-        fitBounds();
 
+        // 6. 重置視野檢視完整路線
+        function focusFullRoute() {
+            infoWindow.close();
+            map.setZoom(14);
+            map.panTo({ lat: 49.304, lng: -123.129 });
+        }
     </script>
 </body>
 </html>
