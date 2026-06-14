@@ -10,14 +10,16 @@
 <style>
 /* ── Variables (Claymorphism Style) ────────────────────── */
 :root {
-  --bg: #E8EEF2;         
-  --surface: #FFFFFF;    
+  --bg: #E8EEF2;         /* 帶點灰藍的軟背景 */
+  --surface: #F1F5F9;    /* 卡片表面 */
   --teal: #0EA5E9;
   --amber: #F59E0B;
   --pine: #10B981;
   --t1: #1F2937;
   --t2: #4B5563;
   --t3: #9CA3AF;
+  
+  /* Clay Shadows */
   --clay-shadow: 6px 6px 12px rgba(170, 182, 198, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.9);
   --clay-pressed: inset 4px 4px 8px rgba(170, 182, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
@@ -27,148 +29,195 @@ html, body { height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-s
 
 /* ── Layout ─────────────────────────────────────── */
 #app { display: flex; height: 100vh; position: relative; }
-
-/* ── Map ─────────────────────────────────────────── */
-#map-wrap { flex: 1; position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
-#map { width: 100%; height: 100%; }
-
-/* ── Mobile Drawer (Sidebar) ─────────────────────── */
 #sidebar {
-  position: absolute; bottom: 0; left: 0; width: 100%; height: 45dvh; 
-  background: var(--bg); z-index: 10;
-  border-radius: 32px 32px 0 0;
-  box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
-  display: flex; flex-direction: column;
-  transition: height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  will-change: height;
+  width: 400px; min-width: 400px; display: flex; flex-direction: column;
+  background: var(--bg);
+  position: relative; z-index: 10;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.05);
 }
 
-/* 拖曳把手區 (禁止原生滾動，專門用來拉伸抽屜) */
-#drag-handle-zone {
-  display: flex; justify-content: center; align-items: center;
-  width: 100%; height: 40px; flex-shrink: 0; position: relative; z-index: 20;
-  touch-action: none; cursor: grab;
-}
-#drag-handle-zone::before {
-  content: ''; width: 50px; height: 6px; border-radius: 6px;
-  background: #CBD5E1; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-
-/* ── Header & Tabs ──────────────────────────────── */
-#header { padding: 0 24px 16px; flex-shrink: 0; }
+/* ── Header ─────────────────────────────────────── */
+#header { padding: 24px 24px 16px; position: relative; flex-shrink: 0; }
 .aurora-bar {
-  height: 5px; border-radius: 5px; margin-bottom: 12px;
+  height: 6px; border-radius: 6px; margin-bottom: 16px;
   background: linear-gradient(90deg, var(--pine), var(--teal), var(--amber), var(--teal), var(--pine));
   background-size: 300%; animation: aurora 6s ease-in-out infinite;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 @keyframes aurora { 0%, 100% { background-position: 0% } 50% { background-position: 100% } }
-.site-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 700; color: var(--t1); }
+.site-title { font-family: 'Noto Serif TC', serif; font-size: 24px; font-weight: 700; color: var(--t1); }
+.site-sub { font-size: 12px; font-weight: 600; color: var(--t3); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
 
-#tabs { display: flex; gap: 10px; padding: 0 20px 16px; flex-shrink: 0; }
+/* ── Tabs (Clay Buttons) ─────────────────────────── */
+#tabs { display: flex; gap: 12px; padding: 0 20px 16px; flex-shrink: 0; }
 .tab {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;
-  padding: 12px 4px; border-radius: 18px; border: none;
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 6px; border-radius: 20px; border: none;
   background: var(--surface); color: var(--t2);
-  font-family: 'Noto Sans TC', sans-serif; font-size: 13px; font-weight: 600;
-  box-shadow: var(--clay-shadow); transition: all 0.2s ease;
+  font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 600;
+  box-shadow: var(--clay-shadow);
+  transition: all 0.2s ease; cursor: pointer;
 }
-.tab .ti { font-size: 24px; }
-.tab.aw { color: var(--pine); box-shadow: var(--clay-pressed); }
-.tab.ac { color: var(--amber); box-shadow: var(--clay-pressed); }
-.tab.ab { color: var(--teal); box-shadow: var(--clay-pressed); }
-
-/* ── Content Area (列表與介紹文切換區) ───────────── */
-#content-area {
-  flex: 1; min-height: 0; position: relative;
-}
+.tab .ti { font-size: 26px; line-height: 1; transition: transform 0.3s; }
+.tab:active { box-shadow: var(--clay-pressed); transform: scale(0.98); }
+.tab.aw { color: var(--pine); box-shadow: inset 2px 2px 4px rgba(16,185,129,0.1), var(--clay-shadow); }
+.tab.ac { color: var(--amber); box-shadow: inset 2px 2px 4px rgba(245,158,11,0.1), var(--clay-shadow); }
+.tab.ab { color: var(--teal); box-shadow: inset 2px 2px 4px rgba(14,165,233,0.1), var(--clay-shadow); }
 
 /* ── List View ───────────────────────────────────── */
 #list-view { 
-  position: absolute; inset: 0; overflow-y: auto; padding: 0 20px 40px; 
-  -webkit-overflow-scrolling: touch; 
+  flex: 1; overflow-y: auto; padding: 4px 20px 80px; 
+  -webkit-overflow-scrolling: touch; /* 確保 iOS 滑順滾動 */
+  overscroll-behavior: contain;
 }
 #list-view::-webkit-scrollbar { width: 0; }
-.g-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--t3); padding: 8px 4px; margin-bottom: 8px; border-bottom: 1px dashed #CBD5E1; }
+.g-label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--t3); padding: 16px 4px 8px; margin-bottom: 8px; }
 .loc-card {
-  display: flex; gap: 12px; align-items: center;
-  padding: 14px; border-radius: 20px; border: 2px solid rgba(255,255,255,0.6);
-  background: var(--surface); margin-bottom: 14px;
+  display: flex; gap: 14px; align-items: stretch;
+  padding: 16px; border-radius: 24px; border: 2px solid rgba(255,255,255,0.5);
+  background: var(--surface); cursor: pointer; margin-bottom: 16px;
   box-shadow: var(--clay-shadow);
+  transition: all 0.2s ease;
 }
-.loc-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+.loc-card:active { transform: scale(0.98); box-shadow: var(--clay-pressed); }
+.loc-num {
+  width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px;
+}
 .nw { background: #D1FAE5; color: var(--pine) }
 .nc { background: #FEF3C7; color: var(--amber) }
 .nb { background: #E0F2FE; color: var(--teal) }
-.loc-info { flex: 1; min-width: 0; }
+.loc-info { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
 .loc-zh { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 700; color: var(--t1); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.loc-en { font-size: 12px; color: var(--t3); margin-top: 2px; }
-.loc-thumb { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; border: 2px solid white; flex-shrink: 0; }
+.loc-en { font-size: 12px; color: var(--t3); margin-top: 4px; font-weight: 500; }
+.loc-snip { font-size: 13px; color: var(--t2); margin-top: 8px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.loc-thumb { width: 72px; height: 72px; border-radius: 16px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 2px solid white; box-shadow: 2px 4px 8px rgba(0,0,0,0.05); }
 
-/* ── Detail View (文章區塊，確保圖片隨文字滑動) ────── */
+/* ── Detail View ─────────────────────────────────── */
 #detail-view { 
-  display: none; /* 預設隱藏 */
-  position: absolute; inset: 0; overflow-y: auto; padding: 0 24px 60px; 
-  -webkit-overflow-scrolling: touch; 
+  display: none; flex-direction: column; flex: 1; overflow-y: auto; padding: 0 20px 80px; 
+  -webkit-overflow-scrolling: touch; /* 確保圖片與文字一起滑順滾動 */
+  overscroll-behavior: contain;
 }
 #detail-view::-webkit-scrollbar { width: 0; }
 .d-back {
-  display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; margin-bottom: 16px;
-  border-radius: 16px; background: var(--surface); border: none; color: var(--t2);
-  font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700;
-  box-shadow: var(--clay-shadow); flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; margin: 0 0 20px 0;
+  border-radius: 20px; background: var(--surface); border: none; color: var(--t2);
+  font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer;
+  box-shadow: var(--clay-shadow); transition: all 0.2s; align-self: flex-start;
+  flex-shrink: 0;
 }
-#d-zh { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; line-height: 1.3; color: var(--t1); margin-bottom: 4px; }
-#d-en { font-size: 13px; font-weight: 500; color: var(--t3); margin-bottom: 16px; }
-/* 圖片包裝區：現在它在滾動流(Block Flow)中，會跟著文字一起滑 */
-#d-img-inner { width: 100%; border-radius: 20px; overflow: hidden; margin-bottom: 20px; box-shadow: var(--clay-shadow); border: 4px solid #FFF; }
-#d-img-inner img { width: 100%; height: auto; max-height: 280px; object-fit: cover; display: block; }
-#d-desc { font-size: 15px; line-height: 1.8; color: var(--t2); text-align: justify; }
+.d-back:active { box-shadow: var(--clay-pressed); transform: scale(0.95); }
+#d-zh { font-family: 'Noto Serif TC', serif; font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; color: var(--t1); padding: 0 4px; flex-shrink: 0; }
+#d-en { font-size: 14px; font-weight: 500; color: var(--t3); margin-bottom: 20px; padding: 0 4px; flex-shrink: 0; }
+#d-img-inner { width: 100%; border-radius: 24px; overflow: hidden; margin-bottom: 24px; box-shadow: var(--clay-shadow); border: 4px solid #FFF; flex-shrink: 0; }
+#d-img-inner img { width: 100%; height: auto; max-height: 300px; object-fit: cover; display: block; }
+#d-desc { font-size: 16px; line-height: 1.8; color: var(--t2); padding: 0 4px; flex-shrink: 0; }
 
-/* ── InfoWindow overrides ────────────────────────── */
-.gm-style .gm-style-iw-c { padding: 0 !important; border-radius: 16px !important; box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important; }
+/* ── Custom Map Markers ──────────────────────────── */
+.custom-marker {
+  position: relative; width: 60px; height: 60px;
+  border-radius: 18px; background: white; padding: 4px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease; cursor: pointer;
+}
+.custom-marker:active { transform: scale(0.9); }
+.marker-bg {
+  width: 100%; height: 100%; border-radius: 14px;
+  background-size: cover; background-position: center; background-color: var(--bg);
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+.marker-badge {
+  position: absolute; top: -8px; right: -8px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #111827; color: white; border: 2px solid white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; font-family: 'Noto Sans TC', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ── Map ─────────────────────────────────────────── */
+#map-wrap { flex: 1; position: relative; }
+#map { width: 100%; height: 100%; }
+
+/* ── Mobile Responsive & Draggable Drawer ────────── */
+#drag-handle-zone { display: none; }
+
+@media(max-width: 760px){
+  #app { display: block; }
+  #map-wrap { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
+  #sidebar {
+    position: absolute; bottom: 0; left: 0; width: 100%; min-width: unset; height: 45vh;
+    border-radius: 36px 36px 0 0; background: var(--bg);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.15);
+    border-top: 1px solid rgba(255,255,255,0.8);
+    overscroll-behavior: none; /* 防止邊界彈性拖動到底部地圖 */
+  }
+  
+  #drag-handle-zone {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%; height: 40px; flex-shrink: 0; position: relative; z-index: 20;
+    touch-action: none; /* 嚴格禁止把手區觸發頁面原生滾動 */
+  }
+  #drag-handle-zone::before {
+    content: ''; width: 48px; height: 6px; border-radius: 6px;
+    background: #CBD5E1; box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  }
+  #header { padding-top: 0; }
+}
+
+/* ── Global Styles overrides ─────────────────────── */
+.ph { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 48px; background: var(--surface); color: var(--t3); }
+
+/* Info Window (移除預設邊框與底色以符合設計) */
+.gm-style .gm-style-iw-c { padding: 0 !important; border-radius: 16px !important; }
 .gm-style .gm-style-iw-d { overflow: hidden !important; }
-.gm-style button[title="Close"] { display: none !important; } /* 隱藏原生關閉按鈕使排版更乾淨 */
-
-.ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 32px; background: #E8EEF2; }
 </style>
 </head>
 <body>
 <div id="app">
-  <div id="map-wrap"><div id="map"></div></div>
-
   <div id="sidebar">
     <div id="drag-handle-zone"></div>
     <div id="header">
       <div class="aurora-bar"></div>
       <div class="site-title">🍁 加拿大西部旅遊指南</div>
+      <div class="site-sub">Western Canada Travel Guide</div>
     </div>
 
     <div id="tabs">
-      <button class="tab" id="tab-walking" onclick="switchTheme('walking')"><span class="ti">🚶</span>附近散步</button>
-      <button class="tab" id="tab-camping" onclick="switchTheme('camping')"><span class="ti">⛺</span>露營</button>
-      <button class="tab" id="tab-banff" onclick="switchTheme('banff')"><span class="ti">🏔</span>斑夫</button>
+      <button class="tab" id="tab-walking" onclick="switchTheme('walking')">
+        <span class="ti">🚶</span>附近散步
+      </button>
+      <button class="tab" id="tab-camping" onclick="switchTheme('camping')">
+        <span class="ti">⛺</span>露營
+      </button>
+      <button class="tab" id="tab-banff" onclick="switchTheme('banff')">
+        <span class="ti">🏔</span>斑夫
+      </button>
     </div>
 
-    <div id="content-area">
-      <div id="list-view"></div>
-      
-      <div id="detail-view">
-        <button class="d-back" onclick="goBack()">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          返回列表
-        </button>
-        <div id="d-zh"></div>
-        <div id="d-en"></div>
-        <div id="d-img-inner"><div class="ph">🏞</div></div>
-        <div id="d-desc"></div>
-      </div>
+    <div id="list-view"></div>
+
+    <div id="detail-view">
+      <button class="d-back" onclick="goBack()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        返回列表
+      </button>
+      <div id="d-zh"></div>
+      <div id="d-en"></div>
+      <div id="d-img-inner"><div class="ph">🏞</div></div>
+      <div id="d-desc"></div>
     </div>
+  </div>
+
+  <div id="map-wrap">
+    <div id="map"></div>
   </div>
 </div>
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   DATA (100% 完整保留原始資料，無任何刪減)
+   DATA (已恢復完整資料)
 ═══════════════════════════════════════════════════════════ */
 const THEMES = {
   walking: {
@@ -176,37 +225,94 @@ const THEMES = {
     center:{lat:49.285,lng:-123.10}, zoom:11, routeLinks:[],
     groups:[
       { name:'Stanley Park 史丹利公園', locs:[
-        { id:'sp1', zh:'史丹利公園海堤', en:'Stanley Park Seawall', lat:49.3043, lng:-123.1443, desc:'溫哥華最著名的海濱步道，全長約10公里，環繞整個史丹利公園。沿途可欣賞英吉利灣湛藍海景、北岸山脈積雪山峰和市區璀璨天際線。步道平整寬闊，適合步行、騎自行車或直排輪，是溫哥華必訪戶外景點。', q:'Stanley Park Seawall Vancouver' },
-        { id:'sp2', zh:'迪文尼亞港公園', en:'Devonian Harbour Park', lat:49.2921, lng:-123.1307, desc:'史丹利公園入口旁的濱水小公園，近溫哥華煤氣鎮。可坐看往來的海上巴士和遊艇，眺望北岸山脈倒影，也是前往史丹利公園海堤的起點之一。', q:'Devonian Harbour Park Vancouver' },
-        { id:'sp3', zh:'九點鐘大砲', en:"Nine O'Clock Gun", lat:49.2997, lng:-123.1208, desc:'自1894年起每晚九點準時鳴放的歷史古砲，是溫哥華最獨特的城市傳統。當年為提醒漁民返港而設，如今已成文化象徵，周邊可眺望北溫哥華港灣夜景。', q:"Nine O'Clock Gun Stanley Park Vancouver" },
-        { id:'sp4', zh:'布拉克頓角燈塔', en:'Brockton Point Lighthouse', lat:49.2999, lng:-123.1217, desc:'史丹利公園東端的紅白相間小燈塔，建於1914年，附近設有原住民圖騰柱群。從此處可欣賞巴勒德灣全景，遠眺北溫哥華的山岳輪廓，是公園內極具文化意義的地標。', q:'Brockton Point Lighthouse Stanley Park Vancouver' },
-        { id:'sp5', zh:'展望點燈塔', en:'Prospect Point Lighthouse', lat:49.3157, lng:-123.1435, desc:'史丹利公園最北端的觀景台，海拔69公尺，可俯瞰獅門大橋全景及霧氣縹緲的英吉利灣。秋季鮭魚洄游時節，橋下即可見成群的鮭魚，是公園視野最開闊的地點。', q:'Prospect Point Lighthouse Stanley Park' },
-        { id:'sp6', zh:'海狸湖', en:'Beaver Lake', lat:49.3070, lng:-123.1541, desc:'隱藏在史丹利公園森林深處的靜謐淡水湖，湖面常見睡蓮，是賞鳥和觀察野生動物的好去處。春夏可見各種水鳥，偶爾還能遇見真正的海狸在湖邊築壩。', q:'Beaver Lake Stanley Park Vancouver' }
+        { id:'sp1', zh:'史丹利公園海堤', en:'Stanley Park Seawall',
+          lat:49.3043, lng:-123.1443,
+          desc:'溫哥華最著名的海濱步道，全長約10公里，環繞整個史丹利公園。沿途可欣賞英吉利灣湛藍海景、北岸山脈積雪山峰和市區璀璨天際線。步道平整寬闊，適合步行、騎自行車或直排輪，是溫哥華必訪戶外景點。',
+          q:'Stanley Park Seawall Vancouver' },
+        { id:'sp2', zh:'迪文尼亞港公園', en:'Devonian Harbour Park',
+          lat:49.2921, lng:-123.1307,
+          desc:'史丹利公園入口旁的濱水小公園，近溫哥華煤氣鎮。可坐看往來的海上巴士和遊艇，眺望北岸山脈倒影，也是前往史丹利公園海堤的起點之一。',
+          q:'Devonian Harbour Park Vancouver' },
+        { id:'sp3', zh:'九點鐘大砲', en:"Nine O'Clock Gun",
+          lat:49.2997, lng:-123.1208,
+          desc:'自1894年起每晚九點準時鳴放的歷史古砲，是溫哥華最獨特的城市傳統。當年為提醒漁民返港而設，如今已成文化象徵，周邊可眺望北溫哥華港灣夜景。',
+          q:"Nine O'Clock Gun Stanley Park Vancouver" },
+        { id:'sp4', zh:'布拉克頓角燈塔', en:'Brockton Point Lighthouse',
+          lat:49.2999, lng:-123.1217,
+          desc:'史丹利公園東端的紅白相間小燈塔，建於1914年，附近設有原住民圖騰柱群。從此處可欣賞巴勒德灣全景，遠眺北溫哥華的山岳輪廓，是公園內極具文化意義的地標。',
+          q:'Brockton Point Lighthouse Stanley Park Vancouver' },
+        { id:'sp5', zh:'展望點燈塔', en:'Prospect Point Lighthouse',
+          lat:49.3157, lng:-123.1435,
+          desc:'史丹利公園最北端的觀景台，海拔69公尺，可俯瞰獅門大橋全景及霧氣縹緲的英吉利灣。秋季鮭魚洄游時節，橋下即可見成群的鮭魚，是公園視野最開闊的地點。',
+          q:'Prospect Point Lighthouse Stanley Park' },
+        { id:'sp6', zh:'海狸湖', en:'Beaver Lake',
+          lat:49.3070, lng:-123.1541,
+          desc:'隱藏在史丹利公園森林深處的靜謐淡水湖，湖面常見睡蓮，是賞鳥和觀察野生動物的好去處。春夏可見各種水鳥，偶爾還能遇見真正的海狸在湖邊築壩。',
+          q:'Beaver Lake Stanley Park Vancouver' }
       ]},
       { name:'北溫哥華', locs:[
-        { id:'lq1', zh:'朗斯代爾碼頭市場', en:'Lonsdale Quay Market', lat:49.3100, lng:-123.0825, desc:'北溫哥華的熱鬧濱水市集，從市中心搭乘海上巴士（SeaBus）僅12分鐘直達。市場內有新鮮農產品、海鮮、各國美食及特色小店，是感受溫哥華水岸生活的最佳方式。', q:'Lonsdale Quay Market North Vancouver' }
+        { id:'lq1', zh:'朗斯代爾碼頭市場', en:'Lonsdale Quay Market',
+          lat:49.3100, lng:-123.0825,
+          desc:'北溫哥華的熱鬧濱水市集，從市中心搭乘海上巴士（SeaBus）僅12分鐘直達。市場內有新鮮農產品、海鮮、各國美食及特色小店，是感受溫哥華水岸生活的最佳方式。',
+          q:'Lonsdale Quay Market North Vancouver' }
       ]},
       { name:'UBC 校區', locs:[
-        { id:'psp', zh:'太平洋精神公園', en:'Pacific Spirit Regional Park', lat:49.2512, lng:-123.2278, desc:'環繞UBC校區的龐大森林公園，擁有超過73公里的步道穿越溫帶雨林。松林、楓樹與蕨類植物交織，是城市中難得的原始自然體驗，適合輕鬆漫步或晨跑。', q:'Pacific Spirit Regional Park Vancouver' },
-        { id:'ubc', zh:'英屬哥倫比亞大學', en:'University of British Columbia', lat:49.2606, lng:-123.2460, desc:'UBC校園廣闊壯美，可參觀人類學博物館（MOA）欣賞精彩的原住民藝術、植物園及禪園。校園西端有極美的海景瞭望台，可眺望喬治亞海峽和遠方的溫哥華島。', q:'University of British Columbia campus Vancouver' }
+        { id:'psp', zh:'太平洋精神公園', en:'Pacific Spirit Regional Park',
+          lat:49.2512, lng:-123.2278,
+          desc:'環繞UBC校區的龐大森林公園，擁有超過73公里的步道穿越溫帶雨林。松林、楓樹與蕨類植物交織，是城市中難得的原始自然體驗，適合輕鬆漫步或晨跑。',
+          q:'Pacific Spirit Regional Park Vancouver' },
+        { id:'ubc', zh:'英屬哥倫比亞大學', en:'University of British Columbia',
+          lat:49.2606, lng:-123.2460,
+          desc:'UBC校園廣闊壯美，可參觀人類學博物館（MOA）欣賞精彩的原住民藝術、植物園及禪園。校園西端有極美的海景瞭望台，可眺望喬治亞海峽和遠方的溫哥華島。',
+          q:'University of British Columbia campus Vancouver' }
       ]},
       { name:'False Creek 假溪', locs:[
-        { id:'fc', zh:'假溪水上巴士', en:'False Creek Ferry', lat:49.2718, lng:-123.1199, desc:'假溪是深入溫哥華市中心的內海灣，可搭乘小型水上巴士遊覽南北兩岸。北岸Yaletown和科學世界附近餐廳密集，南岸Olympic Village悠閒宜人，是感受溫哥華城市水岸的最佳方式。', q:'False Creek Ferry Vancouver seabus' },
-        { id:'kit', zh:'吉士蘭奴海灘', en:'Kitsilano Beach', lat:49.2680, lng:-123.1553, desc:'溫哥華最受歡迎的城市海灘，擁有長達半公里的白沙灘，可清晰看見史丹利公園和北岸山脈。海灘旁有全加拿大最長的室外游泳池，周邊咖啡館和餐廳林立，充滿悠閒的溫哥華生活感。', q:'Kitsilano Beach Park Vancouver' }
+        { id:'fc', zh:'假溪水上巴士', en:'False Creek Ferry',
+          lat:49.2718, lng:-123.1199,
+          desc:'假溪是深入溫哥華市中心的內海灣，可搭乘小型水上巴士遊覽南北兩岸。北岸Yaletown和科學世界附近餐廳密集，南岸Olympic Village悠閒宜人，是感受溫哥華城市水岸的最佳方式。',
+          q:'False Creek Ferry Vancouver seabus' },
+        { id:'kit', zh:'吉士蘭奴海灘', en:'Kitsilano Beach',
+          lat:49.2680, lng:-123.1553,
+          desc:'溫哥華最受歡迎的城市海灘，擁有長達半公里的白沙灘，可清晰看見史丹利公園和北岸山脈。海灘旁有全加拿大最長的室外游泳池，周邊咖啡館和餐廳林立，充滿悠閒的溫哥華生活感。',
+          q:'Kitsilano Beach Park Vancouver' }
       ]},
       { name:'深灣 & 湖區', locs:[
-        { id:'bl', zh:'班岑湖', en:'Buntzen Lake', lat:49.3884, lng:-122.8626, desc:'位於Port Moody東北的美麗水庫湖泊，可租獨木舟或划槳板暢遊湖面。有步道通往更幽靜的McCombe Lake（全程約7公里），途中穿越原始森林，偶爾可見熊的蹤跡，景色野趣盎然。', q:'Buntzen Lake Recreation Area BC' },
-        { id:'dc', zh:'深灣 Deep Cove', en:'Deep Cove', lat:49.3279, lng:-122.9497, desc:'北溫哥華的靜謐海灣小村，從貝爾卡拉（Belcarra）划獨木舟前往是絕美水上旅程，穿越印第安灣可欣賞北岸山脈。深灣以「Honey Doughnuts」甜甜圈聞名，是獨木舟後的最佳犒賞。', q:'Deep Cove North Vancouver kayaking' },
-        { id:'rp', zh:'洛基角公園', en:'Rocky Point Park', lat:49.2853, lng:-122.8494, desc:'Port Moody海灣盡頭的濱水公園，木棧道沿巴勒德灣延伸，可眺望兩側工業與自然交融的獨特景觀。傍晚散步時常有白鷺、翠鳥等水鳥出沒，附近還有冰淇淋店和餐廳。', q:'Rocky Point Park Port Moody BC' }
+        { id:'bl', zh:'班岑湖', en:'Buntzen Lake',
+          lat:49.3884, lng:-122.8626,
+          desc:'位於Port Moody東北的美麗水庫湖泊，可租獨木舟或划槳板暢遊湖面。有步道通往更幽靜的McCombe Lake（全程約7公里），途中穿越原始森林，偶爾可見熊的蹤跡，景色野趣盎然。',
+          q:'Buntzen Lake Recreation Area BC' },
+        { id:'dc', zh:'深灣 Deep Cove', en:'Deep Cove',
+          lat:49.3279, lng:-122.9497,
+          desc:'北溫哥華的靜謐海灣小村，從貝爾卡拉（Belcarra）划獨木舟前往是絕美水上旅程，穿越印第安灣可欣賞北岸山脈。深灣以「Honey Doughnuts」甜甜圈聞名，是獨木舟後的最佳犒賞。',
+          q:'Deep Cove North Vancouver kayaking' },
+        { id:'rp', zh:'洛基角公園', en:'Rocky Point Park',
+          lat:49.2853, lng:-122.8494,
+          desc:'Port Moody海灣盡頭的濱水公園，木棧道沿巴勒德灣延伸，可眺望兩側工業與自然交融的獨特景觀。傍晚散步時常有白鷺、翠鳥等水鳥出沒，附近還有冰淇淋店和餐廳。',
+          q:'Rocky Point Park Port Moody BC' }
       ]},
       { name:'山頂纜車', locs:[
-        { id:'gm', zh:'松雞山纜車', en:'Grouse Mountain', lat:49.3808, lng:-123.0785, desc:'從溫哥華市中心30分鐘車程即達的「溫哥華後院」，纜車8分鐘登頂海拔1127公尺。山頂設有觀景台、灰熊展示區、伐木表演等，俯瞰整個大溫地區，四季皆有截然不同的面貌。', q:'Grouse Mountain Vancouver gondola' },
-        { id:'sts', zh:'天空之海纜車', en:'Sea to Sky Gondola', lat:49.7408, lng:-123.1526, desc:'位於Squamish的驚人纜車，10分鐘從海平面急升885公尺，俯瞰豪灣（Howe Sound）和史塔馬斯酋長岩。山頂設有懸空吊橋，360度環視雪山海灣的壯麗景色令人嘆為觀止。', q:'Sea to Sky Gondola Squamish BC' }
+        { id:'gm', zh:'松雞山纜車', en:'Grouse Mountain',
+          lat:49.3808, lng:-123.0785,
+          desc:'從溫哥華市中心30分鐘車程即達的「溫哥華後院」，纜車8分鐘登頂海拔1127公尺。山頂設有觀景台、灰熊展示區、伐木表演等，俯瞰整個大溫地區，四季皆有截然不同的面貌。',
+          q:'Grouse Mountain Vancouver gondola' },
+        { id:'sts', zh:'天空之海纜車', en:'Sea to Sky Gondola',
+          lat:49.7408, lng:-123.1526,
+          desc:'位於Squamish的驚人纜車，10分鐘從海平面急升885公尺，俯瞰豪灣（Howe Sound）和史塔馬斯酋長岩。山頂設有懸空吊橋，360度環視雪山海灣的壯麗景色令人嘆為觀止。',
+          q:'Sea to Sky Gondola Squamish BC' }
       ]},
       { name:'其他景點', locs:[
-        { id:'wv', zh:'寬頭鴨谷', en:'Widgeon Valley', lat:49.3897, lng:-122.5975, desc:'必須先划獨木舟穿越Pitt河才能進入的隱秘山谷，是遠離塵囂的真正野外體驗。谷內有多條健行步道，周圍群山環抱，是觀賞原始濕地鳥類和白頭海鵰的絕佳地點。', q:'Widgeon Valley Pitt Meadows BC' },
-        { id:'lp', zh:'西溫哥華燈塔公園', en:'Lighthouse Park, West Vancouver', lat:49.3367, lng:-123.2674, desc:'西溫哥華的原始海岸公園，巨大花崗岩礁石與百年老花旗松構成獨特地景。步道通往1912年建造的Point Atkinson燈塔，可遠眺溫哥華島，感受太平洋溫帶雨林的古老靜謐。', q:'Lighthouse Park West Vancouver BC' },
-        { id:'sb', zh:'西岸海岸線', en:'Spanish Banks & Westside Coastline', lat:49.2750, lng:-123.2100, desc:'從吉士蘭奴延伸至Jericho Beach再到Spanish Banks的長約5公里西岸海岸線，是溫哥華最廣闊的海濱步行路線。低潮時沙灘向外延伸數百公尺，遠眺北岸山脈倒映於英吉利灣。', q:'Spanish Banks Beach Vancouver' }
+        { id:'wv', zh:'寬頭鴨谷', en:'Widgeon Valley',
+          lat:49.3897, lng:-122.5975,
+          desc:'必須先划獨木舟穿越Pitt河才能進入的隱秘山谷，是遠離塵囂的真正野外體驗。谷內有多條健行步道，周圍群山環抱，是觀賞原始濕地鳥類和白頭海鵰的絕佳地點。',
+          q:'Widgeon Valley Pitt Meadows BC' },
+        { id:'lp', zh:'西溫哥華燈塔公園', en:'Lighthouse Park, West Vancouver',
+          lat:49.3367, lng:-123.2674,
+          desc:'西溫哥華的原始海岸公園，巨大花崗岩礁石與百年老花旗松構成獨特地景。步道通往1912年建造的Point Atkinson燈塔，可遠眺溫哥華島，感受太平洋溫帶雨林的古老靜謐。',
+          q:'Lighthouse Park West Vancouver BC' },
+        { id:'sb', zh:'西岸海岸線', en:'Spanish Banks & Westside Coastline',
+          lat:49.2750, lng:-123.2100,
+          desc:'從吉士蘭奴延伸至Jericho Beach再到Spanish Banks的長約5公里西岸海岸線，是溫哥華最廣闊的海濱步行路線。低潮時沙灘向外延伸數百公尺，遠眺北岸山脈倒映於英吉利灣。',
+          q:'Spanish Banks Beach Vancouver' }
       ]}
     ]
   },
@@ -219,15 +325,36 @@ const THEMES = {
     ],
     groups:[
       { name:'帕切納灣 Pachena Bay', locs:[
-        { id:'pb1', zh:'帕切納灣露營地', en:'Pachena Bay Campground', lat:48.8018, lng:-125.1036, desc:'溫哥華島西岸的野性露營地，由赫曲薩特原住民族（Huu-ay-aht）管理。夜晚可在無光害的天空下仰望銀河，聆聽太平洋浪濤聲入眠。提供廁所等基本設施，是西海岸步道（WCT）北段的起點。', q:'Pachena Bay Campground Bamfield BC' },
-        { id:'pb2', zh:'西海岸步道入口', en:'West Coast Trail Trailhead', lat:48.8020, lng:-125.1032, desc:'加拿大最著名的長程健行步道之一，全程75公里，需5至7天完成。沿途有壯觀的海崖、懸索橋、古老溫帶雨林及豐富野生動物。即使只從帕切納灣起步數公里，也能感受步道的原始魅力。', q:'West Coast Trail Pachena Bay trailhead Bamfield' },
-        { id:'pb3', zh:'帕切納灣海灘', en:'Pachena Bay Beach', lat:48.8005, lng:-125.1044, desc:'廣闊無垠的沙灘直面開放的太平洋，是衝浪、撿貝殼和海岸散步的絕佳地點。低潮時沙灘寬達數百公尺，有機會看見海豹在海中嬉戲。此地是赫曲薩特族的傳統聖地，具有深刻的文化意義。', q:'Pachena Bay Beach Vancouver Island' }
+        { id:'pb1', zh:'帕切納灣露營地', en:'Pachena Bay Campground',
+          lat:48.8018, lng:-125.1036,
+          desc:'溫哥華島西岸的野性露營地，由赫曲薩特原住民族（Huu-ay-aht）管理。夜晚可在無光害的天空下仰望銀河，聆聽太平洋浪濤聲入眠。提供廁所等基本設施，是西海岸步道（WCT）北段的起點。',
+          q:'Pachena Bay Campground Bamfield BC' },
+        { id:'pb2', zh:'西海岸步道入口', en:'West Coast Trail Trailhead',
+          lat:48.8020, lng:-125.1032,
+          desc:'加拿大最著名的長程健行步道之一，全程75公里，需5至7天完成。沿途有壯觀的海崖、懸索橋、古老溫帶雨林及豐富野生動物。即使只從帕切納灣起步數公里，也能感受步道的原始魅力。',
+          q:'West Coast Trail Pachena Bay trailhead Bamfield' },
+        { id:'pb3', zh:'帕切納灣海灘', en:'Pachena Bay Beach',
+          lat:48.8005, lng:-125.1044,
+          desc:'廣闊無垠的沙灘直面開放的太平洋，是衝浪、撿貝殼和海岸散步的絕佳地點。低潮時沙灘寬達數百公尺，有機會看見海豹在海中嬉戲。此地是赫曲薩特族的傳統聖地，具有深刻的文化意義。',
+          q:'Pachena Bay Beach Vancouver Island' }
       ]},
       { name:'班菲爾德 Bamfield', locs:[
-        { id:'bm1', zh:'班菲爾德小鎮', en:'Bamfield Village', lat:48.8333, lng:-125.1417, desc:'溫哥華島西岸的偏遠小漁村，僅能以砂石路或搭船抵達。鎮區被班菲爾德海峽一分為二，東西兩側居民必須搭渡船往來，是加拿大最獨特的小鎮之一，人口僅約200人，保有純樸的漁村風情。', q:'Bamfield village BC Canada' },
-        { id:'bm2', zh:'班菲爾德海洋科學中心', en:'Bamfield Marine Sciences Centre', lat:48.8368, lng:-125.1353, desc:'由五所加拿大大學共同運營的海洋研究站，設於班菲爾德西側。研究人員在此研究太平洋海洋生物多樣性。旅遊旺季可參加導覽行程，深入了解班菲爾德峽灣的潮間帶生態與深海研究。', q:'Bamfield Marine Sciences Centre BC' },
-        { id:'bm3', zh:'班菲爾德木棧道', en:'Bamfield East Boardwalk', lat:48.8330, lng:-125.1400, desc:'沿班菲爾德東側海峽建造的木棧道，從Mills Landing步行至班菲爾德雜貨海事店（Bamfield Mercantile and Marine），沿途可欣賞對岸漁村風光和停泊的船隻，咖啡館和海鮮小攤飄散著濱海氣息。', q:'Bamfield Boardwalk BC Canada' },
-        { id:'bm4', zh:'布雷迪海灘', en:"Brady's Beach", lat:48.8457, lng:-125.1594, desc:'班菲爾德附近最美麗的沙灘，從西側小鎮步行約20分鐘可達。沙灘細膩潔白，四面環繞茂密森林，海浪溫和適合家庭戲水。低潮時可探索豐富的潮間帶生態，找到海星、螃蟹和各種貝類。', q:"Brady's Beach Bamfield BC" }
+        { id:'bm1', zh:'班菲爾德小鎮', en:'Bamfield Village',
+          lat:48.8333, lng:-125.1417,
+          desc:'溫哥華島西岸的偏遠小漁村，僅能以砂石路或搭船抵達。鎮區被班菲爾德海峽一分為二，東西兩側居民必須搭渡船往來，是加拿大最獨特的小鎮之一，人口僅約200人，保有純樸的漁村風情。',
+          q:'Bamfield village BC Canada' },
+        { id:'bm2', zh:'班菲爾德海洋科學中心', en:'Bamfield Marine Sciences Centre',
+          lat:48.8368, lng:-125.1353,
+          desc:'由五所加拿大大學共同運營的海洋研究站，設於班菲爾德西側。研究人員在此研究太平洋海洋生物多樣性。旅遊旺季可參加導覽行程，深入了解班菲爾德峽灣的潮間帶生態與深海研究。',
+          q:'Bamfield Marine Sciences Centre BC' },
+        { id:'bm3', zh:'班菲爾德木棧道', en:'Bamfield East Boardwalk',
+          lat:48.8330, lng:-125.1400,
+          desc:'沿班菲爾德東側海峽建造的木棧道，從Mills Landing步行至班菲爾德雜貨海事店（Bamfield Mercantile and Marine），沿途可欣賞對岸漁村風光和停泊的船隻，咖啡館和海鮮小攤飄散著濱海氣息。',
+          q:'Bamfield Boardwalk BC Canada' },
+        { id:'bm4', zh:'布雷迪海灘', en:"Brady's Beach",
+          lat:48.8457, lng:-125.1594,
+          desc:'班菲爾德附近最美麗的沙灘，從西側小鎮步行約20分鐘可達。沙灘細膩潔白，四面環繞茂密森林，海浪溫和適合家庭戲水。低潮時可探索豐富的潮間帶生態，找到海星、螃蟹和各種貝類。',
+          q:"Brady's Beach Bamfield BC" }
       ]}
     ]
   },
@@ -239,36 +366,108 @@ const THEMES = {
     ],
     groups:[
       { name:'往斑夫沿途路線', locs:[
-        { id:'rt1', zh:'合普 Hope', en:'Hope, BC', lat:49.3868, lng:-121.4436, desc:'被三座山脈環抱的小城，是科基哈拉高速公路（Coquihalla Hwy）的起點。著名的「Hope Slide」是1965年北美最大岩崩之一，由此東行即進入卑詩省壯麗山區，正式開啟公路旅行。', q:'Hope BC city mountains' },
-        { id:'rt2', zh:'科基哈拉山頂', en:'Coquihalla Summit', lat:49.5857, lng:-121.0683, desc:'科基哈拉高速公路（Highway 5）最高點，海拔1244公尺。即使夏季山頂仍可看到殘雪，雲霧在山谷間流動，景色壯觀。設有休息區，是長途駕駛的必停打卡點，感受卑詩省高山的磅礴氣勢。', q:'Coquihalla Summit Recreation Area BC' },
-        { id:'rt3', zh:'美麗特 Merritt', en:'Merritt, BC', lat:50.1114, lng:-120.7875, desc:'科基哈拉高速公路沿線的補給城鎮，自稱「加拿大鄉村音樂之都」。備有加油站、超市及各式餐廳，是從溫哥華出發後的第一個主要休息點，適合加油用餐再繼續北行前往甘露。', q:'Merritt BC city' },
-        { id:'rt4', zh:'甘露 Kamloops', en:'Kamloops, BC', lat:50.6745, lng:-120.3273, desc:'卑詩省內陸最大城市，坐落於三條河谷交匯處，湯普森河貫穿其中。氣候溫暖乾燥，有多間購物中心及餐廳，是前往雷夫爾斯托克前最完善的補給站，距離溫哥華約350公里。', q:'Kamloops BC city Thompson River' },
-        { id:'rt5', zh:'雷夫爾斯托克', en:'Revelstoke, BC', lat:50.9981, lng:-118.1957, desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量和滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館和餐廳。附近有國家公園和水壩，是前往冰川公園和班夫的重要門戶城市。', q:'Revelstoke British Columbia downtown' },
-        { id:'rt6', zh:'冰川國家公園', en:'Glacier National Park, BC', lat:51.2984, lng:-117.5296, desc:'哥倫比亞山脈中的原始國家公園，約10%面積被冰川覆蓋。因地處太平洋氣流迎風坡，年積雪量驚人，擁有超過400個冰川。沿橫貫公路穿越公園時，壯觀的冰雪山峰近在咫尺，令人震撼。', q:'Glacier National Park BC Rogers Pass' },
-        { id:'rt7', zh:'羅傑斯山口', en:'Rogers Pass', lat:51.3070, lng:-117.5240, desc:'海拔1327公尺的山口是加拿大橫貫公路最高點，歷史上是打通東西鐵路的關鍵工程。遊客中心有豐富展示，介紹1882年測量師Albert Rogers艱辛探路的故事及雪崩的自然科學知識。', q:'Rogers Pass BC Canada visitor center' },
-        { id:'rt8', zh:'黃金鎮 Golden', en:'Golden, BC', lat:51.2978, lng:-116.9653, desc:'被六個國家公園環繞的小鎮，坐落於哥倫比亞河谷。著名的「踢馬河」（Kicking Horse River）激流漂流從此出發，是世界級白水漂流聖地。由此進入幽鶴國家公園，正式踏入加拿大落磯山脈核心區域。', q:'Golden British Columbia Kicking Horse River' }
+        { id:'rt1', zh:'合普 Hope', en:'Hope, BC',
+          lat:49.3868, lng:-121.4436,
+          desc:'被三座山脈環抱的小城，是科基哈拉高速公路（Coquihalla Hwy）的起點。著名的「Hope Slide」是1965年北美最大岩崩之一，由此東行即進入卑詩省壯麗山區，正式開啟公路旅行。',
+          q:'Hope BC city mountains' },
+        { id:'rt2', zh:'科基哈拉山頂', en:'Coquihalla Summit',
+          lat:49.5857, lng:-121.0683,
+          desc:'科基哈拉高速公路（Highway 5）最高點，海拔1244公尺。即使夏季山頂仍可看到殘雪，雲霧在山谷間流動，景色壯觀。設有休息區，是長途駕駛的必停打卡點，感受卑詩省高山的磅礴氣勢。',
+          q:'Coquihalla Summit Recreation Area BC' },
+        { id:'rt3', zh:'美麗特 Merritt', en:'Merritt, BC',
+          lat:50.1114, lng:-120.7875,
+          desc:'科基哈拉高速公路沿線的補給城鎮，自稱「加拿大鄉村音樂之都」。備有加油站、超市及各式餐廳，是從溫哥華出發後的第一個主要休息點，適合加油用餐再繼續北行前往甘露。',
+          q:'Merritt BC city' },
+        { id:'rt4', zh:'甘露 Kamloops', en:'Kamloops, BC',
+          lat:50.6745, lng:-120.3273,
+          desc:'卑詩省內陸最大城市，坐落於三條河谷交匯處，湯普森河貫穿其中。氣候溫暖乾燥，有多間購物中心及餐廳，是前往雷夫爾斯托克前最完善的補給站，距離溫哥華約350公里。',
+          q:'Kamloops BC city Thompson River' },
+        { id:'rt5', zh:'雷夫爾斯托克', en:'Revelstoke, BC',
+          lat:50.9981, lng:-118.1957,
+          desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量和滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館和餐廳。附近有國家公園和水壩，是前往冰川公園和班夫的重要門戶城市。',
+          q:'Revelstoke British Columbia downtown' },
+        { id:'rt6', zh:'冰川國家公園', en:'Glacier National Park, BC',
+          lat:51.2984, lng:-117.5296,
+          desc:'哥倫比亞山脈中的原始國家公園，約10%面積被冰川覆蓋。因地處太平洋氣流迎風坡，年積雪量驚人，擁有超過400個冰川。沿橫貫公路穿越公園時，壯觀的冰雪山峰近在咫尺，令人震撼。',
+          q:'Glacier National Park BC Rogers Pass' },
+        { id:'rt7', zh:'羅傑斯山口', en:'Rogers Pass',
+          lat:51.3070, lng:-117.5240,
+          desc:'海拔1327公尺的山口是加拿大橫貫公路最高點，歷史上是打通東西鐵路的關鍵工程。遊客中心有豐富展示，介紹1882年測量師Albert Rogers艱辛探路的故事及雪崩的自然科學知識。',
+          q:'Rogers Pass BC Canada visitor center' },
+        { id:'rt8', zh:'黃金鎮 Golden', en:'Golden, BC',
+          lat:51.2978, lng:-116.9653,
+          desc:'被六個國家公園環繞的小鎮，坐落於哥倫比亞河谷。著名的「踢馬河」（Kicking Horse River）激流漂流從此出發，是世界級白水漂流聖地。由此進入幽鶴國家公園，正式踏入加拿大落磯山脈核心區域。',
+          q:'Golden British Columbia Kicking Horse River' }
       ]},
       { name:'班夫國家公園', locs:[
-        { id:'bf1', zh:'強斯頓峽谷', en:'Johnston Canyon', lat:51.2366, lng:-115.8375, desc:'班夫最受歡迎的步道之一，沿峽谷棧道可欣賞壯觀的瀑布。下瀑布步行約30分鐘可達，上瀑布需1.5小時，峽谷岩壁如刀切般陡峭。早春可見在此過冬的白頭河烏，秋季有鮭魚洄游。', q:'Johnston Canyon Banff Alberta waterfall' },
-        { id:'bf2', zh:'路易斯湖', en:'Lake Louise', lat:51.4254, lng:-116.1773, desc:'加拿大最著名的湖泊，翡翠綠湖水倒映白雪皚皚的維多利亞冰川，是世界最美風景之一。湖畔百年城堡酒店是歷史地標。沿湖步道可前往湖濱茶屋（Lake Agnes Tea House），景色步步驚艷。', q:'Lake Louise Banff National Park Alberta' },
-        { id:'bf3', zh:'明尼旺卡湖', en:'Lake Minnewanka', lat:51.2706, lng:-115.5000, desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水或玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。', q:'Lake Minnewanka Banff National Park boat tour' },
-        { id:'bf4', zh:'兩傑克湖', en:'Two Jack Lake', lat:51.2467, lng:-115.5317, desc:'明尼旺卡湖旁的寧靜小湖，卡斯爾山脈輪廓倒映湖中，是班夫最美的攝影取景地之一。清晨薄霧未散時如鏡面般平靜。附近有露營地，夜晚無光害，觀星條件極佳。', q:'Two Jack Lake Banff National Park reflection mountains' },
-        { id:'bf5', zh:'硃砂湖', en:'Vermilion Lakes', lat:51.1753, lng:-115.6211, desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁和各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。', q:'Vermilion Lakes Banff mountains reflection sunset' }
+        { id:'bf1', zh:'強斯頓峽谷', en:'Johnston Canyon',
+          lat:51.2366, lng:-115.8375,
+          desc:'班夫最受歡迎的步道之一，沿峽谷棧道可欣賞壯觀的瀑布。下瀑布步行約30分鐘可達，上瀑布需1.5小時，峽谷岩壁如刀切般陡峭。早春可見在此過冬的白頭河烏，秋季有鮭魚洄游。',
+          q:'Johnston Canyon Banff Alberta waterfall' },
+        { id:'bf2', zh:'路易斯湖', en:'Lake Louise',
+          lat:51.4254, lng:-116.1773,
+          desc:'加拿大最著名的湖泊，翡翠綠湖水倒映白雪皚皚的維多利亞冰川，是世界最美風景之一。湖畔百年城堡酒店是歷史地標。沿湖步道可前往湖濱茶屋（Lake Agnes Tea House），景色步步驚艷。',
+          q:'Lake Louise Banff National Park Alberta' },
+        { id:'bf3', zh:'明尼旺卡湖', en:'Lake Minnewanka',
+          lat:51.2706, lng:-115.5000,
+          desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水或玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。',
+          q:'Lake Minnewanka Banff National Park boat tour' },
+        { id:'bf4', zh:'兩傑克湖', en:'Two Jack Lake',
+          lat:51.2467, lng:-115.5317,
+          desc:'明尼旺卡湖旁的寧靜小湖，卡斯爾山脈輪廓倒映湖中，是班夫最美的攝影取景地之一。清晨薄霧未散時如鏡面般平靜。附近有露營地，夜晚無光害，觀星條件極佳。',
+          q:'Two Jack Lake Banff National Park reflection mountains' },
+        { id:'bf5', zh:'硃砂湖', en:'Vermilion Lakes',
+          lat:51.1753, lng:-115.6211,
+          desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁和各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。',
+          q:'Vermilion Lakes Banff mountains reflection sunset' }
       ]},
       { name:'班夫鎮區', locs:[
-        { id:'bft1', zh:'硫磺山溫泉洞穴', en:'Cave and Basin', lat:51.1712, lng:-115.5842, desc:'1883年三位鐵路工人意外發現的天然硫磺溫泉，直接促成加拿大第一個國家公園的誕生。現為國家歷史遺址，可看到世界罕見的「班夫螺旋藻蛾」棲地，展示館完整呈現國家公園創立歷史。', q:'Cave and Basin National Historic Site Banff' },
-        { id:'bft2', zh:'班夫大道', en:'Banff Avenue', lat:51.1784, lng:-115.5708, desc:'班夫鎮中心的主要購物大街，兩側有精品店、紀念品店、餐廳及咖啡館。步行街北端可遠眺卡斯爾山峰，街道盡頭的弓河橋跨越弓河，是班夫最熱鬧也最具代表性的地方。', q:'Banff Avenue main street Alberta' },
-        { id:'bft3', zh:'懷特博物館', en:'Whyte Museum of the Canadian Rockies', lat:51.1745, lng:-115.5680, desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品和珍貴歷史照片，生動呈現落磯山探險家、早期登山者和原住民的故事。想深入了解班夫歷史文化的必訪之地。', q:'Whyte Museum Canadian Rockies Banff' },
-        { id:'bft4', zh:'班夫公園博物館', en:'Banff Park Museum', lat:51.1783, lng:-115.5693, desc:'建於1903年的木造博物館，是加拿大西部最古老的自然博物館，也是國家歷史古蹟。館內陳列著維多利亞時代風格的落磯山脈動植物標本，古典氛圍濃厚，讓遊客了解班夫地區的自然歷史。', q:'Banff Park Museum National Historic Site' }
+        { id:'bft1', zh:'硫磺山溫泉洞穴', en:'Cave and Basin',
+          lat:51.1712, lng:-115.5842,
+          desc:'1883年三位鐵路工人意外發現的天然硫磺溫泉，直接促成加拿大第一個國家公園的誕生。現為國家歷史遺址，可看到世界罕見的「班夫螺旋藻蛾」棲地，展示館完整呈現國家公園創立歷史。',
+          q:'Cave and Basin National Historic Site Banff' },
+        { id:'bft2', zh:'班夫大道', en:'Banff Avenue',
+          lat:51.1784, lng:-115.5708,
+          desc:'班夫鎮中心的主要購物大街，兩側有精品店、紀念品店、餐廳及咖啡館。步行街北端可遠眺卡斯爾山峰，街道盡頭的弓河橋跨越弓河，是班夫最熱鬧也最具代表性的地方。',
+          q:'Banff Avenue main street Alberta' },
+        { id:'bft3', zh:'懷特博物館', en:'Whyte Museum of the Canadian Rockies',
+          lat:51.1745, lng:-115.5680,
+          desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品和珍貴歷史照片，生動呈現落磯山探險家、早期登山者和原住民的故事。想深入了解班夫歷史文化的必訪之地。',
+          q:'Whyte Museum Canadian Rockies Banff' },
+        { id:'bft4', zh:'班夫公園博物館', en:'Banff Park Museum',
+          lat:51.1783, lng:-115.5693,
+          desc:'建於1903年的木造博物館，是加拿大西部最古老的自然博物館，也是國家歷史古蹟。館內陳列著維多利亞時代風格的落磯山脈動植物標本，古典氛圍濃厚，讓遊客了解班夫地區的自然歷史。',
+          q:'Banff Park Museum National Historic Site' }
       ]},
       { name:'坎莫爾 Canmore', locs:[
-        { id:'cm1', zh:'班夫門山度假酒店', en:'Banff Gate Mountain Resort', lat:51.0975, lng:-115.3428, desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾和班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。', q:'Banff Gate Mountain Resort Canmore Alberta' },
-        { id:'cm2', zh:'警察溪木棧道', en:"Policeman's Creek Boardwalk", lat:51.0878, lng:-115.3449, desc:'穿越坎莫爾市中心的休閒木棧道，沿清澈的警察溪而建。棧道兩旁有特色餐廳、咖啡館及精品商店，三姊妹山近在眼前，是了解坎莫爾本地生活文化最輕鬆寫意的方式。', q:"Policeman's Creek Boardwalk Canmore Alberta" },
-        { id:'cm3', zh:'弓河引擎橋', en:'Bow River Engine Bridge', lat:51.0860, lng:-115.3594, desc:'橫跨弓河的歷史鐵道橋，改建為行人步橋後成為坎莫爾最具代表性地標。站在橋上望去，三姊妹山高聳入雲，弓河水流清澈湍急，是坎莫爾最受歡迎的拍照打卡點。', q:'Engine Bridge Canmore Bow River Alberta' },
-        { id:'cm4', zh:'坎莫爾博物館', en:'Canmore Museum & Geoscience Centre', lat:51.0895, lng:-115.3443, desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開採工具、鐵路歷史和地質展示，是深入了解這座山城文化背景的最佳去處。', q:'Canmore Museum Geoscience Centre Alberta' },
-        { id:'cm5', zh:'格拉西湖', en:'Grassi Lakes', lat:51.1017, lng:-115.3152, desc:'坎莫爾最受推薦的短程健行路線（1至2小時），攀升約300公尺即可抵達兩個夢幻的高山湖泊。湖底藻類讓湖水呈迷幻青綠色，湖邊巨石上有古老原住民壁刻。難度適中，景色極度回報。', q:'Grassi Lakes Canmore Alberta hike trail' },
-        { id:'cm6', zh:'採石場湖', en:'Quarry Lake Park', lat:51.0951, lng:-115.3217, desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐或漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。', q:'Quarry Lake Park Canmore Alberta' },
-        { id:'cm7', zh:'藝術空間', en:'artsPlace Canmore', lat:51.0897, lng:-115.3442, desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽和演出。雨天或想放慢腳步接觸當地藝文氛圍時的絕佳選擇。', q:'artsPlace Canmore Alberta arts center' }
+        { id:'cm1', zh:'班夫門山度假酒店', en:'Banff Gate Mountain Resort',
+          lat:51.0975, lng:-115.3428,
+          desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾和班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。',
+          q:'Banff Gate Mountain Resort Canmore Alberta' },
+        { id:'cm2', zh:'警察溪木棧道', en:"Policeman's Creek Boardwalk",
+          lat:51.0878, lng:-115.3449,
+          desc:'穿越坎莫爾市中心的休閒木棧道，沿清澈的警察溪而建。棧道兩旁有特色餐廳、咖啡館及精品商店，三姊妹山近在眼前，是了解坎莫爾本地生活文化最輕鬆寫意的方式。',
+          q:"Policeman's Creek Boardwalk Canmore Alberta" },
+        { id:'cm3', zh:'弓河引擎橋', en:'Bow River Engine Bridge',
+          lat:51.0860, lng:-115.3594,
+          desc:'橫跨弓河的歷史鐵道橋，改建為行人步橋後成為坎莫爾最具代表性地標。站在橋上望去，三姊妹山高聳入雲，弓河水流清澈湍急，是坎莫爾最受歡迎的拍照打卡點。',
+          q:'Engine Bridge Canmore Bow River Alberta' },
+        { id:'cm4', zh:'坎莫爾博物館', en:'Canmore Museum & Geoscience Centre',
+          lat:51.0895, lng:-115.3443,
+          desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開採工具、鐵路歷史和地質展示，是深入了解這座山城文化背景的最佳去處。',
+          q:'Canmore Museum Geoscience Centre Alberta' },
+        { id:'cm5', zh:'格拉西湖', en:'Grassi Lakes',
+          lat:51.1017, lng:-115.3152,
+          desc:'坎莫爾最受推薦的短程健行路線（1至2小時），攀升約300公尺即可抵達兩個夢幻的高山湖泊。湖底藻類讓湖水呈迷幻青綠色，湖邊巨石上有古老原住民壁刻。難度適中，景色極度回報。',
+          q:'Grassi Lakes Canmore Alberta hike trail' },
+        { id:'cm6', zh:'採石場湖', en:'Quarry Lake Park',
+          lat:51.0951, lng:-115.3217,
+          desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐或漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。',
+          q:'Quarry Lake Park Canmore Alberta' },
+        { id:'cm7', zh:'藝術空間', en:'artsPlace Canmore',
+          lat:51.0897, lng:-115.3442,
+          desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽和演出。雨天或想放慢腳步接觸當地藝文氛圍時的絕佳選擇。',
+          q:'artsPlace Canmore Alberta arts center' }
       ]}
     ]
   }
@@ -279,67 +478,69 @@ const THEMES = {
 ═══════════════════════════════════════════════════════════ */
 let map, psvc, iw;
 let markers = [];
+let curTheme = 'walking';
 let photoCache = {};
 let allLocs = []; 
 const sidebar = document.getElementById('sidebar');
 
 /* ═══════════════════════════════════════════════════════════
-   INIT MAP
+   INIT MAP (啟用 AdvancedMarkerElement 所需的 MapID)
 ═══════════════════════════════════════════════════════════ */
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'), {
     center: THEMES.walking.center,
     zoom: THEMES.walking.zoom,
+    mapId: 'DEMO_MAP_ID', // 必須設定 MapID 以啟用自訂 HTML Marker
     disableDefaultUI: true,
+    zoomControl: false,
     gestureHandling: 'greedy'
   });
   psvc = new google.maps.places.PlacesService(map);
-  iw = new google.maps.InfoWindow({maxWidth: 280});
+  iw = new google.maps.InfoWindow({maxWidth: 300});
   switchTheme('walking');
 }
 
 /* ═══════════════════════════════════════════════════════════
-   手機版：絲滑的抽屜拖曳邏輯
+   DRAWER DRAG LOGIC (手機版自由拉伸)
 ═══════════════════════════════════════════════════════════ */
 const dragZone = document.getElementById('drag-handle-zone');
-let startY = 0, currentHeight = 0;
+let startY = 0, startHeight = 0;
 
 dragZone.addEventListener('touchstart', (e) => {
+  if (window.innerWidth > 760) return;
   startY = e.touches[0].clientY;
-  currentHeight = sidebar.getBoundingClientRect().height;
-  sidebar.style.transition = 'none'; // 拖曳時取消動畫，手感更滑順
+  startHeight = sidebar.getBoundingClientRect().height;
+  sidebar.style.transition = 'none'; // 拖曳時取消動畫使手感滑順
 }, { passive: true });
 
 dragZone.addEventListener('touchmove', (e) => {
+  if (window.innerWidth > 760) return;
   const dy = startY - e.touches[0].clientY;
-  sidebar.style.height = (currentHeight + dy) + 'px';
+  let newHeight = startHeight + dy;
+  const maxH = window.innerHeight * 0.95;
+  const minH = window.innerHeight * 0.15; // 至少露出 Tabs
+  if(newHeight > maxH) newHeight = maxH;
+  if(newHeight < minH) newHeight = minH;
+  sidebar.style.height = newHeight + 'px';
 }, { passive: true });
 
 dragZone.addEventListener('touchend', () => {
-  sidebar.style.transition = 'height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  const endHeight = sidebar.getBoundingClientRect().height;
-  
-  // 如果超過螢幕 60%，就吸附到全版 95dvh，否則回到 45dvh
-  if (endHeight > window.innerHeight * 0.6) {
-    sidebar.style.height = '95dvh';
-  } else {
-    sidebar.style.height = '45dvh';
-  }
+  if (window.innerWidth > 760) return;
+  // 恢復過場動畫，放開後就停在該高度
+  sidebar.style.transition = 'height 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)';
 });
 
-function snapDrawerToTop() {
+function snapDrawerTo(vh) {
+  if (window.innerWidth > 760) return;
   sidebar.style.transition = 'height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  sidebar.style.height = '95dvh';
-}
-function snapDrawerToMid() {
-  sidebar.style.transition = 'height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)';
-  sidebar.style.height = '45dvh';
+  sidebar.style.height = vh + 'vh';
 }
 
 /* ═══════════════════════════════════════════════════════════
    THEME SWITCH
 ═══════════════════════════════════════════════════════════ */
 function switchTheme(name){
+  curTheme = name;
   ['walking','camping','banff'].forEach(t => {
     document.getElementById('tab-'+t).className = 'tab' + (t===name ? ' '+THEMES[t].tabCls : '');
   });
@@ -352,40 +553,17 @@ function switchTheme(name){
   th.groups.forEach(g => g.locs.forEach(l => allLocs.push(l)));
   addMarkers(th, name);
   goBack();
+  renderList(th, name);
+  snapDrawerTo(45); // 切換主題時回到預設 45vh 高度
 }
 
 /* ═══════════════════════════════════════════════════════════
-   MARKERS：動態生成符合設計稿的「圖片 + 號碼」圖標
+   MARKERS (使用 AdvancedMarkerElement 製作自訂圖片圖標)
 ═══════════════════════════════════════════════════════════ */
 function clearMarkers(){
-  markers.forEach(m => m.setMap(null));
+  markers.forEach(m => m.map = null);
   markers = [];
   if(iw) iw.close();
-}
-
-// 產生客製化圖標的 SVG
-function getMarkerIcon(num, photoUrl) {
-  const imgContent = photoUrl 
-    ? `<image href="${photoUrl}" x="4" y="4" width="40" height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip)"/>`
-    : `<rect x="4" y="4" width="40" height="40" rx="12" fill="#E8EEF2"/>`;
-
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
-      <defs>
-        <clipPath id="clip"><rect x="4" y="4" width="40" height="40" rx="12" /></clipPath>
-        <filter id="shadow"><feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25"/></filter>
-      </defs>
-      <rect x="2" y="2" width="44" height="44" rx="14" fill="white" filter="url(#shadow)" />
-      ${imgContent}
-      <circle cx="44" cy="12" r="11" fill="#111827" stroke="white" stroke-width="2"/>
-      <text x="44" y="16" font-family="sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">${num}</text>
-    </svg>
-  `;
-  return {
-    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
-    scaledSize: new google.maps.Size(56, 56),
-    anchor: new google.maps.Point(24, 46)
-  };
 }
 
 function addMarkers(th, name){
@@ -393,15 +571,28 @@ function addMarkers(th, name){
   th.groups.forEach(g => {
     g.locs.forEach(loc => {
       const n = idx;
-      const mk = new google.maps.Marker({
+      
+      const el = document.createElement('div');
+      el.className = 'custom-marker';
+      el.innerHTML = `
+        <div class="marker-bg" id="mk-bg-${loc.id}">${th.icon}</div>
+        <div class="marker-badge">${n}</div>
+      `;
+
+      const mk = new google.maps.marker.AdvancedMarkerElement({
+        map,
         position: {lat: loc.lat, lng: loc.lng},
-        map, title: loc.zh, zIndex: n,
-        icon: getMarkerIcon(n, null) // 先用無照片的預設圖示
+        content: el,
+        title: loc.zh,
+        zIndex: n
       });
 
-      // 照片載入後，更新地圖圖標
       loadPhoto(loc, url => {
-        mk.setIcon(getMarkerIcon(n, url));
+        const bg = el.querySelector(`#mk-bg-${loc.id}`);
+        if(bg) {
+          bg.style.backgroundImage = `url(${url})`;
+          bg.innerHTML = '';
+        }
       }, 100, 100);
 
       mk.addListener('click', () => onMarkerClick(loc, name, mk));
@@ -411,22 +602,24 @@ function addMarkers(th, name){
   });
 }
 
-// 點擊地標：彈窗直接跳轉 Google Maps APP
+// 點擊地圖圖標 -> 開啟 InfoWindow -> 內容自帶跳轉 Google Maps APP 的連結
 function onMarkerClick(loc, name, mk){
-  // Google Maps Universal Link Intent
-  const appUrl = `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`;
+  const th = THEMES[name];
+  const appUrl = `http://googleusercontent.com/maps.google.com/5{loc.lat},${loc.lng}`;
   
   const content = `
-    <a href="${appUrl}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block; padding:14px; width:230px;">
-      <div id="iw-ph-${loc.id}" style="height:120px; background:#E8EEF2; border-radius:12px; margin-bottom:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-        <span style="font-size:32px;">🏞</span>
+    <a href="${appUrl}" target="_blank" style="text-decoration:none; color:inherit; display:block; padding:12px;">
+      <div style="font-family:'Noto Sans TC',sans-serif; width:220px;">
+        <div id="iw-ph-${loc.id}" style="height:110px; background:#E8EEF2; display:flex; align-items:center; justify-content:center; font-size:36px; border-radius:12px; overflow:hidden; margin-bottom:12px;">
+          ${th.icon}
+        </div>
+        <div style="padding:0 4px;">
+          <div style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:#1F2937; margin-bottom:4px;">${loc.zh}</div>
+          <div style="font-size:11px; color:#6B7280; font-weight:500;">${loc.en}</div>
+          <div style="font-size:12px; color:#4B5563; margin-top:8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.4;">${loc.desc}</div>
+        </div>
+        <div style="margin-top:12px; font-size:12px; color:#0EA5E9; font-weight:700; text-align:right;">點擊開啟導航 ↗</div>
       </div>
-      <div>
-        <div style="font-family:'Noto Serif TC',serif; font-size:16px; font-weight:700; color:#1F2937; margin-bottom:2px;">${loc.zh}</div>
-        <div style="font-size:11px; color:#6B7280; font-weight:500; margin-bottom:8px;">${loc.en}</div>
-        <div style="font-size:12px; color:#4B5563; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${loc.desc}</div>
-      </div>
-      <div style="margin-top:10px; font-size:12px; color:#0EA5E9; font-weight:700; text-align:right;">開啟導航 APP ↗</div>
     </a>`;
     
   iw.setContent(content);
@@ -434,10 +627,10 @@ function onMarkerClick(loc, name, mk){
   
   loadPhoto(loc, url => {
     const el = document.getElementById('iw-ph-'+loc.id);
-    if(el) el.innerHTML = `<img src="${url}" style="width:100%; height:100%; object-fit:cover;">`;
+    if(el) el.innerHTML = `<img src="${url}" style="width:100%; height:110px; object-fit:cover; display:block">`;
   }, 320, 160);
   
-  // 點擊地圖標記時，同時顯示介紹文並將抽屜拉到最高
+  // 同步觸發詳細介紹頁面並將抽屜拉到最高 (95vh)
   showDetail(loc, name);
 }
 
@@ -474,64 +667,67 @@ function renderList(th, name){
     const gl=document.createElement('div'); gl.className='g-label'; gl.textContent=g.name; el.appendChild(gl);
     g.locs.forEach(loc=>{
       const n=idx; const card=document.createElement('div'); card.className='loc-card'; card.id='card-'+loc.id;
+      const phSvg=`data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72'><rect width='72' height='72' rx='16' fill='%23E8EEF2'/><text x='36' y='46' text-anchor='middle' font-size='28'>${th.icon}</text></svg>`)}`;
       
       card.innerHTML=`
         <div class="loc-num ${cls}">${n}</div>
         <div class="loc-info">
           <div class="loc-zh">${loc.zh}</div>
           <div class="loc-en">${loc.en}</div>
+          <div class="loc-snip">${loc.desc}</div>
         </div>
-        <img class="loc-thumb" alt="${loc.zh}" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' rx='12' fill='%23E8EEF2'/%3E%3C/svg%3E">`;
+        <img class="loc-thumb" alt="${loc.zh}" src="${phSvg}">`;
         
       card.onclick=()=>{
         map.panTo({lat:loc.lat,lng:loc.lng}); map.setZoom(15);
         const mk=markers[allLocs.findIndex(l=>l.id===loc.id)];
         if(mk) google.maps.event.trigger(mk,'click');
-        showDetail(loc, name);
+        showDetail(loc, name); // 清單點擊時也觸發全版展開
       };
       el.appendChild(card);
       const thumbEl=card.querySelector('.loc-thumb');
-      setTimeout(()=>loadPhoto(loc, url=>{ thumbEl.src=url; }, 140, 140), (n-1)*80);
+      setTimeout(()=>loadPhoto(loc, url=>{ thumbEl.src=url; }, 140, 140), (n-1)*100);
       idx++;
     });
   });
 }
 
 /* ═══════════════════════════════════════════════════════════
-   DETAIL VIEW (點擊時會將整個抽屜推升到頂端)
+   DETAIL VIEW (進入時自動拉伸為 95vh 全版)
 ═══════════════════════════════════════════════════════════ */
 function showDetail(loc, name){
-  // 強制拉升抽屜至最高點 (95dvh)
-  snapDrawerToTop();
+  // 點擊卡片或地標時，立刻將抽屜推升至最高點 (95vh)
+  snapDrawerTo(95);
 
   document.getElementById('list-view').style.display='none';
-  document.getElementById('detail-view').style.display='block'; // 使用 block 保證滾動流正常
-  document.getElementById('detail-view').scrollTop = 0; // 重置文章捲軸
+  document.getElementById('detail-view').style.display='flex';
+  document.getElementById('detail-view').scrollTop = 0; // 重置捲軸
 
   document.getElementById('d-zh').textContent=loc.zh;
   document.getElementById('d-en').textContent=loc.en;
   document.getElementById('d-desc').textContent=loc.desc;
 
   const inner=document.getElementById('d-img-inner');
+  const th=THEMES[name];
   const dkey=`${loc.id}_760`;
   
   if(photoCache[dkey]){
     inner.innerHTML=`<img src="${photoCache[dkey]}" alt="${loc.zh}">`;
   } else {
-    inner.innerHTML=`<div class="ph">🏞</div>`;
+    inner.innerHTML=`<div class="ph">${th.icon}</div>`;
     loadPhoto(loc, url=>{ inner.innerHTML=`<img src="${url}" alt="${loc.zh}">`; }, 760, 400);
   }
 }
 
 function goBack(){
-  // 退回列表時，抽屜降回原高度 (45dvh)
-  snapDrawerToMid();
+  // 退回列表時，抽屜優雅地降回預設 45vh 高度
+  snapDrawerTo(45);
   document.getElementById('list-view').style.display='block';
   document.getElementById('detail-view').style.display='none';
   if(iw) iw.close();
 }
 </script>
 
-<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E&libraries=places&callback=initMap&language=zh-TW" defer></script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E&libraries=places,marker&callback=initMap&language=zh-TW" defer></script>
 </body>
 </html>
