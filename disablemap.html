@@ -58,7 +58,7 @@
         .gm-style-iw-d { overflow: hidden !important; max-height: none !important; }
         .gm-ui-hover-effect { top: 14px !important; right: 14px !important; background: #F1F5F9 !important; border-radius: 50% !important; }
 
-        /* 客製化 Google Places Autocomplete 下拉選單 (覆寫原生醜陋樣式) */
+        /* 客製化 Google Places Autocomplete 下拉選單 */
         .pac-container {
             border-radius: 16px;
             box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15);
@@ -72,7 +72,7 @@
         .pac-item { padding: 12px 16px; cursor: pointer; border-top: 1px solid #F1F5F9; font-size: 14px; color: #475569; }
         .pac-item:hover { background-color: #EEF2FF; }
         .pac-item-query { font-weight: 700; color: #0F172A; font-size: 15px; }
-        .pac-icon { display: none; } /* 隱藏原生 Icon，保持極簡 */
+        .pac-icon { display: none; }
 
         /* 隱藏地圖預設控制項與按鈕 */
         .gmnoprint, .gm-fullscreen-control { display: none !important; }
@@ -102,13 +102,15 @@
             </button>
         </div>
 
-        <div id="radiusStatus" class="hidden items-center self-start glass-panel px-4 py-2.5 rounded-full pointer-events-auto shadow-sm">
+        <div id="radiusStatus" class="hidden items-center self-start glass-panel px-4 py-2.5 rounded-full pointer-events-auto shadow-sm transition-all duration-300">
             <span class="relative flex h-2.5 w-2.5 mr-3">
               <span id="statusPing" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
               <span id="statusDot" class="relative inline-flex rounded-full h-2.5 w-2.5"></span>
             </span>
             <span id="statusText" class="text-[13px] font-bold text-darkness tracking-wide">目前顯示：方圓 2 公里內</span>
             <span id="searchCount" class="ml-2 text-[12px] font-display font-bold text-primary bg-indigo-50 px-2 py-0.5 rounded-lg"></span>
+            <!-- 新增進度百分比標籤 -->
+            <span id="loadingPercent" class="hidden ml-2 text-[12px] font-display font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-lg transition-opacity duration-300"></span>
         </div>
     </div>
 
@@ -128,7 +130,7 @@
         
         // 記錄空間狀態
         let userLocation = null; // GPS 真實位置
-        let activeCenterLocation = null; // 目前用來計算半徑的中心 (可能是 GPS 或 搜尋地點)
+        let activeCenterLocation = null; // 目前用來計算半徑的中心
         let centerDotMarker = null;
         let radiusCircle = null;
 
@@ -137,7 +139,7 @@
             fetchDataSilently();
         };
 
-        // 1. 載入 Google Maps (包含 places 與 geometry 庫)
+        // 1. 載入 Google Maps
         function loadGoogleMaps() {
             const script = document.createElement('script');
             script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places,geometry&callback=initMap`;
@@ -147,7 +149,7 @@
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: { lat: 24.1477, lng: 120.6736 },
                     zoom: 13,
-                    disableDefaultUI: true, // 保持極致乾淨
+                    disableDefaultUI: true, 
                     gestureHandling: 'greedy',
                     styles: [
                         { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
@@ -156,41 +158,37 @@
                 });
                 
                 initAutocomplete();
-                requestUserLocation(); // 初始載入時獲取定位
+                requestUserLocation();
             };
             document.head.appendChild(script);
         }
 
-        // 2. 初始化地點自動完成 (空間搜尋核心)
+        // 2. 初始化地點自動完成
         function initAutocomplete() {
             const input = document.getElementById('searchInput');
             
             autocomplete = new google.maps.places.Autocomplete(input, {
-                componentRestrictions: { country: "tw" }, // 限定台灣
-                fields: ["geometry", "name"], // 只需要座標跟名稱
+                componentRestrictions: { country: "tw" },
+                fields: ["geometry", "name"],
             });
 
             autocomplete.bindTo("bounds", map);
 
-            // 當使用者選擇了一個地點
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
                 if (!place.geometry || !place.geometry.location) return;
 
                 document.getElementById('clearBtn').classList.remove('hidden');
-                
-                // 以新搜尋的地點作為中心，啟動探索圈
                 activateRadiusCenter(place.geometry.location, place.name, 'search');
             });
 
-            // 監聽輸入框清除事件
             input.addEventListener('input', () => {
                 if(input.value.trim() === '') clearSearch();
                 else document.getElementById('clearBtn').classList.remove('hidden');
             });
         }
 
-        // 清除搜尋，還原為 GPS 定位
+        // 清除搜尋
         function clearSearch() {
             document.getElementById('searchInput').value = '';
             document.getElementById('clearBtn').classList.add('hidden');
@@ -198,7 +196,6 @@
             if (userLocation) {
                 activateRadiusCenter(userLocation, '目前位置', 'gps');
             } else {
-                // 如果沒有 GPS 權限，清除搜尋後顯示全台中
                 activeCenterLocation = null;
                 if(centerDotMarker) centerDotMarker.setMap(null);
                 if(radiusCircle) radiusCircle.setMap(null);
@@ -216,7 +213,6 @@
                 navigator.geolocation.getCurrentPosition(
                     (position) => {
                         userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                        // 如果搜尋框是空的，才預設顯示 GPS 探索圈
                         if (document.getElementById('searchInput').value.trim() === '') {
                             activateRadiusCenter(userLocation, '目前位置', 'gps');
                         }
@@ -227,17 +223,15 @@
             }
         }
 
-        // 4. 繪製探索圈與過濾地圖標記 (核心過濾邏輯)
+        // 4. 繪製探索圈與過濾地圖標記
         function activateRadiusCenter(location, placeName, type) {
             activeCenterLocation = location;
             
-            // 決定顏色：GPS 是綠色 (Success)，搜尋是紫色 (Primary)
             const themeColor = type === 'gps' ? '#10B981' : '#6366F1';
             
             if (centerDotMarker) centerDotMarker.setMap(null);
             if (radiusCircle) radiusCircle.setMap(null);
 
-            // 畫中心點
             centerDotMarker = new google.maps.Marker({
                 position: location, map: map,
                 icon: {
@@ -248,18 +242,15 @@
                 zIndex: 999
             });
 
-            // 畫 2 公里半徑圈
             radiusCircle = new google.maps.Circle({
                 strokeColor: themeColor, strokeOpacity: 0.25, strokeWeight: 1,
                 fillColor: themeColor, fillOpacity: 0.08,
                 map: map, center: location, radius: 2000 
             });
 
-            // 移動視角
             map.panTo(location);
-            map.setZoom(14); // 14 是最適合看 2 公里半徑的縮放層級
+            map.setZoom(14);
 
-            // 過濾並顯示該半徑內的停車場
             let matchCount = 0;
             mapMarkers.forEach(m => {
                 const pos = m.marker.getPosition();
@@ -274,7 +265,6 @@
                 }
             });
 
-            // 更新 UI 狀態標籤
             const statusBox = document.getElementById('radiusStatus');
             document.getElementById('statusPing').style.backgroundColor = themeColor;
             document.getElementById('statusDot').style.backgroundColor = themeColor;
@@ -285,16 +275,16 @@
             statusBox.classList.add('flex');
         }
 
-        // 5. 點擊「定位」按鈕觸發
+        // 5. 定位按鈕
         function centerOnUser() {
             if (userLocation) {
-                clearSearch(); // 清除搜尋，強制切回 GPS
+                clearSearch(); 
             } else { 
                 requestUserLocation(); 
             }
         }
 
-        // --- 以下為資料抓取與圖釘生成邏輯 ---
+        // --- 資料抓取與圖釘生成邏輯 ---
 
         async function fetchDataSilently() {
             try {
@@ -322,6 +312,9 @@
         }
 
         async function processGeocodingSilently() {
+            const loadingPercentEl = document.getElementById('loadingPercent');
+            loadingPercentEl.classList.remove('hidden');
+
             for (let i = 0; i < parkingData.length; i++) {
                 while(!geocoder) await new Promise(r => setTimeout(r, 200));
                 const item = parkingData[i];
@@ -338,9 +331,25 @@
                     }
                     await new Promise(r => setTimeout(r, 100)); // 避免 API 限制
                 } catch(e) {}
+
+                // 動態更新載入百分比
+                const progress = Math.round(((i + 1) / parkingData.length) * 100);
+                loadingPercentEl.innerText = `載入中 ${progress}%`;
+
+                // 動態即時更新符合目前半徑範圍的資料筆數
+                if (activeCenterLocation) {
+                    const matchCount = mapMarkers.filter(m => m.marker.getMap() !== null).length;
+                    document.getElementById('searchCount').innerText = `${matchCount} 筆`;
+                }
             }
             
-            // 資料全部載入後，如果有活躍的中心點，重新觸發一次過濾以更新數量
+            // 載入完畢後隱藏百分比
+            loadingPercentEl.innerText = `載入完成`;
+            setTimeout(() => {
+                loadingPercentEl.classList.add('hidden');
+            }, 2500);
+
+            // 資料全部載入後，如果有活躍的中心點，重新觸發一次過濾以確保最終狀態精準
             if (activeCenterLocation) {
                 const currentName = document.getElementById('searchInput').value.trim() || '目前位置';
                 const type = document.getElementById('searchInput').value.trim() ? 'search' : 'gps';
@@ -352,13 +361,11 @@
             const pos = new google.maps.LatLng(item.lat, item.lng);
             let shouldShow = true;
             
-            // 動態判斷生成時，是否在目前活躍的探索圈內
             if (activeCenterLocation) {
                 const distance = google.maps.geometry.spherical.computeDistanceBetween(activeCenterLocation, pos);
                 if (distance > 2000) shouldShow = false;
             }
 
-            // Indigo 500 科技感 P 圖釘
             const svgIcon = {
                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
                     <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 32 32">
@@ -374,7 +381,6 @@
                 position: pos, map: shouldShow ? map : null, icon: svgIcon
             });
 
-            // 確保跳轉 Google Maps 導航/評論連結格式絕對正確 (使用官方 Intent URL)
             const searchQuery = encodeURIComponent(`${item.name} 停車場 ${item.address}`);
             const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
 
