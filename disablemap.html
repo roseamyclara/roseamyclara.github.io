@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>臺中身障免銷單特權地圖</title>
+    <title>臺中身障免銷單地圖</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Noto Sans TC', 'sans-serif'] },
-                    colors: { primary: '#2563EB' } /* 經典明亮藍色 */
+                    colors: { primary: '#2563EB' }
                 }
             }
         }
@@ -25,10 +25,9 @@
     <style>
         body { margin: 0; overflow: hidden; background-color: #F3F4F6; }
         
-        /* 全螢幕地圖 */
         #map { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
 
-        /* 客製化 Google Maps InfoWindow (極簡白淨風格) */
+        /* 客製化 Google Maps InfoWindow */
         .gm-style .gm-style-iw-c {
             background: #FFFFFF !important;
             border-radius: 16px !important;
@@ -38,7 +37,6 @@
         .gm-style-iw-d { overflow: hidden !important; max-height: none !important; }
         .gm-ui-hover-effect { top: 12px !important; right: 12px !important; background: #f3f4f6 !important; border-radius: 50% !important; } 
 
-        /* 隱藏自訂捲軸，保持清爽 */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -49,37 +47,144 @@
 
     <div class="absolute z-10 top-4 left-[4%] w-[92%] md:top-6 md:left-6 md:w-[380px] flex flex-col gap-2 pointer-events-none">
         
-        <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-1.5 flex items-center pointer-events-auto border border-gray-100 transition-shadow focus-within:shadow-xl focus-within:border-blue-200">
+        <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-1.5 flex items-center pointer-events-auto border border-gray-100 transition-shadow focus-within:shadow-xl focus-within:border-blue-200 relative">
             <div class="p-2 text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </div>
             
-            <input type="text" id="searchInput" placeholder="搜尋停車場名稱或地址..." 
+            <input type="text" id="searchInput" placeholder="搜尋名稱或地址..." 
                 class="w-full p-2 outline-none text-gray-800 bg-transparent text-[15px] placeholder-gray-400 font-medium" 
                 autocomplete="off" oninput="handleSearch()">
             
             <span id="searchCount" class="text-[11px] font-bold text-primary bg-blue-50 px-2 py-1 rounded-md whitespace-nowrap hidden mr-2"></span>
         </div>
+
+        <div id="radiusStatus" class="hidden items-center self-start bg-blue-50/90 backdrop-blur text-primary text-[11px] font-bold px-3 py-1.5 rounded-full shadow-sm border border-blue-100 pointer-events-auto">
+            <span class="relative flex h-2 w-2 mr-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+            </span>
+            目前顯示：方圓 2 公里內
+        </div>
         
         <div id="searchResults" class="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl max-h-[50vh] overflow-y-auto pointer-events-auto hidden border border-gray-100 hide-scrollbar flex-col divide-y divide-gray-50">
-            </div>
+        </div>
     </div>
 
+    <button onclick="centerOnUser()" class="absolute z-10 top-24 right-4 md:top-6 md:right-6 bg-white/95 backdrop-blur-md p-3 rounded-full shadow-lg border border-gray-100 text-gray-600 hover:text-primary hover:bg-gray-50 transition-colors pointer-events-auto focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+    </button>
+
     <script>
+        // 注意：這裡加入了 geometry 函式庫來計算距離
         const API_KEY = "AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E";
+        
         let map, geocoder;
         let parkingData = [];
-        let mapMarkers = []; // 儲存 { item, marker, infoWindow } 物件
+        let mapMarkers = []; 
         let activeInfoWindow = null;
+        
+        // 使用者定位相關變數
+        let userLocation = null; // google.maps.LatLng 物件
+        let userDotMarker = null;
+        let userRadiusCircle = null;
 
         window.onload = () => {
             loadGoogleMaps();
             fetchDataSilently();
         };
 
-        // 1. 背景靜默抓取資料
+        // 1. 載入 Google Maps (包含 geometry)
+        function loadGoogleMaps() {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&libraries=places,geometry&callback=initMap`;
+            script.async = true; script.defer = true;
+            window.initMap = () => {
+                geocoder = new google.maps.Geocoder();
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 24.1477, lng: 120.6736 }, // 預設台中市中心
+                    zoom: 13,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+                    gestureHandling: 'greedy',
+                    styles: [
+                        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
+                        { featureType: "transit", elementType: "labels", stylers: [{ visibility: "off" }] }
+                    ]
+                });
+
+                // 地圖初始化完成後，立即請求使用者定位
+                requestUserLocation();
+            };
+            document.head.appendChild(script);
+        }
+
+        // 2. 請求使用者地理位置
+        function requestUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        userLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                        drawUserLocation();
+                        apply2kmFilter(); // 取得位置後，過濾已載入的標記
+                    },
+                    (error) => {
+                        console.log("無法取得位置或使用者拒絕，預設顯示全部資料。");
+                        // 失敗就維持顯示全部，不做任何事
+                    },
+                    { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+                );
+            }
+        }
+
+        // 3. 在地圖上繪製「您在這裡」的藍點與 2 公里圓圈
+        function drawUserLocation() {
+            if (!map || !userLocation) return;
+
+            if (userDotMarker) userDotMarker.setMap(null);
+            if (userRadiusCircle) userRadiusCircle.setMap(null);
+
+            // 脈衝藍點
+            userDotMarker = new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 7,
+                    fillColor: '#3B82F6',
+                    fillOpacity: 1,
+                    strokeColor: '#FFFFFF',
+                    strokeWeight: 2,
+                },
+                zIndex: 999
+            });
+
+            // 淡淡的藍色 2km 半徑圈
+            userRadiusCircle = new google.maps.Circle({
+                strokeColor: "#3B82F6",
+                strokeOpacity: 0.3,
+                strokeWeight: 1,
+                fillColor: "#3B82F6",
+                fillOpacity: 0.05,
+                map: map,
+                center: userLocation,
+                radius: 2000 // 單位: 公尺
+            });
+
+            map.panTo(userLocation);
+            map.setZoom(14); // 適合看 2 公里的縮放層級
+
+            // 顯示 UI 提示
+            document.getElementById('radiusStatus').classList.remove('hidden');
+            document.getElementById('radiusStatus').classList.add('flex');
+        }
+
+        // 4. 背景靜默抓取資料
         async function fetchDataSilently() {
             try {
                 const targetUrl = 'https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule';
@@ -111,30 +216,7 @@
             }
         }
 
-        // 2. 載入明亮乾淨版 Google Maps
-        function loadGoogleMaps() {
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
-            script.async = true; script.defer = true;
-            window.initMap = () => {
-                geocoder = new google.maps.Geocoder();
-                // 隱藏預設的標籤與POI，讓畫面極度乾淨
-                map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 24.1477, lng: 120.6736 }, // 台中市中心
-                    zoom: 13,
-                    disableDefaultUI: true, // 關閉所有多餘控制項
-                    zoomControl: true, // 僅保留右下角縮放
-                    gestureHandling: 'greedy', // 手機版單指即可拖拉地圖
-                    styles: [
-                        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
-                        { featureType: "transit", elementType: "labels", stylers: [{ visibility: "off" }] }
-                    ]
-                });
-            };
-            document.head.appendChild(script);
-        }
-
-        // 3. 背景解析座標並直接顯示 (無動畫)
+        // 5. 背景解析座標並處理過濾邏輯
         async function processGeocodingSilently() {
             for (let i = 0; i < parkingData.length; i++) {
                 while(!geocoder) await new Promise(r => setTimeout(r, 200));
@@ -153,14 +235,22 @@
                         item.lng = result.lng();
                         createBluePMarker(item);
                     }
-                    await new Promise(r => setTimeout(r, 100)); // 微小延遲避免 API Rate Limit
+                    await new Promise(r => setTimeout(r, 100));
                 } catch(e) {}
             }
         }
 
-        // 4. 建立藍色 P 標記與極簡資訊卡
+        // 6. 建立地圖標記並決定是否立即顯示 (依據 2km 距離)
         function createBluePMarker(item) {
-            // 乾淨清爽的藍色 P SVG 圖示
+            const pos = new google.maps.LatLng(item.lat, item.lng);
+            
+            // 如果已有定位，檢查距離是否在 2000m 內；沒有定位則預設顯示
+            let shouldShow = true;
+            if (userLocation) {
+                const distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, pos);
+                if (distance > 2000) shouldShow = false;
+            }
+
             const svgIcon = {
                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
@@ -173,14 +263,13 @@
             };
 
             const marker = new google.maps.Marker({
-                position: { lat: item.lat, lng: item.lng },
-                map: map,
+                position: pos,
+                map: shouldShow ? map : null, // 根據距離決定是否顯示
                 icon: svgIcon
             });
 
-            // 產生直接搜尋 Google Maps 的 URL
             const searchQuery = encodeURIComponent(`${item.name} 停車場 ${item.address}`);
-            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=$${searchQuery}`;
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query={searchQuery}`;
 
             const infoContent = `
                 <div class="p-5 min-w-[240px] font-sans text-gray-800">
@@ -201,43 +290,65 @@
 
             const infoWindow = new google.maps.InfoWindow({ content: infoContent });
 
-            marker.addListener('click', () => {
-                openInfoWindow(item.id);
-            });
+            marker.addListener('click', () => { openInfoWindow(item.id); });
 
-            // 將資料、標記與資訊窗綁定儲存，方便後續搜尋過濾
             mapMarkers.push({ item: item, marker: marker, infoWindow: infoWindow });
         }
 
-        // 5. 模糊搜尋邏輯
+        // 7. 過濾並只顯示 2 公里內的點 (被自動定位觸發)
+        function apply2kmFilter() {
+            if (!userLocation) return;
+            
+            // 如果搜尋框有字，不要覆蓋使用者的搜尋結果
+            if (document.getElementById('searchInput').value.trim() !== '') return;
+
+            mapMarkers.forEach(m => {
+                const pos = m.marker.getPosition();
+                if (pos) {
+                    const distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, pos);
+                    m.marker.setMap(distance <= 2000 ? map : null);
+                }
+            });
+        }
+
+        // 8. 智慧模糊搜尋
         function handleSearch() {
             const query = document.getElementById('searchInput').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('searchResults');
             const countDisplay = document.getElementById('searchCount');
+            const radiusStatus = document.getElementById('radiusStatus');
             
-            // 如果清空搜尋列，恢復顯示所有圖釘並隱藏結果框
+            // 如果清空搜尋：若有定位則恢復 2km 視角，若無則顯示全部
             if (!query) {
-                mapMarkers.forEach(m => m.marker.setMap(map));
+                if (userLocation) {
+                    apply2kmFilter();
+                    radiusStatus.classList.remove('hidden');
+                    radiusStatus.classList.add('flex');
+                } else {
+                    mapMarkers.forEach(m => m.marker.setMap(map));
+                }
+                
                 resultsContainer.classList.add('hidden');
                 countDisplay.classList.add('hidden');
                 if (activeInfoWindow) activeInfoWindow.close();
                 return;
             }
 
-            // 支援多關鍵字模糊搜尋 (例如輸入 "西屯 台灣大道")
+            // 搜尋狀態下隱藏「方圓2公里」標籤
+            radiusStatus.classList.remove('flex');
+            radiusStatus.classList.add('hidden');
+
             const keywords = query.split(' ').filter(k => k);
             let matchCount = 0;
             let html = '';
 
             mapMarkers.forEach(m => {
                 const textToSearch = (m.item.name + ' ' + m.item.address).toLowerCase();
-                // 必須包含所有空白分隔的關鍵字
                 const isMatch = keywords.every(kw => textToSearch.includes(kw));
                 
                 if (isMatch) {
-                    m.marker.setMap(map); // 顯示符合的圖釘
+                    m.marker.setMap(map); // 無視距離限制，顯示搜尋相符者
                     matchCount++;
-                    // 組合下拉選單項目
                     html += `
                         <div class="p-3 hover:bg-blue-50 cursor-pointer transition-colors" onclick="focusOnMap('${m.item.id}')">
                             <div class="font-bold text-gray-800 text-[15px]">${m.item.name}</div>
@@ -245,11 +356,10 @@
                         </div>
                     `;
                 } else {
-                    m.marker.setMap(null); // 隱藏不符合的圖釘
+                    m.marker.setMap(null); 
                 }
             });
 
-            // 顯示結果與數量
             resultsContainer.innerHTML = html || `<div class="p-4 text-center text-[13px] text-gray-400 font-medium">無符合的停車場</div>`;
             resultsContainer.classList.remove('hidden');
             resultsContainer.classList.add('flex');
@@ -258,15 +368,12 @@
             countDisplay.classList.remove('hidden');
         }
 
-        // 6. 點擊搜尋結果時：將地圖焦點移至該處並開啟資訊卡
+        // 點擊列表跳轉
         function focusOnMap(id) {
             const target = mapMarkers.find(m => m.item.id === id);
             if (target) {
-                // 關閉下拉選單與手機小鍵盤
                 document.getElementById('searchResults').classList.add('hidden');
                 document.getElementById('searchInput').blur();
-                
-                // 開啟該點位
                 openInfoWindow(id);
             }
         }
@@ -279,9 +386,18 @@
             target.infoWindow.open({ anchor: target.marker, map, shouldFocus: false });
             activeInfoWindow = target.infoWindow;
             
-            // 平滑移動至中心點並稍微放大
             map.panTo(target.marker.getPosition());
-            map.setZoom(15);
+            map.setZoom(16);
+        }
+
+        // 按鈕：回到使用者目前位置
+        function centerOnUser() {
+            if (userLocation && map) {
+                map.panTo(userLocation);
+                map.setZoom(14);
+            } else {
+                requestUserLocation(); // 若還沒定位過，手動觸發一次
+            }
         }
     </script>
 </body>
