@@ -94,12 +94,11 @@ html, body { height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-s
 .loc-thumb { width: 72px; height: 72px; border-radius: 16px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 2px solid white; box-shadow: 2px 4px 8px rgba(0,0,0,0.05); }
 
 /* ── Detail View ─────────────────────────────────── */
-/* UX 優化：將 display 改為 block，完美解決 Android Chrome 於 Flex 容器內的高度滾動 Bug */
 #detail-view { 
   display: none; 
   flex: 1; 
   overflow-y: auto; 
-  padding: 0 20px 120px; /* 提高底部 Padding，確保 Android 虛擬導航列不遮擋文章最底端 */
+  padding: 0 20px 120px; 
   -webkit-overflow-scrolling: touch; 
   overscroll-behavior: contain;
 }
@@ -220,7 +219,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-s
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-    DATA (已恢復完整資料)
+    DATA
 ═══════════════════════════════════════════════════════════ */
 const THEMES = {
   walking: {
@@ -230,7 +229,7 @@ const THEMES = {
       { name:'Stanley Park 史丹利公園', locs:[
         { id:'sp1', zh:'史丹利公園海堤', en:'Stanley Park Seawall',
           lat:49.3043, lng:-123.1443,
-          desc:'溫哥華最著名的海濱步道，全長約10公里，環繞整個史丹利公園。沿途可欣賞英吉利灣湛藍海景、北岸山脈積雪山峰和市區璀璨天際線。步道平整寬闊，適合步行、騎自行車或直排輪，是溫哥華必訪戶外景點。',
+          desc:'溫哥華最著名的海濱步道，全長約10公里，環繞整個史丹利公園。沿途可欣賞英吉利灣湛藍海景、北岸山脈積雪山峰和市區璀璨天際線。步道平整寬闊，適合步行、騎自行車 or 直排輪，是溫哥華必訪戶外景點。',
           q:'Stanley Park Seawall Vancouver' },
         { id:'sp2', zh:'迪文尼亞港公園', en:'Devonian Harbour Park',
           lat:49.2921, lng:-123.1307,
@@ -276,7 +275,7 @@ const THEMES = {
           q:'False Creek Ferry Vancouver seabus' },
         { id:'kit', zh:'吉士蘭奴海灘', en:'Kitsilano Beach',
           lat:49.2680, lng:-123.1553,
-          desc:'溫哥華最受歡迎的城市海灘，擁有長達半公里的白沙灘，可清晰看見史丹利公園和北岸山脈。海灘旁有全加拿大最長的室外游泳池，周邊咖啡館和餐廳林立，充滿悠閒的溫哥華生活感。',
+          desc:'溫哥華最受歡迎的城市海灘，擁有長達半公里的白沙灘，可清晰看見史丹利公園 and 北岸山脈。海灘旁有全加拿大最長的室外游泳池，周邊咖啡館 and 餐廳林立，充滿悠閒的溫哥華生活感。',
           q:'Kitsilano Beach Park Vancouver' }
       ]},
       { name:'深灣 & 湖區', locs:[
@@ -334,7 +333,7 @@ const THEMES = {
           q:'West Coast Trail Pachena Bay trailhead Bamfield' },
         { id:'pb3', zh:'帕切納灣海灘', en:'Pachena Bay Beach',
           lat:48.8005, lng:-125.1044,
-          desc:'廣闊無垠的沙灘直面開放的太平洋，是衝浪、撿貝殼和海岸散步的絕佳地點。低潮時沙灘寬達數百公尺，有機會看見海豹在海中嬉戲。此地是赫曲薩特族的傳統聖地，具有深刻的文化意義。',
+          desc:'廣闊無垠的沙灘直面開放的太平洋，是衝浪、撿貝殼 and 海岸散步的絕佳地點。低潮時沙灘寬達數百公尺，有機會看見海豹在海中嬉戲。此地是赫曲薩特族的傳統聖地，具有深刻的文化意義。',
           q:'Pachena Bay Beach Vancouver Island' }
       ]},
       { name:'班菲爾德 Bamfield', locs:[
@@ -348,11 +347,11 @@ const THEMES = {
           q:'Bamfield Marine Sciences Centre BC' },
         { id:'bm3', zh:'班菲爾德木棧道', en:'Bamfield East Boardwalk',
           lat:48.8330, lng:-125.1400,
-          desc:'沿班菲爾德東側海峽建造的木棧道，從Mills Landing步行至班菲爾德雜貨海事店（Bamfield Mercantile and Marine），沿途可欣賞對岸漁村風光和停泊的船隻，咖啡館和海鮮小攤飄散著濱海氣息。',
+          desc:'沿班菲爾德東側海峽建造的木棧道，從Mills Landing步行至班菲爾德雜貨海事店（Bamfield Mercantile and Marine），沿途可欣賞對岸漁村風光和停泊的船隻，咖啡館 and 海鮮小攤飄散著濱海氣息。',
           q:'Bamfield Boardwalk BC Canada' },
         { id:'bm4', zh:'布雷迪海灘', en:"Brady's Beach",
           lat:48.8457, lng:-125.1594,
-          desc:'班菲爾德附近最美麗的沙灘，從西側小鎮步行約20分鐘可達。沙灘細膩潔白，四面環繞茂密森林，海浪溫和適合家庭戲水。低潮時可探索豐富的潮間帶生態，找到海星、螃蟹和各種貝類。',
+          desc:'班菲爾德附近最美麗的沙灘，從西側小鎮步行約20分鐘可達。沙灘細膩潔白，四面環繞茂密森林，海浪溫和適合家庭戲水。低潮時可探索豐富的潮間帶生態，找到海星、螃蟹 and 各種貝類。',
           q:"Brady's Beach Bamfield BC" }
       ]}
     ]
@@ -380,7 +379,7 @@ const THEMES = {
           q:'Kamloops BC city Thompson River' },
         { id:'rt5', zh:'雷夫爾斯托克', en:'Revelstoke, BC',
           lat:50.9981, lng:-118.1957,
-          desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量 and 滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館和餐廳。附近有國家公園和水壩，是前往冰川公園和班夫的重要門戶城市。',
+          desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量 and 滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館 and 餐廳。附近有國家公園 and 水壩，是前往冰川公園 and 班夫的重要門戶城市。',
           q:'Revelstoke British Columbia downtown' },
         { id:'rt6', zh:'冰川國家公園', en:'Glacier National Park, BC',
           lat:51.2984, lng:-117.5296,
@@ -406,7 +405,7 @@ const THEMES = {
           q:'Lake Louise Banff National Park Alberta' },
         { id:'bf3', zh:'明尼旺卡湖', en:'Lake Minnewanka',
           lat:51.2706, lng:-115.5000,
-          desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水或玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。',
+          desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水 or 玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。',
           q:'Lake Minnewanka Banff National Park boat tour' },
         { id:'bf4', zh:'兩傑克湖', en:'Two Jack Lake',
           lat:51.2467, lng:-115.5317,
@@ -414,7 +413,7 @@ const THEMES = {
           q:'Two Jack Lake Banff National Park reflection mountains' },
         { id:'bf5', zh:'硃砂湖', en:'Vermilion Lakes',
           lat:51.1753, lng:-115.6211,
-          desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁和各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。',
+          desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁 and 各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。',
           q:'Vermilion Lakes Banff mountains reflection sunset' }
       ]},
       { name:'班夫鎮區', locs:[
@@ -428,7 +427,7 @@ const THEMES = {
           q:'Banff Avenue main street Alberta' },
         { id:'bft3', zh:'懷特博物館', en:'Whyte Museum of the Canadian Rockies',
           lat:51.1745, lng:-115.5680,
-          desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品和珍貴歷史照片，生動呈現落磯山探險家、早期登山者和原住民的故事。想深入了解班夫歷史文化的必訪之地。',
+          desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品 and 珍貴歷史照片，生動呈現落磯山探險家、早期登山者 and 原住民的故事。想深入了解班夫歷史文化的必訪之地。',
           q:'Whyte Museum Canadian Rockies Banff' },
         { id:'bft4', zh:'班夫公園博物館', en:'Banff Park Museum',
           lat:51.1783, lng:-115.5693,
@@ -438,7 +437,7 @@ const THEMES = {
       { name:'坎莫爾 Canmore', locs:[
         { id:'cm1', zh:'班夫門山度假酒店', en:'Banff Gate Mountain Resort',
           lat:51.0975, lng:-115.3428,
-          desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾和班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。',
+          desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾 and 班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。',
           q:'Banff Gate Mountain Resort Canmore Alberta' },
         { id:'cm2', zh:'警察溪木棧道', en:"Policeman's Creek Boardwalk",
           lat:51.0878, lng:-115.3449,
@@ -450,7 +449,7 @@ const THEMES = {
           q:'Engine Bridge Canmore Bow River Alberta' },
         { id:'cm4', zh:'坎莫爾博物館', en:'Canmore Museum & Geoscience Centre',
           lat:51.0895, lng:-115.3443,
-          desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開採工具、鐵路歷史和地質展示，是深入了解這座山城文化背景的最佳去處。',
+          desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開開採工具、鐵路歷史 and 地質展示，是深入了解這座山城文化背景的最佳去處。',
           q:'Canmore Museum Geoscience Centre Alberta' },
         { id:'cm5', zh:'格拉西湖', en:'Grassi Lakes',
           lat:51.1017, lng:-115.3152,
@@ -458,11 +457,11 @@ const THEMES = {
           q:'Grassi Lakes Canmore Alberta hike trail' },
         { id:'cm6', zh:'採石場湖', en:'Quarry Lake Park',
           lat:51.0951, lng:-115.3217,
-          desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐或漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。',
+          desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐 or 漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。',
           q:'Quarry Lake Park Canmore Alberta' },
         { id:'cm7', zh:'藝術空間', en:'artsPlace Canmore',
           lat:51.0897, lng:-115.3442,
-          desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽和演出。雨天或想放慢腳步接觸當地藝文氛圍時的絕佳選擇。',
+          desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽 and 演出。雨天 or 想放慢腳步接觸當地藝文氛圍時的絕佳選擇。',
           q:'artsPlace Canmore Alberta arts center' }
       ]}
     ]
@@ -513,7 +512,9 @@ dragZone.addEventListener('touchmove', (e) => {
   if (window.innerWidth > 760) return;
   const dy = startY - e.touches[0].clientY;
   let newHeight = startHeight + dy;
-  const maxH = window.innerHeight * 0.95;
+  
+  // 修正：解除原本的 95% 高度限制，允許手機版抽屜自由向上拉動至 100% 滿螢幕（完全覆蓋地圖）
+  const maxH = window.innerHeight; 
   const minH = window.innerHeight * 0.15; 
   if(newHeight > maxH) newHeight = maxH;
   if(newHeight < minH) newHeight = minH;
@@ -597,7 +598,6 @@ function addMarkers(th, name){
   });
 }
 
-// 修正：修正 404 URL 拼接錯誤，改用官方 Universal 規格，並將引導文字修訂為「查看位置 ↗」
 function onMarkerClick(loc, name, mk){
   const th = THEMES[name];
   const appUrl = `https://www.google.com/maps/search/?api=1&query=${loc.lat},${loc.lng}`;
@@ -690,10 +690,10 @@ function renderList(th, name){
     DETAIL VIEW
 ═══════════════════════════════════════════════════════════ */
 function showDetail(loc, name){
-  snapDrawerTo(95);
+  // 修正：當進入詳細介紹文章時，抽屜會自動優雅地推升至 100vh 滿版高度，完全覆蓋地圖
+  snapDrawerTo(100);
 
   document.getElementById('list-view').style.display='none';
-  // 修正：將 display 從 'flex' 更改為 'block'，使 Android Chrome 能完美計算原生滾動高度
   document.getElementById('detail-view').style.display='block';
   document.getElementById('detail-view').scrollTop = 0; 
 
