@@ -178,9 +178,23 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
 
 /* ── Responsive ──────────────────────────────────── */
 @media(max-width:760px){
-  #app{flex-direction:column}
-  #sidebar{width:100%;min-width:unset;height:50vh; box-shadow: 0 -4px 12px rgba(0,0,0,0.05);}
-  #map-wrap{height:50vh}
+  #app{display:block}
+  #map-wrap{position:absolute;top:0;left:0;width:100%;height:100vh;z-index:1}
+  #sidebar{
+    position:absolute;bottom:0;left:0;width:100%;height:45vh;z-index:10;
+    border-radius:24px 24px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,0.12);
+    border-right:none;border-top:1px solid var(--bdr);
+    transition:height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width:unset;
+  }
+  /* 手機版頂部拖曳把手指示器 (視覺用) */
+  #sidebar::before{
+    content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);
+    width:36px;height:4px;border-radius:4px;background:#CBD5E1;z-index:10;
+  }
+  #header{padding-top:28px}
+  /* 當進入詳情頁時，抽屜向上展開至 75vh */
+  #sidebar.detail-active{height:75vh}
 }
 
 /* ── Banff route toggle btn ──────────────────────── */
@@ -527,6 +541,7 @@ let curTheme = 'walking';
 let photoCache = {};
 let routeView = false;
 let allLocs = []; 
+let isDetailViewActive = false;
 
 /* ═══════════════════════════════════════════════════════════
    INIT MAP (改為預設明亮樣式)
@@ -545,7 +560,20 @@ function initMap(){
   psvc = new google.maps.places.PlacesService(map);
   iw   = new google.maps.InfoWindow({maxWidth:260});
   switchTheme('walking');
+  updateMapPadding();
 }
+
+// 根據手機抽屜的高度動態調整地圖的中心點與控制項位置
+function updateMapPadding() {
+  if (!map) return;
+  if (window.innerWidth <= 760) {
+    const bottomPad = isDetailViewActive ? window.innerHeight * 0.75 : window.innerHeight * 0.45;
+    map.setOptions({ padding: { bottom: bottomPad, top: 0, left: 0, right: 0 } });
+  } else {
+    map.setOptions({ padding: { bottom: 0, top: 0, left: 0, right: 0 } });
+  }
+}
+window.addEventListener('resize', updateMapPadding);
 
 /* ═══════════════════════════════════════════════════════════
    THEME SWITCH
@@ -553,6 +581,9 @@ function initMap(){
 function switchTheme(name){
   curTheme = name;
   routeView = false;
+  isDetailViewActive = false;
+  document.getElementById('sidebar').classList.remove('detail-active');
+  updateMapPadding();
 
   // tab styles
   ['walking','camping','banff'].forEach(t=>{
@@ -732,6 +763,10 @@ function renderList(th, name){
    DETAIL VIEW
 ═══════════════════════════════════════════════════════════ */
 function showDetail(loc, name){
+  isDetailViewActive = true;
+  document.getElementById('sidebar').classList.add('detail-active');
+  updateMapPadding();
+
   document.querySelectorAll('.loc-card').forEach(c=>{
     c.classList.remove('sel-w','sel-c','sel-b');
   });
@@ -762,6 +797,10 @@ function showDetail(loc, name){
 }
 
 function goBack(){
+  isDetailViewActive = false;
+  document.getElementById('sidebar').classList.remove('detail-active');
+  updateMapPadding();
+
   document.getElementById('list-view').style.display='block';
   document.getElementById('detail-view').style.display='none';
   if(iw) iw.close();
