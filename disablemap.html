@@ -24,9 +24,11 @@
 
     <style>
         body { margin: 0; overflow: hidden; background-color: #F3F4F6; }
-        #map { width: 100vw; height: 100vh; }
+        
+        /* 全螢幕地圖 */
+        #map { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
 
-        /* 客製化 Google Maps InfoWindow 樣式 (極簡白淨風格) */
+        /* 客製化 Google Maps InfoWindow (極簡白淨風格) */
         .gm-style .gm-style-iw-c {
             background: #FFFFFF !important;
             border-radius: 16px !important;
@@ -34,18 +36,42 @@
             padding: 0 !important;
         }
         .gm-style-iw-d { overflow: hidden !important; max-height: none !important; }
-        .gm-ui-hover-effect { top: 12px !important; right: 12px !important; } 
+        .gm-ui-hover-effect { top: 12px !important; right: 12px !important; background: #f3f4f6 !important; border-radius: 50% !important; } 
+
+        /* 隱藏自訂捲軸，保持清爽 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
 
+    <div class="absolute z-10 top-4 left-[4%] w-[92%] md:top-6 md:left-6 md:w-[380px] flex flex-col gap-2 pointer-events-none">
+        
+        <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-1.5 flex items-center pointer-events-auto border border-gray-100 transition-shadow focus-within:shadow-xl focus-within:border-blue-200">
+            <div class="p-2 text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <input type="text" id="searchInput" placeholder="搜尋停車場名稱或地址..." 
+                class="w-full p-2 outline-none text-gray-800 bg-transparent text-[15px] placeholder-gray-400 font-medium" 
+                autocomplete="off" oninput="handleSearch()">
+            
+            <span id="searchCount" class="text-[11px] font-bold text-primary bg-blue-50 px-2 py-1 rounded-md whitespace-nowrap hidden mr-2"></span>
+        </div>
+        
+        <div id="searchResults" class="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl max-h-[50vh] overflow-y-auto pointer-events-auto hidden border border-gray-100 hide-scrollbar flex-col divide-y divide-gray-50">
+            </div>
+    </div>
+
     <script>
         const API_KEY = "AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E";
         let map, geocoder;
         let parkingData = [];
-        let markers = [];
+        let mapMarkers = []; // 儲存 { item, marker, infoWindow } 物件
         let activeInfoWindow = null;
 
         window.onload = () => {
@@ -79,9 +105,7 @@
                     }
                 });
                 
-                if(parkingData.length > 0) {
-                    processGeocodingSilently();
-                }
+                if(parkingData.length > 0) processGeocodingSilently();
             } catch (error) {
                 console.error("資料獲取失敗", error);
             }
@@ -94,13 +118,15 @@
             script.async = true; script.defer = true;
             window.initMap = () => {
                 geocoder = new google.maps.Geocoder();
+                // 隱藏預設的標籤與POI，讓畫面極度乾淨
                 map = new google.maps.Map(document.getElementById('map'), {
-                    center: { lat: 24.1477, lng: 120.6736 }, // 預設台中市中心
+                    center: { lat: 24.1477, lng: 120.6736 }, // 台中市中心
                     zoom: 13,
-                    disableDefaultUI: true, // 保持畫面極度乾淨
-                    zoomControl: true, // 僅保留縮放按鈕
+                    disableDefaultUI: true, // 關閉所有多餘控制項
+                    zoomControl: true, // 僅保留右下角縮放
+                    gestureHandling: 'greedy', // 手機版單指即可拖拉地圖
                     styles: [
-                        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] }, // 隱藏預設地標以突顯藍色 P
+                        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] },
                         { featureType: "transit", elementType: "labels", stylers: [{ visibility: "off" }] }
                     ]
                 });
@@ -108,7 +134,7 @@
             document.head.appendChild(script);
         }
 
-        // 3. 背景解析座標並直接顯示 (無掉落動畫)
+        // 3. 背景解析座標並直接顯示 (無動畫)
         async function processGeocodingSilently() {
             for (let i = 0; i < parkingData.length; i++) {
                 while(!geocoder) await new Promise(r => setTimeout(r, 200));
@@ -127,8 +153,7 @@
                         item.lng = result.lng();
                         createBluePMarker(item);
                     }
-                    // 加入極短暫延遲避免觸發 Google API Rate Limit
-                    await new Promise(r => setTimeout(r, 150)); 
+                    await new Promise(r => setTimeout(r, 100)); // 微小延遲避免 API Rate Limit
                 } catch(e) {}
             }
         }
@@ -139,7 +164,7 @@
             const svgIcon = {
                 url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-                        <circle cx="16" cy="16" r="15" fill="#2563EB" stroke="#FFFFFF" stroke-width="2" box-shadow="0 4px 6px rgba(0,0,0,0.1)"/>
+                        <circle cx="16" cy="16" r="15" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
                         <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#FFFFFF">P</text>
                     </svg>
                 `),
@@ -151,31 +176,24 @@
                 position: { lat: item.lat, lng: item.lng },
                 map: map,
                 icon: svgIcon
-                // 取消 animation: google.maps.Animation.DROP，實現直接載入
             });
 
             // 產生直接搜尋 Google Maps 的 URL
             const searchQuery = encodeURIComponent(`${item.name} 停車場 ${item.address}`);
-            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=$${searchQuery}`;
 
-            // 乾淨明亮的 InfoWindow 內容
             const infoContent = `
                 <div class="p-5 min-w-[240px] font-sans text-gray-800">
-                    <h3 class="text-lg font-bold mb-3 text-gray-900">${item.name}</h3>
-                    
-                    <div class="space-y-1.5 mb-5">
+                    <h3 class="text-[17px] font-bold mb-3 text-gray-900 leading-tight">${item.name}</h3>
+                    <div class="space-y-2 mb-5">
                         <div class="flex items-start gap-2 text-sm text-gray-600">
-                            <span class="mt-0.5">🏷️</span>
-                            <span><strong>方式：</strong>${item.method}</span>
+                            <span class="mt-0.5">🏷️</span><span><strong>進場：</strong>${item.method}</span>
                         </div>
                         <div class="flex items-start gap-2 text-sm text-gray-600">
-                            <span class="mt-0.5">📍</span>
-                            <span class="leading-relaxed">${item.address}</span>
+                            <span class="mt-0.5">📍</span><span class="leading-relaxed">${item.address}</span>
                         </div>
                     </div>
-
-                    <a href="${googleMapsUrl}" target="_blank" 
-                       class="block w-full text-center py-2.5 rounded-lg bg-primary hover:bg-blue-700 transition-colors text-white font-bold text-sm shadow-md">
+                    <a href="${googleMapsUrl}" target="_blank" class="block w-full text-center py-2.5 rounded-lg bg-primary hover:bg-blue-700 transition-colors text-white font-bold text-sm shadow-md">
                         查看評論 / 導航
                     </a>
                 </div>
@@ -184,13 +202,86 @@
             const infoWindow = new google.maps.InfoWindow({ content: infoContent });
 
             marker.addListener('click', () => {
-                if (activeInfoWindow) activeInfoWindow.close();
-                infoWindow.open({ anchor: marker, map, shouldFocus: false });
-                activeInfoWindow = infoWindow;
-                map.panTo(marker.getPosition());
+                openInfoWindow(item.id);
             });
 
-            markers.push(marker);
+            // 將資料、標記與資訊窗綁定儲存，方便後續搜尋過濾
+            mapMarkers.push({ item: item, marker: marker, infoWindow: infoWindow });
+        }
+
+        // 5. 模糊搜尋邏輯
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('searchResults');
+            const countDisplay = document.getElementById('searchCount');
+            
+            // 如果清空搜尋列，恢復顯示所有圖釘並隱藏結果框
+            if (!query) {
+                mapMarkers.forEach(m => m.marker.setMap(map));
+                resultsContainer.classList.add('hidden');
+                countDisplay.classList.add('hidden');
+                if (activeInfoWindow) activeInfoWindow.close();
+                return;
+            }
+
+            // 支援多關鍵字模糊搜尋 (例如輸入 "西屯 台灣大道")
+            const keywords = query.split(' ').filter(k => k);
+            let matchCount = 0;
+            let html = '';
+
+            mapMarkers.forEach(m => {
+                const textToSearch = (m.item.name + ' ' + m.item.address).toLowerCase();
+                // 必須包含所有空白分隔的關鍵字
+                const isMatch = keywords.every(kw => textToSearch.includes(kw));
+                
+                if (isMatch) {
+                    m.marker.setMap(map); // 顯示符合的圖釘
+                    matchCount++;
+                    // 組合下拉選單項目
+                    html += `
+                        <div class="p-3 hover:bg-blue-50 cursor-pointer transition-colors" onclick="focusOnMap('${m.item.id}')">
+                            <div class="font-bold text-gray-800 text-[15px]">${m.item.name}</div>
+                            <div class="text-[12px] text-gray-500 mt-1 line-clamp-1">${m.item.address}</div>
+                        </div>
+                    `;
+                } else {
+                    m.marker.setMap(null); // 隱藏不符合的圖釘
+                }
+            });
+
+            // 顯示結果與數量
+            resultsContainer.innerHTML = html || `<div class="p-4 text-center text-[13px] text-gray-400 font-medium">無符合的停車場</div>`;
+            resultsContainer.classList.remove('hidden');
+            resultsContainer.classList.add('flex');
+            
+            countDisplay.textContent = `${matchCount} 筆`;
+            countDisplay.classList.remove('hidden');
+        }
+
+        // 6. 點擊搜尋結果時：將地圖焦點移至該處並開啟資訊卡
+        function focusOnMap(id) {
+            const target = mapMarkers.find(m => m.item.id === id);
+            if (target) {
+                // 關閉下拉選單與手機小鍵盤
+                document.getElementById('searchResults').classList.add('hidden');
+                document.getElementById('searchInput').blur();
+                
+                // 開啟該點位
+                openInfoWindow(id);
+            }
+        }
+
+        function openInfoWindow(id) {
+            const target = mapMarkers.find(m => m.item.id === id);
+            if (!target) return;
+
+            if (activeInfoWindow) activeInfoWindow.close();
+            target.infoWindow.open({ anchor: target.marker, map, shouldFocus: false });
+            activeInfoWindow = target.infoWindow;
+            
+            // 平滑移動至中心點並稍微放大
+            map.panTo(target.marker.getPosition());
+            map.setZoom(15);
         }
     </script>
 </body>
