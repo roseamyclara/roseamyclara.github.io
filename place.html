@@ -6,127 +6,143 @@
 <title>🍁 加拿大西部旅遊指南</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ── Variables ─────────────────────────────────── */
+/* ── Variables (Light Mode) ────────────────────── */
 :root{
-  --bg:#091620;
-  --panel:#0D1E2D;
-  --card:#132840;
-  --card-h:#1B3658;
-  --teal:#6EC9C9;
-  --amber:#E8A838;
-  --pine:#4A9C72;
-  --t1:#EEE9E1;
-  --t2:#8AAEC4;
-  --t3:#4D7A9C;
-  --bdr:rgba(110,201,201,.13);
-  --shadow:rgba(0,0,0,.45);
+  --bg: #F4F7F6;       /* 頁面底色：淺灰綠 */
+  --panel: #FFFFFF;    /* 側邊欄背景：純白 */
+  --card: #FFFFFF;     /* 卡片背景 */
+  --card-h: #F8FAFC;   /* 卡片懸停背景 */
+  
+  /* 品牌與分類色 */
+  --teal: #0EA5E9;     /* 明亮湖水藍 */
+  --amber: #F59E0B;    /* 活力琥珀黃 */
+  --pine: #10B981;     /* 清新松葉綠 */
+  
+  /* 文字顏色 */
+  --t1: #1F2937;       /* 主要文字：深灰 */
+  --t2: #4B5563;       /* 次要文字：中灰 */
+  --t3: #9CA3AF;       /* 輔助文字：淺灰 */
+  
+  /* 介面元素 */
+  --bdr: #E5E7EB;      /* 柔和邊框 */
+  --shadow: rgba(149, 157, 165, 0.15); /* 柔和陰影 */
 }
+
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;background:var(--bg);color:var(--t1)}
 
 /* ── Layout ─────────────────────────────────────── */
 #app{display:flex;height:100vh}
 #sidebar{
-  width:390px;min-width:390px;
+  width:400px;min-width:400px;
   display:flex;flex-direction:column;
   background:var(--panel);
   border-right:1px solid var(--bdr);
   position:relative;overflow:hidden;
-  z-index:2
+  z-index:2;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.03);
 }
-/* topo contour overlay */
+
+/* topo contour overlay (調整為淺色調) */
 #sidebar::after{
   content:'';position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='390' height='800'%3E%3Cpath d='M-10 120 C80 95 190 140 290 105 C360 80 400 115 430 100' fill='none' stroke='%236EC9C9' stroke-width='1.2' opacity='.07'/%3E%3Cpath d='M-10 170 C80 145 190 190 290 155 C360 130 400 165 430 150' fill='none' stroke='%236EC9C9' stroke-width='1.2' opacity='.05'/%3E%3Cpath d='M-10 220 C80 200 190 240 290 205 C360 180 400 215 430 200' fill='none' stroke='%234A9C72' stroke-width='1' opacity='.06'/%3E%3Cpath d='M-10 280 C80 260 190 300 290 265 C360 240 400 275 430 260' fill='none' stroke='%234A9C72' stroke-width='1' opacity='.05'/%3E%3Cpath d='M-10 380 C100 355 200 400 300 368 C370 345 400 375 430 360' fill='none' stroke='%236EC9C9' stroke-width='1' opacity='.04'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:0
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='390' height='800'%3E%3Cpath d='M-10 120 C80 95 190 140 290 105 C360 80 400 115 430 100' fill='none' stroke='%230EA5E9' stroke-width='1.2' opacity='.08'/%3E%3Cpath d='M-10 170 C80 145 190 190 290 155 C360 130 400 165 430 150' fill='none' stroke='%230EA5E9' stroke-width='1.2' opacity='.06'/%3E%3Cpath d='M-10 220 C80 200 190 240 290 205 C360 180 400 215 430 200' fill='none' stroke='%2310B981' stroke-width='1' opacity='.07'/%3E%3Cpath d='M-10 280 C80 260 190 300 290 265 C360 240 400 275 430 260' fill='none' stroke='%2310B981' stroke-width='1' opacity='.05'/%3E%3Cpath d='M-10 380 C100 355 200 400 300 368 C370 345 400 375 430 360' fill='none' stroke='%230EA5E9' stroke-width='1' opacity='.05'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
 }
 
 /* ── Header ─────────────────────────────────────── */
-#header{padding:18px 20px 12px;position:relative;z-index:1}
+#header{padding:24px 24px 16px;position:relative;z-index:1}
 .aurora-bar{
-  height:2px;border-radius:2px;margin-bottom:14px;
+  height:4px;border-radius:4px;margin-bottom:16px;
   background:linear-gradient(90deg,var(--pine),var(--teal),var(--amber),var(--teal),var(--pine));
   background-size:300%;
-  animation:aurora 6s ease-in-out infinite
+  animation:aurora 6s ease-in-out infinite;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
 }
 @keyframes aurora{0%,100%{background-position:0%}50%{background-position:100%}}
-.site-title{font-family:'Noto Serif TC',serif;font-size:20px;font-weight:700;letter-spacing:.04em}
-.site-sub{font-size:11px;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-top:3px}
+.site-title{font-family:'Noto Serif TC',serif;font-size:24px;font-weight:700;letter-spacing:.02em;color:var(--t1)}
+.site-sub{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
 
 /* ── Tabs ────────────────────────────────────────── */
-#tabs{display:flex;gap:8px;padding:0 16px 14px;position:relative;z-index:1}
+#tabs{display:flex;gap:10px;padding:0 20px 16px;position:relative;z-index:1}
 .tab{
-  flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;
-  padding:9px 6px;border-radius:10px;border:1px solid var(--bdr);
-  background:transparent;cursor:pointer;color:var(--t3);
-  font-family:'Noto Sans TC',sans-serif;font-size:13px;font-weight:500;
-  transition:all .2s
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:12px 6px;border-radius:12px;border:1px solid var(--bdr);
+  background:var(--bg);cursor:pointer;color:var(--t2);
+  font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:600;
+  transition:all .3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
-.tab .ti{font-size:22px;line-height:1}
-.tab:hover{background:rgba(255,255,255,.04);color:var(--t2)}
-.tab.aw{background:rgba(74,156,114,.15);border-color:var(--pine);color:#7ACCA0}
-.tab.ac{background:rgba(232,168,56,.12);border-color:var(--amber);color:var(--amber)}
-.tab.ab{background:rgba(110,201,201,.12);border-color:var(--teal);color:var(--teal)}
+.tab .ti{font-size:24px;line-height:1; transition:transform 0.3s;}
+.tab:hover{background:#FFFFFF; transform:translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05);}
+.tab:hover .ti{transform: scale(1.1);}
+.tab.aw{background:#ECFDF5;border-color:#A7F3D0;color:var(--pine);}
+.tab.ac{background:#FFFBEB;border-color:#FDE68A;color:var(--amber);}
+.tab.ab{background:#F0F9FF;border-color:#BAE6FD;color:var(--teal);}
 
 /* ── List View ───────────────────────────────────── */
-#list-view{flex:1;overflow-y:auto;padding:2px 14px 16px;position:relative;z-index:1}
-#list-view::-webkit-scrollbar{width:3px}
-#list-view::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:2px}
-.g-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);padding:12px 4px 6px}
+#list-view{flex:1;overflow-y:auto;padding:4px 16px 24px;position:relative;z-index:1}
+#list-view::-webkit-scrollbar{width:4px}
+#list-view::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+.g-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);padding:16px 8px 8px; border-bottom: 1px dashed var(--bdr); margin-bottom: 8px;}
 .loc-card{
-  display:flex;gap:10px;align-items:flex-start;
-  padding:10px;border-radius:10px;border:1px solid transparent;
-  cursor:pointer;transition:all .18s;margin-bottom:4px
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px;border-radius:12px;border:1px solid var(--bdr);
+  background:var(--card);
+  cursor:pointer;transition:all .2s ease;margin-bottom:10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
-.loc-card:hover{background:var(--card)}
-.loc-card.sel-w{background:var(--card-h);border-color:rgba(74,156,114,.5)}
-.loc-card.sel-c{background:var(--card-h);border-color:rgba(232,168,56,.5)}
-.loc-card.sel-b{background:var(--card-h);border-color:rgba(110,201,201,.5)}
+.loc-card:hover{background:var(--card-h); transform:translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.05); border-color:#D1D5DB;}
+.loc-card.sel-w{background:#F0FDF4;border-color:#6EE7B7; box-shadow: 0 0 0 2px rgba(16,185,129,0.1);}
+.loc-card.sel-c{background:#FFFBEB;border-color:#FCD34D; box-shadow: 0 0 0 2px rgba(245,158,11,0.1);}
+.loc-card.sel-b{background:#F0F9FF;border-color:#7DD3FC; box-shadow: 0 0 0 2px rgba(14,165,233,0.1);}
 .loc-num{
-  width:26px;height:26px;border-radius:50%;
+  width:28px;height:28px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;flex-shrink:0;margin-top:3px
+  font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px;
 }
-.nw{background:rgba(74,156,114,.25);color:#7ACCA0}
-.nc{background:rgba(232,168,56,.25);color:var(--amber)}
-.nb{background:rgba(110,201,201,.25);color:var(--teal)}
+.nw{background:#D1FAE5;color:var(--pine)}
+.nc{background:#FEF3C7;color:var(--amber)}
+.nb{background:#E0F2FE;color:var(--teal)}
 .loc-info{flex:1;min-width:0}
-.loc-zh{font-family:'Noto Serif TC',serif;font-size:14px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.loc-en{font-size:10px;color:var(--t3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.loc-snip{font-size:11px;color:var(--t2);margin-top:4px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.loc-thumb{width:52px;height:52px;border-radius:7px;object-fit:cover;background:var(--card);flex-shrink:0}
+.loc-zh{font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.loc-en{font-size:11px;color:var(--t3);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; font-weight: 500;}
+.loc-snip{font-size:12px;color:var(--t2);margin-top:6px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.loc-thumb{width:64px;height:64px;border-radius:8px;object-fit:cover;background:var(--bg);flex-shrink:0; border: 1px solid var(--bdr);}
 
 /* ── Detail View ─────────────────────────────────── */
-#detail-view{display:none;flex-direction:column;flex:1;overflow:hidden;position:relative;z-index:1}
+#detail-view{display:none;flex-direction:column;flex:1;overflow:hidden;position:relative;z-index:1; background:var(--panel);}
 .d-back{
-  display:flex;align-items:center;gap:7px;padding:10px 16px;
+  display:flex;align-items:center;gap:8px;padding:16px 24px;
   background:transparent;border:none;color:var(--t2);
-  font-family:'Noto Sans TC',sans-serif;font-size:13px;cursor:pointer;transition:color .2s
+  font-family:'Noto Sans TC',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:color .2s;
+  border-bottom: 1px solid var(--bdr);
 }
-.d-back:hover{color:var(--t1)}
-#d-img-wrap{position:relative;height:200px;background:var(--card);flex-shrink:0;overflow:hidden}
+.d-back:hover{color:var(--teal)}
+#d-img-wrap{position:relative;height:220px;background:var(--bg);flex-shrink:0;overflow:hidden}
 #d-img-inner{width:100%;height:100%}
-#d-img-inner img{width:100%;height:200px;object-fit:cover;display:block}
-.d-grad{position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,var(--panel));pointer-events:none}
-#d-content{flex:1;overflow-y:auto;padding:16px 20px 24px}
-#d-content::-webkit-scrollbar{width:3px}
-#d-content::-webkit-scrollbar-thumb{background:var(--bdr)}
-#d-zh{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:700;line-height:1.25;margin-bottom:4px}
-#d-en{font-size:12px;color:var(--t3);letter-spacing:.04em;margin-bottom:14px}
-#d-desc{font-size:14px;line-height:1.8;color:var(--t2)}
-.d-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}
+#d-img-inner img{width:100%;height:220px;object-fit:cover;display:block}
+.d-grad{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent, rgba(255,255,255,1));pointer-events:none}
+#d-content{flex:1;overflow-y:auto;padding:24px}
+#d-content::-webkit-scrollbar{width:4px}
+#d-content::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:4px}
+#d-zh{font-family:'Noto Serif TC',serif;font-size:26px;font-weight:700;line-height:1.2;margin-bottom:6px;color:var(--t1)}
+#d-en{font-size:13px;font-weight:500;color:var(--t3);letter-spacing:.02em;margin-bottom:16px}
+#d-desc{font-size:15px;line-height:1.8;color:var(--t2)}
+.d-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
 .btn-map{
-  display:inline-flex;align-items:center;gap:6px;
-  padding:8px 14px;border-radius:8px;
-  background:rgba(110,201,201,.1);border:1px solid rgba(110,201,201,.28);
-  color:var(--teal);font-size:12px;font-family:'Noto Sans TC',sans-serif;
-  text-decoration:none;transition:all .2s;white-space:nowrap
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:10px 18px;border-radius:10px;
+  background:#F0F9FF;border:1px solid #BAE6FD;
+  color:var(--teal);font-size:13px;font-weight:600;font-family:'Noto Sans TC',sans-serif;
+  text-decoration:none;transition:all .2s;white-space:nowrap;
+  box-shadow: 0 2px 4px rgba(14,165,233,0.1);
 }
-.btn-map:hover{background:rgba(110,201,201,.2)}
-.btn-amber{background:rgba(232,168,56,.1);border-color:rgba(232,168,56,.28);color:var(--amber)}
-.btn-amber:hover{background:rgba(232,168,56,.2)}
+.btn-map:hover{background:#E0F2FE; transform:translateY(-1px); box-shadow: 0 4px 6px rgba(14,165,233,0.15);}
+.btn-amber{background:#FFFBEB;border-color:#FDE68A;color:var(--amber);box-shadow: 0 2px 4px rgba(245,158,11,0.1);}
+.btn-amber:hover{background:#FEF3C7; box-shadow: 0 4px 6px rgba(245,158,11,0.15);}
 
 /* ── Map ─────────────────────────────────────────── */
 #map-wrap{flex:1;position:relative}
@@ -134,47 +150,49 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
 
 /* ── Route Overlay ───────────────────────────────── */
 #route-overlay{
-  position:absolute;bottom:18px;right:14px;
-  display:none;flex-direction:column;gap:7px;z-index:5
+  position:absolute;bottom:24px;right:20px;
+  display:none;flex-direction:column;gap:10px;z-index:5
 }
 .route-btn{
-  display:flex;align-items:center;gap:7px;padding:8px 14px;
-  border-radius:20px;background:rgba(9,22,32,.88);
-  border:1px solid var(--bdr);color:var(--t2);font-size:12px;
+  display:flex;align-items:center;gap:8px;padding:10px 18px;
+  border-radius:24px;background:rgba(255,255,255,0.9);
+  border:1px solid var(--bdr);color:var(--t1);font-size:13px;font-weight:600;
   font-family:'Noto Sans TC',sans-serif;text-decoration:none;
-  backdrop-filter:blur(8px);transition:all .2s
+  backdrop-filter:blur(10px);transition:all .2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.route-btn:hover{border-color:var(--teal);color:var(--teal)}
+.route-btn:hover{border-color:var(--teal);color:var(--teal); transform:translateY(-2px);}
 
-/* ── InfoWindow overrides ────────────────────────── */
+/* ── InfoWindow overrides (Light Theme) ──────────── */
 .gm-style .gm-style-iw-c{
-  background:#0D1E2D!important;border-radius:12px!important;
-  padding:0!important;box-shadow:0 6px 24px rgba(0,0,0,.6)!important;
-  border:1px solid rgba(110,201,201,.2)!important
+  background:#FFFFFF!important;border-radius:16px!important;
+  padding:0!important;box-shadow:0 8px 30px rgba(0,0,0,0.12)!important;
+  border:none!important;
 }
-.gm-style .gm-style-iw-t::after{background:#0D1E2D!important}
+.gm-style .gm-style-iw-t::after{background:#FFFFFF!important; box-shadow: -2px -2px 2px rgba(0,0,0,0.02);}
 .gm-style .gm-style-iw-d{overflow:hidden!important}
-.gm-style button[title="Close"]{filter:invert(1)!important;top:4px!important;right:4px!important}
+.gm-style button[title="Close"]{filter:invert(0.5)!important;top:8px!important;right:8px!important; background:rgba(255,255,255,0.8)!important; border-radius:50%!important;}
 
 /* ── Photo placeholder ───────────────────────────── */
-.ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;background:var(--card)}
+.ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;background:var(--bg); color:var(--t3);}
 
 /* ── Responsive ──────────────────────────────────── */
 @media(max-width:760px){
   #app{flex-direction:column}
-  #sidebar{width:100%;min-width:unset;height:50vh}
+  #sidebar{width:100%;min-width:unset;height:50vh; box-shadow: 0 -4px 12px rgba(0,0,0,0.05);}
   #map-wrap{height:50vh}
 }
 
 /* ── Banff route toggle btn ──────────────────────── */
 #route-toggle-btn{
-  display:none;position:absolute;top:14px;left:50%;transform:translateX(-50%);
-  z-index:5;padding:8px 16px;border-radius:20px;
-  background:rgba(9,22,32,.88);border:1px solid var(--bdr);
-  color:var(--teal);font-size:12px;font-family:'Noto Sans TC',sans-serif;
-  cursor:pointer;backdrop-filter:blur(8px);white-space:nowrap;transition:all .2s
+  display:none;position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  z-index:5;padding:10px 20px;border-radius:24px;
+  background:rgba(255,255,255,0.95);border:1px solid var(--bdr);
+  color:var(--teal);font-size:13px;font-weight:600;font-family:'Noto Sans TC',sans-serif;
+  cursor:pointer;backdrop-filter:blur(10px);white-space:nowrap;transition:all .2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
-#route-toggle-btn:hover{border-color:var(--teal);background:rgba(110,201,201,.1)}
+#route-toggle-btn:hover{border-color:var(--teal);background:#F0F9FF; transform:translateX(-50%) translateY(-2px);}
 </style>
 </head>
 <body>
@@ -204,7 +222,10 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
     <div id="list-view"></div>
 
     <div id="detail-view">
-      <button class="d-back" onclick="goBack()">← 返回列表</button>
+      <button class="d-back" onclick="goBack()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        返回列表
+      </button>
       <div id="d-img-wrap">
         <div id="d-img-inner"><div class="ph">🏞</div></div>
         <div class="d-grad"></div>
@@ -214,7 +235,10 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
         <div id="d-en"></div>
         <div id="d-desc"></div>
         <div class="d-actions">
-          <a id="d-gmap" class="btn-map" target="_blank" rel="noopener">📍 Google Maps 開啟</a>
+          <a id="d-gmap" class="btn-map" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Google Maps 開啟
+          </a>
           <a id="d-street" class="btn-map btn-amber" target="_blank" rel="noopener" style="display:none">🔍 街景</a>
         </div>
       </div>
@@ -233,13 +257,12 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   DATA
+   DATA (保持內容完全不變)
 ═══════════════════════════════════════════════════════════ */
 const THEMES = {
-
   /* ── 附近散步 ──────────────────────────────────────────── */
   walking: {
-    label:'附近散步', icon:'🚶', color:'#4A9C72', tabCls:'aw',
+    label:'附近散步', icon:'🚶', color:'#10B981', tabCls:'aw',
     center:{lat:49.285,lng:-123.10}, zoom:11, routeLinks:[],
     groups:[
       { name:'Stanley Park 史丹利公園', locs:[
@@ -337,7 +360,7 @@ const THEMES = {
 
   /* ── 露營 ──────────────────────────────────────────────── */
   camping: {
-    label:'露營', icon:'⛺', color:'#E8A838', tabCls:'ac',
+    label:'露營', icon:'⛺', color:'#F59E0B', tabCls:'ac',
     center:{lat:48.825,lng:-125.145}, zoom:13,
     routeLinks:[
       {label:'路線一：島上高速公路', url:'https://maps.app.goo.gl/9f9So5MoFx5tGH4W8'},
@@ -381,7 +404,7 @@ const THEMES = {
 
   /* ── 斑夫 ──────────────────────────────────────────────── */
   banff: {
-    label:'斑夫', icon:'🏔', color:'#6EC9C9', tabCls:'ab',
+    label:'斑夫', icon:'🏔', color:'#0EA5E9', tabCls:'ab',
     center:{lat:51.17,lng:-115.57}, zoom:11,
     routeLinks:[
       {label:'第一天冰河行程', url:'https://maps.app.goo.gl/6hq39BqiVJQrKo2x6'}
@@ -503,10 +526,10 @@ let markers = [];
 let curTheme = 'walking';
 let photoCache = {};
 let routeView = false;
-let allLocs = []; // flat array for current theme
+let allLocs = []; 
 
 /* ═══════════════════════════════════════════════════════════
-   INIT MAP
+   INIT MAP (改為預設明亮樣式)
 ═══════════════════════════════════════════════════════════ */
 function initMap(){
   map = new google.maps.Map(document.getElementById('map'),{
@@ -517,29 +540,10 @@ function initMap(){
     fullscreenControl:true,
     fullscreenControlOptions:{position:google.maps.ControlPosition.RIGHT_TOP},
     zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM},
-    styles:[
-      {elementType:'geometry',stylers:[{color:'#091620'}]},
-      {elementType:'labels.text.stroke',stylers:[{color:'#091620'}]},
-      {elementType:'labels.text.fill',stylers:[{color:'#8AAEC4'}]},
-      {featureType:'administrative',elementType:'geometry.stroke',stylers:[{color:'#1A3450'}]},
-      {featureType:'administrative.land_parcel',elementType:'labels.text.fill',stylers:[{color:'#4D7A9C'}]},
-      {featureType:'poi',elementType:'geometry',stylers:[{color:'#0A2015'}]},
-      {featureType:'poi',elementType:'labels.text.fill',stylers:[{color:'#4A9C72'}]},
-      {featureType:'poi.park',elementType:'geometry',stylers:[{color:'#071A0E'}]},
-      {featureType:'poi.park',elementType:'labels.text.fill',stylers:[{color:'#4A9C72'}]},
-      {featureType:'road',elementType:'geometry',stylers:[{color:'#132840'}]},
-      {featureType:'road',elementType:'geometry.stroke',stylers:[{color:'#091620'}]},
-      {featureType:'road',elementType:'labels.text.fill',stylers:[{color:'#5580A0'}]},
-      {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#1A3A50'}]},
-      {featureType:'road.highway',elementType:'geometry.stroke',stylers:[{color:'#091620'}]},
-      {featureType:'road.highway',elementType:'labels.text.fill',stylers:[{color:'#7AAEC4'}]},
-      {featureType:'transit',elementType:'geometry',stylers:[{color:'#0D1E2D'}]},
-      {featureType:'water',elementType:'geometry',stylers:[{color:'#071422'}]},
-      {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#3D6A9C'}]}
-    ]
+    // 移除深色模式樣式陣列，使用 Google Maps 預設的明亮地圖
   });
   psvc = new google.maps.places.PlacesService(map);
-  iw   = new google.maps.InfoWindow({maxWidth:240});
+  iw   = new google.maps.InfoWindow({maxWidth:260});
   switchTheme('walking');
 }
 
@@ -556,7 +560,6 @@ function switchTheme(name){
     tab.className = 'tab'+(t===name?' '+THEMES[t].tabCls:'');
   });
 
-  // Map not ready yet — tab click stored in curTheme, applied in initMap()
   if(!map) return;
 
   const th = THEMES[name];
@@ -570,7 +573,7 @@ function switchTheme(name){
   allLocs=[];
   th.groups.forEach(g=>g.locs.forEach(l=>allLocs.push(l)));
 
-  // route toggle btn (banff only)
+  // route toggle btn
   const rtb = document.getElementById('route-toggle-btn');
   rtb.style.display = (name==='banff') ? 'block' : 'none';
   rtb.textContent = '🗺 查看完整路線';
@@ -616,8 +619,8 @@ function addMarkers(th, name){
         position:{lat:loc.lat,lng:loc.lng},
         map,
         title:loc.zh,
-        label:{text:String(n),color:'#091620',fontFamily:"'Noto Sans TC',sans-serif",fontSize:'11px',fontWeight:'bold'},
-        icon:{path:google.maps.SymbolPath.CIRCLE,fillColor:col,fillOpacity:1,strokeColor:'#091620',strokeWeight:2,scale:14},
+        label:{text:String(n),color:'#FFFFFF',fontFamily:"'Noto Sans TC',sans-serif",fontSize:'12px',fontWeight:'bold'},
+        icon:{path:google.maps.SymbolPath.CIRCLE,fillColor:col,fillOpacity:1,strokeColor:'#FFFFFF',strokeWeight:2.5,scale:14},
         zIndex:n
       });
       mk.addListener('click',()=>onMarkerClick(loc,name,mk));
@@ -629,22 +632,23 @@ function addMarkers(th, name){
 
 function onMarkerClick(loc, name, mk){
   const th = THEMES[name];
+  // InfoWindow 的 HTML 結構適應明亮主題
   const content=`
-    <div style="font-family:'Noto Sans TC',sans-serif;min-width:180px">
-      <div id="iw-ph-${loc.id}" style="height:110px;background:#132840;display:flex;align-items:center;justify-content:center;font-size:32px">
+    <div style="font-family:'Noto Sans TC',sans-serif;min-width:200px">
+      <div id="iw-ph-${loc.id}" style="height:120px;background:#F4F7F6;display:flex;align-items:center;justify-content:center;font-size:36px">
         ${th.icon}
       </div>
-      <div style="padding:10px 12px 12px">
-        <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:700;color:#EEE9E1;margin-bottom:2px">${loc.zh}</div>
-        <div style="font-size:10px;color:#4D7A9C">${loc.en}</div>
+      <div style="padding:14px 16px 16px">
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#1F2937;margin-bottom:4px">${loc.zh}</div>
+        <div style="font-size:11px;color:#6B7280;font-weight:500;">${loc.en}</div>
       </div>
     </div>`;
   iw.setContent(content);
   iw.open(map, mk);
-  // lazy photo in IW
+  
   loadPhoto(loc, url=>{
     const el=document.getElementById('iw-ph-'+loc.id);
-    if(el) el.innerHTML=`<img src="${url}" style="width:100%;height:110px;object-fit:cover;display:block">`;
+    if(el) el.innerHTML=`<img src="${url}" style="width:100%;height:120px;object-fit:cover;display:block">`;
   }, 320, 160);
   showDetail(loc, name);
 }
@@ -670,7 +674,6 @@ function drainQ(){
       if(status===google.maps.places.PlacesServiceStatus.OK && res?.[0]?.photos?.length){
         const url=res[0].photos[0].getUrl({maxWidth:w,maxHeight:h});
         photoCache[key]=url;
-        // also cache detail size
         const dkey=`${loc.id}_760`;
         if(!photoCache[dkey]) photoCache[dkey]=res[0].photos[0].getUrl({maxWidth:760,maxHeight:400});
         cb(url);
@@ -698,8 +701,8 @@ function renderList(th, name){
       const card=document.createElement('div');
       card.className='loc-card'; card.id='card-'+loc.id;
 
-      // placeholder SVG thumb
-      const phSvg=`data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='52' height='52'><rect width='52' height='52' rx='7' fill='%23132840'/><text x='26' y='34' text-anchor='middle' font-size='22'>${th.icon}</text></svg>`)}`;
+      // placeholder SVG thumb (明亮版)
+      const phSvg=`data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='64' height='64' rx='8' fill='%23F4F7F6'/><text x='32' y='42' text-anchor='middle' font-size='24'>${th.icon}</text></svg>`)}`;
 
       card.innerHTML=`
         <div class="loc-num ${cls}">${n}</div>
@@ -718,7 +721,6 @@ function renderList(th, name){
       };
       el.appendChild(card);
 
-      // lazy thumb
       const thumbEl=card.querySelector('.loc-thumb');
       setTimeout(()=>loadPhoto(loc, url=>{ thumbEl.src=url; }, 120, 120), (n-1)*120);
       idx++;
@@ -730,7 +732,6 @@ function renderList(th, name){
    DETAIL VIEW
 ═══════════════════════════════════════════════════════════ */
 function showDetail(loc, name){
-  // highlight card
   document.querySelectorAll('.loc-card').forEach(c=>{
     c.classList.remove('sel-w','sel-c','sel-b');
   });
@@ -738,11 +739,9 @@ function showDetail(loc, name){
   const selCls=name==='walking'?'sel-w':name==='camping'?'sel-c':'sel-b';
   if(card){ card.classList.add(selCls); card.scrollIntoView({block:'nearest',behavior:'smooth'}); }
 
-  // switch views
   document.getElementById('list-view').style.display='none';
   document.getElementById('detail-view').style.display='flex';
 
-  // fill content
   document.getElementById('d-zh').textContent=loc.zh;
   document.getElementById('d-en').textContent=loc.en;
   document.getElementById('d-desc').textContent=loc.desc;
@@ -751,12 +750,11 @@ function showDetail(loc, name){
   const inner=document.getElementById('d-img-inner');
   const th=THEMES[name];
 
-  // photo
   const dkey=`${loc.id}_760`;
   if(photoCache[dkey]){
     inner.innerHTML=`<img src="${photoCache[dkey]}" alt="${loc.zh}">`;
   } else {
-    inner.innerHTML=`<div class="ph" style="height:200px;font-size:40px">${th.icon}</div>`;
+    inner.innerHTML=`<div class="ph" style="height:220px;font-size:48px">${th.icon}</div>`;
     loadPhoto(loc, url=>{
       inner.innerHTML=`<img src="${url}" alt="${loc.zh}">`;
     }, 760, 400);
@@ -777,7 +775,6 @@ function toggleRouteView(){
   const btn=document.getElementById('route-toggle-btn');
   const th=THEMES.banff;
   if(!routeView){
-    // fit all locations
     const bounds=new google.maps.LatLngBounds();
     allLocs.forEach(l=>bounds.extend({lat:l.lat,lng:l.lng}));
     map.fitBounds(bounds,{top:60,bottom:40,left:40,right:40});
@@ -792,6 +789,10 @@ function toggleRouteView(){
 }
 </script>
 
+<!-- 
+⚠️ 注意：為了讓地圖正常運作並消除錯誤訊息，請將下方 URL 中的 YOUR_API_KEY_HERE 替換為您自己有效的 Google Maps API 金鑰。
+如果沒有金鑰，地圖可能會無法渲染或顯示「需要 API 金鑰」的浮水印。
+-->
 <script async
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E&libraries=places&callback=initMap&language=zh-TW"
   defer>
