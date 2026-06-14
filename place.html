@@ -1,67 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>溫哥華 & 班夫 旅行地圖</title>
 <title>🍁 加拿大西部旅遊指南</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#f7f5f0;
-    --card:#ffffff;
-    --accent:#2f6f4f;
-    --accent2:#a8c9a0;
-    --text:#2b2b2b;
-    --muted:#777;
-    --shadow:0 4px 14px rgba(0,0,0,0.08);
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    font-family:"Noto Sans TC","Helvetica Neue",Arial,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-  }
-  header{
-    background:linear-gradient(120deg,#2f6f4f,#5b9279);
-    color:#fff;
-    padding:24px 20px;
-    text-align:center;
-  }
-  header h1{margin:0;font-size:1.6rem;letter-spacing:2px;}
-  header p{margin:6px 0 0;font-size:0.9rem;opacity:0.85;}
-
-  nav.tabs{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    padding:14px 10px;
-    background:#fff;
-    position:sticky;
-    top:0;
-    z-index:50;
-    box-shadow:var(--shadow);
-  }
-  nav.tabs button{
-    border:2px solid var(--accent);
-    background:#fff;
-    color:var(--accent);
-    padding:8px 22px;
-    border-radius:999px;
-    font-size:0.95rem;
-    cursor:pointer;
-    transition:all .2s;
-    font-weight:600;
-  }
-  nav.tabs button.active, nav.tabs button:hover{
-    background:var(--accent);
-    color:#fff;
-  }
 /* ── Variables ─────────────────────────────────── */
 :root{
   --bg:#091620;
@@ -80,8 +26,6 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft JhengHei',sans-serif;background:var(--bg);color:var(--t1)}
 
-  .theme{display:none;}
-  .theme.active{display:block;}
 /* ── Layout ─────────────────────────────────────── */
 #app{display:flex;height:100vh}
 #sidebar{
@@ -99,99 +43,6 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
   pointer-events:none;z-index:0
 }
 
-  .layout{
-    display:flex;
-    flex-wrap:wrap;
-    gap:16px;
-    padding:16px;
-    max-width:1400px;
-    margin:0 auto;
-  }
-  #map-wrap{
-    flex:1 1 520px;
-    min-width:300px;
-  }
-  #map{
-    width:100%;
-    height:560px;
-    border-radius:14px;
-    box-shadow:var(--shadow);
-  }
-  .sublabel{
-    margin:14px 0 6px;
-    font-size:1.1rem;
-    font-weight:700;
-    color:var(--accent);
-    border-left:6px solid var(--accent2);
-    padding-left:10px;
-  }
-  .list{
-    flex:1 1 380px;
-    min-width:300px;
-    max-height:600px;
-    overflow-y:auto;
-    padding-right:4px;
-  }
-  .card{
-    background:var(--card);
-    border-radius:14px;
-    box-shadow:var(--shadow);
-    margin-bottom:12px;
-    display:flex;
-    overflow:hidden;
-    cursor:pointer;
-    border:2px solid transparent;
-    transition:border-color .15s, transform .15s;
-  }
-  .card:hover{
-    border-color:var(--accent2);
-    transform:translateY(-2px);
-  }
-  .card img{
-    width:120px;
-    height:100px;
-    object-fit:cover;
-    flex-shrink:0;
-    background:#ddd;
-  }
-  .card .info{
-    padding:10px 12px;
-    flex:1;
-  }
-  .card .info h3{
-    margin:0 0 2px;
-    font-size:1.02rem;
-    color:var(--accent);
-  }
-  .card .info .en{
-    font-size:0.78rem;
-    color:var(--muted);
-    margin-bottom:4px;
-  }
-  .card .info p{
-    margin:0;
-    font-size:0.84rem;
-    color:var(--text);
-    line-height:1.4;
-  }
-  .group-title{
-    font-size:0.95rem;
-    font-weight:700;
-    margin:16px 0 8px;
-    color:#555;
-  }
-  footer{
-    text-align:center;
-    padding:20px;
-    color:var(--muted);
-    font-size:0.8rem;
-  }
-  .loading-note{
-    text-align:center;
-    color:var(--muted);
-    font-size:0.85rem;
-    padding:6px;
-  }
 /* ── Header ─────────────────────────────────────── */
 #header{padding:18px 20px 12px;position:relative;z-index:1}
 .aurora-bar{
@@ -332,38 +183,11 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
   <!-- ══════ SIDEBAR ══════ -->
   <div id="sidebar">
 
-<header>
-  <h1>🍁 加西旅行地圖 Vancouver & Banff</h1>
-  <p>附近散步・露營・班夫 — 三大主題互動地圖</p>
-</header>
-
-<nav class="tabs">
-  <button data-theme="walk" class="active">附近散步</button>
-  <button data-theme="camp">露營</button>
-  <button data-theme="banff">班夫</button>
-</nav>
-
-<!-- ============ THEME: 附近散步 ============ -->
-<section class="theme active" id="walk">
-  <div class="layout">
-    <div id="map-wrap">
-      <div id="map-walk" class="map"></div>
-      <p class="loading-note">點選右側地點卡片可在地圖上定位並顯示照片</p>
     <div id="header">
       <div class="aurora-bar"></div>
       <div class="site-title">🍁 加拿大西部旅遊指南</div>
       <div class="site-sub">Western Canada Travel Guide</div>
     </div>
-    <div class="list" id="list-walk"></div>
-  </div>
-</section>
-
-<!-- ============ THEME: 露營 ============ -->
-<section class="theme" id="camp">
-  <div class="layout">
-    <div id="map-wrap">
-      <div id="map-camp" class="map"></div>
-      <p class="loading-note">點選右側地點卡片可在地圖上定位並顯示照片</p>
 
     <div id="tabs">
       <button class="tab" id="tab-walking" onclick="switchTheme('walking')">
@@ -376,16 +200,6 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
         <span class="ti">🏔</span>斑夫
       </button>
     </div>
-    <div class="list" id="list-camp"></div>
-  </div>
-</section>
-
-<!-- ============ THEME: 班夫 ============ -->
-<section class="theme" id="banff">
-  <div class="layout">
-    <div id="map-wrap">
-      <div id="map-banff" class="map"></div>
-      <p class="loading-note">點選右側地點卡片可在地圖上定位並顯示照片</p>
 
     <div id="list-view"></div>
 
@@ -405,12 +219,9 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
         </div>
       </div>
     </div>
-    <div class="list" id="list-banff"></div>
 
   </div>
-</section>
 
-<footer>Made with ❤ for the trip — Google Maps Platform</footer>
   <!-- ══════ MAP ══════ -->
   <div id="map-wrap">
     <div id="map"></div>
@@ -421,109 +232,6 @@ html,body{height:100%;overflow:hidden;font-family:'Noto Sans TC','Microsoft Jhen
 </div>
 
 <script>
-/* ============================================================
-   資料：每個主題的景點資訊
-   query 用於 Google Places Text Search 取得座標與照片
-   ============================================================ */
-const DATA = {
-  walk: [
-    {group:"A. Stanley Park Seawall 附近", items:[
-      {en:"Devonian Harbour Park", zh:"德文郡港灣公園", desc:"史丹利公園入口旁的小型海濱公園，可遠眺遊艇港與市區天際線，適合悠閒散步。", query:"Devonian Harbour Park Vancouver"},
-      {en:"Nine O'Clock Gun", zh:"九點砲", desc:"史丹利公園海堤旁的歷史火砲，每晚九點會自動鳴放，是當地著名的傳統景點。", query:"Nine O'Clock Gun Stanley Park Vancouver"},
-      {en:"Brockton Point Lighthouse", zh:"布羅克頓角燈塔", desc:"位於史丹利公園東側海角的白色燈塔，周邊有圖騰柱群與海景步道。", query:"Brockton Point Lighthouse Vancouver"},
-      {en:"Prospect Point Lighthouse", zh:"展望角燈塔", desc:"史丹利公園最高點附近的燈塔，可俯瞰獅門大橋與海灣景色。", query:"Prospect Point Lighthouse Vancouver"},
-      {en:"Beaver Lake, Vancouver", zh:"海狸湖", desc:"史丹利公園內寧靜的小湖，周圍環繞森林步道，適合賞鳥與漫步。", query:"Beaver Lake Stanley Park Vancouver"},
-      {en:"Lonsdale Quay Market", zh:"朗斯代爾碼頭市場", desc:"北溫哥華的海濱市場，可搭海上巴士抵達，內有美食攤位與紀念品店。", query:"Lonsdale Quay Market North Vancouver"}
-    ]},
-    {group:"B. 太平洋精神公園 / UBC 校區", items:[
-      {en:"Pacific Spirit Regional Park", zh:"太平洋精神公園", desc:"溫哥華西側大型森林公園，擁有多條原始步道，適合健行與騎自行車。", query:"Pacific Spirit Regional Park Vancouver"},
-      {en:"UBC Campus", zh:"英屬哥倫比亞大學校區", desc:"美麗的濱海大學校園，內有人類學博物館與玫瑰花園，景色優美。", query:"University of British Columbia campus"}
-    ]},
-    {group:"C. False Creek / 餐廳區", items:[
-      {en:"False Creek", zh:"福溪", desc:"市中心南側的內海灣，沿岸有步道與自行車道，是欣賞市區景觀的熱門地點。", query:"False Creek Vancouver"},
-      {en:"Kitsilano", zh:"基斯蘭奴", desc:"知名海灘社區，沙灘、餐廳與咖啡店林立，是當地人放鬆的好去處。", query:"Kitsilano Beach Vancouver"},
-      {en:"Vancouver Westend", zh:"溫哥華西區", desc:"鄰近史丹利公園的住宅與商業區，餐廳選擇多元，步行可達英吉利灣海灘。", query:"West End Vancouver"}
-    ]},
-    {group:"D. Buntzen Lake", items:[
-      {en:"Buntzen Lake", zh:"邦特森湖", desc:"適合划船與健行的湖泊，有環湖步道並可通往麥康姆湖。", query:"Buntzen Lake"},
-      {en:"McCombe Lake Trail", zh:"麥康姆湖步道", desc:"由邦特森湖延伸的森林步道，可前往較少人造訪的麥康姆湖。", query:"McCombe Lake Trail Buntzen"}
-    ]},
-    {group:"E. Belcarra / Deep Cove", items:[
-      {en:"Belcarra to Deep Cove", zh:"貝爾卡拉到迪普灣", desc:"熱門的獨木舟/划船路線，沿著印第安灣海岸線欣賞山林與海景。", query:"Belcarra Regional Park"},
-      {en:"Deep Cove", zh:"迪普灣", desc:"風景如畫的小灣，知名於划船、SUP與美食甜甜圈店。", query:"Deep Cove North Vancouver"}
-    ]},
-    {group:"F. Rocky Point Park", items:[
-      {en:"Rocky Point Park", zh:"洛基角公園", desc:"位於Port Moody的海濱公園，有碼頭、遊樂場與沿岸步道。", query:"Rocky Point Park Port Moody"}
-    ]},
-    {group:"G & H. 纜車景點", items:[
-      {en:"Grouse Mountain Gondola", zh:"葛勞士山纜車", desc:"北溫哥華的熱門山景纜車，山頂可賞景、健行與看伐木秀。", query:"Grouse Mountain Skyride"},
-      {en:"Sea to Sky Gondola", zh:"海天纜車", desc:"位於斯闊米甚，連接峽灣與山頂，沿途景色壯麗，可走吊橋步道。", query:"Sea to Sky Gondola Squamish"}
-    ]},
-    {group:"I. Westside 海岸線", items:[
-      {en:"Westside Coastline", zh:"西岸海岸線", desc:"溫哥華西側沿海的景觀路線，沿途有多個觀景點與海灘。", query:"West Vancouver coastline"}
-    ]},
-    {group:"J. Widgeon Valley", items:[
-      {en:"Widgeon Valley", zh:"維吉恩谷", desc:"需划船穿越皮特河才能抵達的世外之地，擁有壯麗瀑布與露營地。", query:"Widgeon Falls Provincial Park"}
-    ]},
-    {group:"K. 西溫哥華燈塔公園", items:[
-      {en:"Lighthouse Park", zh:"燈塔公園", desc:"西溫哥華著名的老樹森林公園，盡頭有歷史燈塔可賞海景。", query:"Lighthouse Park West Vancouver"}
-    ]}
-  ],
-
-  camp: [
-    {group:"路線參考", items:[
-      {en:"Route Option 1", zh:"路線一（視路況/野火調整）", desc:"前往班菲爾德的路線之一，視當日狀況選擇。", query:"Bamfield British Columbia"},
-      {en:"Route Option 2", zh:"路線二（視路況/野火調整）", desc:"前往班菲爾德的替代路線，視當日狀況選擇。", query:"Port Alberni British Columbia"}
-    ]},
-    {group:"Pachena Bay 露營區", items:[
-      {en:"Pachena Bay Campground", zh:"帕奇納灣露營地", desc:"位於溫哥華島西海岸的海濱露營地，沙灘綿延、適合紮營過夜。", query:"Pachena Bay Campground Bamfield"},
-      {en:"West Coast Trail (Pachena)", zh:"西海岸步道（帕奇納段）", desc:"知名的西海岸長程健行步道起點之一，沿途森林與海岸景色壯觀。", query:"West Coast Trail Pachena Bay trailhead"},
-      {en:"Pachena Bay Beach", zh:"帕奇納灣海灘", desc:"開闊的沙灘，海浪規律，適合散步與觀賞日落。", query:"Pachena Bay Beach"}
-    ]},
-    {group:"原住民小鎮 Bamfield", items:[
-      {en:"Bamfield Village", zh:"班菲爾德小鎮", desc:"原住民小鎮，東西兩側被海灣分隔，需搭船橫渡才能往來兩岸。", query:"Bamfield British Columbia"},
-      {en:"Bamfield Marine Sciences Centre", zh:"班菲爾德海洋科學中心", desc:"知名的海洋生物研究站，提供導覽認識當地海洋生態。", query:"Bamfield Marine Sciences Centre"},
-      {en:"Mills Landing Boardwalk", zh:"米爾斯登陸木棧道", desc:"連接小鎮西岸的木棧道，沿途可見傳統木屋與港灣風光，通往Bamfield Mercantile雜貨店。", query:"Mills Landing Boardwalk Bamfield"},
-      {en:"Bamfield Mercantile and Marine", zh:"班菲爾德雜貨與船具店", desc:"小鎮上歷史悠久的雜貨店，可補給物資並感受小鎮日常生活。", query:"Bamfield Mercantile and Marine"},
-      {en:"Brady's Beach", zh:"布雷迪海灘", desc:"小鎮旁的隱密海灘，岩岸與沙灘交錯，適合探索潮間帶生物。", query:"Brady's Beach Bamfield"}
-    ]}
-  ],
-
-  banff: [
-    {group:"前往班夫路途景點", items:[
-      {en:"Hope, BC", zh:"滿地寶", desc:"卑詩省內陸城鎮，是通往內陸的重要中繼站，周邊群山環繞。", query:"Hope British Columbia"},
-      {en:"Coquihalla Summit Recreation Area", zh:"合普山頂休息區", desc:"高速公路最高點附近的休憩區，可下車欣賞高山景色。", query:"Coquihalla Summit Recreation Area"},
-      {en:"Merritt, BC", zh:"梅里特", desc:"以鄉村音樂節聞名的小鎮，適合中途休息補給。", query:"Merritt British Columbia"},
-      {en:"Kamloops, BC", zh:"甘露市", desc:"卑詩省內陸大城，乾燥草原地形與兩條河流交會處。", query:"Kamloops British Columbia"},
-      {en:"Revelstoke, BC", zh:"雷夫爾斯托克", desc:"群山環繞的山城，鄰近冰川國家公園，以滑雪與山景聞名。", query:"Revelstoke British Columbia"},
-      {en:"Glacier National Park", zh:"冰川國家公園", desc:"卑詩省內以高山冰川與雪崩研究著名的國家公園。", query:"Glacier National Park British Columbia"},
-      {en:"Rogers Pass", zh:"羅傑士山口", desc:"穿越塞爾扣克山脈的歷史山口，沿途景色壯麗，常有積雪。", query:"Rogers Pass British Columbia"},
-      {en:"Golden, BC", zh:"戈爾登", desc:"位於哥倫比亞河谷的小鎮，鄰近幾座國家公園，是熱門中途站。", query:"Golden British Columbia"}
-    ]},
-    {group:"班夫國家公園景點", items:[
-      {en:"Johnston Canyon", zh:"強斯頓峽谷", desc:"知名峽谷步道，沿途可見多個瀑布與懸空步道，是班夫最受歡迎的健行路線之一。", query:"Johnston Canyon Banff"},
-      {en:"Lake Louise", zh:"露易絲湖", desc:"班夫最著名的冰河湖泊，碧綠湖水搭配維多利亞山雪峰，景色如畫。", query:"Lake Louise Banff"},
-      {en:"Lake Minnewanka", zh:"米奈灣卡湖", desc:"班夫地區最大的湖泊，可遊船、健行，湖岸景色開闊。", query:"Lake Minnewanka Banff"},
-      {en:"Two Jack Lake", zh:"雙傑克湖", desc:"以拉斯特山為背景的寧靜小湖，是熱門的拍照景點。", query:"Two Jack Lake Banff"},
-      {en:"Vermilion Lakes", zh:"朱紅湖群", desc:"鄰近班夫鎮的一系列淺湖，是觀賞日出倒影與野生動物的好地方。", query:"Vermilion Lakes Banff"}
-    ]},
-    {group:"Banff 鎮上散步路線", items:[
-      {en:"Cave and Basin National Historic Site", zh:"洞穴與盆地國家歷史遺址", desc:"班夫溫泉發現地，園區內可參觀地熱洞穴與歷史建築。", query:"Cave and Basin National Historic Site Banff"},
-      {en:"Banff Avenue", zh:"班夫大道", desc:"班夫鎮主要商店街，兩側餐廳與紀念品店林立，盡頭可見卡斯卡德山。", query:"Banff Avenue Banff"},
-      {en:"Whyte Museum of the Canadian Rockies", zh:"懷特落磯山博物館", desc:"展示加拿大落磯山開拓歷史與藝術作品的小型博物館。", query:"Whyte Museum of the Canadian Rockies"},
-      {en:"Banff Park Museum", zh:"班夫公園博物館", desc:"加拿大最古老的自然歷史博物館之一，展出當地動植物標本。", query:"Banff Park Museum"}
-    ]},
-    {group:"班夫門山度假酒店周邊（Canmore）", items:[
-      {en:"Banff Gate Mountain Resort", zh:"班夫門山度假酒店", desc:"位於坎莫爾的度假酒店，地址302 George Biggy Senior Road，是探索坎莫爾景點的絕佳基地。", query:"Banff Gate Mountain Resort Canmore"},
-      {en:"Policeman's Creek Boardwalk", zh:"警察溪木棧道", desc:"最具坎莫爾風情、最省力的散步路線，沿溪木棧道可逛到市區商店街。", query:"Policeman's Creek Boardwalk Canmore"},
-      {en:"Bow River / Engine Bridge", zh:"鮑河與火車橋", desc:"補上河岸景觀與鐵道氛圍的散步點，適合拍照取景。", query:"Engine Bridge Canmore Bow River"},
-      {en:"Canmore Museum", zh:"坎莫爾博物館", desc:"了解當地煤礦開採、鐵路發展與地質背景的好地方。", query:"Canmore Museum and Geoscience Centre"},
-      {en:"Grassi Lakes", zh:"格拉西湖", desc:"1-2小時的健行路線，可抵達清澈碧綠的雙湖，景色非常漂亮。", query:"Grassi Lakes Canmore"},
-      {en:"Quarry Lake", zh:"採石場湖", desc:"適合放空、野餐與湖邊拍照的悠閒地點。", query:"Quarry Lake Canmore"},
-      {en:"artsPlace Canmore", zh:"artsPlace 藝術中心", desc:"雨天備案，展出當地藝術活動與展覽的文化空間。", query:"artsPlace Canmore"}
-    ]}
-  ]
-};
 /* ═══════════════════════════════════════════════════════════
    DATA
 ═══════════════════════════════════════════════════════════ */
@@ -671,10 +379,6 @@ const THEMES = {
     ]
   },
 
-const CENTERS = {
-  walk:  {lat:49.2827, lng:-123.1207, zoom:11},
-  camp:  {lat:48.8313, lng:-125.1359, zoom:10},
-  banff: {lat:51.1784, lng:-115.5708, zoom:8}
   /* ── 斑夫 ──────────────────────────────────────────────── */
   banff: {
     label:'斑夫', icon:'🏔', color:'#6EC9C9', tabCls:'ab',
@@ -791,8 +495,6 @@ const CENTERS = {
   }
 };
 
-const maps = {};
-const markers = {lat:[]}; // placeholder
 /* ═══════════════════════════════════════════════════════════
    STATE
 ═══════════════════════════════════════════════════════════ */
@@ -803,11 +505,6 @@ let photoCache = {};
 let routeView = false;
 let allLocs = []; // flat array for current theme
 
-function initMap(theme){
-  const c = CENTERS[theme];
-  const map = new google.maps.Map(document.getElementById('map-'+theme), {
-    center: {lat:c.lat, lng:c.lng},
-    zoom: c.zoom,
 /* ═══════════════════════════════════════════════════════════
    INIT MAP
 ═══════════════════════════════════════════════════════════ */
@@ -821,8 +518,6 @@ function initMap(){
     fullscreenControlOptions:{position:google.maps.ControlPosition.RIGHT_TOP},
     zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM},
     styles:[
-      {featureType:"poi",stylers:[{visibility:"off"}]},
-      {featureType:"transit",stylers:[{visibility:"off"}]}
       {elementType:'geometry',stylers:[{color:'#091620'}]},
       {elementType:'labels.text.stroke',stylers:[{color:'#091620'}]},
       {elementType:'labels.text.fill',stylers:[{color:'#8AAEC4'}]},
@@ -843,71 +538,6 @@ function initMap(){
       {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#3D6A9C'}]}
     ]
   });
-  maps[theme] = map;
-
-  const service = new google.maps.places.PlacesService(map);
-  const listEl = document.getElementById('list-'+theme);
-
-  DATA[theme].forEach(group=>{
-    const gTitle = document.createElement('div');
-    gTitle.className='group-title';
-    gTitle.textContent = group.group;
-    listEl.appendChild(gTitle);
-
-    group.items.forEach(item=>{
-      const card = document.createElement('div');
-      card.className='card';
-      const img = document.createElement('img');
-      img.alt = item.zh;
-      img.src = "https://placehold.co/120x100/2f6f4f/ffffff?text=Loading";
-      const info = document.createElement('div');
-      info.className='info';
-      info.innerHTML = `<h3>${item.zh}</h3><div class="en">${item.en}</div><p>${item.desc}</p>`;
-      card.appendChild(img);
-      card.appendChild(info);
-      listEl.appendChild(card);
-
-      // Find place
-      service.findPlaceFromQuery({
-        query:item.query,
-        fields:['geometry','photos','place_id','name']
-      }, (results, status)=>{
-        if(status === google.maps.places.PlacesServiceStatus.OK && results[0]){
-          const place = results[0];
-          const pos = place.geometry.location;
-
-          const marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            title: item.zh,
-            label:{text: item.zh.charAt(0), color:"#fff", fontSize:"11px"}
-          });
-
-          let photoUrl = "https://placehold.co/120x100/a8c9a0/2b2b2b?text=No+Image";
-          if(place.photos && place.photos.length>0){
-            photoUrl = place.photos[0].getUrl({maxWidth:240, maxHeight:200});
-          }
-          img.src = photoUrl;
-
-          const iw = new google.maps.InfoWindow({
-            content: `<div style="max-width:220px;font-family:'Noto Sans TC',sans-serif;">
-                        <img src="${photoUrl}" style="width:100%;border-radius:8px;margin-bottom:6px;">
-                        <strong style="color:#2f6f4f;">${item.zh}</strong><br>
-                        <span style="font-size:0.75rem;color:#777;">${item.en}</span>
-                        <p style="font-size:0.82rem;margin:6px 0 0;">${item.desc}</p>
-                      </div>`
-          });
-
-          marker.addListener('click', ()=> iw.open(map, marker));
-
-          card.addEventListener('click', ()=>{
-            map.panTo(pos);
-            map.setZoom(13);
-            iw.open(map, marker);
-          });
-        } else {
-          img.src = "https://placehold.co/120x100/cccccc/333333?text=Not+found";
-        }
   psvc = new google.maps.places.PlacesService(map);
   iw   = new google.maps.InfoWindow({maxWidth:240});
   switchTheme('walking');
@@ -997,10 +627,6 @@ function addMarkers(th, name){
   });
 }
 
-function initAllMaps(){
-  initMap('walk');
-  initMap('camp');
-  initMap('banff');
 function onMarkerClick(loc, name, mk){
   const th = THEMES[name];
   const content=`
@@ -1023,16 +649,6 @@ function onMarkerClick(loc, name, mk){
   showDetail(loc, name);
 }
 
-// Tab switching
-document.querySelectorAll('nav.tabs button').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.theme').forEach(s=>s.classList.remove('active'));
-    btn.classList.add('active');
-    const t = btn.dataset.theme;
-    document.getElementById(t).classList.add('active');
-    google.maps.event.trigger(maps[t], 'resize');
-    maps[t].setCenter(CENTERS[t]);
 /* ═══════════════════════════════════════════════════════════
    PHOTO LOADING
 ═══════════════════════════════════════════════════════════ */
@@ -1118,7 +734,6 @@ function showDetail(loc, name){
   document.querySelectorAll('.loc-card').forEach(c=>{
     c.classList.remove('sel-w','sel-c','sel-b');
   });
-});
   const card=document.getElementById('card-'+loc.id);
   const selCls=name==='walking'?'sel-w':name==='camping'?'sel-c':'sel-b';
   if(card){ card.classList.add(selCls); card.scrollIntoView({block:'nearest',behavior:'smooth'}); }
@@ -1178,10 +793,8 @@ function toggleRouteView(){
 </script>
 
 <script async
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&libraries=places&callback=initAllMaps">
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT_b1NLLEtd5JQPHSqPVtw75ZIjaSu_mg&libraries=places&callback=initMap&language=zh-TW"
   defer>
 </script>
-
 </body>
 </html>
