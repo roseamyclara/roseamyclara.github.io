@@ -10,8 +10,8 @@
 <style>
 /* ── Variables (Claymorphism Style) ────────────────────── */
 :root {
-  --bg: #E8EEF2;         /* 帶點灰藍的軟背景 */
-  --surface: #F1F5F9;    /* 卡片表面 */
+  --bg: #E8EEF2;         
+  --surface: #F1F5F9;    
   --teal: #0EA5E9;
   --amber: #F59E0B;
   --pine: #10B981;
@@ -19,7 +19,6 @@
   --t2: #4B5563;
   --t3: #9CA3AF;
   
-  /* Clay Shadows */
   --clay-shadow: 6px 6px 12px rgba(170, 182, 198, 0.4), -6px -6px 12px rgba(255, 255, 255, 0.9);
   --clay-pressed: inset 4px 4px 8px rgba(170, 182, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.9);
 }
@@ -157,7 +156,6 @@ html, body { height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-s
     overscroll-behavior: none; 
   }
   
-  /* 優化：加高把手觸控熱區至 48px，讓手指更輕鬆盲抓，且設定抓取游標提升實體感 */
   #drag-handle-zone {
     display: flex; justify-content: center; align-items: center;
     width: 100%; height: 48px; flex-shrink: 0; position: relative; z-index: 20;
@@ -221,7 +219,7 @@ html, body { height: 100%; overflow: hidden; font-family: 'Noto Sans TC', sans-s
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-    DATA (已還原你原本完整的豐富旅遊資料庫)
+    DATA 
 ═══════════════════════════════════════════════════════════ */
 const THEMES = {
   walking: {
@@ -268,7 +266,7 @@ const THEMES = {
     center:{lat:48.825,lng:-125.145}, zoom:13,
     groups:[
       { name:'帕切納灣 Pachena Bay', locs:[
-        { id:'pb1', zh:'帕切納灣露營地', en:'Pachena Bay Campground', lat:48.8018, lng:-125.1036, desc:'溫哥華島西岸的野性露營地，由赫曲薩特原住民族（Huu-ay-aht）管理。夜晚可在無光害的天空下仰望銀河，聆聽太平洋浪濤聲入眠。提供廁所等基本設施，是西海岸步道（WCT）北段的起點。', q:'Pachena Bay Campground Bamfield BC' },
+        { id:'pb1', zh:'帕切納灣露營地', en:'Pachena Bay Campground', lat:48.8018, lng:-125.1036, desc:'溫哥華島西岸的野性露營地，由赫曲薩特原住民族管理。夜晚可在無光害的天空下仰望銀河，聆聽太平洋浪濤聲入眠。提供廁所等基本設施，是西海岸步道北段的起點。', q:'Pachena Bay Campground Bamfield BC' },
         { id:'pb2', zh:'西海岸步道入口', en:'West Coast Trail Trailhead', lat:48.8020, lng:-125.1032, desc:'加拿大最著名的長程健行步道之一，全程75公里，需5至7天完成。沿途有壯觀的海崖、懸索橋、古老溫帶雨林及豐富野生動物。即使只從帕切納灣起步數公里，也能感受步道的原始魅力。', q:'West Coast Trail Pachena Bay trailhead Bamfield' },
         { id:'pb3', zh:'帕切納灣海灘', en:'Pachena Bay Beach', lat:48.8005, lng:-125.1044, desc:'廣闊無垠的沙灘直面開放的太平洋，是衝浪、撿貝殼和海岸散步的絕佳地點。低潮時沙灘寬達數百公尺，有機會看見海豹在海中嬉戲。此地是赫曲薩特族的傳統聖地，具有深刻的文化意義。', q:'Pachena Bay Beach Vancouver Island' }
       ]},
@@ -289,7 +287,7 @@ const THEMES = {
         { id:'rt2', zh:'科基哈拉山頂', en:'Coquihalla Summit', lat:49.5857, lng:-121.0683, desc:'科基哈拉高速公路（Highway 5）最高點，海拔1244公尺。即使夏季山頂仍可看到殘雪，雲霧在山谷間流動，景色壯觀。設有休息區，是長途駕駛的必停打卡點，感受卑詩省高山的磅礴氣勢。', q:'Coquihalla Summit Recreation Area BC' },
         { id:'rt3', zh:'美麗特 Merritt', en:'Merritt, BC', lat:50.1114, lng:-120.7875, desc:'科基哈拉高速公路沿線的補給城鎮，自稱「加拿大鄉村音樂之都」。備有加油站、超市及各式餐廳，是從溫哥華出發後的第一個主要休息點，適合加油用餐再繼續北行前往甘露。', q:'Merritt BC city' },
         { id:'rt4', zh:'甘露 Kamloops', en:'Kamloops, BC', lat:50.6745, lng:-120.3273, desc:'卑詩省內陸最大城市，坐落於三條河谷交匯處，湯普森河貫穿其中。氣候溫暖乾燥，有多間購物中心及餐廳，是前往雷夫爾斯托克前最完善的補給站，距離溫哥華約350公里。', q:'Kamloops BC city Thompson River' },
-        { id:'rt5', zh:'雷夫爾斯托克', en:'Revelstoke, BC', lat:50.9981, lng:-118.1957, desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量和滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館和餐廳。附近有國家公園 and 水壩，是前往冰川公園 and 班夫的重要門戶城市。', q:'Revelstoke British Columbia downtown' },
+        { id:'rt5', zh:'雷夫爾斯托克', en:'Revelstoke, BC', lat:50.9981, lng:-118.1957, desc:'哥倫比亞河谷中的精緻小城，以世界級積雪量和滑雪場著名。維多利亞時代老建築保存完好，市中心有精品咖啡館和餐廳。附近有國家公園和水壩，是前往冰川公園和班夫的重要門戶城市。', q:'Revelstoke British Columbia downtown' },
         { id:'rt6', zh:'冰川國家公園', en:'Glacier National Park, BC', lat:51.2984, lng:-117.5296, desc:'哥倫比亞山脈中的原始國家公園，約10%面積被冰川覆蓋。因地處太平洋氣流迎風坡，年積雪量驚人，擁有超過400個冰川。沿橫貫公路穿越公園時，壯觀的冰雪山峰近在咫尺，令人震撼。', q:'Glacier National Park BC Rogers Pass' },
         { id:'rt7', zh:'羅傑斯山口', en:'Rogers Pass', lat:51.3070, lng:-117.5240, desc:'海拔1327公尺的山口是加拿大橫貫公路最高點，歷史上是打通東西鐵路的關鍵工程。遊客中心有豐富展示，介紹1882年測量師Albert Rogers艱辛探路的故事及雪崩的自然科學知識。', q:'Rogers Pass BC Canada visitor center' },
         { id:'rt8', zh:'黃金鎮 Golden', en:'Golden, BC', lat:51.2978, lng:-116.9653, desc:'被六個國家公園環繞的小鎮，坐落於哥倫比亞河谷。著名的「踢馬河」（Kicking Horse River）激流漂流從此出發，是世界級白水漂流聖地。由此進入幽鶴國家公園，正式踏入加拿大落磯山脈核心區域。', q:'Golden British Columbia Kicking Horse River' }
@@ -297,24 +295,24 @@ const THEMES = {
       { name:'班夫國家公園', locs:[
         { id:'bf1', zh:'強斯頓峽谷', en:'Johnston Canyon', lat:51.2366, lng:-115.8375, desc:'班夫最受歡迎的步道之一，沿峽谷棧道可欣賞壯觀的瀑布。下瀑布步行約30分鐘可達，上瀑布需1.5小時，峽谷岩壁如刀切般陡峭。早春可見在此過冬的白頭河烏，秋季有鮭魚洄游。', q:'Johnston Canyon Banff Alberta waterfall' },
         { id:'bf2', zh:'路易斯湖', en:'Lake Louise', lat:51.4254, lng:-116.1773, desc:'加拿大最著名的湖泊，翡翠綠湖水倒映白雪皚皚的維多利亞冰川，是世界最美風景之一。湖畔百年城堡酒店是歷史地標。沿湖步道可前往湖濱茶屋（Lake Agnes Tea House），景色步步驚艷。', q:'Lake Louise Banff National Park Alberta' },
-        { id:'bf3', zh:'明尼旺卡湖', en:'Lake Minnewanka', lat:51.2706, lng:-115.5000, desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水 or 玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。', q:'Lake Minnewanka Banff National Park boat tour' },
+        { id:'bf3', zh:'明尼旺卡湖', en:'Lake Minnewanka', lat:51.2706, lng:-115.5000, desc:'班夫國家公園內最大湖泊，長達28公里，蜿蜒於落磯山群山之間。湖底淹沒著一座舊城遺址，可參加潛水或玻璃船遊覽探索水下歷史。湖邊步道平易，沿途野生動物頻繁出沒。', q:'Lake Minnewanka Banff National Park boat tour' },
         { id:'bf4', zh:'兩傑克湖', en:'Two Jack Lake', lat:51.2467, lng:-115.5317, desc:'明尼旺卡湖旁的寧靜小湖，卡斯爾山脈輪廓倒映湖中，是班夫最美的攝影取景地之一。清晨薄霧未散時如鏡面般平靜。附近有露營地，夜晚無光害，觀星條件極佳。', q:'Two Jack Lake Banff National Park reflection mountains' },
-        { id:'bf5', zh:'硃砂湖', en:'Vermilion Lakes', lat:51.1753, lng:-115.6211, desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁 and 各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。', q:'Vermilion Lakes Banff mountains reflection sunset' }
+        { id:'bf5', zh:'硃砂湖', en:'Vermilion Lakes', lat:51.1753, lng:-115.6211, desc:'班夫鎮旁的三個淺湖濕地，是欣賞落磯山日出日落最佳地點。清晨薄霧籠罩時如夢似幻，麋鹿常在湖邊飲水，加拿大雁和各種涉禽棲息其間。獨特的反射效果讓此地成為班夫攝影聖地。', q:'Vermilion Lakes Banff mountains reflection sunset' }
       ]},
       { name:'班夫鎮區', locs:[
         { id:'bft1', zh:'硫磺山溫泉洞穴', en:'Cave and Basin', lat:51.1712, lng:-115.5842, desc:'1883年三位鐵路工人意外發現的天然硫磺溫泉，直接促成加拿大第一個國家公園的誕生。現為國家歷史遺址，可看到世界罕見的「班夫螺旋藻蛾」棲地，展示館完整呈現國家公園創立歷史。', q:'Cave and Basin National Historic Site Banff' },
         { id:'bft2', zh:'班夫大道', en:'Banff Avenue', lat:51.1784, lng:-115.5708, desc:'班夫鎮中心的主要購物大街，兩側有精品店、紀念品店、餐廳及咖啡館。步行街北端可遠眺卡斯爾山峰，街道盡頭的弓河橋跨越弓河，是班夫最熱鬧也最具代表性的地方。', q:'Banff Avenue main street Alberta' },
-        { id:'bft3', zh:'懷特博物館', en:'Whyte Museum of the Canadian Rockies', lat:51.1745, lng:-115.5680, desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品 and 珍貴歷史照片，生動呈現落磯山探險家、早期登山者 and 原住民的故事。想深入了解班夫歷史文化的必訪之地。', q:'Whyte Museum Canadian Rockies Banff' },
-        { id:'bft4', zh:'班夫公園博物館', en:'Banff Park Museum', lat:51.1783, lng:-115.5693, desc:'建於1903年的木造博物館，是加拿大西部最古老的自然博物館，也是國家歷史古蹟。館內陳列著維多利亞時代風格的落磯山脈動植物標本，古典氛圍濃厚，讓遊客了解班夫地區的自然歷史。', q:'Ref_Banff Park Museum National Historic Site' }
+        { id:'bft3', zh:'懷特博物館', en:'Whyte Museum of the Canadian Rockies', lat:51.1745, lng:-115.5680, desc:'記錄班夫地區藝術、文化及歷史的博物館，館內有超過4000件藝術作品和珍貴歷史照片，生動呈現落磯山探險家、早期登山者和原住民的故事。想深入了解班夫歷史文化的必訪之地。', q:'Whyte Museum Canadian Rockies Banff' },
+        { id:'bft4', zh:'班夫公園博物館', en:'Banff Park Museum', lat:51.1783, lng:-115.5693, desc:'建於1903年的木造博物館，是加拿大西部最古老的自然博物館，也是國家歷史古蹟。館內陳列著維多利亞時代風格的落磯山脈動植物標本，古典氛圍濃厚，讓遊客了解班夫地區的自然歷史。', q:'Banff Park Museum National Historic Site' }
       ]},
       { name:'坎莫爾 Canmore', locs:[
-        { id:'cm1', zh:'班夫門山度假酒店', en:'Banff Gate Mountain Resort', lat:51.0975, lng:-115.3428, desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾 and 班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。', q:'Banff Gate Mountain Resort Canmore Alberta' },
+        { id:'cm1', zh:'班夫門山度假酒店', en:'Banff Gate Mountain Resort', lat:51.0975, lng:-115.3428, desc:'坐落於班夫國家公園入口旁的精品度假村，提供獨立木屋及豪華套房，三姊妹山（Three Sisters）的壯麗山景盡收眼底。地處坎莫爾和班夫之間，是以兩地為基地探索落磯山脈的絕佳住宿。', q:'Banff Gate Mountain Resort Canmore Alberta' },
         { id:'cm2', zh:'警察溪木棧道', en:"Policeman's Creek Boardwalk", lat:51.0878, lng:-115.3449, desc:'穿越坎莫爾市中心的休閒木棧道，沿清澈的警察溪而建。棧道兩旁有特色餐廳、咖啡館及精品商店，三姊妹山近在眼前，是了解坎莫爾本地生活文化最輕鬆寫意的方式。', q:"Policeman's Creek Boardwalk Canmore Alberta" },
         { id:'cm3', zh:'弓河引擎橋', en:'Bow River Engine Bridge', lat:51.0860, lng:-115.3594, desc:'橫跨弓河的歷史鐵道橋，改建為行人步橋後成為坎莫爾最具代表性地標。站在橋上望去，三姊妹山高聳入雲，弓河水流清澈湍急，是坎莫爾最受歡迎的拍照打卡點。', q:'Engine Bridge Canmore Bow River Alberta' },
-        { id:'cm4', zh:'坎莫爾博物館', en:'Canmore Museum & Geoscience Centre', lat:51.0895, lng:-115.3443, desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開採工具、鐵路歷史 and 地質展示，是深入了解這座山城文化背景的最佳去處。', q:'Canmore Museum Geoscience Centre Alberta' },
+        { id:'cm4', zh:'坎莫爾博物館', en:'Canmore Museum & Geoscience Centre', lat:51.0895, lng:-115.3443, desc:'記錄坎莫爾從19世紀煤礦小鎮到1988年冬奧主辦城市蛻變歷史的地方博物館，有煤礦開採工具、鐵路歷史和地質展示，是深入了解這座山城文化背景的最佳去處。', q:'Canmore Museum Geoscience Centre Alberta' },
         { id:'cm5', zh:'格拉西湖', en:'Grassi Lakes', lat:51.1017, lng:-115.3152, desc:'坎莫爾最受推薦的短程健行路線（1至2小時），攀升約300公尺即可抵達兩個夢幻的高山湖泊。湖底藻類讓湖水呈迷幻青綠色，湖邊巨石上有古老原住民壁刻。難度適中，景色極度回報。', q:'Grassi Lakes Canmore Alberta hike trail' },
-        { id:'cm6', zh:'採石場湖', en:'Quarry Lake Park', lat:51.0951, lng:-115.3217, desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐 or 漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。', q:'Quarry Lake Park Canmore Alberta' },
-        { id:'cm7', zh:'藝術空間', en:'artsPlace Canmore', lat:51.0897, lng:-115.3442, desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽 and 演出。雨天 or 想放慢腳步接觸當地藝文氛圍時的絕佳選擇。', q:'artsPlace Canmore Alberta arts center' }
+        { id:'cm6', zh:'採石場湖', en:'Quarry Lake Park', lat:51.0951, lng:-115.3217, desc:'昔日礦區採石場積水形成的小湖，如今是坎莫爾的城市綠洲。湖水清澈碧藍，三姊妹山倒影優美，可游泳、野餐或漫步湖岸。適合不想爬山又想欣賞山景、悠閒放空的午後時光。', q:'Quarry Lake Park Canmore Alberta' },
+        { id:'cm7', zh:'藝術空間', en:'artsPlace Canmore', lat:51.0897, lng:-115.3442, desc:'坎莫爾的綜合藝術文化中心，設有藝廊、劇院及工作坊空間，定期舉辦本地及旅行藝術家的展覽和演出。雨天或想放慢腳步接觸當地藝文氛圍時的絕佳選擇。', q:'artsPlace Canmore Alberta arts center' }
       ]}
     ]
   }
@@ -345,10 +343,12 @@ function initMap(){
   psvc = new google.maps.places.PlacesService(map);
   iw = new google.maps.InfoWindow({maxWidth: 300});
   switchTheme('walking');
+  // 網頁初始載入時，給予一次預設的高度 (45vh)
+  if (window.innerWidth <= 760) snapDrawerTo(45);
 }
 
 /* ═══════════════════════════════════════════════════════════
-    重磅修正：快滑彈射邏輯 (Flick-to-Snap UI Algorithm)
+    DRAWER DRAG LOGIC (快滑彈射)
 ═══════════════════════════════════════════════════════════ */
 const dragZone = document.getElementById('drag-handle-zone');
 let startY = 0;
@@ -358,16 +358,15 @@ dragZone.addEventListener('touchstart', (e) => {
   if (window.innerWidth > 760) return;
   startY = e.touches[0].clientY;
   startHeightPx = sidebar.getBoundingClientRect().height;
-  sidebar.style.transition = 'none'; // 拖曳時立刻卸載 CSS 轉場，達成 1:1 絕對跟手感
+  sidebar.style.transition = 'none'; 
 }, { passive: true });
 
 dragZone.addEventListener('touchmove', (e) => {
   if (window.innerWidth > 760) return;
   const currentY = e.touches[0].clientY;
-  const dy = startY - currentY; // 向上拖曳時 dy 為正值
+  const dy = startY - currentY; 
   let newHeight = startHeightPx + dy;
   
-  // 邊界物理阻尼限制（允許拉至 100% 滿版全螢幕）
   const maxH = window.innerHeight; 
   const minH = window.innerHeight * 0.15; 
   if(newHeight > maxH) newHeight = maxH;
@@ -381,14 +380,11 @@ dragZone.addEventListener('touchend', (e) => {
   const endY = e.changedTouches[0].clientY;
   const dy = startY - endY; 
   
-  // ⚡【快滑判定的終極 UX 優化】⚡
-  // 只要手指滑動超過 20px（極其輕微的拂動），系統便會自動判定使用者的手勢意圖，直接完成剩下的動畫。
   if (dy > 20) {
-    snapDrawerTo(100); // 只要輕輕往上撥，直接彈射至最頂端（100vh），完全覆蓋地圖
+    snapDrawerTo(100); 
   } else if (dy < -20) {
-    snapDrawerTo(45);  // 輕輕往下一劃，直接流暢縮回半版導航（45vh）
+    snapDrawerTo(45);  
   } else {
-    // 若滑動非常微弱，則根據當前高度就近吸附
     const currentVh = (sidebar.getBoundingClientRect().height / window.innerHeight) * 100;
     if (currentVh > 72) {
       snapDrawerTo(100);
@@ -400,13 +396,12 @@ dragZone.addEventListener('touchend', (e) => {
 
 function snapDrawerTo(vh) {
   if (window.innerWidth > 760) return;
-  // 引入精心調校的貝茲曲線動畫 (Easing Function)，創造有機、帶有軟彈感的水潤過場效果
   sidebar.style.transition = 'height 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
   sidebar.style.height = vh + 'vh';
 }
 
 /* ═══════════════════════════════════════════════════════════
-    THEME SWITCH
+    THEME SWITCH (✨ 核心優化：維持抽屜當前物理高度)
 ═══════════════════════════════════════════════════════════ */
 function switchTheme(name){
   curTheme = name;
@@ -421,9 +416,16 @@ function switchTheme(name){
   allLocs = [];
   th.groups.forEach(g => g.locs.forEach(l => allLocs.push(l)));
   addMarkers(th, name);
-  goBack();
+  
+  // 【關鍵修正】
+  // 不再呼叫 goBack() 或 snapDrawerTo() 強制改變高度。
+  // 僅切換內部元素的顯示狀態，完美保持使用者已經拉高的抽屜高度。
+  document.getElementById('list-view').style.display='block';
+  document.getElementById('detail-view').style.display='none';
+  document.getElementById('list-view').scrollTop = 0; // 重置滾動條至最上方
+  if(iw) iw.close();
+
   renderList(th, name);
-  snapDrawerTo(45); 
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -555,8 +557,7 @@ function renderList(th, name){
     DETAIL VIEW
 ═══════════════════════════════════════════════════════════ */
 function showDetail(loc, name){
-  // 點擊地標卡片，直接彈射至 100% 滿版全螢幕覆蓋地圖，進入極致沉浸閱讀狀態
-  snapDrawerTo(100);
+  snapDrawerTo(100); // 點擊卡片閱讀介紹時，擴展至滿版
 
   document.getElementById('list-view').style.display='none';
   document.getElementById('detail-view').style.display='block';
@@ -579,7 +580,8 @@ function showDetail(loc, name){
 }
 
 function goBack(){
-  // 返回列表，降回 45% 的標準半螢幕視野
+  // 從文章返回列表時，若使用者已經在深讀狀態，也可以選擇不縮小或降回預設。
+  // 這裡設定降回 45vh，讓地圖視野再次讓出空間。
   snapDrawerTo(45);
   document.getElementById('list-view').style.display='block';
   document.getElementById('detail-view').style.display='none';
