@@ -2,432 +2,271 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ 台中身障停車特權地圖 | TC Parking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>⚡ TC PARKING | 臺中身障免銷單特權地圖</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-tc@5.0.17/400.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-tc@5.0.17/700.css">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Noto Sans TC', 'sans-serif'],
-                        display: ['Outfit', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#7C3AED',
-                        secondary: '#10B981',
-                        accent: '#FBBF24',
-                    }
+                    fontFamily: { sans: ['Noto Sans TC', 'sans-serif'], y2k: ['Space Grotesk', 'sans-serif'] },
+                    colors: { 'neon-blue': '#3B82F6', 'y2k-purple': '#A855F7', 'acid-green': '#D9F99D', 'dark-base': '#09090B' }
                 }
             }
         }
     </script>
 
     <style>
-        /* 基礎設定 */
-        body { margin: 0; overflow: hidden; background-color: #e2e8f0; }
+        body { margin: 0; overflow: hidden; background-color: #09090B; }
+        #map { width: 100vw; height: 100vh; }
 
-        /* Claymorphism 黏土風格卡片 */
-        .clay-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 
-                8px 8px 16px rgba(0, 0, 0, 0.05),
-                -8px -8px 16px rgba(255, 255, 255, 0.8),
-                inset 2px 2px 4px rgba(255, 255, 255, 0.5);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        /* Y2K 跑馬燈特效 */
+        .marquee-container {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 600px; z-index: 10;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px; overflow: hidden; display: flex; align-items: center; padding: 10px 0;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
         }
+        .marquee-content {
+            display: inline-block; white-space: nowrap;
+            animation: marquee 15s linear infinite;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #D9F99D; letter-spacing: 2px;
+        }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        /* 列表項目的微互動 (Hover) */
-        .clay-item {
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
+        /* 客製化 Google Maps InfoWindow (隱藏預設白底，使用自訂設計) */
+        .gm-style .gm-style-iw-c {
+            background: rgba(15, 23, 42, 0.85) !important;
+            backdrop-filter: blur(16px) !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+            border-radius: 20px !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.3) !important;
+            padding: 0 !important;
         }
-        .clay-item:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 
-                8px 12px 20px rgba(124, 58, 237, 0.15),
-                inset 2px 2px 4px rgba(255, 255, 255, 1);
-            border-color: #7C3AED;
-        }
+        .gm-style .gm-style-iw-t::after { display: none !important; /* 隱藏底部的箭頭 */ }
+        .gm-style-iw-d { overflow: hidden !important; max-height: none !important; }
+        .gm-ui-hover-effect { filter: invert(1); top: 10px !important; right: 10px !important; } /* 關閉按鈕反色 */
 
-        /* 自訂捲軸隱藏但可滾動 */
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-        /* 文字漸層 */
-        .text-gradient {
-            background: linear-gradient(135deg, #7C3AED, #EC4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* 載入中狀態提示 */
+        #loader-toast {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 20;
+            background: rgba(59, 130, 246, 0.1); border: 1px solid #3B82F6; color: #3B82F6;
+            padding: 10px 20px; border-radius: 999px; backdrop-filter: blur(8px);
+            font-weight: 700; display: flex; align-items: center; gap: 8px; transition: opacity 0.5s;
         }
-
-        /* 全螢幕地圖 */
-        #map { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
-
-        /* 左側 UI 面板 */
-        #ui-panel { position: relative; z-index: 10; animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
-
-        /* 動畫 */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .pulse-loader {
-            width: 12px; height: 12px;
-            background-color: #10B981;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
+        .spin { animation: spin 1s linear infinite; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="text-gray-800">
+<body>
 
-    <div id="map" class="bg-gray-200"></div>
+    <!-- 全螢幕地圖 -->
+    <div id="map"></div>
 
-    <div id="ui-panel" class="absolute top-0 left-0 h-screen w-full md:w-[420px] p-4 md:p-6 flex flex-col pointer-events-none">
-        
-        <div class="clay-card flex-1 flex flex-col overflow-hidden pointer-events-auto">
-            <div class="p-6 pb-4 border-b border-gray-100/50">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="bg-primary/10 p-2 rounded-xl text-primary">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <h1 class="text-2xl font-display font-black text-gradient tracking-wide">TC PARKING</h1>
-                </div>
-                <p class="text-sm text-gray-500 font-medium mb-4">臺中市身障免銷單服務地圖</p>
-
-                <div id="statusBar" class="flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-2 rounded-lg text-xs font-bold mb-4 transition-all">
-                    <div class="pulse-loader" id="loaderDot"></div>
-                    <span id="statusText">正在自動抓取最新資料...</span>
-                </div>
-
-                <div class="relative">
-                    <input type="text" id="searchInput" placeholder="輸入路名、停車場名稱..." 
-                        class="w-full bg-gray-50/50 border-2 border-transparent px-4 py-3 pl-11 rounded-xl text-sm focus:outline-none focus:border-primary/50 focus:bg-white transition-all shadow-inner"
-                        oninput="filterList()">
-                    <svg class="w-5 h-5 absolute left-4 top-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </div>
-            </div>
-
-            <div class="px-6 py-2 bg-gray-50/50 flex justify-between items-center text-xs font-bold text-gray-400 border-b border-gray-100/50">
-                <span id="countDisplay">0 筆資料</span>
-                <button onclick="geocodeVisible()" id="geocodeBtn" class="text-primary hover:text-purple-800 transition hidden bg-primary/10 px-2 py-1 rounded-md">
-                    一鍵解析座標 📍
-                </button>
-            </div>
-
-            <div id="parkingList" class="flex-1 overflow-y-auto p-4 space-y-3 custom-scroll">
-                <div class="animate-pulse space-y-4">
-                    <div class="h-20 bg-gray-200/50 rounded-xl"></div>
-                    <div class="h-20 bg-gray-200/50 rounded-xl"></div>
-                    <div class="h-20 bg-gray-200/50 rounded-xl"></div>
-                </div>
-            </div>
+    <!-- Y2K 跑馬燈浮動標頭 -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            /// LIVE DATA /// TAICHUNG DISABLED PARKING MAP /// ZERO-CLICK INTERFACE /// EXPLORE NOW ///
         </div>
     </div>
 
-    <script>
-        // --- 設定區 ---
-        const GOOGLE_MAPS_API_KEY = "AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E";
-        
-        let parkingData = [];
-        let map = null;
-        let geocoder = null;
-        let markers = [];
-        let isGoogleMapsLoaded = false;
+    <!-- 狀態提示 -->
+    <div id="loader-toast">
+        <svg class="w-5 h-5 spin" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        <span id="loader-text">同步雷達資料中...</span>
+    </div>
 
-        // --- 啟動流程 (Zero-Click) ---
-        window.onload = async () => {
-            loadGoogleMapsScript(); // 異步載入地圖
-            await handleFetch();    // 自動抓取資料
+    <script>
+        const API_KEY = "AIzaSyC1qbK8BJfV7IZqYf0wxLGQvyDdCt3Pv7E";
+        let map, geocoder;
+        let parkingData = [];
+        let markers = [];
+        let activeInfoWindow = null;
+
+        // 1. 初始化應用程式
+        window.onload = () => {
+            loadGoogleMaps();
+            fetchData();
         };
 
-        function showStatus(msg, isLoading = true, isError = false) {
-            const bar = document.getElementById('statusBar');
-            const text = document.getElementById('statusText');
-            const loader = document.getElementById('loaderDot');
-            
-            text.innerText = msg;
-            if (isError) {
-                bar.className = "flex items-center gap-2 bg-red-100 text-red-600 px-3 py-2 rounded-lg text-xs font-bold mb-4 transition-all";
-                loader.style.display = 'none';
-            } else if (!isLoading) {
-                bar.className = "flex items-center gap-2 bg-secondary/10 text-secondary px-3 py-2 rounded-lg text-xs font-bold mb-4 transition-all";
-                loader.style.display = 'none';
-                setTimeout(() => { bar.style.opacity = '0'; setTimeout(() => bar.style.display='none', 300); }, 3000);
-            } else {
-                bar.className = "flex items-center gap-2 bg-blue-100 text-blue-600 px-3 py-2 rounded-lg text-xs font-bold mb-4 transition-all";
-                loader.style.display = 'block';
-                loader.style.backgroundColor = '#3b82f6';
+        function updateToast(msg, hide = false) {
+            const toast = document.getElementById('loader-toast');
+            document.getElementById('loader-text').innerText = msg;
+            if (hide) {
+                setTimeout(() => { toast.style.opacity = '0'; }, 3000);
             }
         }
 
-        // --- 資料抓取與解析 ---
-        async function handleFetch() {
+        // 2. 爬取最新政府資料 (Proxy)
+        async function fetchData() {
             try {
                 const targetUrl = 'https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule';
                 const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(targetUrl);
                 
                 const response = await fetch(proxyUrl);
-                if (!response.ok) throw new Error('伺服器連線異常');
-                
                 const html = await response.text();
-                parkingData = parseDataFromHTML(html);
                 
-                if (parkingData.length === 0) throw new Error('格式改變，無法解析資料');
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const rows = doc.querySelectorAll('#PrintArea table tbody tr');
                 
-                showStatus(`⚡ 成功同步 ${parkingData.length} 筆即時資料`, false);
-                renderList();
-            } catch (error) {
-                console.error(error);
-                showStatus('資料抓取失敗，請檢查網路狀態', false, true);
-                document.getElementById('parkingList').innerHTML = `<div class="text-center text-red-400 mt-10 text-sm">無法取得資料，請稍後重試。</div>`;
-            }
-        }
-
-        function parseDataFromHTML(html) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, 'text/html');
-            const rows = doc.querySelectorAll('#PrintArea table tbody tr');
-            const newData = [];
-            rows.forEach((row, index) => {
-                const cells = row.querySelectorAll('td');
-                if (cells.length >= 4 && index > 0) { // Skip header if exists
-                    newData.push({
-                        id: cells[0].innerText.trim(),
-                        name: cells[1].innerText.trim(),
-                        method: cells[2].innerText.trim(),
-                        address: cells[3].innerText.trim(),
-                        lat: null,
-                        lng: null
-                    });
+                rows.forEach((row, index) => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 4 && index > 0) { // 跳過表頭
+                        parkingData.push({
+                            id: cells[0].innerText.trim(),
+                            name: cells[1].innerText.trim(),
+                            method: cells[2].innerText.trim(),
+                            address: cells[3].innerText.trim(),
+                            lat: null, lng: null
+                        });
+                    }
+                });
+                
+                if(parkingData.length > 0) {
+                    updateToast(`成功攔截 ${parkingData.length} 筆座標！開始定位...`);
+                    processGeocoding();
+                } else {
+                    updateToast('無法解析網頁結構', true);
                 }
-            });
-            return newData;
-        }
-
-        // --- UI 渲染 ---
-        function renderList() {
-            const listEl = document.getElementById('parkingList');
-            const countEl = document.getElementById('countDisplay');
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            
-            const filtered = parkingData.filter(item => 
-                item.name.toLowerCase().includes(searchVal) || 
-                item.address.toLowerCase().includes(searchVal)
-            );
-
-            countEl.innerText = `${filtered.length} 筆資料`;
-            
-            if (filtered.length === 0) {
-                listEl.innerHTML = `
-                    <div class="flex flex-col items-center justify-center h-40 text-gray-400">
-                        <span class="text-4xl mb-2">🥲</span>
-                        <p class="text-sm">找不到相關結果</p>
-                    </div>`;
-                return;
+            } catch (error) {
+                updateToast('網路異常，無法取得資料', true);
             }
-
-            listEl.innerHTML = filtered.map((item, i) => `
-                <div class="clay-item p-4 border border-transparent cursor-pointer group" style="animation: slideIn 0.4s ease forwards; animation-delay: ${i * 0.03}s; opacity: 0;" onclick="focusOnMap('${item.id}')">
-                    <div class="flex justify-between items-start mb-2">
-                        <h3 class="font-bold text-gray-800 text-[15px] group-hover:text-primary transition-colors">${item.name}</h3>
-                        <span class="text-[10px] font-display font-bold bg-gray-100 text-gray-400 px-2 py-1 rounded-full">#${item.id}</span>
-                    </div>
-                    <div class="flex flex-col gap-1.5">
-                        <div class="text-xs text-gray-500 flex items-center gap-2">
-                            <span class="bg-blue-50 text-blue-500 p-1 rounded-md"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></span>
-                            <span class="truncate">${item.method}</span>
-                        </div>
-                        <div class="text-xs text-gray-500 flex items-center gap-2">
-                            <span class="bg-red-50 text-red-500 p-1 rounded-md"><svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg></span>
-                            <span class="truncate pr-2">${item.address}</span>
-                        </div>
-                    </div>
-                    ${item.lat ? '<div class="mt-3 text-[10px] font-bold text-secondary flex items-center gap-1"><div class="w-1.5 h-1.5 bg-secondary rounded-full"></div> 已精確定點</div>' : ''}
-                </div>
-            `).join('');
-            
-            document.getElementById('geocodeBtn').classList.remove('hidden');
         }
 
-        function filterList() { renderList(); }
-
-        // --- Google Maps 核心邏輯 ---
-        function loadGoogleMapsScript() {
+        // 3. 載入 Google Maps 並套用賽博龐克暗黑風格
+        function loadGoogleMaps() {
             const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places&callback=initMap`;
-            script.async = true;
-            script.defer = true;
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initMap`;
+            script.async = true; script.defer = true;
             window.initMap = () => {
-                isGoogleMapsLoaded = true;
                 geocoder = new google.maps.Geocoder();
-                
-                // 定製化地圖樣式 (隱藏不必要的POI，讓畫面乾淨現代)
-                const mapOptions = {
-                    center: { lat: 24.1477, lng: 120.6736 }, // 台中市中心
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: 24.1477, lng: 120.6736 },
                     zoom: 13,
-                    disableDefaultUI: true,
-                    zoomControl: true,
-                    zoomControlOptions: { position: google.maps.ControlPosition.RIGHT_CENTER },
+                    disableDefaultUI: true, // 移除所有多餘控制項，保持極簡
                     styles: [
-                        { "featureType": "poi", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
-                        { "featureType": "transit", "elementType": "labels", "stylers": [{ "visibility": "off" }] },
-                        { "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#c9c9c9" }] },
-                        { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }] }
+                        { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                        { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                        { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                        { featureType: "administrative.locality", elementType: "labels.text.fill", stylers: [{ color: "#d59563" }] },
+                        { featureType: "poi", elementType: "labels", stylers: [{ visibility: "off" }] }, // 關閉預設景點，突顯我們的 P
+                        { featureType: "road", elementType: "geometry", stylers: [{ color: "#38414e" }] },
+                        { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212a37" }] },
+                        { featureType: "road", elementType: "labels.text.fill", stylers: [{ color: "#9ca5b3" }] },
+                        { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] }
                     ]
-                };
-                map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                });
             };
             document.head.appendChild(script);
         }
 
-        async function geocodeAddress(address) {
-            if (isGoogleMapsLoaded && geocoder) {
-                return new Promise(resolve => {
-                    geocoder.geocode({ address: address + ', 臺中市' }, (results, status) => {
-                        if (status === 'OK' && results[0]) {
-                            resolve({ lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() });
-                        } else {
-                            resolve(null);
-                        }
+        // 4. 解析地址並放置地圖標記
+        async function processGeocoding() {
+            // 為避免 API 限制，我們採非同步逐筆解析
+            let mappedCount = 0;
+            for (let i = 0; i < parkingData.length; i++) {
+                // 等待地圖載入完成
+                while(!geocoder) await new Promise(r => setTimeout(r, 500));
+
+                const item = parkingData[i];
+                try {
+                    const result = await new Promise((resolve) => {
+                        geocoder.geocode({ address: item.address + ', 臺中市' }, (results, status) => {
+                            if (status === 'OK' && results[0]) resolve(results[0].geometry.location);
+                            else resolve(null);
+                        });
                     });
-                });
+
+                    if (result) {
+                        item.lat = result.lat(); item.lng = result.lng();
+                        createBluePMarker(item);
+                        mappedCount++;
+                    }
+                    await new Promise(r => setTimeout(r, 250)); // Rate limit 緩衝
+                } catch(e) {}
             }
-            return null;
+            updateToast(`定位完成，共載入 ${mappedCount} 個停車點`, true);
         }
 
-        // 批次解析按鈕功能
-        async function geocodeVisible() {
-            if(!isGoogleMapsLoaded) return alert("地圖載入中，請稍候");
-            
-            const btn = document.getElementById('geocodeBtn');
-            btn.disabled = true;
-            btn.innerText = "解析中...";
-            
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-            const toProcess = parkingData.filter(item => 
-                (item.name.toLowerCase().includes(searchVal) || item.address.toLowerCase().includes(searchVal)) && !item.lat
-            );
-
-            for (let i = 0; i < toProcess.length; i++) {
-                const item = toProcess[i];
-                const coords = await geocodeAddress(item.address);
-                if (coords) {
-                    item.lat = coords.lat;
-                    item.lng = coords.lng;
-                    addMarker(item);
-                }
-                // 加入微小延遲避免 API Rate Limit 阻擋
-                await new Promise(r => setTimeout(r, 200));
-            }
-            
-            btn.innerText = "解析完成 ✓";
-            setTimeout(() => { btn.innerText = "一鍵解析座標 📍"; btn.disabled = false; }, 2000);
-            renderList();
-        }
-
-        function addMarker(item) {
-            if (!map) return;
-            
-            // 創造帶有品牌色彩的自訂義圖釘向量圖形
-            const svgMarker = {
-                path: "M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z",
-                fillColor: "#7C3AED",
-                fillOpacity: 1,
-                strokeWeight: 2,
-                strokeColor: "#FFFFFF",
-                rotation: 0,
-                scale: 1.8,
-                anchor: new google.maps.Point(12, 22),
+        // 5. 繪製自訂的「藍色 P」標記與資訊卡
+        function createBluePMarker(item) {
+            // 使用 SVG 建立超具質感的藍色 P 標誌
+            const svgIcon = {
+                url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(`
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="#3B82F6" stroke="#FFFFFF" stroke-width="2" />
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="22" fill="#FFFFFF">P</text>
+                        <!-- Y2K 發光效果 -->
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="#A855F7" stroke-width="4" opacity="0.4" />
+                    </svg>
+                `),
+                scaledSize: new google.maps.Size(40, 40),
+                anchor: new google.maps.Point(20, 20)
             };
 
             const marker = new google.maps.Marker({
                 position: { lat: item.lat, lng: item.lng },
                 map: map,
-                title: item.name,
-                icon: svgMarker,
+                icon: svgIcon,
                 animation: google.maps.Animation.DROP
             });
 
-            // 現代化 InfoWindow
-            const infoWindow = new google.maps.InfoWindow({
-                content: `
-                    <div style="font-family: 'Noto Sans TC', sans-serif; padding: 4px; max-width: 200px;">
-                        <h3 style="font-size: 15px; font-weight: 700; color: #2B2D42; margin-bottom: 8px;">${item.name}</h3>
-                        <p style="font-size: 12px; color: #64748B; margin: 4px 0;">✨ ${item.method}</p>
-                        <p style="font-size: 12px; color: #64748B; margin: 4px 0;">📍 ${item.address}</p>
+            // 產生直接搜尋 Google Maps 的 URL (用於評論與導航)
+            const searchQuery = encodeURIComponent(`${item.name} 停車場 ${item.address}`);
+            const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${searchQuery}`;
+
+            // 設計 Y2K 風格的 InfoWindow 內容
+            const infoContent = `
+                <div class="p-5 min-w-[260px] text-white font-sans">
+                    <div class="inline-block px-2 py-1 bg-neon-blue/20 text-neon-blue text-[10px] font-y2k rounded-md mb-2 border border-neon-blue/30 tracking-widest">
+                        ID: ${item.id}
                     </div>
-                `
-            });
+                    <h3 class="text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">${item.name}</h3>
+                    
+                    <div class="space-y-2 mb-5">
+                        <div class="flex items-start gap-2 text-sm text-gray-300">
+                            <span class="text-acid-green mt-0.5">⚡</span>
+                            <span><strong>進出場：</strong>${item.method}</span>
+                        </div>
+                        <div class="flex items-start gap-2 text-sm text-gray-300">
+                            <span class="text-acid-green mt-0.5">📍</span>
+                            <span>${item.address}</span>
+                        </div>
+                    </div>
+
+                    <a href="${googleMapsUrl}" target="_blank" 
+                       class="block w-full text-center py-2.5 rounded-lg bg-neon-blue hover:bg-y2k-purple transition-all duration-300 text-white font-bold text-sm shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_25px_rgba(168,85,247,0.7)] group">
+                        查看 Google 評論 / 導航
+                        <span class="inline-block group-hover:translate-x-1 transition-transform">→</span>
+                    </a>
+                </div>
+            `;
+
+            const infoWindow = new google.maps.InfoWindow({ content: infoContent });
 
             marker.addListener('click', () => {
-                markers.forEach(m => m.infoWindow.close()); // 關閉其他
-                infoWindow.open(map, marker);
+                if (activeInfoWindow) activeInfoWindow.close(); // 關閉上一個
+                infoWindow.open({ anchor: marker, map, shouldFocus: false });
+                activeInfoWindow = infoWindow;
+                // 點擊後地圖平滑置中並稍微放大
                 map.panTo(marker.getPosition());
+                map.setZoom(16);
             });
 
-            markers.push({ itemId: item.id, marker: marker, infoWindow: infoWindow });
-        }
-
-        // 點擊列表時，移動地圖焦點
-        function focusOnMap(id) {
-            const item = parkingData.find(p => p.id == id);
-            if (!item) return;
-
-            if (item.lat && item.lng && map) {
-                // 平滑移動與放大
-                map.panTo({ lat: item.lat, lng: item.lng });
-                map.setZoom(16);
-                const markerObj = markers.find(m => m.itemId == id);
-                if (markerObj) {
-                    markers.forEach(m => m.infoWindow.close());
-                    markerObj.infoWindow.open(map, markerObj.marker);
-                    // 讓圖釘彈跳一下
-                    markerObj.marker.setAnimation(google.maps.Animation.BOUNCE);
-                    setTimeout(() => markerObj.marker.setAnimation(null), 1400);
-                }
-            } else {
-                // 如果該項目還沒解析座標，即時解析
-                geocodeAddress(item.address).then(coords => {
-                    if (coords) {
-                        item.lat = coords.lat;
-                        item.lng = coords.lng;
-                        addMarker(item);
-                        renderList();
-                        focusOnMap(id); // 解析完再執行一次定位
-                    } else {
-                        alert(`無法精準定位：${item.address}`);
-                    }
-                });
-            }
+            markers.push(marker);
         }
     </script>
 </body>
