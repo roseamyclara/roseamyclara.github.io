@@ -1,2576 +1,1333 @@
 {
-  "序號|": {
-    "lat": 24.107467,
-    "lng": 120.599303,
-    "precision": "OSM_CONSTRUCTION",
-    "matched": "烏日高鐵好宅",
-    "formatted": "烏日高鐵好宅, 榮泉里, 烏日區, 烏日高鐵特區, 臺中市, 414, 臺灣",
+  "陽明大樓地下停車場|臺中市豐原區陽明街、陽明街 66 巷": {
+    "lat": 24.24694,
+    "lng": 120.72122,
+    "precision": "OSM_UNCLASSIFIED",
+    "approx": false,
+    "matched": "陽明街",
+    "formatted": "陽明街, 陽明里, 豐原區, 臺中市, 420212, 臺灣",
     "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:18+08:00"
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:47+08:00"
   },
-  "1|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
+  "臺灣大道市政大樓附屬地下停車場|臺中市西屯區臺灣大道、文心路、惠中路": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
     "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:19+08:00"
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:50+08:00"
   },
-  "2|": {
-    "lat": 24.145636,
-    "lng": 120.653237,
+  "大誠立體停車場|臺中市中區臺灣大道一段、大誠街口": {
+    "lat": 24.140462,
+    "lng": 120.681803,
+    "precision": "OSM_PRIMARY",
+    "approx": false,
+    "matched": "臺灣大道一段",
+    "formatted": "臺灣大道一段, 公園里, 中區, 臺中市, 40045, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:50+08:00"
+  },
+  "漢口立體停車場|臺中市西屯區寧夏路 80 號": {
+    "lat": 24.164576,
+    "lng": 120.662574,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "寧夏路",
+    "formatted": "寧夏路, 何福里, 西屯區, 臺中市, 407383, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:53+08:00"
+  },
+  "敦化停車場|臺中市北屯區中平路與敦化路二段旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:56+08:00"
+  },
+  "中平停車場|臺中市北屯區中平路與敦化路二段旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:01:57+08:00"
+  },
+  "新平停車場|臺中市北屯區敦化路二段與敦平街口旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:00+08:00"
+  },
+  "景賢停車場|臺中市北屯區太祥路與景賢路旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:02+08:00"
+  },
+  "江興停車場|臺中市北屯區江興街與國豐街旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:04+08:00"
+  },
+  "十甲停車場|臺中市東區二聖街與東英八街口旁空地": {
+    "lat": 24.136625,
+    "lng": 120.703854,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "東區",
+    "formatted": "東區, 長億里, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:06+08:00"
+  },
+  "新平公園附屬停車場|臺中市北屯區中平路近敦化路二段旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:08+08:00"
+  },
+  "樹德停車場|臺中市南區復興北路、德吉街、德富路 120 巷": {
+    "lat": 24.118142,
+    "lng": 120.652938,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "復興北路",
+    "formatted": "復興北路, 樹德里, 南區, 楓樹脚, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:09+08:00"
+  },
+  "德義停車場|臺中市南區有恆街、有恆街 139 巷": {
+    "lat": 24.13054,
+    "lng": 120.675928,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "有恒街",
+    "formatted": "有恒街, 長榮里, 南區, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:09+08:00"
+  },
+  "城隍停車場|臺中市南區建成路 ( 近仁和路 121 巷 )": {
+    "lat": 24.117079,
+    "lng": 120.663608,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南區",
+    "formatted": "南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:13+08:00"
+  },
+  "復興停車場|臺中市南區國光路與復興路口旁空地": {
+    "lat": 24.117079,
+    "lng": 120.663608,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南區",
+    "formatted": "南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:16+08:00"
+  },
+  "健康公園附設停車場|臺中市南區五權南路、美村南路": {
+    "lat": 24.117079,
+    "lng": 120.663608,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南區",
+    "formatted": "南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:17+08:00"
+  },
+  "大明路中興停車場|臺中市豐原區大明路 154 號旁空地": {
+    "lat": 24.24219,
+    "lng": 120.71846,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "豐原區",
+    "formatted": "豐原區, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:20+08:00"
+  },
+  "馬龍潭停車場|臺中市西屯區馬龍潭路與龍富路 5 段旁空地": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:22+08:00"
+  },
+  "精科停車場|臺中市南屯區精科八路 7 號旁空地": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:24+08:00"
+  },
+  "雙龍停車場|臺中市西區模範街 40 巷 4 號對面空地": {
+    "lat": 24.14878,
+    "lng": 120.666626,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "模範街",
+    "formatted": "模範街, 大和村, 双龍里, 西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:28+08:00"
+  },
+  "民龍停車場|臺中市西區民權路、博館二街": {
+    "lat": 24.143328,
+    "lng": 120.673694,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "民權路",
+    "formatted": "民權路, 中正里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:29+08:00"
+  },
+  "金華停車場|臺中市北區興進路、雙十路 ( 育仁國小附近 )": {
+    "lat": 24.15564,
+    "lng": 120.696392,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "興進路",
+    "formatted": "興進路, 建德里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:30+08:00"
+  },
+  "美村停車場|臺中市西區美村路、存中街口": {
+    "lat": 24.155519,
+    "lng": 120.662537,
+    "precision": "OSM_FOOTWAY",
+    "approx": false,
+    "matched": "美村路地下道",
+    "formatted": "美村路地下道, 忠明里, 西區, 田心, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:30+08:00"
+  },
+  "土庫停車場|臺中市西區忠明南路、存中街、華美街口": {
+    "lat": 24.148112,
+    "lng": 120.657378,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "忠明南路",
+    "formatted": "忠明南路, 公益里, 西區, 田心, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:31+08:00"
+  },
+  "惠文停車場|臺中市南屯區惠文路、向上路口": {
+    "lat": 24.142981,
+    "lng": 120.642915,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "惠文路",
+    "formatted": "惠文路, 田心里, 南屯區, 田心, 臺中市, 408007, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:32+08:00"
+  },
+  "大新停車場|臺中市南屯區大業里大墩十二街口": {
+    "lat": 24.149941,
+    "lng": 120.651006,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "大墩十二街",
+    "formatted": "大墩十二街, 大業里, 南屯區, 田心, 臺中市, 408309, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:32+08:00"
+  },
+  "南屯停車場|臺中市西屯區何源里河南路河南東一街口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:34+08:00"
+  },
+  "河南停車場|臺中市西屯區重慶路、河南路口": {
+    "lat": 24.170109,
+    "lng": 120.661935,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "重慶路",
+    "formatted": "重慶路, 何福里, 西屯區, 水湳經貿園區, 臺中市, 40751, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:35+08:00"
+  },
+  "忠義停車場|臺中市西屯區重慶路、甘肅路口": {
+    "lat": 24.170109,
+    "lng": 120.661935,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "重慶路",
+    "formatted": "重慶路, 何福里, 西屯區, 水湳經貿園區, 臺中市, 40751, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:35+08:00"
+  },
+  "同心停車場|臺中市西屯區福科路、黎明路三段交叉口": {
+    "lat": 24.186066,
+    "lng": 120.616108,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "福科路",
+    "formatted": "福科路, 福林里, 西屯區, 臺中市, 407006, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:36+08:00"
+  },
+  "上安停車場|臺中市西屯區上安路 103 號旁邊": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:38+08:00"
+  },
+  "弘孝停車場|臺中市西屯區弘孝路 229 號邊與河南路二段 301 巷交叉路口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:44+08:00"
+  },
+  "櫻花停車場|臺中市西屯區櫻花路與西屯路 208 巷交叉口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:49+08:00"
+  },
+  "大鵬停車場|臺中市西屯區中清西二街 92 巷、中清西二街口": {
+    "lat": 24.175371,
+    "lng": 120.666088,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "中清西二街",
+    "formatted": "中清西二街, 大福里, 西屯區, 水湳經貿園區, 臺中市, 407356, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:51+08:00"
+  },
+  "東興立體停車場|臺中市西屯區東興路 3 段 332 號": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:54+08:00"
+  },
+  "軍福停車場|臺中市北屯區軍福十八路、松竹三路": {
+    "lat": 24.179444,
+    "lng": 120.712105,
+    "precision": "OSM_SCHOOL",
+    "approx": false,
+    "matched": "葳格高中",
+    "formatted": "葳格高中, 328, 軍福十八路, 水景里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:54+08:00"
+  },
+  "軍功停車場|臺中市北屯區松竹路一段、軍功路": {
+    "lat": 24.180239,
+    "lng": 120.726505,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "松竹路一段",
+    "formatted": "松竹路一段, 軍功里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:55+08:00"
+  },
+  "松榮停車場|臺中市北屯區松竹路、松竹二路": {
+    "lat": 24.185332,
+    "lng": 120.69672,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "松竹北路",
+    "formatted": "松竹北路, 松茂里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:56+08:00"
+  },
+  "雷中停車場|臺中市北屯區雷中街 47 巷、雷中街 59 巷 7 弄": {
+    "lat": 24.183752,
+    "lng": 120.669827,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "雷中街",
+    "formatted": "雷中街, 大德里, 北屯區, 水湳經貿園區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:02:59+08:00"
+  },
+  "健康公園地下停車場|臺中市南區忠明南路、美村南路": {
+    "lat": 24.119152,
+    "lng": 120.681573,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "忠明南路",
+    "formatted": "忠明南路, 南門里, 南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:00+08:00"
+  },
+  "水安宮地下停車場|臺中市南屯區溝墘里 14 鄰文心路一段 517 號": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:02+08:00"
+  },
+  "坪林森林公園附設停車場|臺中市太平區中山路二段 ( 國軍臺中總醫院對面 )": {
+    "lat": 24.126472,
+    "lng": 120.718523,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "太平區",
+    "formatted": "太平區, 長億里, 臺中市, 411, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:05+08:00"
+  },
+  "大進停車場|臺中市南屯區大墩路和大墩五街交叉路口": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:07+08:00"
+  },
+  "光明停車場|臺中市西區林森路、自由路": {
+    "lat": 24.137148,
+    "lng": 120.671275,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "林森路",
+    "formatted": "林森路, 廣民里, 西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:09+08:00"
+  },
+  "水湳中央公園地下停車場|臺中市北屯區經貿路一段 159 號": {
+    "lat": 24.181193,
+    "lng": 120.657854,
     "precision": "OSM_HOUSE",
+    "approx": false,
     "matched": "",
-    "formatted": "2-2, 東興路三段, 公正里, 西區, 田心, 臺中市, 403, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:21+08:00"
-  },
-  "3|": {
-    "lat": 24.163178,
-    "lng": 120.656939,
-    "precision": "OSM_DOCTORS",
-    "matched": "陳俊宏小兒科診所",
-    "formatted": "陳俊宏小兒科診所, 3-3, 青海路一段, 何厝里, 西屯區, 臺中七期, 臺中市, 407053, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:23+08:00"
-  },
-  "4|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:24+08:00"
-  },
-  "5|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:26+08:00"
-  },
-  "6|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:28+08:00"
-  },
-  "7|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:30+08:00"
-  },
-  "8|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:31+08:00"
-  },
-  "9|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:32+08:00"
-  },
-  "10|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:34+08:00"
-  },
-  "11|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:36+08:00"
-  },
-  "12|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:38+08:00"
-  },
-  "13|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:40+08:00"
-  },
-  "14|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:41+08:00"
-  },
-  "15|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:42+08:00"
-  },
-  "16|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:44+08:00"
-  },
-  "17|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:45+08:00"
-  },
-  "18|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:47+08:00"
-  },
-  "19|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:48+08:00"
-  },
-  "20|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:50+08:00"
-  },
-  "21|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:51+08:00"
-  },
-  "22|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:52+08:00"
-  },
-  "23|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:54+08:00"
-  },
-  "24|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:56+08:00"
-  },
-  "25|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:57+08:00"
-  },
-  "26|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:45:58+08:00"
-  },
-  "27|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:00+08:00"
-  },
-  "28|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:01+08:00"
-  },
-  "29|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:02+08:00"
-  },
-  "30|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:04+08:00"
-  },
-  "31|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:05+08:00"
-  },
-  "32|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:07+08:00"
-  },
-  "33|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:08+08:00"
-  },
-  "34|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:10+08:00"
-  },
-  "35|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:11+08:00"
-  },
-  "36|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:13+08:00"
-  },
-  "37|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:14+08:00"
-  },
-  "38|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:16+08:00"
-  },
-  "39|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:17+08:00"
-  },
-  "40|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:19+08:00"
-  },
-  "41|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:21+08:00"
-  },
-  "42|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:22+08:00"
-  },
-  "43|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:24+08:00"
-  },
-  "44|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:25+08:00"
-  },
-  "45|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:27+08:00"
-  },
-  "46|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:28+08:00"
-  },
-  "47|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:29+08:00"
-  },
-  "48|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:31+08:00"
-  },
-  "49|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:32+08:00"
-  },
-  "50|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:34+08:00"
-  },
-  "51|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:36+08:00"
-  },
-  "52|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:37+08:00"
-  },
-  "53|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:38+08:00"
-  },
-  "54|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:40+08:00"
-  },
-  "55|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:42+08:00"
-  },
-  "56|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:43+08:00"
-  },
-  "57|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:45+08:00"
-  },
-  "58|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:47+08:00"
-  },
-  "59|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:49+08:00"
-  },
-  "60|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:50+08:00"
-  },
-  "61|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:52+08:00"
-  },
-  "62|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:53+08:00"
-  },
-  "63|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:54+08:00"
-  },
-  "64|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:55+08:00"
-  },
-  "65|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:58+08:00"
-  },
-  "66|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:46:59+08:00"
-  },
-  "67|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:01+08:00"
-  },
-  "68|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:02+08:00"
-  },
-  "69|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:04+08:00"
-  },
-  "70|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:06+08:00"
-  },
-  "71|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:07+08:00"
-  },
-  "72|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:08+08:00"
-  },
-  "73|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:10+08:00"
-  },
-  "74|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:12+08:00"
-  },
-  "75|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:13+08:00"
-  },
-  "76|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:15+08:00"
-  },
-  "77|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:16+08:00"
-  },
-  "78|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:18+08:00"
-  },
-  "79|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:20+08:00"
-  },
-  "80|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:21+08:00"
-  },
-  "81|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:23+08:00"
-  },
-  "82|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:24+08:00"
-  },
-  "83|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:26+08:00"
-  },
-  "84|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:28+08:00"
-  },
-  "85|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:29+08:00"
-  },
-  "86|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:31+08:00"
-  },
-  "87|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:33+08:00"
-  },
-  "88|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:35+08:00"
-  },
-  "89|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:36+08:00"
-  },
-  "90|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:38+08:00"
-  },
-  "91|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:40+08:00"
-  },
-  "92|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:41+08:00"
-  },
-  "93|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:43+08:00"
-  },
-  "94|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:45+08:00"
-  },
-  "95|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:46+08:00"
-  },
-  "96|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:47+08:00"
-  },
-  "97|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:49+08:00"
-  },
-  "98|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:50+08:00"
-  },
-  "99|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:52+08:00"
-  },
-  "100|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:53+08:00"
-  },
-  "101|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:55+08:00"
-  },
-  "102|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:56+08:00"
-  },
-  "103|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:47:58+08:00"
-  },
-  "104|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:00+08:00"
-  },
-  "105|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:01+08:00"
-  },
-  "106|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:02+08:00"
-  },
-  "107|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:04+08:00"
-  },
-  "108|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:06+08:00"
-  },
-  "109|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:07+08:00"
-  },
-  "110|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:09+08:00"
-  },
-  "111|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:11+08:00"
-  },
-  "112|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:12+08:00"
-  },
-  "113|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:14+08:00"
-  },
-  "114|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:15+08:00"
-  },
-  "115|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:17+08:00"
-  },
-  "116|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:18+08:00"
-  },
-  "117|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:20+08:00"
-  },
-  "118|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:22+08:00"
-  },
-  "119|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:23+08:00"
-  },
-  "120|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:25+08:00"
-  },
-  "121|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:27+08:00"
-  },
-  "122|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:28+08:00"
-  },
-  "123|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:30+08:00"
-  },
-  "124|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:32+08:00"
-  },
-  "125|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:34+08:00"
-  },
-  "126|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:35+08:00"
-  },
-  "127|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:37+08:00"
-  },
-  "128|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:39+08:00"
-  },
-  "129|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:40+08:00"
-  },
-  "130|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:42+08:00"
-  },
-  "131|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:43+08:00"
-  },
-  "132|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:45+08:00"
-  },
-  "133|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:46+08:00"
-  },
-  "134|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:48+08:00"
-  },
-  "135|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:50+08:00"
-  },
-  "136|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:52+08:00"
-  },
-  "137|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:54+08:00"
-  },
-  "138|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:55+08:00"
-  },
-  "139|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:57+08:00"
-  },
-  "140|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:48:58+08:00"
-  },
-  "141|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:00+08:00"
-  },
-  "142|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:02+08:00"
-  },
-  "143|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:03+08:00"
-  },
-  "144|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:05+08:00"
-  },
-  "145|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:06+08:00"
-  },
-  "146|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:08+08:00"
-  },
-  "147|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:09+08:00"
-  },
-  "148|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:11+08:00"
-  },
-  "149|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:13+08:00"
-  },
-  "150|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:15+08:00"
-  },
-  "151|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:16+08:00"
-  },
-  "152|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:18+08:00"
-  },
-  "153|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:19+08:00"
-  },
-  "154|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:21+08:00"
-  },
-  "155|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:23+08:00"
-  },
-  "156|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:25+08:00"
-  },
-  "157|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:26+08:00"
-  },
-  "158|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:28+08:00"
-  },
-  "159|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:29+08:00"
-  },
-  "160|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:31+08:00"
-  },
-  "161|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:32+08:00"
-  },
-  "162|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:34+08:00"
-  },
-  "163|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:35+08:00"
-  },
-  "164|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:36+08:00"
-  },
-  "165|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:38+08:00"
-  },
-  "166|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:39+08:00"
-  },
-  "167|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:41+08:00"
-  },
-  "168|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:42+08:00"
-  },
-  "169|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:44+08:00"
-  },
-  "170|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:45+08:00"
-  },
-  "171|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:47+08:00"
-  },
-  "172|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:48+08:00"
-  },
-  "173|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:50+08:00"
-  },
-  "174|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:52+08:00"
-  },
-  "175|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:53+08:00"
-  },
-  "176|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:55+08:00"
-  },
-  "177|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:57+08:00"
-  },
-  "178|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:49:58+08:00"
-  },
-  "179|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:00+08:00"
-  },
-  "180|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:02+08:00"
-  },
-  "181|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:03+08:00"
-  },
-  "182|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:05+08:00"
-  },
-  "183|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:06+08:00"
-  },
-  "184|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:08+08:00"
-  },
-  "185|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:10+08:00"
-  },
-  "186|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:12+08:00"
-  },
-  "187|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:14+08:00"
-  },
-  "188|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:15+08:00"
-  },
-  "189|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:17+08:00"
-  },
-  "190|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:18+08:00"
-  },
-  "191|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:19+08:00"
-  },
-  "192|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:21+08:00"
-  },
-  "193|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:23+08:00"
-  },
-  "194|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:24+08:00"
-  },
-  "195|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:26+08:00"
-  },
-  "196|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:29+08:00"
-  },
-  "197|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:30+08:00"
-  },
-  "198|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:31+08:00"
-  },
-  "199|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:33+08:00"
-  },
-  "200|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:35+08:00"
-  },
-  "201|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:36+08:00"
-  },
-  "202|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:38+08:00"
-  },
-  "203|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:39+08:00"
-  },
-  "204|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:41+08:00"
-  },
-  "205|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:43+08:00"
-  },
-  "206|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:44+08:00"
-  },
-  "207|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:46+08:00"
-  },
-  "208|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:48+08:00"
-  },
-  "209|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:50+08:00"
-  },
-  "210|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:52+08:00"
-  },
-  "211|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:53+08:00"
-  },
-  "212|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:55+08:00"
-  },
-  "213|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:57+08:00"
-  },
-  "214|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:50:59+08:00"
-  },
-  "215|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:01+08:00"
-  },
-  "216|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:02+08:00"
-  },
-  "217|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:04+08:00"
-  },
-  "218|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:05+08:00"
-  },
-  "219|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:07+08:00"
-  },
-  "220|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:08+08:00"
-  },
-  "221|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:10+08:00"
-  },
-  "222|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:12+08:00"
-  },
-  "223|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:13+08:00"
-  },
-  "224|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:15+08:00"
-  },
-  "225|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:17+08:00"
-  },
-  "226|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:19+08:00"
-  },
-  "227|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:20+08:00"
-  },
-  "228|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:21+08:00"
-  },
-  "229|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:23+08:00"
-  },
-  "230|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:25+08:00"
-  },
-  "231|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:26+08:00"
-  },
-  "232|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:28+08:00"
-  },
-  "233|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:29+08:00"
-  },
-  "234|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:31+08:00"
-  },
-  "235|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:32+08:00"
-  },
-  "236|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:34+08:00"
-  },
-  "237|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:36+08:00"
-  },
-  "238|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:37+08:00"
-  },
-  "239|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:39+08:00"
-  },
-  "240|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:41+08:00"
-  },
-  "241|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:42+08:00"
-  },
-  "242|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:44+08:00"
-  },
-  "243|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:46+08:00"
-  },
-  "244|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:47+08:00"
-  },
-  "245|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:49+08:00"
-  },
-  "246|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:51+08:00"
-  },
-  "247|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:54+08:00"
-  },
-  "248|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:55+08:00"
-  },
-  "249|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:57+08:00"
-  },
-  "250|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:51:58+08:00"
-  },
-  "251|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:00+08:00"
-  },
-  "252|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:01+08:00"
-  },
-  "253|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:03+08:00"
-  },
-  "254|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:05+08:00"
-  },
-  "255|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:06+08:00"
-  },
-  "256|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:08+08:00"
-  },
-  "257|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:10+08:00"
-  },
-  "258|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:11+08:00"
-  },
-  "259|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:13+08:00"
-  },
-  "260|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:14+08:00"
-  },
-  "261|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:16+08:00"
-  },
-  "262|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:17+08:00"
-  },
-  "263|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:19+08:00"
-  },
-  "264|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:20+08:00"
-  },
-  "265|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:21+08:00"
-  },
-  "266|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:23+08:00"
-  },
-  "267|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:25+08:00"
-  },
-  "268|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:26+08:00"
-  },
-  "269|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:28+08:00"
-  },
-  "270|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:29+08:00"
-  },
-  "271|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:31+08:00"
-  },
-  "272|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:32+08:00"
-  },
-  "273|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:34+08:00"
-  },
-  "274|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:35+08:00"
-  },
-  "275|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:37+08:00"
-  },
-  "276|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:39+08:00"
-  },
-  "277|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:40+08:00"
-  },
-  "278|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:42+08:00"
-  },
-  "279|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:43+08:00"
-  },
-  "280|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:44+08:00"
-  },
-  "281|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:45+08:00"
-  },
-  "282|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:47+08:00"
-  },
-  "283|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:49+08:00"
-  },
-  "284|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:51+08:00"
-  },
-  "285|": {
-    "lat": 24.163162,
-    "lng": 120.647828,
-    "precision": "OSM_ADMINISTRATIVE",
-    "matched": "臺中市",
-    "formatted": "臺中市, 臺灣",
-    "source": "nominatim",
-    "cached_at": "2026-08-26T16:52:52+08:00"
+    "formatted": "159號, 經貿路一段, 水湳經貿園區, 新平里, 北屯區, 水湳經貿園區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:10+08:00"
+  },
+  "中央公園南側 ( 河南路 ) 停車場|臺中市西屯區河南路二段與甘肅路旁空地": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:12+08:00"
+  },
+  "中央公園北側 ( 環中路 ) 停車場|臺中市西屯區環中路二段與中科路與經貿路旁空地": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:14+08:00"
+  },
+  "牛罵頭停車場|臺中市清水區中山路 231 號、光華路、中山路": {
+    "lat": 24.266945,
+    "lng": 120.57464,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "中山路",
+    "formatted": "中山路, 清水里, 清水區, 鹿寮, 臺中市, 436713, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:16+08:00"
+  },
+  "大益立體停車場|臺中市西區精誠二十三街 65 號": {
+    "lat": 24.146276,
+    "lng": 120.656582,
+    "precision": "OSM_HOUSE",
+    "approx": false,
+    "matched": "",
+    "formatted": "65號, 精誠二十三街, 公德里, 西區, 田心, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:17+08:00"
+  },
+  "天祥停車場|臺中市北屯區天祥街、北屯路 50 巷": {
+    "lat": 24.160963,
+    "lng": 120.696569,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "天祥街",
+    "formatted": "天祥街, 錦洲里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:17+08:00"
+  },
+  "健行停車場|臺中市北區梅亭街、華中街": {
+    "lat": 24.160087,
+    "lng": 120.664789,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "梅亭街",
+    "formatted": "梅亭街, 健行里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:18+08:00"
+  },
+  "惠來立體停車場|臺中市西屯區惠來路二段 1 號": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:20+08:00"
+  },
+  "南京立體停車場|臺中市東區南京路 72 號": {
+    "lat": 24.140426,
+    "lng": 120.690614,
+    "precision": "OSM_HOUSE",
+    "approx": false,
+    "matched": "",
+    "formatted": "72號, 南京路, 干城里, 東區, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:23+08:00"
+  },
+  "干城立體停車場|臺中市東區民龍里自由路三段 50 號": {
+    "lat": 24.136625,
+    "lng": 120.703854,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "東區",
+    "formatted": "東區, 長億里, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:27+08:00"
+  },
+  "精武東停車場|臺中市東區三賢街與東英十七街口旁空地": {
+    "lat": 24.136625,
+    "lng": 120.703854,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "東區",
+    "formatted": "東區, 長億里, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:28+08:00"
+  },
+  "國資圖停車場|臺中市南區復興路三段、復興園路": {
+    "lat": 24.130228,
+    "lng": 120.672821,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "復興路三段",
+    "formatted": "復興路三段, 新榮里, 南區, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:29+08:00"
+  },
+  "大慶停車場|臺中市南區文心南路、建國北路一段交叉口": {
+    "lat": 24.110141,
+    "lng": 120.660482,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "文心南路",
+    "formatted": "文心南路, 樹義里, 南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:30+08:00"
+  },
+  "崇倫公園附設停車場|臺中市南區南屯路上 ( 近忠明南路 )": {
+    "lat": 24.117079,
+    "lng": 120.663608,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南區",
+    "formatted": "南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:32+08:00"
+  },
+  "舊建國市場臨時停車場|臺中市東區建國路、八德街": {
+    "lat": 24.138625,
+    "lng": 120.685912,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "建國路",
+    "formatted": "建國路, 綠川里, 中區, 臺中市, 400005, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:32+08:00"
+  },
+  "惠順停車場|臺中市西屯區市政北六路、河南路三段": {
+    "lat": 24.164148,
+    "lng": 120.640594,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "市政北六路",
+    "formatted": "市政北六路, 惠來里, 西屯區, 臺中七期, 臺中市, 407613, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:33+08:00"
+  },
+  "崇倫北街 19 巷停車場|臺中市南區崇倫北街與崇倫北街 19 巷交叉口": {
+    "lat": 24.117079,
+    "lng": 120.663608,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南區",
+    "formatted": "南區, 樹王, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:38+08:00"
+  },
+  "朝馬停車場|臺中市西屯區上安路、青海南街 ( 上安北街對面 )": {
+    "lat": 24.172042,
+    "lng": 120.638906,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "上安路",
+    "formatted": "上安路, 至善里, 西屯區, 臺中七期, 臺中市, 407162, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:38+08:00"
+  },
+  "協和停車場|臺中市西屯區安和二街、安和西路、福玄路": {
+    "lat": 24.176591,
+    "lng": 120.621783,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "安和二街",
+    "formatted": "安和二街, 協和里, 西屯區, 臺中七期, 臺中市, 407017, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:39+08:00"
+  },
+  "福順停車場|臺中市西屯區福順路、福裕路": {
+    "lat": 24.180359,
+    "lng": 120.626402,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "福順路",
+    "formatted": "福順路, 福安里, 西屯區, 臺中七期, 臺中市, 40765, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:40+08:00"
+  },
+  "朝富停車場|臺中市西屯區市政北六路、河南路三段": {
+    "lat": 24.164148,
+    "lng": 120.640594,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "市政北六路",
+    "formatted": "市政北六路, 惠來里, 西屯區, 臺中七期, 臺中市, 407613, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:40+08:00"
+  },
+  "中德停車場|臺中市北區太原四街、太原八街": {
+    "lat": 24.165997,
+    "lng": 120.669221,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "太原四街",
+    "formatted": "太原四街, 明德里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:41+08:00"
+  },
+  "金龍停車場|臺中市北區三民路與崇德路交叉口": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:43+08:00"
+  },
+  "信心停車場|臺中市東區東英一街、一心街": {
+    "lat": 24.134118,
+    "lng": 120.703122,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "東英一街",
+    "formatted": "東英一街, 東信里, 東區, 長億里, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:43+08:00"
+  },
+  "平和停車場|臺中市西區柳川西路二段 ( 面對停車場左手邊 )": {
+    "lat": 24.14138,
+    "lng": 120.67104,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西區",
+    "formatted": "西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:46+08:00"
+  },
+  "貴和停車場|臺中市西區貴和街、大全街": {
+    "lat": 24.136411,
+    "lng": 120.670513,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "貴和街",
+    "formatted": "貴和街, 東昇里, 西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:47+08:00"
+  },
+  "廣民停車場|臺中市西區四維街、大明街 ( 面對停車場左手邊 )": {
+    "lat": 24.14138,
+    "lng": 120.67104,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西區",
+    "formatted": "西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:49+08:00"
+  },
+  "吉龍停車場|臺中市西區美村路與南屯路交叉路口": {
+    "lat": 24.14138,
+    "lng": 120.67104,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西區",
+    "formatted": "西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:51+08:00"
+  },
+  "黎明停車場|臺中市南屯區干城街、懷德街": {
+    "lat": 24.152252,
+    "lng": 120.629494,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "干城街",
+    "formatted": "干城街, 黎明新村, 黎明里, 南屯區, 臺中七期, 臺中市, 40849, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:51+08:00"
+  },
+  "春安停車場|臺中市南屯區建功路、春安三街": {
+    "lat": 24.136772,
+    "lng": 120.608649,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "建功路",
+    "formatted": "建功路, 春社里, 南屯區, 臺中市, 40851, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:52+08:00"
+  },
+  "馬祖停車場|臺中市南屯區忠勇路 19 巷 ( 彩虹眷村旁 )": {
+    "lat": 24.144473,
+    "lng": 120.61471,
+    "precision": "OSM_SECONDARY",
+    "approx": false,
+    "matched": "忠勇路",
+    "formatted": "忠勇路, 文山里, 南屯區, 臺中市, 408220, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:55+08:00"
+  },
+  "大墩停車場|臺中市西屯區大容東街": {
+    "lat": 24.159774,
+    "lng": 120.650804,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "大容東街",
+    "formatted": "大容東街, 何成里, 西屯區, 臺中七期, 臺中市, 407058, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:56+08:00"
+  },
+  "福恩停車場|臺中市西屯區工業區一路 2 巷與工業區一路": {
+    "lat": 24.174717,
+    "lng": 120.601509,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "工業區一路",
+    "formatted": "工業區一路, 臺中產業園區, 協和里, 西屯區, 蔗廍, 臺中市, 407020, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:58+08:00"
+  },
+  "福安停車場|臺中市西屯區福科路、福順路 476 巷": {
+    "lat": 24.186066,
+    "lng": 120.616108,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "福科路",
+    "formatted": "福科路, 福林里, 西屯區, 臺中市, 407006, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:58+08:00"
+  },
+  "何厝停車場|臺中市西屯區四川路、四川路 120 巷": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:03:59+08:00"
+  },
+  "太原停車場|臺中市西屯區太原路一段、忠義街": {
+    "lat": 24.160226,
+    "lng": 120.659173,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "太原路一段",
+    "formatted": "太原路一段, 忠誠里, 西區, 臺中七期, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:00+08:00"
+  },
+  "秋紅谷停車場|臺中市西屯區臺灣大道三段與河南路三段交叉口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:03+08:00"
+  },
+  "惠中停車場 (A 區 )|臺中市西屯區惠中路和文中路交叉口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:05+08:00"
+  },
+  "惠中停車場 (B 區 )|臺中市西屯區惠中路和文中路交叉口": {
+    "lat": 24.165303,
+    "lng": 120.633655,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "西屯區",
+    "formatted": "西屯區, 臺中七期, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:06+08:00"
+  },
+  "大里運動公園地下停車場|臺中市大里區勝利二路 1 號 B1 、 B2": {
+    "lat": 24.099417,
+    "lng": 120.67786,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "大里區",
+    "formatted": "大里區, 田寮, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:09+08:00"
+  },
+  "天津停車場|臺中市北屯區天津路、文昌東三街交叉路口": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:11+08:00"
+  },
+  "山西停車場|臺中市北區北平路與山西路交叉路口": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:13+08:00"
+  },
+  "松竹停車場|臺中市北屯區梅川東路五段、崇德六路": {
+    "lat": 24.182309,
+    "lng": 120.682109,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "梅川東路五段",
+    "formatted": "梅川東路五段, 仁和里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:13+08:00"
+  },
+  "仁德停車場|臺中市北屯區崇德十二路、昌平東二交叉路口": {
+    "lat": 24.190541,
+    "lng": 120.691305,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "崇德十二路",
+    "formatted": "崇德十二路, 仁美里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:14+08:00"
+  },
+  "豐功停車場|臺中市南屯區向心南路與永春東路交叉路口": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:16+08:00"
+  },
+  "豐樂停車場|臺中市南屯區向心南路與文心南七路交叉路口": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:17+08:00"
+  },
+  "正心立體停車場|臺中市南屯區向心里 1 鄰文心南二路 88 號": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:20+08:00"
+  },
+  "豐原區社會住宅預定地臨時停車場|臺中市豐原區東仁街、豐勢路一段 147 巷、豐勢路一段": {
+    "lat": 24.257477,
+    "lng": 120.725894,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "東仁街",
+    "formatted": "東仁街, 翁明里, 豐原區, 臺中市, 420785, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:21+08:00"
+  },
+  "東榮立體停車場|臺中市大里區東榮路一段與新光路口": {
+    "lat": 24.099417,
+    "lng": 120.67786,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "大里區",
+    "formatted": "大里區, 田寮, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:24+08:00"
+  },
+  "雙十國中地下停車場|臺中市北區力行路 258 號（進德北路側）": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:27+08:00"
+  },
+  "福音停車場|臺中市北區精武路（近大誠街）": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:29+08:00"
+  },
+  "大湖停車場|臺中市北區精武路（近中華路二段）": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:32+08:00"
+  },
+  "永興停車場|臺中市北區太原路二段（近太原路二段 222 巷及永興街）": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:36+08:00"
+  },
+  "長富停車場|臺中市北屯區松竹路一段與長富街路口旁土地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:39+08:00"
+  },
+  "南興停車場|臺中市北屯區旱溪西路三段與軍福十九路口旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:40+08:00"
+  },
+  "竹興停車場|臺中市北屯區松竹五路一段與竹興街路口旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:42+08:00"
+  },
+  "同榮停車場|臺中市北屯區新興路 185 巷與更生巷 45 弄與同榮路 372 巷路口旁空地": {
+    "lat": 24.197927,
+    "lng": 120.665179,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "新興路",
+    "formatted": "新興路, 同榮里, 北屯區, 水湳經貿園區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:46+08:00"
+  },
+  "民俗公園地下停車場|臺中市北屯區旅順路二段、熱河路二段路口": {
+    "lat": 24.173509,
+    "lng": 120.695372,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "旅順路二段",
+    "formatted": "旅順路二段, 平田里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:46+08:00"
+  },
+  "祥和停車場|臺中市北屯區太原路三段與建和路一段路口旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:48+08:00"
+  },
+  "太和停車場|臺中市北屯區太和路二段與太和一街路口旁空地": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:50+08:00"
+  },
+  "東欣停車場|臺中市北區柳川西路、五義街": {
+    "lat": 24.166039,
+    "lng": 120.682318,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北區",
+    "formatted": "北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:55+08:00"
+  },
+  "新興停車場|臺中市北區精武路、一中街": {
+    "lat": 24.147276,
+    "lng": 120.690641,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "精武路",
+    "formatted": "精武路, 新興里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:56+08:00"
+  },
+  "育樂停車場|臺中市北區雙十路、育樂街口": {
+    "lat": 24.157112,
+    "lng": 120.690352,
+    "precision": "OSM_POST_OFFICE",
+    "approx": false,
+    "matched": "臺中雙十路郵局",
+    "formatted": "臺中雙十路郵局, 119, 雙十路二段, 金華里, 北區, 臺中市, 404726, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:56+08:00"
+  },
+  "育強停車場|臺中市北區育強街、育樂街口": {
+    "lat": 24.159341,
+    "lng": 120.692652,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "育強街",
+    "formatted": "育強街, 錦祥里, 北區, 臺中市, 404, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:57+08:00"
+  },
+  "藍興停車場|臺中市西區大全街、大新街": {
+    "lat": 24.134924,
+    "lng": 120.66998,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "大全街",
+    "formatted": "大全街, 東昇里, 西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:58+08:00"
+  },
+  "中興網球場附設停車場|臺中市北屯區瀋陽路、山西路": {
+    "lat": 24.178553,
+    "lng": 120.674418,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "瀋陽北路",
+    "formatted": "瀋陽北路, 水湳里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:04:59+08:00"
+  },
+  "昌和公園附設停車場|臺中市北屯區昌平路二段 ( 近梅川北街 )": {
+    "lat": 24.182264,
+    "lng": 120.686288,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "北屯區",
+    "formatted": "北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:01+08:00"
+  },
+  "銀聯三村停車場|臺中市西屯區何安二巷、甘州六街": {
+    "lat": 24.166379,
+    "lng": 120.657376,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "何安二巷",
+    "formatted": "何安二巷, 何德里, 西屯區, 臺中七期, 臺中市, 407051, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:01+08:00"
+  },
+  "國豐停車場|臺中市西屯區國安一路、國安二路": {
+    "lat": 24.191085,
+    "lng": 120.613575,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "國安一路",
+    "formatted": "國安一路, 永安里, 西屯區, 臺中市, 407708, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:02+08:00"
+  },
+  "細停二停車場|臺中市西屯區西屯路二段、西屯路二段 208 巷": {
+    "lat": 24.16539,
+    "lng": 120.656355,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "西屯路二段",
+    "formatted": "西屯路二段, 何安里, 西屯區, 臺中七期, 臺中市, 407051, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:03+08:00"
+  },
+  "下石碑停車場|臺中市西屯區順平路、中平路": {
+    "lat": 24.177197,
+    "lng": 120.663158,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "順平路",
+    "formatted": "順平路, 大石里, 西屯區, 水湳經貿園區, 臺中市, 407046, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:03+08:00"
+  },
+  "三賢停車場|臺中市東區十甲路、東英十一街": {
+    "lat": 24.136625,
+    "lng": 120.703854,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "東區",
+    "formatted": "東區, 長億里, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:05+08:00"
+  },
+  "旱溪停車場|臺中市東區旱溪街、臺 74 線": {
+    "lat": 24.140395,
+    "lng": 120.70396,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "旱溪街",
+    "formatted": "旱溪街, 十甲里, 東區, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:06+08:00"
+  },
+  "三光停車場|臺中市北屯區北屯路、北平路四段口": {
+    "lat": 24.171731,
+    "lng": 120.698415,
+    "precision": "OSM_PRIMARY",
+    "approx": false,
+    "matched": "北屯路",
+    "formatted": "北屯路, 東光里, 北屯區, 臺中市, 406, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:07+08:00"
+  },
+  "自立停車場|臺中市西區自立街、自立街 25 巷": {
+    "lat": 24.141398,
+    "lng": 120.669592,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "自立街",
+    "formatted": "自立街, 公民里, 西區, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:08+08:00"
+  },
+  "忠孝停車場|臺中市東區忠孝路、信義街 218 巷": {
+    "lat": 24.129002,
+    "lng": 120.680545,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "忠孝路",
+    "formatted": "忠孝路, 城隍里, 南區, 臺中市, 402, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:09+08:00"
+  },
+  "忠明公園地下停車場|臺中市西區中美街、美村路一段 52 巷": {
+    "lat": 24.154784,
+    "lng": 120.660912,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "中美街",
+    "formatted": "中美街, 忠明里, 西區, 田心, 臺中市, 403, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-08-26T17:05:09+08:00"
   }
 }

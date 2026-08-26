@@ -2,2296 +2,2280 @@
   "source_url": "https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule",
   "source_title": "臺中市停車管理處開通停車場時程表",
   "page_updated": "2026-08-17",
-  "scraped_at": "2026-08-26T16:45:16+08:00",
-  "count": 286,
+  "scraped_at": "2026-08-26T17:01:46+08:00",
+  "count": 284,
   "items": [
     {
-      "seq": "",
-      "name": "序號",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "1",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "2",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "3",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "4",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "5",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "6",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "7",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "8",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "9",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "10",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "11",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "12",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "1",
+      "name": "陽明大樓地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區陽明街、陽明街 66 巷",
+      "district": "豐原區",
+      "address": "臺中市豐原區陽明街"
+    },
+    {
+      "seq": "2",
+      "name": "臺灣大道市政大樓附屬地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區臺灣大道、文心路、惠中路",
+      "district": "西屯區",
+      "address": "臺中市西屯區臺灣大道"
+    },
+    {
+      "seq": "3",
+      "name": "大誠立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市中區臺灣大道一段、大誠街口",
+      "district": "中區",
+      "address": "臺中市中區臺灣大道一段"
+    },
+    {
+      "seq": "4",
+      "name": "漢口立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區寧夏路 80 號",
+      "district": "西屯區",
+      "address": "臺中市西屯區寧夏路 80 號"
+    },
+    {
+      "seq": "5",
+      "name": "敦化停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區中平路與敦化路二段旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區中平路與敦化路二段旁空地"
+    },
+    {
+      "seq": "6",
+      "name": "中平停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區中平路與敦化路二段旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區中平路與敦化路二段旁空地"
+    },
+    {
+      "seq": "7",
+      "name": "新平停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區敦化路二段與敦平街口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區敦化路二段與敦平街口旁空地"
+    },
+    {
+      "seq": "8",
+      "name": "景賢停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區太祥路與景賢路旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區太祥路與景賢路旁空地"
+    },
+    {
+      "seq": "9",
+      "name": "江興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區江興街與國豐街旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區江興街與國豐街旁空地"
+    },
+    {
+      "seq": "10",
+      "name": "十甲停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區二聖街與東英八街口旁空地",
+      "district": "東區",
+      "address": "臺中市東區二聖街與東英八街口旁空地"
+    },
+    {
+      "seq": "11",
+      "name": "新平公園附屬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區中平路近敦化路二段旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區中平路近敦化路二段旁空地"
+    },
+    {
+      "seq": "12",
+      "name": "樹德停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區復興北路、德吉街、德富路 120 巷",
+      "district": "南區",
+      "address": "臺中市南區復興北路"
+    },
+    {
+      "seq": "13",
+      "name": "德義停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區有恆街、有恆街 139 巷",
+      "district": "南區",
+      "address": "臺中市南區有恆街"
     },
     {
-      "seq": "",
-      "name": "13",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "14",
+      "name": "城隍停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區建成路 ( 近仁和路 121 巷 )",
+      "district": "南區",
+      "address": "臺中市南區建成路 ( 近仁和路 121 巷 )"
     },
     {
-      "seq": "",
-      "name": "14",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "15",
+      "name": "復興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區國光路與復興路口旁空地",
+      "district": "南區",
+      "address": "臺中市南區國光路與復興路口旁空地"
     },
     {
-      "seq": "",
-      "name": "15",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "16",
+      "name": "健康公園附設停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區五權南路、美村南路",
+      "district": "南區",
+      "address": "臺中市南區五權南路"
     },
     {
-      "seq": "",
-      "name": "16",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "17",
+      "name": "大明路中興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區大明路 154 號旁空地",
+      "district": "豐原區",
+      "address": "臺中市豐原區大明路 154 號旁空地"
     },
     {
-      "seq": "",
-      "name": "17",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "18",
+      "name": "馬龍潭停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區馬龍潭路與龍富路 5 段旁空地",
+      "district": "西屯區",
+      "address": "臺中市西屯區馬龍潭路與龍富路 5 段旁空地"
     },
     {
-      "seq": "",
-      "name": "18",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "19",
+      "name": "精科停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區精科八路 7 號旁空地",
+      "district": "南屯區",
+      "address": "臺中市南屯區精科八路 7 號旁空地"
     },
     {
-      "seq": "",
-      "name": "19",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "20",
+      "name": "雙龍停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區模範街 40 巷 4 號對面空地",
+      "district": "西區",
+      "address": "臺中市西區模範街 40 巷 4 號對面空地"
     },
     {
-      "seq": "",
-      "name": "20",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "21",
+      "name": "民龍停車場",
+      "access": "無柵欄，智慧柱管理",
+      "location": "臺中市西區民權路、博館二街",
+      "district": "西區",
+      "address": "臺中市西區民權路"
     },
     {
-      "seq": "",
-      "name": "21",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "22",
+      "name": "金華停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區興進路、雙十路 ( 育仁國小附近 )",
+      "district": "北區",
+      "address": "臺中市北區興進路"
     },
     {
-      "seq": "",
-      "name": "22",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "23",
+      "name": "美村停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區美村路、存中街口",
+      "district": "西區",
+      "address": "臺中市西區美村路"
     },
     {
-      "seq": "",
-      "name": "23",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "24",
+      "name": "土庫停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區忠明南路、存中街、華美街口",
+      "district": "西區",
+      "address": "臺中市西區忠明南路"
     },
     {
-      "seq": "",
-      "name": "24",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "25",
+      "name": "惠文停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區惠文路、向上路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區惠文路"
     },
     {
-      "seq": "",
-      "name": "25",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "26",
+      "name": "大新停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區大業里大墩十二街口",
+      "district": "南屯區",
+      "address": "臺中市南屯區大業里大墩十二街"
     },
     {
-      "seq": "",
-      "name": "26",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "27",
+      "name": "南屯停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區何源里河南路河南東一街口",
+      "district": "西屯區",
+      "address": "臺中市西屯區何源里河南路河南東一街"
     },
     {
-      "seq": "",
-      "name": "27",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "28",
+      "name": "河南停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區重慶路、河南路口",
+      "district": "西屯區",
+      "address": "臺中市西屯區重慶路"
     },
     {
-      "seq": "",
-      "name": "28",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "29",
+      "name": "忠義停車場",
+      "access": "APS 操作，車辨柱辨識",
+      "location": "臺中市西屯區重慶路、甘肅路口",
+      "district": "西屯區",
+      "address": "臺中市西屯區重慶路"
     },
     {
-      "seq": "",
-      "name": "29",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "30",
+      "name": "同心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區福科路、黎明路三段交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區福科路"
     },
     {
-      "seq": "",
-      "name": "30",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "31",
+      "name": "上安停車場",
+      "access": "APS 操作，車辨柱辨識 -",
+      "location": "臺中市西屯區上安路 103 號旁邊",
+      "district": "西屯區",
+      "address": "臺中市西屯區上安路 103 號旁邊"
     },
     {
-      "seq": "",
-      "name": "31",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "32",
+      "name": "弘孝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區弘孝路 229 號邊與河南路二段 301 巷交叉路口",
+      "district": "西屯區",
+      "address": "臺中市西屯區弘孝路 229 號邊與河南路二段 301 巷交叉路"
     },
     {
-      "seq": "",
-      "name": "32",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "33",
+      "name": "櫻花停車場",
+      "access": "APS 操作，車辨柱辨識",
+      "location": "臺中市西屯區櫻花路與西屯路 208 巷交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區櫻花路與西屯路 208 巷交叉"
     },
     {
-      "seq": "",
-      "name": "33",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "34",
+      "name": "大鵬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區中清西二街 92 巷、中清西二街口",
+      "district": "西屯區",
+      "address": "臺中市西屯區中清西二街 92 巷"
     },
     {
-      "seq": "",
-      "name": "34",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "35",
+      "name": "東興立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區東興路 3 段 332 號",
+      "district": "西屯區",
+      "address": "臺中市西屯區東興路 3 段 332 號"
     },
     {
-      "seq": "",
-      "name": "35",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "36",
+      "name": "軍福停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區軍福十八路、松竹三路",
+      "district": "北屯區",
+      "address": "臺中市北屯區軍福十八路"
     },
     {
-      "seq": "",
-      "name": "36",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "37",
+      "name": "軍功停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區松竹路一段、軍功路",
+      "district": "北屯區",
+      "address": "臺中市北屯區松竹路一段"
     },
     {
-      "seq": "",
-      "name": "37",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "38",
+      "name": "松榮停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區松竹路、松竹二路",
+      "district": "北屯區",
+      "address": "臺中市北屯區松竹路"
     },
     {
-      "seq": "",
-      "name": "38",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "39",
+      "name": "雷中停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區雷中街 47 巷、雷中街 59 巷 7 弄",
+      "district": "北屯區",
+      "address": "臺中市北屯區雷中街 47 巷"
     },
     {
-      "seq": "",
-      "name": "39",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "40",
+      "name": "健康公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區忠明南路、美村南路",
+      "district": "南區",
+      "address": "臺中市南區忠明南路"
     },
     {
-      "seq": "",
-      "name": "40",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "41",
+      "name": "水安宮地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區溝墘里 14 鄰文心路一段 517 號",
+      "district": "南屯區",
+      "address": "臺中市南屯區溝墘里 14 鄰文心路一段 517 號"
     },
     {
-      "seq": "",
-      "name": "41",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "42",
+      "name": "坪林森林公園附設停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區中山路二段 ( 國軍臺中總醫院對面 )",
+      "district": "太平區",
+      "address": "臺中市太平區中山路二段 ( 國軍臺中總醫院對面 )"
     },
     {
-      "seq": "",
-      "name": "42",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "43",
+      "name": "大進停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區大墩路和大墩五街交叉路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區大墩路和大墩五街交叉路"
     },
     {
-      "seq": "",
-      "name": "43",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "44",
+      "name": "光明停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區林森路、自由路",
+      "district": "西區",
+      "address": "臺中市西區林森路"
     },
     {
-      "seq": "",
-      "name": "44",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "45",
+      "name": "水湳中央公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區經貿路一段 159 號",
+      "district": "北屯區",
+      "address": "臺中市北屯區經貿路一段 159 號"
     },
     {
-      "seq": "",
-      "name": "45",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "46",
+      "name": "中央公園南側 ( 河南路 ) 停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區河南路二段與甘肅路旁空地",
+      "district": "西屯區",
+      "address": "臺中市西屯區河南路二段與甘肅路旁空地"
     },
     {
-      "seq": "",
-      "name": "46",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "47",
+      "name": "中央公園北側 ( 環中路 ) 停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區環中路二段與中科路與經貿路旁空地",
+      "district": "西屯區",
+      "address": "臺中市西屯區環中路二段與中科路與經貿路旁空地"
     },
     {
-      "seq": "",
-      "name": "47",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "48",
+      "name": "牛罵頭停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區中山路 231 號、光華路、中山路",
+      "district": "清水區",
+      "address": "臺中市清水區中山路 231 號"
     },
     {
-      "seq": "",
-      "name": "48",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "49",
+      "name": "大益立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區精誠二十三街 65 號",
+      "district": "西區",
+      "address": "臺中市西區精誠二十三街 65 號"
     },
     {
-      "seq": "",
-      "name": "49",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "50",
+      "name": "天祥停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區天祥街、北屯路 50 巷",
+      "district": "北屯區",
+      "address": "臺中市北屯區天祥街"
     },
     {
-      "seq": "",
-      "name": "50",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "51",
+      "name": "健行停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區梅亭街、華中街",
+      "district": "北區",
+      "address": "臺中市北區梅亭街"
     },
     {
-      "seq": "",
-      "name": "51",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "52",
+      "name": "惠來立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區惠來路二段 1 號",
+      "district": "西屯區",
+      "address": "臺中市西屯區惠來路二段 1 號"
     },
     {
-      "seq": "",
-      "name": "52",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "53",
+      "name": "南京立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區南京路 72 號",
+      "district": "東區",
+      "address": "臺中市東區南京路 72 號"
     },
     {
-      "seq": "",
-      "name": "53",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "54",
+      "name": "干城立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區民龍里自由路三段 50 號",
+      "district": "東區",
+      "address": "臺中市東區民龍里自由路三段 50 號"
     },
     {
-      "seq": "",
-      "name": "54",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "55",
+      "name": "精武東停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區三賢街與東英十七街口旁空地",
+      "district": "東區",
+      "address": "臺中市東區三賢街與東英十七街口旁空地"
     },
     {
-      "seq": "",
-      "name": "55",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "56",
+      "name": "國資圖停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區復興路三段、復興園路",
+      "district": "南區",
+      "address": "臺中市南區復興路三段"
     },
     {
-      "seq": "",
-      "name": "56",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "57",
+      "name": "大慶停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區文心南路、建國北路一段交叉口",
+      "district": "南區",
+      "address": "臺中市南區文心南路"
     },
     {
-      "seq": "",
-      "name": "57",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "58",
+      "name": "崇倫公園附設停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區南屯路上 ( 近忠明南路 )",
+      "district": "南區",
+      "address": "臺中市南區南屯路上 ( 近忠明南路 )"
     },
     {
-      "seq": "",
-      "name": "58",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "59",
+      "name": "舊建國市場臨時停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區建國路、八德街",
+      "district": "東區",
+      "address": "臺中市東區建國路"
     },
     {
-      "seq": "",
-      "name": "59",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "60",
+      "name": "惠順停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區市政北六路、河南路三段",
+      "district": "西屯區",
+      "address": "臺中市西屯區市政北六路"
     },
     {
-      "seq": "",
-      "name": "60",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "61",
+      "name": "崇倫北街 19 巷停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區崇倫北街與崇倫北街 19 巷交叉口",
+      "district": "南區",
+      "address": "臺中市南區崇倫北街與崇倫北街 19 巷交叉"
     },
     {
-      "seq": "",
-      "name": "61",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "62",
+      "name": "朝馬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區上安路、青海南街 ( 上安北街對面 )",
+      "district": "西屯區",
+      "address": "臺中市西屯區上安路"
     },
     {
-      "seq": "",
-      "name": "62",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "63",
+      "name": "協和停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區安和二街、安和西路、福玄路",
+      "district": "西屯區",
+      "address": "臺中市西屯區安和二街"
     },
     {
-      "seq": "",
-      "name": "63",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "64",
+      "name": "福順停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區福順路、福裕路",
+      "district": "西屯區",
+      "address": "臺中市西屯區福順路"
     },
     {
-      "seq": "",
-      "name": "64",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "65",
+      "name": "朝富停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區市政北六路、河南路三段",
+      "district": "西屯區",
+      "address": "臺中市西屯區市政北六路"
     },
     {
-      "seq": "",
-      "name": "65",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "66",
+      "name": "中德停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區太原四街、太原八街",
+      "district": "北區",
+      "address": "臺中市北區太原四街"
     },
     {
-      "seq": "",
-      "name": "66",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "67",
+      "name": "金龍停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區三民路與崇德路交叉口",
+      "district": "北區",
+      "address": "臺中市北區三民路與崇德路交叉"
     },
     {
-      "seq": "",
-      "name": "67",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "68",
+      "name": "信心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區東英一街、一心街",
+      "district": "東區",
+      "address": "臺中市東區東英一街"
     },
     {
-      "seq": "",
-      "name": "68",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "69",
+      "name": "平和停車場",
+      "access": "APS 操作，車辨柱辨識 - 不收費",
+      "location": "臺中市西區柳川西路二段 ( 面對停車場左手邊 )",
+      "district": "西區",
+      "address": "臺中市西區柳川西路二段 ( 面對停車場左手邊 )"
     },
     {
-      "seq": "",
-      "name": "69",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "70",
+      "name": "貴和停車場",
+      "access": "APS 操作，車辨柱辨識 - 不收費",
+      "location": "臺中市西區貴和街、大全街",
+      "district": "西區",
+      "address": "臺中市西區貴和街"
     },
     {
-      "seq": "",
-      "name": "70",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "71",
+      "name": "廣民停車場",
+      "access": "APS 操作，車辨柱辨識 - 不收費",
+      "location": "臺中市西區四維街、大明街 ( 面對停車場左手邊 )",
+      "district": "西區",
+      "address": "臺中市西區四維街"
     },
     {
-      "seq": "",
-      "name": "71",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "72",
+      "name": "吉龍停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區美村路與南屯路交叉路口",
+      "district": "西區",
+      "address": "臺中市西區美村路與南屯路交叉路"
     },
     {
-      "seq": "",
-      "name": "72",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "73",
+      "name": "黎明停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區干城街、懷德街",
+      "district": "南屯區",
+      "address": "臺中市南屯區干城街"
     },
     {
-      "seq": "",
-      "name": "73",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "74",
+      "name": "春安停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區建功路、春安三街",
+      "district": "南屯區",
+      "address": "臺中市南屯區建功路"
     },
     {
-      "seq": "",
-      "name": "74",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "75",
+      "name": "馬祖停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區忠勇路 19 巷 ( 彩虹眷村旁 )",
+      "district": "南屯區",
+      "address": "臺中市南屯區忠勇路 19 巷 ( 彩虹眷村旁 )"
     },
     {
-      "seq": "",
-      "name": "75",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "76",
+      "name": "大墩停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區大容東街",
+      "district": "西屯區",
+      "address": "臺中市西屯區大容東街"
     },
     {
-      "seq": "",
-      "name": "76",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "77",
+      "name": "福恩停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區工業區一路 2 巷與工業區一路",
+      "district": "西屯區",
+      "address": "臺中市西屯區工業區一路 2 巷與工業區一路"
     },
     {
-      "seq": "",
-      "name": "77",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "78",
+      "name": "福安停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區福科路、福順路 476 巷",
+      "district": "西屯區",
+      "address": "臺中市西屯區福科路"
     },
     {
-      "seq": "",
-      "name": "78",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "79",
+      "name": "何厝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區四川路、四川路 120 巷",
+      "district": "西屯區",
+      "address": "臺中市西屯區四川路"
     },
     {
-      "seq": "",
-      "name": "79",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "80",
+      "name": "太原停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區太原路一段、忠義街",
+      "district": "西屯區",
+      "address": "臺中市西屯區太原路一段"
     },
     {
-      "seq": "",
-      "name": "80",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "81",
+      "name": "秋紅谷停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區臺灣大道三段與河南路三段交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區臺灣大道三段與河南路三段交叉"
     },
     {
-      "seq": "",
-      "name": "81",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "82",
+      "name": "惠中停車場 (A 區 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區惠中路和文中路交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區惠中路和文中路交叉"
     },
     {
-      "seq": "",
-      "name": "82",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "83",
+      "name": "惠中停車場 (B 區 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區惠中路和文中路交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區惠中路和文中路交叉"
     },
     {
-      "seq": "",
-      "name": "83",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "84",
+      "name": "大里運動公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大里區勝利二路 1 號 B1 、 B2",
+      "district": "大里區",
+      "address": "臺中市大里區勝利二路 1 號 B1"
     },
     {
-      "seq": "",
-      "name": "84",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "85",
+      "name": "天津停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區天津路、文昌東三街交叉路口",
+      "district": "北屯區",
+      "address": "臺中市北屯區天津路"
     },
     {
-      "seq": "",
-      "name": "85",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "86",
+      "name": "山西停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區北平路與山西路交叉路口",
+      "district": "北區",
+      "address": "臺中市北區北平路與山西路交叉路"
     },
     {
-      "seq": "",
-      "name": "86",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "87",
+      "name": "松竹停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區梅川東路五段、崇德六路",
+      "district": "北屯區",
+      "address": "臺中市北屯區梅川東路五段"
     },
     {
-      "seq": "",
-      "name": "87",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "88",
+      "name": "仁德停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區崇德十二路、昌平東二交叉路口",
+      "district": "北屯區",
+      "address": "臺中市北屯區崇德十二路"
     },
     {
-      "seq": "",
-      "name": "88",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "89",
+      "name": "豐功停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區向心南路與永春東路交叉路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區向心南路與永春東路交叉路"
     },
     {
-      "seq": "",
-      "name": "89",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "90",
+      "name": "豐樂停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區向心南路與文心南七路交叉路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區向心南路與文心南七路交叉路"
     },
     {
-      "seq": "",
-      "name": "90",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "91",
+      "name": "正心立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區向心里 1 鄰文心南二路 88 號",
+      "district": "南屯區",
+      "address": "臺中市南屯區向心里 1 鄰文心南二路 88 號"
     },
     {
-      "seq": "",
-      "name": "91",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "92",
+      "name": "豐原區社會住宅預定地臨時停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區東仁街、豐勢路一段 147 巷、豐勢路一段",
+      "district": "豐原區",
+      "address": "臺中市豐原區東仁街"
     },
     {
-      "seq": "",
-      "name": "92",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "93",
+      "name": "東榮立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大里區東榮路一段與新光路口",
+      "district": "大里區",
+      "address": "臺中市大里區東榮路一段與新光路"
     },
     {
-      "seq": "",
-      "name": "93",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "94",
+      "name": "雙十國中地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區力行路 258 號（進德北路側）",
+      "district": "北區",
+      "address": "臺中市北區力行路 258 號（進德北路側）"
     },
     {
-      "seq": "",
-      "name": "94",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "95",
+      "name": "福音停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區精武路（近大誠街）",
+      "district": "北區",
+      "address": "臺中市北區精武路（近大誠街）"
     },
     {
-      "seq": "",
-      "name": "95",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "96",
+      "name": "大湖停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區精武路（近中華路二段）",
+      "district": "北區",
+      "address": "臺中市北區精武路（近中華路二段）"
     },
     {
-      "seq": "",
-      "name": "96",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "97",
+      "name": "永興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區太原路二段（近太原路二段 222 巷及永興街）",
+      "district": "北區",
+      "address": "臺中市北區太原路二段（近太原路二段 222 巷及永興街）"
     },
     {
-      "seq": "",
-      "name": "97",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "98",
+      "name": "長富停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區松竹路一段與長富街路口旁土地",
+      "district": "北屯區",
+      "address": "臺中市北屯區松竹路一段與長富街路口旁土地"
     },
     {
-      "seq": "",
-      "name": "98",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "99",
+      "name": "南興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區旱溪西路三段與軍福十九路口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區旱溪西路三段與軍福十九路口旁空地"
     },
     {
-      "seq": "",
-      "name": "99",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "100",
+      "name": "竹興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區松竹五路一段與竹興街路口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區松竹五路一段與竹興街路口旁空地"
     },
     {
-      "seq": "",
-      "name": "100",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "101",
+      "name": "同榮停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區新興路 185 巷與更生巷 45 弄與同榮路 372 巷路口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區新興路 185 巷與更生巷 45 弄與同榮路 372 巷路口旁空地"
     },
     {
-      "seq": "",
-      "name": "101",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "102",
+      "name": "民俗公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區旅順路二段、熱河路二段路口",
+      "district": "北屯區",
+      "address": "臺中市北屯區旅順路二段"
     },
     {
-      "seq": "",
-      "name": "102",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "103",
+      "name": "祥和停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區太原路三段與建和路一段路口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區太原路三段與建和路一段路口旁空地"
     },
     {
-      "seq": "",
-      "name": "103",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "104",
+      "name": "太和停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區太和路二段與太和一街路口旁空地",
+      "district": "北屯區",
+      "address": "臺中市北屯區太和路二段與太和一街路口旁空地"
     },
     {
-      "seq": "",
-      "name": "104",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "105",
+      "name": "東欣停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區柳川西路、五義街",
+      "district": "北區",
+      "address": "臺中市北區柳川西路"
     },
     {
-      "seq": "",
-      "name": "105",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "106",
+      "name": "新興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區精武路、一中街",
+      "district": "北區",
+      "address": "臺中市北區精武路"
     },
     {
-      "seq": "",
-      "name": "106",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "107",
+      "name": "育樂停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區雙十路、育樂街口",
+      "district": "北區",
+      "address": "臺中市北區雙十路"
     },
     {
-      "seq": "",
-      "name": "107",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "108",
+      "name": "育強停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區育強街、育樂街口",
+      "district": "北區",
+      "address": "臺中市北區育強街"
     },
     {
-      "seq": "",
-      "name": "108",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "109",
+      "name": "藍興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區大全街、大新街",
+      "district": "西區",
+      "address": "臺中市西區大全街"
     },
     {
-      "seq": "",
-      "name": "109",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "110",
+      "name": "中興網球場附設停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區瀋陽路、山西路",
+      "district": "北屯區",
+      "address": "臺中市北屯區瀋陽路"
     },
     {
-      "seq": "",
-      "name": "110",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "111",
+      "name": "昌和公園附設停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區昌平路二段 ( 近梅川北街 )",
+      "district": "北屯區",
+      "address": "臺中市北屯區昌平路二段 ( 近梅川北街 )"
     },
     {
-      "seq": "",
-      "name": "111",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "112",
+      "name": "銀聯三村停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區何安二巷、甘州六街",
+      "district": "西屯區",
+      "address": "臺中市西屯區何安二巷"
     },
     {
-      "seq": "",
-      "name": "112",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "113",
+      "name": "國豐停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區國安一路、國安二路",
+      "district": "西屯區",
+      "address": "臺中市西屯區國安一路"
     },
     {
-      "seq": "",
-      "name": "113",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "114",
+      "name": "細停二停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區西屯路二段、西屯路二段 208 巷",
+      "district": "西屯區",
+      "address": "臺中市西屯區西屯路二段"
     },
     {
-      "seq": "",
-      "name": "114",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "115",
+      "name": "下石碑停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區順平路、中平路",
+      "district": "西屯區",
+      "address": "臺中市西屯區順平路"
     },
     {
-      "seq": "",
-      "name": "115",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "116",
+      "name": "三賢停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區十甲路、東英十一街",
+      "district": "東區",
+      "address": "臺中市東區十甲路"
     },
     {
-      "seq": "",
-      "name": "116",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "117",
+      "name": "旱溪停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區旱溪街、臺 74 線",
+      "district": "東區",
+      "address": "臺中市東區旱溪街"
     },
     {
-      "seq": "",
-      "name": "117",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "118",
+      "name": "三光停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區北屯路、北平路四段口",
+      "district": "北屯區",
+      "address": "臺中市北屯區北屯路"
     },
     {
-      "seq": "",
-      "name": "118",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "119",
+      "name": "自立停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區自立街、自立街 25 巷",
+      "district": "西區",
+      "address": "臺中市西區自立街"
     },
     {
-      "seq": "",
-      "name": "119",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "120",
+      "name": "忠孝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區忠孝路、信義街 218 巷",
+      "district": "東區",
+      "address": "臺中市東區忠孝路"
     },
     {
-      "seq": "",
-      "name": "120",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "121",
+      "name": "忠明公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區中美街、美村路一段 52 巷",
+      "district": "西區",
+      "address": "臺中市西區中美街"
     },
     {
-      "seq": "",
-      "name": "121",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "122",
+      "name": "葫蘆墩圳停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市豐原區豐中路至博愛街溝渠地面新生北路",
+      "district": "豐原區",
+      "address": "臺中市豐原區豐中路至博愛街溝渠地面新生北路"
     },
     {
-      "seq": "",
-      "name": "122",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "123",
+      "name": "田心路停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市豐原區田心路與豐原大道三段口",
+      "district": "豐原區",
+      "address": "臺中市豐原區田心路與豐原大道三段"
     },
     {
-      "seq": "",
-      "name": "123",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "124",
+      "name": "中陽路停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市豐原區中陽路與中陽路 537 巷口",
+      "district": "豐原區",
+      "address": "臺中市豐原區中陽路與中陽路 537 巷"
     },
     {
-      "seq": "",
-      "name": "124",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "125",
+      "name": "育英路立體停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市豐原區育英路 150 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區育英路 150 號"
     },
     {
-      "seq": "",
-      "name": "125",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "126",
+      "name": "大墩國中地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區河南路四段、大墩七街路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區河南路四段"
     },
     {
-      "seq": "",
-      "name": "126",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "127",
+      "name": "錢嶺停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區精科五路、精科北路",
+      "district": "南屯區",
+      "address": "臺中市南屯區精科五路"
     },
     {
-      "seq": "",
-      "name": "127",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "128",
+      "name": "三塊厝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區永春東七路、大墩十一街 ( 臺中花市旁 )",
+      "district": "南屯區",
+      "address": "臺中市南屯區永春東七路"
     },
     {
-      "seq": "",
-      "name": "128",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "129",
+      "name": "新厝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區龍富十七路與益豐路四段旁空地",
+      "district": "南屯區",
+      "address": "臺中市南屯區龍富十七路與益豐路四段旁空地"
     },
     {
-      "seq": "",
-      "name": "129",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "130",
+      "name": "文心森林公園附屬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區惠文路 ( 近大墩七街、向上路 )",
+      "district": "南屯區",
+      "address": "臺中市南屯區惠文路 ( 近大墩七街"
     },
     {
-      "seq": "",
-      "name": "130",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "131",
+      "name": "永和巷公園附屬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區永和巷、山西路二段",
+      "district": "北屯區",
+      "address": "臺中市北屯區永和巷"
     },
     {
-      "seq": "",
-      "name": "131",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "132",
+      "name": "平德停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區平德路 100 號 ( 阿寶早餐 )",
+      "district": "北屯區",
+      "address": "臺中市北屯區平德路 100 號 ( 阿寶早餐 )"
     },
     {
-      "seq": "",
-      "name": "132",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "133",
+      "name": "東英停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區東英八街、一心街",
+      "district": "東區",
+      "address": "臺中市東區東英八街"
     },
     {
-      "seq": "",
-      "name": "133",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "134",
+      "name": "一心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區樂業路、一心街",
+      "district": "東區",
+      "address": "臺中市東區樂業路"
     },
     {
-      "seq": "",
-      "name": "134",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "135",
+      "name": "武昌停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區陜西五街、武昌路口",
+      "district": "北區",
+      "address": "臺中市北區陜西五街"
     },
     {
-      "seq": "",
-      "name": "135",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "136",
+      "name": "建成停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區興進路與東光路 ( 肉品市場邊 )",
+      "district": "北區",
+      "address": "臺中市北區興進路與東光路 ( 肉品市場邊 )"
     },
     {
-      "seq": "",
-      "name": "136",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "137",
+      "name": "南平停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區南平路、美村路",
+      "district": "南區",
+      "address": "臺中市南區南平路"
     },
     {
-      "seq": "",
-      "name": "137",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "138",
+      "name": "文昌停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區文昌街、永春東五街",
+      "district": "南屯區",
+      "address": "臺中市南屯區文昌街"
     },
     {
-      "seq": "",
-      "name": "138",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "139",
+      "name": "柳川地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區中華路一之 120 號地下室 2 、 3 樓",
+      "district": "西區",
+      "address": "臺中市西區中華路一之 120 號地下室 2"
     },
     {
-      "seq": "",
-      "name": "139",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "140",
+      "name": "萬壽棒球場附屬地下（含 1 樓平面）停車場",
+      "access": "1 樓平面需致電 04-2471-9026 或 0965-809-502 由服務人員協助折抵離場 ) 其餘車辨進，多卡通出",
+      "location": "臺中市西區大墩路、向上路",
+      "district": "西區",
+      "address": "臺中市西區大墩路"
     },
     {
-      "seq": "",
-      "name": "140",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "141",
+      "name": "臺中公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區公園路 8 之 1 號",
+      "district": "北區",
+      "address": "臺中市北區公園路 8 之 1 號"
     },
     {
-      "seq": "",
-      "name": "141",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "142",
+      "name": "潭興立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市潭子區潭興路三段 25 號",
+      "district": "潭子區",
+      "address": "臺中市潭子區潭興路三段 25 號"
     },
     {
-      "seq": "",
-      "name": "142",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "143",
+      "name": "潮春停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區崇德十六路、豐樂路 26 巷",
+      "district": "北屯區",
+      "address": "臺中市北屯區崇德十六路"
     },
     {
-      "seq": "",
-      "name": "143",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "144",
+      "name": "仁美停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區豐樂路 26 巷附近",
+      "district": "北屯區",
+      "address": "臺中市北屯區豐樂路 26 巷附近"
     },
     {
-      "seq": "",
-      "name": "144",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "145",
+      "name": "庄美停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區后庄三街 197 巷",
+      "district": "北屯區",
+      "address": "臺中市北屯區后庄三街 197 巷"
     },
     {
-      "seq": "",
-      "name": "145",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "146",
+      "name": "麗園 A 停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區環、廍子路",
+      "district": "北屯區",
+      "address": "臺中市北屯區環"
     },
     {
-      "seq": "",
-      "name": "146",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "147",
+      "name": "麗園 B 停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區環、廍子路",
+      "district": "北屯區",
+      "address": "臺中市北屯區環"
     },
     {
-      "seq": "",
-      "name": "147",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "148",
+      "name": "錦祥停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區育強街、育強街 78 巷",
+      "district": "北區",
+      "address": "臺中市北區育強街"
     },
     {
-      "seq": "",
-      "name": "148",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "149",
+      "name": "中和停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區黎明路一段 123 巷",
+      "district": "南屯區",
+      "address": "臺中市南屯區黎明路一段 123 巷"
     },
     {
-      "seq": "",
-      "name": "149",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "150",
+      "name": "博愛停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區干城街、永春東七路",
+      "district": "南屯區",
+      "address": "臺中市南屯區干城街"
     },
     {
-      "seq": "",
-      "name": "150",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "151",
+      "name": "半平厝停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區建國南路一段、建國南路一段 236 巷",
+      "district": "南區",
+      "address": "臺中市南區建國南路一段"
     },
     {
-      "seq": "",
-      "name": "151",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "152",
+      "name": "和福停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區和福路、建和路 219 巷",
+      "district": "北屯區",
+      "address": "臺中市北屯區和福路"
     },
     {
-      "seq": "",
-      "name": "152",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "153",
+      "name": "向上路橋下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區五權西路三段 1 巷",
+      "district": "南屯區",
+      "address": "臺中市南屯區五權西路三段 1 巷"
     },
     {
-      "seq": "",
-      "name": "153",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "154",
+      "name": "文山立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區文山六街",
+      "district": "南屯區",
+      "address": "臺中市南屯區文山六街"
     },
     {
-      "seq": "",
-      "name": "154",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "155",
+      "name": "臺中市屯區藝文中心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區大興路 201 號",
+      "district": "太平區",
+      "address": "臺中市太平區大興路 201 號"
     },
     {
-      "seq": "",
-      "name": "155",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "156",
+      "name": "港區藝術中心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區忠貞路 21 號",
+      "district": "清水區",
+      "address": "臺中市清水區忠貞路 21 號"
     },
     {
-      "seq": "",
-      "name": "156",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "157",
+      "name": "潭子區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市潭子區豐興路一段 512 號",
+      "district": "潭子區",
+      "address": "臺中市潭子區豐興路一段 512 號"
     },
     {
-      "seq": "",
-      "name": "157",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "158",
+      "name": "豐原區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區市政路 2 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區市政路 2 號"
     },
     {
-      "seq": "",
-      "name": "158",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "159",
+      "name": "豐原區戶政事務所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區市政路 4 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區市政路 4 號"
     },
     {
-      "seq": "",
-      "name": "159",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "160",
+      "name": "寶之林園區共享停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區和順路 439 號",
+      "district": "北屯區",
+      "address": "臺中市北屯區和順路 439 號"
     },
     {
-      "seq": "",
-      "name": "160",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "161",
+      "name": "市立圖書館坪林分館共享停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區中山路一段 213 號",
+      "district": "太平區",
+      "address": "臺中市太平區中山路一段 213 號"
     },
     {
-      "seq": "",
-      "name": "161",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "162",
+      "name": "楓和公園停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中南屯區楓樹南街、永春東三路",
+      "district": "中南屯區",
+      "address": "臺中市臺中南屯區楓樹南街"
     },
     {
-      "seq": "",
-      "name": "162",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "163",
+      "name": "臺中市舊社公園地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區松竹路二段 1 號",
+      "district": "北屯區",
+      "address": "臺中市北屯區松竹路二段 1 號"
     },
     {
-      "seq": "",
-      "name": "163",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "164",
+      "name": "南屯區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區永春東路 679 號",
+      "district": "南屯區",
+      "address": "臺中市南屯區永春東路 679 號"
     },
     {
-      "seq": "",
-      "name": "164",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "165",
+      "name": "北屯區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區崇德路三段 10 號",
+      "district": "北屯區",
+      "address": "臺中市北屯區崇德路三段 10 號"
     },
     {
-      "seq": "",
-      "name": "165",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "166",
+      "name": "龍井區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市龍井區沙田路四段 247 號",
+      "district": "龍井區",
+      "address": "臺中市龍井區沙田路四段 247 號"
     },
     {
-      "seq": "",
-      "name": "166",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "167",
+      "name": "東區區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區長福路 245 號",
+      "district": "東區",
+      "address": "臺中市東區長福路 245 號"
     },
     {
-      "seq": "",
-      "name": "167",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "168",
+      "name": "太平區戶政事務所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區大源路 2 之 18 號",
+      "district": "太平區",
+      "address": "臺中市太平區大源路 2 之 18 號"
     },
     {
-      "seq": "",
-      "name": "168",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "169",
+      "name": "西屯區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區市政北二路 386 號",
+      "district": "西屯區",
+      "address": "臺中市西屯區市政北二路 386 號"
     },
     {
-      "seq": "",
-      "name": "169",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "170",
+      "name": "中區區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市中區成功路 268 巷 29 號對面",
+      "district": "中區",
+      "address": "臺中市中區成功路 268 巷 29 號對"
     },
     {
-      "seq": "",
-      "name": "170",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "171",
+      "name": "南區區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南區工學路 72 號",
+      "district": "南區",
+      "address": "臺中市南區工學路 72 號"
     },
     {
-      "seq": "",
-      "name": "171",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "172",
+      "name": "神岡廣停一停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市神岡區中山路 1448 號對面",
+      "district": "神岡區",
+      "address": "臺中市神岡區中山路 1448 號對"
     },
     {
-      "seq": "",
-      "name": "172",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "173",
+      "name": "大雅區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大雅區雅環路二段 301 號",
+      "district": "大雅區",
+      "address": "臺中市大雅區雅環路二段 301 號"
     },
     {
-      "seq": "",
-      "name": "173",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "174",
+      "name": "市立圖書館梧棲親子館停車場",
+      "access": "高位辨識",
+      "location": "臺中市梧棲區民生街 15 之 77 號",
+      "district": "梧棲區",
+      "address": "臺中市梧棲區民生街 15 之 77 號"
     },
     {
-      "seq": "",
-      "name": "174",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "175",
+      "name": "霧峰區公所停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市霧峰區大同路 20 號",
+      "district": "霧峰區",
+      "address": "臺中市霧峰區大同路 20 號"
     },
     {
-      "seq": "",
-      "name": "175",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "176",
+      "name": "中華停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北區柳川西路三段、公園路中華路一段交叉口處",
+      "district": "北區",
+      "address": "臺中市北區柳川西路三段"
     },
     {
-      "seq": "",
-      "name": "176",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "177",
+      "name": "文修停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區漢翔路與烈美街",
+      "district": "西屯區",
+      "address": "臺中市西屯區漢翔路與烈美街"
     },
     {
-      "seq": "",
-      "name": "177",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "178",
+      "name": "楓樹停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區永春東二路、楓和路交叉路口",
+      "district": "南屯區",
+      "address": "臺中市南屯區永春東二路"
     },
     {
-      "seq": "",
-      "name": "178",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "179",
+      "name": "世貿中心停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西屯區天保街、中工二路交叉口",
+      "district": "西屯區",
+      "address": "臺中市西屯區天保街"
     },
     {
-      "seq": "",
-      "name": "179",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "180",
+      "name": "東峰停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區臺中路、喬城路、七中路",
+      "district": "東區",
+      "address": "臺中市東區臺中路"
     },
     {
-      "seq": "",
-      "name": "180",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "181",
+      "name": "進化停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區進化路 173 巷",
+      "district": "東區",
+      "address": "臺中市東區進化路 173 巷"
     },
     {
-      "seq": "",
-      "name": "181",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "182",
+      "name": "潭子國民運動中心地下 2 層停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市潭子區勝利路 140 號地下二層",
+      "district": "潭子區",
+      "address": "臺中市潭子區勝利路 140 號地下二層"
     },
     {
-      "seq": "",
-      "name": "182",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "183",
+      "name": "工學六街停車場",
+      "access": "無柵欄，智慧柱管理",
+      "location": "臺中市南區工學六街與大慶街一段交叉口",
+      "district": "南區",
+      "address": "臺中市南區工學六街與大慶街一段交叉"
     },
     {
-      "seq": "",
-      "name": "183",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "184",
+      "name": "東峰公園附屬停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區七中路 56 號對面",
+      "district": "東區",
+      "address": "臺中市東區七中路 56 號對"
     },
     {
-      "seq": "",
-      "name": "184",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "185",
+      "name": "學田停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區學田路 451 號",
+      "district": "烏日區",
+      "address": "臺中市烏日區學田路 451 號"
     },
     {
-      "seq": "",
-      "name": "185",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "186",
+      "name": "以春停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區烏日里以春街 121 巷 4 號對面",
+      "district": "烏日區",
+      "address": "臺中市烏日區烏日里以春街 121 巷 4 號對"
     },
     {
-      "seq": "",
-      "name": "186",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "187",
+      "name": "三和停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區三和里建行路與三榮九路口",
+      "district": "烏日區",
+      "address": "臺中市烏日區三和里建行路與三榮九路"
     },
     {
-      "seq": "",
-      "name": "187",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "188",
+      "name": "榮泉停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區榮泉里榮泉路與建行路口",
+      "district": "烏日區",
+      "address": "臺中市烏日區榮泉里榮泉路與建行路"
     },
     {
-      "seq": "",
-      "name": "188",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "189",
+      "name": "長壽停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區榮泉里建行路與三榮十八路口",
+      "district": "烏日區",
+      "address": "臺中市烏日區榮泉里建行路與三榮十八路"
     },
     {
-      "seq": "",
-      "name": "189",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "190",
+      "name": "烏日廣停七",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區學田里高鐵路三段近高鐵東路",
+      "district": "烏日區",
+      "address": "臺中市烏日區學田里高鐵路三段近高鐵東路"
     },
     {
-      "seq": "",
-      "name": "190",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "191",
+      "name": "烏日廣停八",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區學田里高鐵東路上近高鐵路三段",
+      "district": "烏日區",
+      "address": "臺中市烏日區學田里高鐵東路上近高鐵路三段"
     },
     {
-      "seq": "",
-      "name": "191",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "192",
+      "name": "一忠停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區烏日里一忠街與公園三街交叉處",
+      "district": "烏日區",
+      "address": "臺中市烏日區烏日里一忠街與公園三街交叉處"
     },
     {
-      "seq": "",
-      "name": "192",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "193",
+      "name": "新富停車場",
+      "access": "高位攝影辨識 ( 繳費機過卡 )",
+      "location": "臺中市南屯區新富路、新富五街",
+      "district": "南屯區",
+      "address": "臺中市南屯區新富路"
     },
     {
-      "seq": "",
-      "name": "193",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "194",
+      "name": "烏日區廣停二停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市烏日區三榮路一段與三和路口",
+      "district": "烏日區",
+      "address": "臺中市烏日區三榮路一段與三和路"
     },
     {
-      "seq": "",
-      "name": "194",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "195",
+      "name": "烏日區廣兼停三停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市烏日區三榮路、三榮八路",
+      "district": "烏日區",
+      "address": "臺中市烏日區三榮路"
     },
     {
-      "seq": "",
-      "name": "195",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "196",
+      "name": "烏日區停三停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區興祥街、興祥街 42 巷口",
+      "district": "烏日區",
+      "address": "臺中市烏日區興祥街"
     },
     {
-      "seq": "",
-      "name": "196",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "197",
+      "name": "烏日區停八停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區大同六街與民生路口旁空地",
+      "district": "烏日區",
+      "address": "臺中市烏日區大同六街與民生路口旁空地"
     },
     {
-      "seq": "",
-      "name": "197",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "198",
+      "name": "烏日區停二停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區長春街、明禮街口",
+      "district": "烏日區",
+      "address": "臺中市烏日區長春街"
     },
     {
-      "seq": "",
-      "name": "198",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "199",
+      "name": "烏日區九德停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區環中路六段高架橋下",
+      "district": "烏日區",
+      "address": "臺中市烏日區環中路六段高架橋下"
     },
     {
-      "seq": "",
-      "name": "199",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "200",
+      "name": "大雅區停一停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大雅區中清路三段 1132 巷",
+      "district": "大雅區",
+      "address": "臺中市大雅區中清路三段 1132 巷"
     },
     {
-      "seq": "",
-      "name": "200",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "201",
+      "name": "大雅區三和公園附屬停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大雅區龍善二街 193 巷側空地",
+      "district": "大雅區",
+      "address": "臺中市大雅區龍善二街 193 巷側空地"
     },
     {
-      "seq": "",
-      "name": "201",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "202",
+      "name": "大雅區中清東路與雅潭路路口西側停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大雅區中清東路與雅潭路路口",
+      "district": "大雅區",
+      "address": "臺中市大雅區中清東路與雅潭路路"
     },
     {
-      "seq": "",
-      "name": "202",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "203",
+      "name": "大雅區停六停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大雅區雅潭路四段與建興路口南側空地",
+      "district": "大雅區",
+      "address": "臺中市大雅區雅潭路四段與建興路口南側空地"
     },
     {
-      "seq": "",
-      "name": "203",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "204",
+      "name": "大里區廣兼停五停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區德芳南路與現岱路口",
+      "district": "大里區",
+      "address": "臺中市大里區德芳南路與現岱路"
     },
     {
-      "seq": "",
-      "name": "204",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "205",
+      "name": "大里區廣兼停六停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區永隆路與永隆七街口",
+      "district": "大里區",
+      "address": "臺中市大里區永隆路與永隆七街"
     },
     {
-      "seq": "",
-      "name": "205",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "206",
+      "name": "大里區廣兼停八停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區德芳南路與德芳南一街口",
+      "district": "大里區",
+      "address": "臺中市大里區德芳南路與德芳南一街"
     },
     {
-      "seq": "",
-      "name": "206",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "207",
+      "name": "大里區崇光停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區新仁路三段與西榮路口",
+      "district": "大里區",
+      "address": "臺中市大里區新仁路三段與西榮路"
     },
     {
-      "seq": "",
-      "name": "207",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "208",
+      "name": "大里區鳥竹圍公園停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區大智路與大智路 651 巷旁空地",
+      "district": "大里區",
+      "address": "臺中市大里區大智路與大智路 651 巷旁空地"
     },
     {
-      "seq": "",
-      "name": "208",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "209",
+      "name": "大里區國光公園停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區興大南路 41 號對面空地",
+      "district": "大里區",
+      "address": "臺中市大里區興大南路 41 號對面空地"
     },
     {
-      "seq": "",
-      "name": "209",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "210",
+      "name": "大里區公六公園停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區永隆六街 29 號旁空地",
+      "district": "大里區",
+      "address": "臺中市大里區永隆六街 29 號旁空地"
     },
     {
-      "seq": "",
-      "name": "210",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "211",
+      "name": "大里區立元停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區立元路與自立路口",
+      "district": "大里區",
+      "address": "臺中市大里區立元路與自立路"
     },
     {
-      "seq": "",
-      "name": "211",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "212",
+      "name": "大里區仁堤停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區仁堤二街旁",
+      "district": "大里區",
+      "address": "臺中市大里區仁堤二街"
     },
     {
-      "seq": "",
-      "name": "212",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "213",
+      "name": "大里區立新社區停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區甲興路與甲堤三街口",
+      "district": "大里區",
+      "address": "臺中市大里區甲興路與甲堤三街"
     },
     {
-      "seq": "",
-      "name": "213",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "214",
+      "name": "大里區仁興停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區國光路二段與仁興街口",
+      "district": "大里區",
+      "address": "臺中市大里區國光路二段與仁興街"
     },
     {
-      "seq": "",
-      "name": "214",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "215",
+      "name": "大里區大新停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區大里路與大新街口",
+      "district": "大里區",
+      "address": "臺中市大里區大里路與大新街"
     },
     {
-      "seq": "",
-      "name": "215",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "216",
+      "name": "大里區國光花市停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區德芳南路與德芳南三街口",
+      "district": "大里區",
+      "address": "臺中市大里區德芳南路與德芳南三街"
     },
     {
-      "seq": "",
-      "name": "216",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "217",
+      "name": "大里區興大附中地下停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大里區益民路二段 211 號",
+      "district": "大里區",
+      "address": "臺中市大里區益民路二段 211 號"
     },
     {
-      "seq": "",
-      "name": "217",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "218",
+      "name": "太平區中興立體停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區中興東路 77 號",
+      "district": "太平區",
+      "address": "臺中市太平區中興東路 77 號"
     },
     {
-      "seq": "",
-      "name": "218",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "219",
+      "name": "太平區新平立體停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市太平區樹孝路 1 號",
+      "district": "太平區",
+      "address": "臺中市太平區樹孝路 1 號"
     },
     {
-      "seq": "",
-      "name": "219",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "220",
+      "name": "太平區育賢停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區育賢段 70 地號",
+      "district": "太平區",
+      "address": "臺中市太平區育賢段 70 地號"
     },
     {
-      "seq": "",
-      "name": "220",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "221",
+      "name": "太平區滯洪池停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區中山路一段 322 巷",
+      "district": "太平區",
+      "address": "臺中市太平區中山路一段 322 巷"
     },
     {
-      "seq": "",
-      "name": "221",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "222",
+      "name": "太平區新光廣兼停一停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區新興里太興路旁",
+      "district": "太平區",
+      "address": "臺中市太平區新興里太興路"
     },
     {
-      "seq": "",
-      "name": "222",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "223",
+      "name": "太平區新光廣兼停四停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區豐年里大源 18 街與環太東路口",
+      "district": "太平區",
+      "address": "臺中市太平區豐年里大源 18 街與環太東路"
     },
     {
-      "seq": "",
-      "name": "223",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "224",
+      "name": "太平區新光廣停八停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區新高里育賢路與立功路口",
+      "district": "太平區",
+      "address": "臺中市太平區新高里育賢路與立功路"
     },
     {
-      "seq": "",
-      "name": "224",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "225",
+      "name": "太平區長億停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區長億里長億路與長億一街口",
+      "district": "太平區",
+      "address": "臺中市太平區長億里長億路與長億一街"
     },
     {
-      "seq": "",
-      "name": "225",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "226",
+      "name": "太平區平安廣場停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區太平十街與中平九街路口",
+      "district": "太平區",
+      "address": "臺中市太平區太平十街與中平九街路"
     },
     {
-      "seq": "",
-      "name": "226",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "227",
+      "name": "太平區長安停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區環太東路與長安 11 街口",
+      "district": "太平區",
+      "address": "臺中市太平區環太東路與長安 11 街"
     },
     {
-      "seq": "",
-      "name": "227",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "228",
+      "name": "太平區馬卡龍公園停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區環中東路四段",
+      "district": "太平區",
+      "address": "臺中市太平區環中東路四段"
     },
     {
-      "seq": "",
-      "name": "228",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "229",
+      "name": "太平區祥順運動公園停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市太平區宜昌路 87 巷",
+      "district": "太平區",
+      "address": "臺中市太平區宜昌路 87 巷"
     },
     {
-      "seq": "",
-      "name": "229",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "230",
+      "name": "大肚地下停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大肚區自治路 81 號",
+      "district": "大肚區",
+      "address": "臺中市大肚區自治路 81 號"
     },
     {
-      "seq": "",
-      "name": "230",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "231",
+      "name": "大肚區榮華停車場 ( 大肚區廣停二 )( 大肚區戶政前 )( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市沙鹿區沙田路三段 38 之 1 號 ( 戶政前 )",
+      "district": "沙鹿區",
+      "address": "臺中市沙鹿區沙田路三段 38 之 1 號 ( 戶政前 )"
     },
     {
-      "seq": "",
-      "name": "231",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "232",
+      "name": "沙鹿區沙田立體停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市沙鹿區興仁里 16 鄰沙田路 116 號",
+      "district": "沙鹿區",
+      "address": "臺中市沙鹿區興仁里 16 鄰沙田路 116 號"
     },
     {
-      "seq": "",
-      "name": "232",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "233",
+      "name": "沙鹿區竹林北溪停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市沙鹿區縱貫鐵路以東至中棲路上、中山路",
+      "district": "沙鹿區",
+      "address": "臺中市沙鹿區縱貫鐵路以東至中棲路上"
     },
     {
-      "seq": "",
-      "name": "233",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "234",
+      "name": "沙鹿區竹林南溪停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市沙鹿區大同街以東至日新街止及日新街 51 號之 2 對面",
+      "district": "沙鹿區",
+      "address": "臺中市沙鹿區大同街以東至日新街止及日新街 51 號之 2 對"
     },
     {
-      "seq": "",
-      "name": "234",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "235",
+      "name": "大甲停三停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大甲區鎮瀾街與蔣公路",
+      "district": "大甲區",
+      "address": "臺中市大甲區鎮瀾街與蔣公路"
     },
     {
-      "seq": "",
-      "name": "235",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "236",
+      "name": "大甲區經國路停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大甲區經國路 888 號北側空地",
+      "district": "大甲區",
+      "address": "臺中市大甲區經國路 888 號北側空地"
     },
     {
-      "seq": "",
-      "name": "236",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "237",
+      "name": "潭子區福仁停車場 ( 停四停車場 )( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市潭子區福仁公園西側、復興路東側、合作街北側",
+      "district": "潭子區",
+      "address": "臺中市潭子區福仁公園西"
     },
     {
-      "seq": "",
-      "name": "237",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "238",
+      "name": "東勢區綜合立體停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市東勢區第三橫街 73 號",
+      "district": "東勢區",
+      "address": "臺中市東勢區第三橫街 73 號"
     },
     {
-      "seq": "",
-      "name": "238",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "239",
+      "name": "東勢區廣興停車場 ( 東勢區停一 )( 公所 )",
+      "access": "未設置收費管制區，現場管理員可直接辦理免銷",
+      "location": "臺中市東勢區三民街與第六橫街交岔路口",
+      "district": "東勢區",
+      "address": "臺中市東勢區三民街與第六橫街交岔路"
     },
     {
-      "seq": "",
-      "name": "239",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "240",
+      "name": "豐原區廣兼停二停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區中興路 136 號 ( 衛生局 ) 對面",
+      "district": "豐原區",
+      "address": "臺中市豐原區中興路 136 號 ( 衛生局 ) 對"
     },
     {
-      "seq": "",
-      "name": "240",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "241",
+      "name": "豐原區富春國小地下停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區中山路 473 巷 15 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區中山路 473 巷 15 號"
     },
     {
-      "seq": "",
-      "name": "241",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "242",
+      "name": "豐原區環北站停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區圓環北路一段 319 號旁",
+      "district": "豐原區",
+      "address": "臺中市豐原區圓環北路一段 319 號"
     },
     {
-      "seq": "",
-      "name": "242",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "243",
+      "name": "豐原區北陽路停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區北陽路 40 巷旁 ( 臺中市後備指揮部斜對面 )",
+      "district": "豐原區",
+      "address": "臺中市豐原區北陽路 40 巷旁 ( 臺中市後備指揮部斜對面 )"
     },
     {
-      "seq": "",
-      "name": "243",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "244",
+      "name": "霧峰區本堂公園地下停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市霧峰區本堂里民生路 3 號",
+      "district": "霧峰區",
+      "address": "臺中市霧峰區本堂里民生路 3 號"
     },
     {
-      "seq": "",
-      "name": "244",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "245",
+      "name": "霧峰區本堂里多功能停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市霧峰區中正路 675 巷口",
+      "district": "霧峰區",
+      "address": "臺中市霧峰區中正路 675 巷"
     },
     {
-      "seq": "",
-      "name": "245",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "246",
+      "name": "后里區復興街旱溝加蓋停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市后里區復興街與文明路口",
+      "district": "后里區",
+      "address": "臺中市后里區復興街與文明路"
     },
     {
-      "seq": "",
-      "name": "246",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "247",
+      "name": "后里區三光路小型停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市后里區三光路與民生路口",
+      "district": "后里區",
+      "address": "臺中市后里區三光路與民生路"
     },
     {
-      "seq": "",
-      "name": "247",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "248",
+      "name": "和平區谷關多目標使用立體停車場 ( 公所 )",
+      "access": "車辨進，需要到服務台辦理免銷",
+      "location": "臺中市和平區東關路一段 127 號",
+      "district": "和平區",
+      "address": "臺中市和平區東關路一段 127 號"
     },
     {
-      "seq": "",
-      "name": "248",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "249",
+      "name": "大里區德芳興停車場 ( 經發局 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大里區德芳路二段、永隆路",
+      "district": "大里區",
+      "address": "臺中市大里區德芳路二段"
     },
     {
-      "seq": "",
-      "name": "249",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "250",
+      "name": "豐原區社皮地下停車場 ( 經發局 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區豐原大道一段 165 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區豐原大道一段 165 號"
     },
     {
-      "seq": "",
-      "name": "250",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "251",
+      "name": "豐原區葫蘆墩公園停車場 ( 建設局 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區圓環西路 181 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區圓環西路 181 號"
     },
     {
-      "seq": "",
-      "name": "251",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "252",
+      "name": "泉源糖廠停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市東區泉源街",
+      "district": "東區",
+      "address": "臺中市東區泉源街"
     },
     {
-      "seq": "",
-      "name": "252",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "253",
+      "name": "模範停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區模範街 25 號",
+      "district": "西區",
+      "address": "臺中市西區模範街 25 號"
     },
     {
-      "seq": "",
-      "name": "253",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "254",
+      "name": "朴子停車場",
+      "access": "車辨進，多卡通出",
+      "location": "豐原區國豐路三段、國豐路三段 100 國豐路三段 100 巷",
+      "district": "豐原區",
+      "address": "臺中市豐原區國豐路三段"
     },
     {
-      "seq": "",
-      "name": "254",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "255",
+      "name": "惠安停車場",
+      "access": "車辨進，多卡通出 ( 無柵欄場域 )",
+      "location": "臺中市西屯區市政北七路與惠來路二段交界口",
+      "district": "西屯區",
+      "address": "臺中市西屯區市政北七路與惠來路二段交界"
     },
     {
-      "seq": "",
-      "name": "255",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "256",
+      "name": "惠新停車場",
+      "access": "車辨進，多卡通出 ( 無柵欄場域 )",
+      "location": "臺中市西屯區市政北七路與惠來路二段交界口",
+      "district": "西屯區",
+      "address": "臺中市西屯區市政北七路與惠來路二段交界"
     },
     {
-      "seq": "",
-      "name": "256",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "257",
+      "name": "立新國中地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大里區自強街與立新二街交界口",
+      "district": "大里區",
+      "address": "臺中市大里區自強街與立新二街交界"
     },
     {
-      "seq": "",
-      "name": "257",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "258",
+      "name": "成功國中地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大里區至善路與慈德路交界口",
+      "district": "大里區",
+      "address": "臺中市大里區至善路與慈德路交界"
     },
     {
-      "seq": "",
-      "name": "258",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "259",
+      "name": "港新停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區港新三路與港埠路三段",
+      "district": "清水區",
+      "address": "臺中市清水區港新三路與港埠路三段"
     },
     {
-      "seq": "",
-      "name": "259",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "260",
+      "name": "槺榔停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區港都五路與港都路口",
+      "district": "清水區",
+      "address": "臺中市清水區港都五路與港都路"
     },
     {
-      "seq": "",
-      "name": "260",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "261",
+      "name": "四維停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區四維東路與大勇路口",
+      "district": "清水區",
+      "address": "臺中市清水區四維東路與大勇路"
     },
     {
-      "seq": "",
-      "name": "261",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "262",
+      "name": "大勇停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區港都二路與大勇路口",
+      "district": "清水區",
+      "address": "臺中市清水區港都二路與大勇路"
     },
     {
-      "seq": "",
-      "name": "262",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "263",
+      "name": "八德停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區港都路與八德路二段口",
+      "district": "清水區",
+      "address": "臺中市清水區港都路與八德路二段"
     },
     {
-      "seq": "",
-      "name": "263",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "264",
+      "name": "頂寮西停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市梧棲區八德東路與大仁路二段",
+      "district": "梧棲區",
+      "address": "臺中市梧棲區八德東路與大仁路二段"
     },
     {
-      "seq": "",
-      "name": "264",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "265",
+      "name": "中正停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市梧棲區中興路與中興路 178 巷",
+      "district": "梧棲區",
+      "address": "臺中市梧棲區中興路與中興路 178 巷"
     },
     {
-      "seq": "",
-      "name": "265",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "266",
+      "name": "潭子區環中東一段臺 74 快速道路橋下平面停車場 ( 公所 )",
+      "access": "車辨進，車辨出",
+      "location": "臺中市潭子區福貴路、環中東路一段及大新路 79 巷間之橋下空間",
+      "district": "潭子區",
+      "address": "臺中市潭子區福貴路"
     },
     {
-      "seq": "",
-      "name": "266",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "267",
+      "name": "益豐停車場",
+      "access": "高位攝影辨識 ( 繳費機過卡 )",
+      "location": "臺中市南屯區大墩十二街、益豐西街 ( 近益豐路 )",
+      "district": "南屯區",
+      "address": "臺中市南屯區大墩十二街"
     },
     {
-      "seq": "",
-      "name": "267",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "268",
+      "name": "新生停車場",
+      "access": "高位攝影辨識 ( 繳費機過卡 )",
+      "location": "臺中市南屯區新富路與新富十五路交叉口",
+      "district": "南屯區",
+      "address": "臺中市南屯區新富路與新富十五路交叉"
     },
     {
-      "seq": "",
-      "name": "268",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "270",
+      "name": "永定停車場",
+      "access": "高位攝影辨識 ( 繳費機過卡 )",
+      "location": "臺中市南屯區新富一街與新富二街街廓中",
+      "district": "南屯區",
+      "address": "臺中市南屯區新富一街與新富二街街廓中"
     },
     {
-      "seq": "",
-      "name": "269",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "271",
+      "name": "自由一期立體停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市中區自由路二段 92 號",
+      "district": "中區",
+      "address": "臺中市中區自由路二段 92 號"
     },
     {
-      "seq": "",
-      "name": "270",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "272",
+      "name": "府後街地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市西區府後街 1-8 號",
+      "district": "西區",
+      "address": "臺中市西區府後街 1-8 號"
     },
     {
-      "seq": "",
-      "name": "271",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "272",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "273",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "274",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "275",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "276",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "277",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "278",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "279",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "280",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "281",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "282",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "283",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "284",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
-    },
-    {
-      "seq": "",
-      "name": "285",
-      "access": "",
-      "location": "",
-      "district": "未分類",
-      "address": ""
+      "seq": "273",
+      "name": "烏日停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市烏日區光日路 228 號",
+      "district": "烏日區",
+      "address": "臺中市烏日區光日路 228 號"
+    },
+    {
+      "seq": "274",
+      "name": "南屯國小地下停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市南屯區萬和路一段文昌街 / 萬和街",
+      "district": "南屯區",
+      "address": "臺中市南屯區萬和路一段文昌街 / 萬和街"
+    },
+    {
+      "seq": "275",
+      "name": "永興停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大雅區大雅路 149 號",
+      "district": "大雅區",
+      "address": "臺中市大雅區大雅路 149 號"
+    },
+    {
+      "seq": "276",
+      "name": "歡喜停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市大雅區中清路四段中清路四段 213 巷",
+      "district": "大雅區",
+      "address": "臺中市大雅區中清路四段中清路四段 213 巷"
+    },
+    {
+      "seq": "277",
+      "name": "昌平停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市北屯區昌平路二段與松竹路二段交岔口",
+      "district": "北屯區",
+      "address": "臺中市北屯區昌平路二段與松竹路二段交岔"
+    },
+    {
+      "seq": "278",
+      "name": "陽明市政大樓第二停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區自強南街 103 號",
+      "district": "豐原區",
+      "address": "臺中市豐原區自強南街 103 號"
+    },
+    {
+      "seq": "279",
+      "name": "南社停車場",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區南新路 202 巷 2 號至 20 號前空地",
+      "district": "清水區",
+      "address": "臺中市清水區南新路 202 巷 2 號至 20 號前空地"
+    },
+    {
+      "seq": "280",
+      "name": "市政公園地下停車場",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市西屯區文心路三段五號",
+      "district": "西屯區",
+      "address": "臺中市西屯區文心路三段五號"
+    },
+    {
+      "seq": "281",
+      "name": "大甲區甲后停車場 ( 公所 )",
+      "access": "車辨進，需要到繳費機進行過卡",
+      "location": "臺中市大甲區中山里甲后路 148 號",
+      "district": "大甲區",
+      "address": "臺中市大甲區中山里甲后路 148 號"
+    },
+    {
+      "seq": "282",
+      "name": "清水區鰲峰山腳停車場 ( 公所 )",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市清水區大街路與文昌街路口",
+      "district": "清水區",
+      "address": "臺中市清水區大街路與文昌街路"
+    },
+    {
+      "seq": "283",
+      "name": "慈濟公園停車場(公所)",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區豐東路555號",
+      "district": "豐原區",
+      "address": "臺中市豐原區豐東路555號"
+    },
+    {
+      "seq": "284",
+      "name": "中正公園停車場(公所)",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區水源路1號",
+      "district": "豐原區",
+      "address": "臺中市豐原區水源路1號"
+    },
+    {
+      "seq": "285",
+      "name": "豐原漆藝館停車場(公所)",
+      "access": "車辨進，多卡通出",
+      "location": "臺中市豐原區水源路1-1號",
+      "district": "豐原區",
+      "address": "臺中市豐原區水源路1-1號"
     }
   ]
 }
