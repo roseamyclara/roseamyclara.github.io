@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>臺中市身障免銷單停車場地圖</title>
+<meta name="description" content="臺中市身心障礙者免銷單服務已上線停車場，可依名稱、地點、進出場方式搜尋，並顯示離您最近的停車場。資料每日自動更新。">
+<meta name="theme-color" content="#0f5c8c">
+
+<!-- Leaflet 1.9.4 / markercluster 1.5.3 已放進 parking/lib，不依賴外部 CDN -->
+<link rel="stylesheet" href="./lib/leaflet.css">
+<link rel="stylesheet" href="./lib/MarkerCluster.css">
+<link rel="stylesheet" href="./lib/MarkerCluster.Default.css">
+
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --panel-2: #f8fafc;
+    --text: #17232e;
+    --muted: #5b6b7a;
+    --line: #d8e0e8;
+    --brand: #0f5c8c;
+    --brand-ink: #ffffff;
+    --accent: #0b7a5f;
+    --warn: #a2560d;
+    --focus: #f0a020;
+    --shadow: 0 1px 2px rgba(16,32,48,.08), 0 6px 20px rgba(16,32,48,.06);
+    --radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10161c;
+      --panel: #18212a;
+      --panel-2: #1f2a35;
+      --text: #e8eef4;
+      --muted: #9fb0c0;
+      --line: #2c3a47;
+      --brand: #4aa3d8;
+      --brand-ink: #08131c;
+      --accent: #4fc79f;
+      --warn: #e0a15c;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 20px rgba(0,0,0,.35);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+  }
+  a { color: var(--brand); }
+  button, select, input { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 999;
+    background: var(--brand); color: var(--brand-ink); padding: 10px 16px; border-radius: 0 0 8px 0;
+  }
+  .skip:focus { left: 0; }
+
+  /* ---------- layout ---------- */
+  .app { display: flex; flex-direction: column; height: 100dvh; }
+
+  header.top {
+    background: var(--brand); color: var(--brand-ink);
+    padding: 10px 16px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  header.top h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .02em; }
+  header.top .meta { font-size: .78rem; opacity: .9; margin-left: auto; text-align: right; }
+  header.top .meta a { color: inherit; }
+
+  .controls {
+    background: var(--panel); border-bottom: 1px solid var(--line);
+    padding: 10px 16px; display: flex; flex-direction: column; gap: 8px;
+  }
+  .searchrow { display: flex; gap: 8px; flex-wrap: wrap; }
+  .searchbox { position: relative; flex: 1 1 190px; min-width: 0; }
+  .searchbox input {
+    width: 100%; padding: 11px 38px 11px 38px;
+    border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--panel-2);
+  }
+  .searchbox input::-webkit-search-cancel-button,
+  .searchbox input::-webkit-search-decoration { -webkit-appearance: none; appearance: none; }
+  .searchbox .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+  .searchbox .clear {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    border: 0; background: transparent; color: var(--muted); cursor: pointer;
+    padding: 6px 8px; border-radius: 8px; line-height: 1;
+  }
+  .searchbox .clear:hover { background: var(--line); }
+
+  .btn {
+    border: 1px solid var(--line); background: var(--panel-2); color: var(--text);
+    padding: 10px 14px; border-radius: var(--radius); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+  }
+  .btn:hover { background: var(--line); }
+  .btn.primary { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+
+  .filterrow { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .filterrow label { font-size: .85rem; color: var(--muted); }
+  select {
+    padding: 8px 10px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--panel-2); max-width: 60vw;
+  }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line); background: var(--panel-2); border-radius: 999px;
+    padding: 5px 12px; font-size: .82rem; cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+
+  .placehint {
+    background: var(--panel-2); border: 1px dashed var(--line);
+    border-radius: var(--radius); padding: 8px 12px; font-size: .85rem;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .placehint[hidden] { display: none; }
+  .placehint button { border: 0; background: var(--brand); color: var(--brand-ink);
+    padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: .82rem; }
+
+  .originbar {
+    display: none; align-items: center; gap: 10px; flex-wrap: wrap;
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-radius: var(--radius); padding: 7px 12px; font-size: .85rem;
+  }
+  .originbar.on { display: flex; }
+  .originbar button { border: 0; background: transparent; color: var(--muted); cursor: pointer;
+    text-decoration: underline; padding: 2px 4px; }
+
+  .tabbar { display: none; gap: 6px; padding: 8px 16px 0; background: var(--panel); }
+  .tabbar .btn { flex: 1; justify-content: center; }
+
+  main { flex: 1; display: grid; grid-template-columns: minmax(320px, 400px) 1fr; min-height: 0; }
+
+  .listpane {
+    background: var(--panel); border-right: 1px solid var(--line);
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  .listhead {
+    padding: 8px 16px; font-size: .84rem; color: var(--muted);
+    border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 8px;
+  }
+  #list { list-style: none; margin: 0; padding: 8px; overflow-y: auto; flex: 1; }
+  #list li { margin-bottom: 8px; }
+
+  .card {
+    width: 100%; text-align: left; background: var(--panel-2);
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px 14px; cursor: pointer; box-shadow: var(--shadow);
+    display: block;
+  }
+  .card:hover { border-color: var(--brand); }
+  .card.active { border-color: var(--brand); box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand) 40%, transparent); }
+  .card h3 { margin: 0 0 4px; font-size: 1rem; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .card .dist { font-size: .82rem; color: var(--accent); font-weight: 700; }
+  .card .loc { font-size: .86rem; color: var(--muted); margin: 0 0 8px; }
+  .badge {
+    display: inline-block; font-size: .74rem; padding: 2px 9px; border-radius: 999px;
+    background: color-mix(in srgb, var(--brand) 16%, transparent);
+    color: var(--text); border: 1px solid color-mix(in srgb, var(--brand) 35%, transparent);
+  }
+  .badge.nogeo { background: color-mix(in srgb, var(--warn) 18%, transparent);
+    border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+  .cardactions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .cardactions a {
+    font-size: .8rem; text-decoration: none; border: 1px solid var(--line);
+    padding: 6px 10px; border-radius: 8px; background: var(--panel);
+  }
+  .cardactions a:hover { border-color: var(--brand); }
+
+  .empty { padding: 32px 20px; text-align: center; color: var(--muted); }
+
+  #map { width: 100%; height: 100%; background: var(--panel-2); z-index: 0; }
+  .leaflet-popup-content { font-size: .9rem; margin: 12px 14px; }
+  .leaflet-popup-content h3 { margin: 0 0 4px; font-size: 1rem; }
+  .leaflet-popup-content p { margin: 0 0 6px; color: #555; }
+
+  .origin-dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); border: 3px solid #fff; box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  footer.foot {
+    padding: 8px 16px; font-size: .74rem; color: var(--muted);
+    background: var(--panel); border-top: 1px solid var(--line);
+    display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap;
+  }
+  footer.foot details { display: inline; }
+  footer.foot summary { cursor: pointer; color: var(--brand); }
+  footer.foot details p { margin: 6px 0 0; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 999px;
+    font-size: .86rem; box-shadow: var(--shadow); z-index: 1000;
+    opacity: 0; pointer-events: none; transition: opacity .2s;
+  }
+  .toast.on { opacity: 1; }
+
+  @media (max-width: 820px) {
+    main { grid-template-columns: 1fr; }
+    .controls { padding: 8px 12px; gap: 6px; }
+    .filterrow { gap: 6px; }
+    .tabbar { display: flex; padding: 6px 12px 0; }
+    footer.foot { padding: 6px 12px; font-size: .68rem; }
+    .listpane { border-right: 0; }
+    body[data-tab="map"] .listpane { display: none; }
+    body[data-tab="list"] .mappane { display: none; }
+    header.top .meta { width: 100%; text-align: left; margin-left: 0; }
+  }
+</style>
+</head>
+<body data-tab="list">
+<a class="skip" href="#list">跳到停車場清單</a>
+
+<div class="app">
+  <header class="top">
+    <h1>♿ 臺中市身障免銷單停車場地圖</h1>
+    <div class="meta">
+      <span id="metaCount">載入中…</span> ·
+      <a id="srcLink" href="https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule" target="_blank" rel="noopener">資料來源：臺中市停車資訊網</a>
+    </div>
+  </header>
+
+  <div class="controls">
+    <div class="searchrow">
+      <div class="searchbox">
+        <span class="ico" aria-hidden="true">🔍</span>
+        <label class="skip" for="q">搜尋停車場名稱、地址或地點</label>
+        <input id="q" type="search" autocomplete="off"
+               placeholder="搜尋停車場名稱、路名，或輸入地點（例如：臺中車站、中國醫藥大學）">
+        <button class="clear" id="clearQ" type="button" aria-label="清除搜尋" hidden>✕</button>
+      </div>
+      <button class="btn primary" id="btnNear" type="button">📍 離我最近</button>
+    </div>
+
+    <div class="filterrow">
+      <label for="fDistrict">行政區</label>
+      <select id="fDistrict"><option value="">全部</option></select>
+      <label for="fSort">排序</label>
+      <select id="fSort">
+        <option value="default">預設（公告順序）</option>
+        <option value="distance">距離由近到遠</option>
+        <option value="name">名稱</option>
+      </select>
+      <div class="chips" id="accessChips" role="group" aria-label="依進出場方式篩選"></div>
+    </div>
+
+    <div class="placehint" id="placeHint" hidden>
+      <span id="placeHintText"></span>
+      <button type="button" id="placeSearchBtn">搜尋這個地點附近的停車場</button>
+    </div>
+
+    <div class="originbar" id="originBar">
+      <span>📍 以 <strong id="originName"></strong> 為中心，依距離排序</span>
+      <button type="button" id="clearOrigin">取消</button>
+    </div>
+  </div>
+
+  <div class="tabbar" role="tablist">
+    <button class="btn" id="tabList" type="button" role="tab" aria-pressed="true">📋 清單</button>
+    <button class="btn" id="tabMap" type="button" role="tab" aria-pressed="false">🗺️ 地圖</button>
+  </div>
+
+  <main>
+    <section class="listpane" aria-label="停車場清單">
+      <div class="listhead">
+        <span id="resultCount">—</span>
+        <span id="geoNote"></span>
+      </div>
+      <ul id="list"></ul>
+    </section>
+    <section class="mappane" aria-label="地圖">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span id="footMeta">資料每日自動更新。</span>
+    <details>
+      <summary>使用說明與免責</summary>
+      <p>座標由地理編碼推估，實際位置請以現場標示為準；免銷單服務內容與適用對象，一律以臺中市政府交通局公告為準。
+      本站為民間製作的資料整理工具，非官方網站。</p>
+    </details>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="./lib/leaflet.js"></script>
+<script src="./lib/leaflet.markercluster.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var DATA_URL = "./data/parkings.json";
+  var TC_CENTER = [24.1477, 120.6736];
+
+  var state = {
+    items: [],
+    filtered: [],
+    query: "",
+    district: "",
+    access: new Set(),
+    sort: "default",
+    origin: null,       // {lat, lng, label}
+    activeId: null,
+    markers: {}
+  };
+
+  var el = {};
+  ["q","clearQ","btnNear","fDistrict","fSort","accessChips","placeHint","placeHintText",
+   "placeSearchBtn","originBar","originName","clearOrigin","list","resultCount","geoNote",
+   "metaCount","footMeta","toast","tabList","tabMap"].forEach(function (id) {
+    el[id] = document.getElementById(id);
+  });
+
+  /* ---------------- map ---------------- */
+  var map = L.map("map", { center: TC_CENTER, zoom: 12, zoomControl: true });
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '地圖資料 &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 貢獻者'
+  }).addTo(map);
+
+  var cluster = L.markerClusterGroup({
+    maxClusterRadius: 48,
+    showCoverageOnHover: false,
+    spiderfyOnMaxZoom: true
+  });
+  map.addLayer(cluster);
+
+  var originMarker = null;
+
+  /* ---------------- helpers ---------------- */
+  function toast(msg) {
+    el.toast.textContent = msg;
+    el.toast.classList.add("on");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.toast.classList.remove("on"); }, 2800);
+  }
+
+  function haversine(a, b, c, d) {
+    var R = 6371, p = Math.PI / 180;
+    var dLat = (c - a) * p, dLng = (d - b) * p;
+    var s = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(a * p) * Math.cos(c * p) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
+    return 2 * R * Math.asin(Math.sqrt(s));
+  }
+
+  function fmtDist(km) {
+    if (km == null) return "";
+    return km < 1 ? Math.round(km * 1000) + " 公尺" : km.toFixed(1) + " 公里";
+  }
+
+  function norm(s) {
+    return (s || "").replace(/台/g, "臺").toLowerCase();
+  }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function navUrl(item) {
+    var q = item.lat != null
+      ? item.lat + "," + item.lng
+      : (item.address || item.name);
+    return "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(q);
+  }
+
+  /* ---------------- rendering ---------------- */
+  function applyFilters() {
+    var q = norm(state.query.trim());
+    var out = state.items.filter(function (it) {
+      if (state.district && it.district !== state.district) return false;
+      if (state.access.size && !state.access.has(it.access)) return false;
+      if (q) {
+        var hay = norm(it.name + " " + it.location + " " + it.district + " " + it.access);
+        if (hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+
+    if (state.origin) {
+      out.forEach(function (it) {
+        it._d = (it.lat != null)
+          ? haversine(state.origin.lat, state.origin.lng, it.lat, it.lng)
+          : null;
+      });
+    } else {
+      out.forEach(function (it) { it._d = null; });
+    }
+
+    var sort = state.sort;
+    if (sort === "distance" && !state.origin) sort = "default";
+    if (sort === "distance") {
+      out.sort(function (a, b) {
+        if (a._d == null) return 1;
+        if (b._d == null) return -1;
+        return a._d - b._d;
+      });
+    } else if (sort === "name") {
+      out.sort(function (a, b) { return a.name.localeCompare(b.name, "zh-Hant"); });
+    } else {
+      out.sort(function (a, b) { return (parseInt(a.seq, 10) || 9999) - (parseInt(b.seq, 10) || 9999); });
+    }
+
+    state.filtered = out;
+    renderList();
+    renderMarkers();
+    updatePlaceHint();
+  }
+
+  function renderList() {
+    var frag = document.createDocumentFragment();
+    state.filtered.forEach(function (it) {
+      var li = document.createElement("li");
+      var hasGeo = it.lat != null;
+      li.innerHTML =
+        '<div class="card' + (state.activeId === it.id ? " active" : "") + '" tabindex="0" role="button" data-id="' + esc(it.id) + '">' +
+          '<h3>' + esc(it.name) +
+            (it._d != null ? '<span class="dist">' + fmtDist(it._d) + '</span>' : '') +
+          '</h3>' +
+          '<p class="loc">' + esc(it.location || it.address) + '</p>' +
+          '<span class="badge">' + esc(it.access || "—") + '</span>' +
+          (hasGeo ? '' : '<span class="badge nogeo">座標待補</span>') +
+          '<div class="cardactions">' +
+            (hasGeo ? '<a href="#" data-locate="' + esc(it.id) + '">🗺️ 在地圖上顯示</a>' : '') +
+            '<a href="' + esc(navUrl(it)) + '" target="_blank" rel="noopener">🧭 Google 導航</a>' +
+          '</div>' +
+        '</div>';
+      frag.appendChild(li);
+    });
+
+    el.list.innerHTML = "";
+    if (!state.filtered.length) {
+      var d = document.createElement("div");
+      d.className = "empty";
+      d.innerHTML = "找不到符合的停車場。<br>試試換個關鍵字，或把它當成「地點」搜尋附近停車場。";
+      el.list.appendChild(d);
+    } else {
+      el.list.appendChild(frag);
+    }
+
+    el.resultCount.textContent = "顯示 " + state.filtered.length + " / " + state.items.length + " 座停車場";
+  }
+
+  function renderMarkers() {
+    cluster.clearLayers();
+    state.markers = {};
+    var layers = [];
+    state.filtered.forEach(function (it) {
+      if (it.lat == null) return;
+      var m = L.marker([it.lat, it.lng], { title: it.name, alt: it.name });
+      m.bindPopup(
+        '<h3>' + esc(it.name) + '</h3>' +
+        '<p>' + esc(it.location || it.address) + '</p>' +
+        '<p><strong>' + esc(it.access || "—") + '</strong></p>' +
+        (it._d != null ? '<p>距離約 ' + fmtDist(it._d) + '</p>' : '') +
+        '<a href="' + esc(navUrl(it)) + '" target="_blank" rel="noopener">Google 導航 →</a>'
+      );
+      m.on("click", function () { setActive(it.id, false); });
+      state.markers[it.id] = m;
+      layers.push(m);
+    });
+    cluster.addLayers(layers);
+  }
+
+  function setActive(id, pan) {
+    state.activeId = id;
+    Array.prototype.forEach.call(el.list.querySelectorAll(".card"), function (c) {
+      c.classList.toggle("active", c.dataset.id === id);
+    });
+    var m = state.markers[id];
+    if (m && pan) {
+      cluster.zoomToShowLayer(m, function () { m.openPopup(); });
+      map.setView(m.getLatLng(), Math.max(map.getZoom(), 16));
+    }
+    if (m && !pan) {
+      var card = el.list.querySelector('.card[data-id="' + CSS.escape(id) + '"]');
+      if (card) card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }
+  }
+
+  function fitToResults() {
+    var pts = state.filtered.filter(function (i) { return i.lat != null; })
+                            .map(function (i) { return [i.lat, i.lng]; });
+    if (state.origin) pts.push([state.origin.lat, state.origin.lng]);
+    if (pts.length) map.fitBounds(L.latLngBounds(pts).pad(0.15), { maxZoom: 16 });
+  }
+
+  /* ---------------- origin (離我最近 / 地點搜尋) ---------------- */
+  function setOrigin(lat, lng, label) {
+    state.origin = { lat: lat, lng: lng, label: label };
+    el.originName.textContent = label;
+    el.originBar.classList.add("on");
+    el.fSort.value = "distance";
+    state.sort = "distance";
+
+    if (originMarker) map.removeLayer(originMarker);
+    originMarker = L.marker([lat, lng], {
+      icon: L.divIcon({ className: "", html: '<div class="origin-dot"></div>', iconSize: [18, 18], iconAnchor: [9, 9] }),
+      zIndexOffset: 1000,
+      title: label
+    }).addTo(map).bindPopup("📍 " + esc(label));
+
+    applyFilters();
+    var top = state.filtered.filter(function (i) { return i._d != null; }).slice(0, 8)
+                            .map(function (i) { return [i.lat, i.lng]; });
+    top.push([lat, lng]);
+    if (top.length > 1) map.fitBounds(L.latLngBounds(top).pad(0.2), { maxZoom: 16 });
+    else map.setView([lat, lng], 15);
+  }
+
+  function clearOrigin() {
+    state.origin = null;
+    el.originBar.classList.remove("on");
+    if (originMarker) { map.removeLayer(originMarker); originMarker = null; }
+    if (state.sort === "distance") { state.sort = "default"; el.fSort.value = "default"; }
+    applyFilters();
+    fitToResults();
+  }
+
+  function locateMe() {
+    if (!navigator.geolocation) { toast("此瀏覽器不支援定位功能"); return; }
+    el.btnNear.disabled = true;
+    el.btnNear.textContent = "定位中…";
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      el.btnNear.disabled = false;
+      el.btnNear.textContent = "📍 離我最近";
+      setOrigin(pos.coords.latitude, pos.coords.longitude, "我的位置");
+    }, function (err) {
+      el.btnNear.disabled = false;
+      el.btnNear.textContent = "📍 離我最近";
+      toast(err.code === 1
+        ? "已拒絕定位權限，請在瀏覽器設定中開啟，或改用地點搜尋"
+        : "無法取得目前位置，請改用地點搜尋");
+    }, { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 });
+  }
+
+  // 用 OpenStreetMap Nominatim 查任意地點（醫院、車站、商圈…）
+  function searchPlace(text) {
+    var q = text.trim();
+    if (!q) return;
+    el.placeSearchBtn.disabled = true;
+    el.placeSearchBtn.textContent = "搜尋中…";
+
+    var url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=tw" +
+              "&accept-language=zh-TW&viewbox=120.35,24.60,121.50,23.90&q=" +
+              encodeURIComponent(q.indexOf("臺中") === -1 && q.indexOf("台中") === -1 ? "臺中市 " + q : q);
+
+    fetch(url).then(function (r) { return r.json(); }).then(function (rows) {
+      el.placeSearchBtn.disabled = false;
+      el.placeSearchBtn.textContent = "搜尋這個地點附近的停車場";
+      if (!rows || !rows.length) { toast("找不到「" + q + "」這個地點"); return; }
+      var r0 = rows[0];
+      state.query = "";
+      el.q.value = "";
+      el.clearQ.hidden = true;
+      setOrigin(parseFloat(r0.lat), parseFloat(r0.lon), q);
+      toast("已定位到「" + q + "」，依距離排序");
+    }).catch(function () {
+      el.placeSearchBtn.disabled = false;
+      el.placeSearchBtn.textContent = "搜尋這個地點附近的停車場";
+      toast("地點搜尋服務暫時無法使用");
+    });
+  }
+
+  function updatePlaceHint() {
+    var q = state.query.trim();
+    if (q.length >= 2) {
+      el.placeHint.hidden = false;
+      el.placeHintText.textContent = state.filtered.length
+        ? "把「" + q + "」當成地點？"
+        : "沒有符合的停車場。把「" + q + "」當成地點試試？";
+    } else {
+      el.placeHint.hidden = true;
+    }
+  }
+
+  /* ---------------- events ---------------- */
+  var debounce;
+  el.q.addEventListener("input", function () {
+    state.query = el.q.value;
+    el.clearQ.hidden = !el.q.value;
+    clearTimeout(debounce);
+    debounce = setTimeout(applyFilters, 130);
+  });
+  el.q.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && state.query.trim() && !state.filtered.length) searchPlace(state.query);
+  });
+  el.clearQ.addEventListener("click", function () {
+    el.q.value = ""; state.query = ""; el.clearQ.hidden = true; applyFilters(); el.q.focus();
+  });
+  el.placeSearchBtn.addEventListener("click", function () { searchPlace(state.query); });
+  el.btnNear.addEventListener("click", locateMe);
+  el.clearOrigin.addEventListener("click", clearOrigin);
+  el.fDistrict.addEventListener("change", function () { state.district = el.fDistrict.value; applyFilters(); fitToResults(); });
+  el.fSort.addEventListener("change", function () {
+    if (el.fSort.value === "distance" && !state.origin) {
+      toast("請先按「離我最近」或搜尋一個地點");
+      el.fSort.value = state.sort;
+      return;
+    }
+    state.sort = el.fSort.value; applyFilters();
+  });
+
+  el.list.addEventListener("click", function (e) {
+    var loc = e.target.closest("[data-locate]");
+    if (loc) {
+      e.preventDefault();
+      document.body.dataset.tab = "map";
+      syncTabs();
+      setActive(loc.dataset.locate, true);
+      return;
+    }
+    if (e.target.closest("a")) return;
+    var card = e.target.closest(".card");
+    if (card) setActive(card.dataset.id, true);
+  });
+  el.list.addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var card = e.target.closest(".card");
+    if (card) { e.preventDefault(); setActive(card.dataset.id, true); }
+  });
+
+  function syncTabs() {
+    var t = document.body.dataset.tab;
+    el.tabList.setAttribute("aria-pressed", String(t === "list"));
+    el.tabMap.setAttribute("aria-pressed", String(t === "map"));
+    if (t === "map") setTimeout(function () { map.invalidateSize(); }, 60);
+  }
+  el.tabList.addEventListener("click", function () { document.body.dataset.tab = "list"; syncTabs(); });
+  el.tabMap.addEventListener("click", function () { document.body.dataset.tab = "map"; syncTabs(); });
+  window.addEventListener("resize", function () { map.invalidateSize(); });
+
+  /* ---------------- boot ---------------- */
+  fetch(DATA_URL, { cache: "no-cache" })
+    .then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    })
+    .then(function (data) {
+      state.items = data.items || [];
+
+      (data.districts || []).forEach(function (d) {
+        var o = document.createElement("option");
+        o.value = d; o.textContent = d;
+        el.fDistrict.appendChild(o);
+      });
+
+      (data.access_types || []).forEach(function (a) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.textContent = a;
+        b.setAttribute("aria-pressed", "false");
+        b.addEventListener("click", function () {
+          if (state.access.has(a)) { state.access.delete(a); b.setAttribute("aria-pressed", "false"); }
+          else { state.access.add(a); b.setAttribute("aria-pressed", "true"); }
+          applyFilters();
+        });
+        el.accessChips.appendChild(b);
+      });
+
+      var missing = data.count - data.geocoded;
+      el.metaCount.textContent = "共 " + data.count + " 座";
+      el.geoNote.textContent = missing ? missing + " 筆座標待補" : "";
+      el.footMeta.textContent =
+        "網站公告更新日：" + (data.page_updated || "未知") +
+        "　|　本站資料產生時間：" + (data.generated_at || "").replace("T", " ").slice(0, 16) +
+        "　|　每日 00:00 自動更新。";
+
+      applyFilters();
+      fitToResults();
+      if (window.matchMedia("(min-width: 821px)").matches) document.body.dataset.tab = "both";
+      syncTabs();
+    })
+    .catch(function (err) {
+      el.list.innerHTML = '<div class="empty">資料載入失敗（' + esc(err.message) +
+        '）。<br>若是剛建立網站，請先在 GitHub Actions 手動執行一次「每日更新停車場資料」。</div>';
+      el.metaCount.textContent = "資料載入失敗";
+    });
+})();
+</script>
+</body>
+</html>
