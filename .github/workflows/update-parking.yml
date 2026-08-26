@@ -1,0 +1,62 @@
+name: 每日更新停車場資料
+
+on:
+  schedule:
+    # UTC 16:00 = 臺灣時間隔天 00:00
+    - cron: "0 16 * * *"
+  workflow_dispatch:        # 允許手動觸發
+  push:
+    branches: [master]
+    paths:
+      - "parking/scripts/**"
+      - ".github/workflows/update-parking.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-parking
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: 取出程式碼
+        uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: parking/scripts/requirements.txt
+
+      - name: 安裝套件
+        run: pip install -r parking/scripts/requirements.txt
+
+      - name: 爬取表格
+        run: python parking/scripts/scrape.py
+
+      - name: 地理編碼（只查快取沒有的）
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+        run: python parking/scripts/geocode.py
+
+      - name: 有變動才 commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add parking/cache parking/data
+          if git diff --staged --quiet; then
+            echo "資料無變動，略過 commit"
+          else
+            git commit -m "chore(parking): 自動更新停車場資料 $(TZ=Asia/Taipei date '+%Y-%m-%d %H:%M')"
+            git push
+          fi
+
+      - name: 摘要
+        if: always()
+        run: python parking/scripts/summary.py >> "$GITHUB_STEP_SUMMARY"
