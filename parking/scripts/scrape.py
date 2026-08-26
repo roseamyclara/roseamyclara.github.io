@@ -100,43 +100,60 @@ def pick_table(soup: BeautifulSoup):
 
 
 def parse_header(table) -> tuple[dict[int, str], int]:
-    """回傳 {欄位索引: 欄位名稱} 以及資料列的起始索引。"""
+    """回傳 {欄位索引: 欄位名稱} 以及資料列的起始索引。
+
+    注意：表格第一列常常是跨欄的大標題（例如「身障免銷單服務已上線停車場(115年8月17日更新)」），
+    裡面也含有「停車場」三個字，所以必須要求一列至少對應到 3 個欄位才算是真正的表頭，
+    否則會把標題列誤判成表頭而整個欄位錯位。
+    """
     rows = table.find_all("tr")
-    for idx, row in enumerate(rows[:5]):
+    for idx, row in enumerate(rows[:6]):
         cells = row.find_all(["th", "td"])
-        if not cells:
+        if len(cells) < 3:
             continue
         mapping = {}
         for i, cell in enumerate(cells):
             field = match_column(cell.get_text())
             if field and field not in mapping.values():
                 mapping[i] = field
-        if "name" in mapping.values():
+        if len(mapping) >= 3 and "name" in mapping.values():
             return mapping, idx + 1
     # 找不到表頭時退回固定欄位順序（序號/名稱/方式/位置）
     print("[warn] 無法辨識表頭，改用預設欄位順序", file=sys.stderr)
-    return {0: "seq", 1: "name", 2: "access", 3: "location"}, 0
+    return {0: "seq", 1: "name", 2: "access", 3: "location"}, 1
 
 
 DISTRICT_RE = re.compile(r"([一-鿿]{1,3}區)")
 
 
 def extract_district(location: str, name: str) -> str:
+    """從位置字串取出行政區。
+
+    要先把「臺中市」拿掉再比對，否則「臺中市豐原區…」會被抓成「市豐原區」。
+    """
     for text in (location, name):
-        m = DISTRICT_RE.search(text or "")
+        t = (text or "").replace("臺中市", "").replace("台中市", "")
+        m = DISTRICT_RE.search(t)
         if m:
             return m.group(1)
     return "未分類"
 
 
 def normalize_address(location: str) -> str:
-    """組出可送進地理編碼的完整地址。"""
+    """組出可送進地理編碼的地址。
+
+    原始「位置」欄常常一次列出好幾條路，例如
+    「臺中市西屯區臺灣大道、文心路、惠中路」，
+    只取第一段當作定位用地址，完整字串仍保留在 location 供顯示。
+    """
     loc = clean(location or "").replace("台", "臺")
     if not loc:
         return ""
-    if loc.startswith("臺中市"):
-        return loc
-    return "臺中市" + loc
+    loc = loc.split("、")[0].strip()
+    loc = re.sub(r"[口旁側對面]$", "", loc).strip()
+    if not loc.startswith("臺中市"):
+        loc = "臺中市" + loc
+    return loc
 
 
 def parse_updated_date(page_text: str) -> str | None:

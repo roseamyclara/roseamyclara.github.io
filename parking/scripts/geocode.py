@@ -24,6 +24,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timezone, timedelta
@@ -47,6 +48,16 @@ GEOCODE_URL = "https://maps.googleapis.com/maps/api/geocode/json"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
 
 NOMINATIM_UA = "taichung-lovecard-parking-map/1.0 (github pages static site)"
+
+# 快取格式版本：改動查詢策略時 +1，舊快取會自動失效重查
+CACHE_VERSION = 2
+
+# Nominatim 回傳這些型別代表只定位到行政區／邊界，對找停車場沒有意義，
+# 只有在最後一步「行政區概略位置」時才接受。
+OSM_COARSE_TYPES = {
+    "administrative", "boundary", "city", "town", "village", "suburb",
+    "quarter", "neighbourhood", "political", "county", "state", "region",
+}
 
 # Google Geocoding 回傳的精度等級，越前面越精確
 PRECISION_RANK = {
@@ -155,7 +166,7 @@ def google_geocode(address: str, api_key: str) -> dict | None:
 # OpenStreetMap fallback
 # --------------------------------------------------------------------------
 
-def osm_geocode(query: str) -> dict | None:
+def osm_geocode(query: str, allow_coarse: bool = False) -> dict | None:
     params = {
         "q": query,
         "format": "jsonv2",
@@ -169,16 +180,47 @@ def osm_geocode(query: str) -> dict | None:
     resp.raise_for_status()
     for result in resp.json():
         lat, lng = float(result["lat"]), float(result["lon"])
-        if in_taichung(lat, lng):
-            return {
-                "lat": round(lat, 6),
-                "lng": round(lng, 6),
-                "precision": "OSM_" + str(result.get("type", "")).upper(),
-                "matched": result.get("name", ""),
-                "formatted": result.get("display_name", ""),
-                "source": "nominatim",
-            }
+        if not in_taichung(lat, lng):
+            continue
+        rtype = str(result.get("type", "")).lower()
+        coarse = rtype in OSM_COARSE_TYPES
+        if coarse and not allow_coarse:
+            continue
+        return {
+            "lat": round(lat, 6),
+            "lng": round(lng, 6),
+            "precision": "DISTRICT" if coarse else "OSM_" + rtype.upper(),
+            "approx": coarse,
+            "matched": result.get("name", ""),
+            "formatted": result.get("display_name", ""),
+            "source": "nominatim",
+        }
     return None
+
+
+HOUSE_NO_RE = re.compile(r"\d+(?:[-之]\d+)?號.*$")
+LANE_RE = re.compile(r"\d+\s*[巷弄].*$")
+DISTRICT_ONLY_RE = re.compile(r"^(臺中市[\u4e00-\u9fff]{1,3}區)")
+
+
+def address_candidates(address: str) -> list[str]:
+    """由精到粗產生候選查詢字串。
+
+    OSM 在臺灣多半只有路段層級的資料：
+      「臺中市豐原區水源路1-1號」→ 查不到門牌，退成「臺中市豐原區水源路」
+      「臺中市南屯區黎明路一段123巷」→ 退成「臺中市南屯區黎明路一段」
+    """
+    cands: list[str] = []
+
+    def push(v: str) -> None:
+        v = v.strip()
+        if v and v not in cands:
+            cands.append(v)
+
+    push(address)
+    push(HOUSE_NO_RE.sub("", address))
+    push(LANE_RE.sub("", HOUSE_NO_RE.sub("", address)))
+    return [c for c in cands if len(c) > 6]
 
 
 # --------------------------------------------------------------------------
@@ -186,20 +228,39 @@ def osm_geocode(query: str) -> dict | None:
 def resolve(item: dict, provider: str, api_key: str | None) -> dict | None:
     name = item["name"]
     address = item["address"] or ("臺中市 " + name)
+    district = item.get("district") or ""
 
     if provider == "google" and api_key:
-        # 先用「地址 + 場站名稱」找 POI，找不到再退回純地址
+        # 先用「地址 + 場站名稱」找 POI（最精準），找不到再退回純地址
         hit = google_places(f"{address} {name}", api_key)
         if not hit:
             hit = google_places(f"臺中市 {name}", api_key)
         if not hit:
-            hit = google_geocode(address, api_key)
+            for cand in address_candidates(address):
+                hit = google_geocode(cand, api_key)
+                if hit:
+                    break
         return hit
 
-    hit = osm_geocode(f"{address} {name}")
-    if not hit:
-        hit = osm_geocode(address)
-    return hit
+    # OSM：由精到粗逐一嘗試，拒絕只定位到行政區的結果
+    for cand in address_candidates(address):
+        hit = osm_geocode(cand)
+        if hit:
+            return hit
+        time.sleep(1.0)
+
+    # 最後退路：行政區概略位置，標記 approx 讓網頁顯示「約略位置」
+    m = DISTRICT_ONLY_RE.match(address)
+    fallback = m.group(1) if m else (
+        f"臺中市{district}" if district and district != "未分類" else ""
+    )
+    if fallback:
+        hit = osm_geocode(fallback, allow_coarse=True)
+        if hit:
+            hit["approx"] = True
+            hit["precision"] = "DISTRICT"
+            return hit
+    return None
 
 
 def main() -> int:
@@ -236,6 +297,12 @@ def main() -> int:
     if args.refresh_all:
         print("[info] --refresh-all：清空快取重新編碼")
         cache = {}
+    else:
+        stale = [k for k, v in cache.items() if v.get("v") != CACHE_VERSION]
+        if stale:
+            print(f"[info] 快取格式已更新，{len(stale)} 筆舊資料將重新查詢")
+            for k in stale:
+                cache.pop(k, None)
 
     items = raw["items"]
     todo = [it for it in items if cache_key(it) not in cache]
@@ -259,7 +326,11 @@ def main() -> int:
             hit = None
 
         if hit:
-            cache[key] = {**hit, "cached_at": datetime.now(TPE).isoformat(timespec="seconds")}
+            cache[key] = {
+                **hit,
+                "v": CACHE_VERSION,
+                "cached_at": datetime.now(TPE).isoformat(timespec="seconds"),
+            }
             ok += 1
         else:
             fail += 1
@@ -271,7 +342,7 @@ def main() -> int:
                 json.dumps(cache, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
             )
 
-        time.sleep(1.0 if provider == "osm" else 0.12)
+        time.sleep(0.2 if provider == "osm" else 0.12)
 
     CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
     CACHE_PATH.write_text(
@@ -297,6 +368,8 @@ def main() -> int:
             rec["lng"] = geo["lng"]
             rec["precision"] = geo.get("precision", "")
             rec["geo_source"] = geo.get("source", "")
+            if geo.get("approx"):
+                rec["approx"] = True
         else:
             missing += 1
         out_items.append(rec)
@@ -308,6 +381,7 @@ def main() -> int:
         "scraped_at": raw.get("scraped_at"),
         "count": len(out_items),
         "geocoded": len(out_items) - missing,
+        "approx": sum(1 for i in out_items if i.get("approx")),
         "districts": sorted({i["district"] for i in out_items}),
         "access_types": sorted({i["access"] for i in out_items if i["access"]}),
         "items": out_items,
