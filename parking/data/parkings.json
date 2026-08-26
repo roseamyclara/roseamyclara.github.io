@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-08-26T17:10:14+08:00",
+  "generated_at": "2026-08-27T00:46:55+08:00",
   "source_url": "https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule",
   "page_updated": "2026-08-17",
-  "scraped_at": "2026-08-26T17:01:46+08:00",
+  "scraped_at": "2026-08-27T00:42:19+08:00",
   "count": 284,
-  "geocoded": 121,
-  "approx": 56,
+  "geocoded": 196,
+  "approx": 83,
   "districts": [
     "中區",
     "中南屯區",
@@ -1686,7 +1686,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市豐原區豐中路至博愛街溝渠地面新生北路",
       "district": "豐原區",
-      "address": "臺中市豐原區豐中路至博愛街溝渠地面新生北路"
+      "address": "臺中市豐原區豐中路至博愛街溝渠地面新生北路",
+      "lat": 24.24219,
+      "lng": 120.71846,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "田心路停車場|臺中市豐原區田心路與豐原大道三段口",
@@ -1695,7 +1700,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市豐原區田心路與豐原大道三段口",
       "district": "豐原區",
-      "address": "臺中市豐原區田心路與豐原大道三段"
+      "address": "臺中市豐原區田心路與豐原大道三段",
+      "lat": 24.24219,
+      "lng": 120.71846,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "中陽路停車場|臺中市豐原區中陽路與中陽路 537 巷口",
@@ -1704,7 +1714,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市豐原區中陽路與中陽路 537 巷口",
       "district": "豐原區",
-      "address": "臺中市豐原區中陽路與中陽路 537 巷"
+      "address": "臺中市豐原區中陽路與中陽路 537 巷",
+      "lat": 24.24219,
+      "lng": 120.71846,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "育英路立體停車場|臺中市豐原區育英路 150 號",
@@ -1713,7 +1728,11 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市豐原區育英路 150 號",
       "district": "豐原區",
-      "address": "臺中市豐原區育英路 150 號"
+      "address": "臺中市豐原區育英路 150 號",
+      "lat": 24.240779,
+      "lng": 120.714969,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "大墩國中地下停車場|臺中市南屯區河南路四段、大墩七街路口",
@@ -1722,7 +1741,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區河南路四段、大墩七街路口",
       "district": "南屯區",
-      "address": "臺中市南屯區河南路四段"
+      "address": "臺中市南屯區河南路四段",
+      "lat": 24.145817,
+      "lng": 120.638858,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "錢嶺停車場|臺中市南屯區精科五路、精科北路",
@@ -1731,7 +1754,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區精科五路、精科北路",
       "district": "南屯區",
-      "address": "臺中市南屯區精科五路"
+      "address": "臺中市南屯區精科五路",
+      "lat": 24.151856,
+      "lng": 120.596069,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "三塊厝停車場|臺中市南屯區永春東七路、大墩十一街 ( 臺中花市旁 )",
@@ -1740,7 +1767,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區永春東七路、大墩十一街 ( 臺中花市旁 )",
       "district": "南屯區",
-      "address": "臺中市南屯區永春東七路"
+      "address": "臺中市南屯區永春東七路",
+      "lat": 24.130433,
+      "lng": 120.630168,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "新厝停車場|臺中市南屯區龍富十七路與益豐路四段旁空地",
@@ -1749,7 +1780,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區龍富十七路與益豐路四段旁空地",
       "district": "南屯區",
-      "address": "臺中市南屯區龍富十七路與益豐路四段旁空地"
+      "address": "臺中市南屯區龍富十七路與益豐路四段旁空地",
+      "lat": 24.134631,
+      "lng": 120.644374,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "文心森林公園附屬停車場|臺中市南屯區惠文路 ( 近大墩七街、向上路 )",
@@ -1758,7 +1794,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區惠文路 ( 近大墩七街、向上路 )",
       "district": "南屯區",
-      "address": "臺中市南屯區惠文路 ( 近大墩七街"
+      "address": "臺中市南屯區惠文路 ( 近大墩七街",
+      "lat": 24.134631,
+      "lng": 120.644374,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "永和巷公園附屬停車場|臺中市北屯區永和巷、山西路二段",
@@ -1767,7 +1808,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區永和巷、山西路二段",
       "district": "北屯區",
-      "address": "臺中市北屯區永和巷"
+      "address": "臺中市北屯區永和巷",
+      "lat": 24.177865,
+      "lng": 120.675953,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "平德停車場|臺中市北屯區平德路 100 號 ( 阿寶早餐 )",
@@ -1776,7 +1821,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區平德路 100 號 ( 阿寶早餐 )",
       "district": "北屯區",
-      "address": "臺中市北屯區平德路 100 號 ( 阿寶早餐 )"
+      "address": "臺中市北屯區平德路 100 號 ( 阿寶早餐 )",
+      "lat": 24.182264,
+      "lng": 120.686288,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "東英停車場|臺中市東區東英八街、一心街",
@@ -1785,7 +1835,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區東英八街、一心街",
       "district": "東區",
-      "address": "臺中市東區東英八街"
+      "address": "臺中市東區東英八街",
+      "lat": 24.141601,
+      "lng": 120.706005,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "一心停車場|臺中市東區樂業路、一心街",
@@ -1794,7 +1848,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區樂業路、一心街",
       "district": "東區",
-      "address": "臺中市東區樂業路"
+      "address": "臺中市東區樂業路",
+      "lat": 24.136299,
+      "lng": 120.70721,
+      "precision": "OSM_UNCLASSIFIED",
+      "geo_source": "nominatim"
     },
     {
       "id": "武昌停車場|臺中市北區陜西五街、武昌路口",
@@ -1803,7 +1861,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北區陜西五街、武昌路口",
       "district": "北區",
-      "address": "臺中市北區陜西五街"
+      "address": "臺中市北區陜西五街",
+      "lat": 24.166039,
+      "lng": 120.682318,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "建成停車場|臺中市北區興進路與東光路 ( 肉品市場邊 )",
@@ -1812,7 +1875,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北區興進路與東光路 ( 肉品市場邊 )",
       "district": "北區",
-      "address": "臺中市北區興進路與東光路 ( 肉品市場邊 )"
+      "address": "臺中市北區興進路與東光路 ( 肉品市場邊 )",
+      "lat": 24.166039,
+      "lng": 120.682318,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "南平停車場|臺中市南區南平路、美村路",
@@ -1821,7 +1889,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南區南平路、美村路",
       "district": "南區",
-      "address": "臺中市南區南平路"
+      "address": "臺中市南區南平路",
+      "lat": 24.122226,
+      "lng": 120.664252,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "文昌停車場|臺中市南屯區文昌街、永春東五街",
@@ -1830,7 +1902,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區文昌街、永春東五街",
       "district": "南屯區",
-      "address": "臺中市南屯區文昌街"
+      "address": "臺中市南屯區文昌街",
+      "lat": 24.139018,
+      "lng": 120.634063,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "柳川地下停車場|臺中市西區中華路一之 120 號地下室 2 、 3 樓",
@@ -1839,7 +1915,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市西區中華路一之 120 號地下室 2 、 3 樓",
       "district": "西區",
-      "address": "臺中市西區中華路一之 120 號地下室 2"
+      "address": "臺中市西區中華路一之 120 號地下室 2",
+      "lat": 24.14138,
+      "lng": 120.67104,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "萬壽棒球場附屬地下（含 1 樓平面）停車場|臺中市西區大墩路、向上路",
@@ -1848,7 +1929,11 @@
       "access": "1 樓平面需致電 04-2471-9026 或 0965-809-502 由服務人員協助折抵離場 ) 其餘車辨進，多卡通出",
       "location": "臺中市西區大墩路、向上路",
       "district": "西區",
-      "address": "臺中市西區大墩路"
+      "address": "臺中市西區大墩路",
+      "lat": 24.143718,
+      "lng": 120.649885,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "臺中公園地下停車場|臺中市北區公園路 8 之 1 號",
@@ -1857,7 +1942,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北區公園路 8 之 1 號",
       "district": "北區",
-      "address": "臺中市北區公園路 8 之 1 號"
+      "address": "臺中市北區公園路 8 之 1 號",
+      "lat": 24.166039,
+      "lng": 120.682318,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "潭興立體停車場|臺中市潭子區潭興路三段 25 號",
@@ -1866,7 +1956,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市潭子區潭興路三段 25 號",
       "district": "潭子區",
-      "address": "臺中市潭子區潭興路三段 25 號"
+      "address": "臺中市潭子區潭興路三段 25 號",
+      "lat": 24.211559,
+      "lng": 120.704866,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "潮春停車場|臺中市北屯區崇德十六路、豐樂路 26 巷",
@@ -1875,7 +1969,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區崇德十六路、豐樂路 26 巷",
       "district": "北屯區",
-      "address": "臺中市北屯區崇德十六路"
+      "address": "臺中市北屯區崇德十六路",
+      "lat": 24.195374,
+      "lng": 120.690528,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "仁美停車場|臺中市北屯區豐樂路 26 巷附近",
@@ -1884,7 +1982,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區豐樂路 26 巷附近",
       "district": "北屯區",
-      "address": "臺中市北屯區豐樂路 26 巷附近"
+      "address": "臺中市北屯區豐樂路 26 巷附近",
+      "lat": 24.192908,
+      "lng": 120.68997,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "庄美停車場|臺中市北屯區后庄三街 197 巷",
@@ -1893,7 +1995,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區后庄三街 197 巷",
       "district": "北屯區",
-      "address": "臺中市北屯區后庄三街 197 巷"
+      "address": "臺中市北屯區后庄三街 197 巷",
+      "lat": 24.18874,
+      "lng": 120.664562,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "麗園 A 停車場|臺中市北屯區環、廍子路",
@@ -1902,7 +2008,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區環、廍子路",
       "district": "北屯區",
-      "address": "臺中市北屯區環"
+      "address": "臺中市北屯區環",
+      "lat": 24.199731,
+      "lng": 120.684085,
+      "precision": "OSM_STADIUM",
+      "geo_source": "nominatim"
     },
     {
       "id": "麗園 B 停車場|臺中市北屯區環、廍子路",
@@ -1911,7 +2021,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區環、廍子路",
       "district": "北屯區",
-      "address": "臺中市北屯區環"
+      "address": "臺中市北屯區環",
+      "lat": 24.199731,
+      "lng": 120.684085,
+      "precision": "OSM_STADIUM",
+      "geo_source": "nominatim"
     },
     {
       "id": "錦祥停車場|臺中市北區育強街、育強街 78 巷",
@@ -1920,7 +2034,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北區育強街、育強街 78 巷",
       "district": "北區",
-      "address": "臺中市北區育強街"
+      "address": "臺中市北區育強街",
+      "lat": 24.159341,
+      "lng": 120.692652,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "中和停車場|臺中市南屯區黎明路一段 123 巷",
@@ -1929,7 +2047,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區黎明路一段 123 巷",
       "district": "南屯區",
-      "address": "臺中市南屯區黎明路一段 123 巷"
+      "address": "臺中市南屯區黎明路一段 123 巷",
+      "lat": 24.137879,
+      "lng": 120.637551,
+      "precision": "OSM_PARCEL_LOCKER",
+      "geo_source": "nominatim"
     },
     {
       "id": "博愛停車場|臺中市南屯區干城街、永春東七路",
@@ -1938,7 +2060,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區干城街、永春東七路",
       "district": "南屯區",
-      "address": "臺中市南屯區干城街"
+      "address": "臺中市南屯區干城街",
+      "lat": 24.152252,
+      "lng": 120.629494,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "半平厝停車場|臺中市南區建國南路一段、建國南路一段 236 巷",
@@ -1947,7 +2073,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南區建國南路一段、建國南路一段 236 巷",
       "district": "南區",
-      "address": "臺中市南區建國南路一段"
+      "address": "臺中市南區建國南路一段",
+      "lat": 24.123993,
+      "lng": 120.656599,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "和福停車場|臺中市北屯區和福路、建和路 219 巷",
@@ -1956,7 +2086,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區和福路、建和路 219 巷",
       "district": "北屯區",
-      "address": "臺中市北屯區和福路"
+      "address": "臺中市北屯區和福路",
+      "lat": 24.172575,
+      "lng": 120.72354,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "向上路橋下停車場|臺中市南屯區五權西路三段 1 巷",
@@ -1965,7 +2099,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區五權西路三段 1 巷",
       "district": "南屯區",
-      "address": "臺中市南屯區五權西路三段 1 巷"
+      "address": "臺中市南屯區五權西路三段 1 巷",
+      "lat": 24.134631,
+      "lng": 120.644374,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "文山立體停車場|臺中市南屯區文山六街",
@@ -1974,7 +2113,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區文山六街",
       "district": "南屯區",
-      "address": "臺中市南屯區文山六街"
+      "address": "臺中市南屯區文山六街",
+      "lat": 24.148463,
+      "lng": 120.612765,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "臺中市屯區藝文中心停車場|臺中市太平區大興路 201 號",
@@ -1983,7 +2126,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市太平區大興路 201 號",
       "district": "太平區",
-      "address": "臺中市太平區大興路 201 號"
+      "address": "臺中市太平區大興路 201 號",
+      "lat": 24.156864,
+      "lng": 120.735041,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "港區藝術中心停車場|臺中市清水區忠貞路 21 號",
@@ -1992,7 +2139,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市清水區忠貞路 21 號",
       "district": "清水區",
-      "address": "臺中市清水區忠貞路 21 號"
+      "address": "臺中市清水區忠貞路 21 號",
+      "lat": 24.270468,
+      "lng": 120.558346,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "潭子區公所停車場|臺中市潭子區豐興路一段 512 號",
@@ -2001,7 +2152,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市潭子區豐興路一段 512 號",
       "district": "潭子區",
-      "address": "臺中市潭子區豐興路一段 512 號"
+      "address": "臺中市潭子區豐興路一段 512 號",
+      "lat": 24.203642,
+      "lng": 120.722927,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "豐原區公所停車場|臺中市豐原區市政路 2 號",
@@ -2010,7 +2165,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市豐原區市政路 2 號",
       "district": "豐原區",
-      "address": "臺中市豐原區市政路 2 號"
+      "address": "臺中市豐原區市政路 2 號",
+      "lat": 24.24219,
+      "lng": 120.71846,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "豐原區戶政事務所停車場|臺中市豐原區市政路 4 號",
@@ -2019,7 +2179,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市豐原區市政路 4 號",
       "district": "豐原區",
-      "address": "臺中市豐原區市政路 4 號"
+      "address": "臺中市豐原區市政路 4 號",
+      "lat": 24.24219,
+      "lng": 120.71846,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "寶之林園區共享停車場|臺中市北屯區和順路 439 號",
@@ -2028,7 +2193,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區和順路 439 號",
       "district": "北屯區",
-      "address": "臺中市北屯區和順路 439 號"
+      "address": "臺中市北屯區和順路 439 號",
+      "lat": 24.173622,
+      "lng": 120.722335,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "市立圖書館坪林分館共享停車場|臺中市太平區中山路一段 213 號",
@@ -2037,7 +2206,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市太平區中山路一段 213 號",
       "district": "太平區",
-      "address": "臺中市太平區中山路一段 213 號"
+      "address": "臺中市太平區中山路一段 213 號",
+      "lat": 24.14218,
+      "lng": 120.731354,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "楓和公園停車場|臺中南屯區楓樹南街、永春東三路",
@@ -2046,7 +2219,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中南屯區楓樹南街、永春東三路",
       "district": "中南屯區",
-      "address": "臺中市臺中南屯區楓樹南街"
+      "address": "臺中市臺中南屯區楓樹南街",
+      "lat": 24.116048,
+      "lng": 120.627789,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "臺中市舊社公園地下停車場|臺中市北屯區松竹路二段 1 號",
@@ -2055,7 +2232,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區松竹路二段 1 號",
       "district": "北屯區",
-      "address": "臺中市北屯區松竹路二段 1 號"
+      "address": "臺中市北屯區松竹路二段 1 號",
+      "lat": 24.182264,
+      "lng": 120.686288,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "南屯區公所停車場|臺中市南屯區永春東路 679 號",
@@ -2064,7 +2246,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區永春東路 679 號",
       "district": "南屯區",
-      "address": "臺中市南屯區永春東路 679 號"
+      "address": "臺中市南屯區永春東路 679 號",
+      "lat": 24.134428,
+      "lng": 120.644264,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "北屯區公所停車場|臺中市北屯區崇德路三段 10 號",
@@ -2073,7 +2259,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北屯區崇德路三段 10 號",
       "district": "北屯區",
-      "address": "臺中市北屯區崇德路三段 10 號"
+      "address": "臺中市北屯區崇德路三段 10 號",
+      "lat": 24.20512,
+      "lng": 120.687164,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "龍井區公所停車場|臺中市龍井區沙田路四段 247 號",
@@ -2082,7 +2272,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市龍井區沙田路四段 247 號",
       "district": "龍井區",
-      "address": "臺中市龍井區沙田路四段 247 號"
+      "address": "臺中市龍井區沙田路四段 247 號",
+      "lat": 24.192812,
+      "lng": 120.545697,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "東區區公所停車場|臺中市東區長福路 245 號",
@@ -2091,7 +2285,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區長福路 245 號",
       "district": "東區",
-      "address": "臺中市東區長福路 245 號"
+      "address": "臺中市東區長福路 245 號",
+      "lat": 24.136513,
+      "lng": 120.703798,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "太平區戶政事務所停車場|臺中市太平區大源路 2 之 18 號",
@@ -2100,7 +2298,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市太平區大源路 2 之 18 號",
       "district": "太平區",
-      "address": "臺中市太平區大源路 2 之 18 號"
+      "address": "臺中市太平區大源路 2 之 18 號",
+      "lat": 24.146796,
+      "lng": 120.725526,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "西屯區公所停車場|臺中市西屯區市政北二路 386 號",
@@ -2109,7 +2311,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市西屯區市政北二路 386 號",
       "district": "西屯區",
-      "address": "臺中市西屯區市政北二路 386 號"
+      "address": "臺中市西屯區市政北二路 386 號",
+      "lat": 24.165489,
+      "lng": 120.633721,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "中區區公所停車場|臺中市中區成功路 268 巷 29 號對面",
@@ -2118,7 +2324,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市中區成功路 268 巷 29 號對面",
       "district": "中區",
-      "address": "臺中市中區成功路 268 巷 29 號對"
+      "address": "臺中市中區成功路 268 巷 29 號對",
+      "lat": 24.141634,
+      "lng": 120.681972,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "南區區公所停車場|臺中市南區工學路 72 號",
@@ -2127,7 +2337,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南區工學路 72 號",
       "district": "南區",
-      "address": "臺中市南區工學路 72 號"
+      "address": "臺中市南區工學路 72 號",
+      "lat": 24.117092,
+      "lng": 120.663793,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "神岡廣停一停車場|臺中市神岡區中山路 1448 號對面",
@@ -2136,7 +2350,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市神岡區中山路 1448 號對面",
       "district": "神岡區",
-      "address": "臺中市神岡區中山路 1448 號對"
+      "address": "臺中市神岡區中山路 1448 號對",
+      "lat": 24.257826,
+      "lng": 120.661511,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "大雅區公所停車場|臺中市大雅區雅環路二段 301 號",
@@ -2145,7 +2364,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市大雅區雅環路二段 301 號",
       "district": "大雅區",
-      "address": "臺中市大雅區雅環路二段 301 號"
+      "address": "臺中市大雅區雅環路二段 301 號",
+      "lat": 24.229098,
+      "lng": 120.64777,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "市立圖書館梧棲親子館停車場|臺中市梧棲區民生街 15 之 77 號",
@@ -2154,7 +2377,11 @@
       "access": "高位辨識",
       "location": "臺中市梧棲區民生街 15 之 77 號",
       "district": "梧棲區",
-      "address": "臺中市梧棲區民生街 15 之 77 號"
+      "address": "臺中市梧棲區民生街 15 之 77 號",
+      "lat": 24.251865,
+      "lng": 120.533033,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "霧峰區公所停車場|臺中市霧峰區大同路 20 號",
@@ -2163,7 +2390,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市霧峰區大同路 20 號",
       "district": "霧峰區",
-      "address": "臺中市霧峰區大同路 20 號"
+      "address": "臺中市霧峰區大同路 20 號",
+      "lat": 24.061734,
+      "lng": 120.699442,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "中華停車場|臺中市北區柳川西路三段、公園路中華路一段交叉口處",
@@ -2172,7 +2403,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市北區柳川西路三段、公園路中華路一段交叉口處",
       "district": "北區",
-      "address": "臺中市北區柳川西路三段"
+      "address": "臺中市北區柳川西路三段",
+      "lat": 24.147729,
+      "lng": 120.677405,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "文修停車場|臺中市西屯區漢翔路與烈美街",
@@ -2181,7 +2416,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市西屯區漢翔路與烈美街",
       "district": "西屯區",
-      "address": "臺中市西屯區漢翔路與烈美街"
+      "address": "臺中市西屯區漢翔路與烈美街",
+      "lat": 24.165303,
+      "lng": 120.633655,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "楓樹停車場|臺中市南屯區永春東二路、楓和路交叉路口",
@@ -2190,7 +2430,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市南屯區永春東二路、楓和路交叉路口",
       "district": "南屯區",
-      "address": "臺中市南屯區永春東二路"
+      "address": "臺中市南屯區永春東二路",
+      "lat": 24.119489,
+      "lng": 120.631461,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "世貿中心停車場|臺中市西屯區天保街、中工二路交叉口",
@@ -2199,7 +2443,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市西屯區天保街、中工二路交叉口",
       "district": "西屯區",
-      "address": "臺中市西屯區天保街"
+      "address": "臺中市西屯區天保街",
+      "lat": 24.176005,
+      "lng": 120.616584,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "東峰停車場|臺中市東區臺中路、喬城路、七中路",
@@ -2208,7 +2456,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區臺中路、喬城路、七中路",
       "district": "東區",
-      "address": "臺中市東區臺中路"
+      "address": "臺中市東區臺中路",
+      "lat": 24.124682,
+      "lng": 120.683672,
+      "precision": "OSM_TERTIARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "進化停車場|臺中市東區進化路 173 巷",
@@ -2217,7 +2469,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區進化路 173 巷",
       "district": "東區",
-      "address": "臺中市東區進化路 173 巷"
+      "address": "臺中市東區進化路 173 巷",
+      "lat": 24.145162,
+      "lng": 120.694444,
+      "precision": "OSM_PRIMARY",
+      "geo_source": "nominatim"
     },
     {
       "id": "潭子國民運動中心地下 2 層停車場|臺中市潭子區勝利路 140 號地下二層",
@@ -2226,7 +2482,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市潭子區勝利路 140 號地下二層",
       "district": "潭子區",
-      "address": "臺中市潭子區勝利路 140 號地下二層"
+      "address": "臺中市潭子區勝利路 140 號地下二層",
+      "lat": 24.20953,
+      "lng": 120.70516,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "工學六街停車場|臺中市南區工學六街與大慶街一段交叉口",
@@ -2235,7 +2496,12 @@
       "access": "無柵欄，智慧柱管理",
       "location": "臺中市南區工學六街與大慶街一段交叉口",
       "district": "南區",
-      "address": "臺中市南區工學六街與大慶街一段交叉"
+      "address": "臺中市南區工學六街與大慶街一段交叉",
+      "lat": 24.117079,
+      "lng": 120.663608,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "東峰公園附屬停車場|臺中市東區七中路 56 號對面",
@@ -2244,7 +2510,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市東區七中路 56 號對面",
       "district": "東區",
-      "address": "臺中市東區七中路 56 號對"
+      "address": "臺中市東區七中路 56 號對",
+      "lat": 24.136625,
+      "lng": 120.703854,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "學田停車場|臺中市烏日區學田路 451 號",
@@ -2253,7 +2524,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區學田路 451 號",
       "district": "烏日區",
-      "address": "臺中市烏日區學田路 451 號"
+      "address": "臺中市烏日區學田路 451 號",
+      "lat": 24.120514,
+      "lng": 120.607556,
+      "precision": "OSM_HOUSE",
+      "geo_source": "nominatim"
     },
     {
       "id": "以春停車場|臺中市烏日區烏日里以春街 121 巷 4 號對面",
@@ -2262,7 +2537,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區烏日里以春街 121 巷 4 號對面",
       "district": "烏日區",
-      "address": "臺中市烏日區烏日里以春街 121 巷 4 號對"
+      "address": "臺中市烏日區烏日里以春街 121 巷 4 號對",
+      "lat": 24.105672,
+      "lng": 120.622686,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "三和停車場|臺中市烏日區三和里建行路與三榮九路口",
@@ -2271,7 +2550,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區三和里建行路與三榮九路口",
       "district": "烏日區",
-      "address": "臺中市烏日區三和里建行路與三榮九路"
+      "address": "臺中市烏日區三和里建行路與三榮九路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "榮泉停車場|臺中市烏日區榮泉里榮泉路與建行路口",
@@ -2280,7 +2564,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區榮泉里榮泉路與建行路口",
       "district": "烏日區",
-      "address": "臺中市烏日區榮泉里榮泉路與建行路"
+      "address": "臺中市烏日區榮泉里榮泉路與建行路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "長壽停車場|臺中市烏日區榮泉里建行路與三榮十八路口",
@@ -2289,7 +2578,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區榮泉里建行路與三榮十八路口",
       "district": "烏日區",
-      "address": "臺中市烏日區榮泉里建行路與三榮十八路"
+      "address": "臺中市烏日區榮泉里建行路與三榮十八路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "烏日廣停七|臺中市烏日區學田里高鐵路三段近高鐵東路",
@@ -2298,7 +2592,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區學田里高鐵路三段近高鐵東路",
       "district": "烏日區",
-      "address": "臺中市烏日區學田里高鐵路三段近高鐵東路"
+      "address": "臺中市烏日區學田里高鐵路三段近高鐵東路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "烏日廣停八|臺中市烏日區學田里高鐵東路上近高鐵路三段",
@@ -2307,7 +2606,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區學田里高鐵東路上近高鐵路三段",
       "district": "烏日區",
-      "address": "臺中市烏日區學田里高鐵東路上近高鐵路三段"
+      "address": "臺中市烏日區學田里高鐵東路上近高鐵路三段",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "一忠停車場|臺中市烏日區烏日里一忠街與公園三街交叉處",
@@ -2316,7 +2620,12 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區烏日里一忠街與公園三街交叉處",
       "district": "烏日區",
-      "address": "臺中市烏日區烏日里一忠街與公園三街交叉處"
+      "address": "臺中市烏日區烏日里一忠街與公園三街交叉處",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "新富停車場|臺中市南屯區新富路、新富五街",
@@ -2325,7 +2634,11 @@
       "access": "高位攝影辨識 ( 繳費機過卡 )",
       "location": "臺中市南屯區新富路、新富五街",
       "district": "南屯區",
-      "address": "臺中市南屯區新富路"
+      "address": "臺中市南屯區新富路",
+      "lat": 24.150402,
+      "lng": 120.625455,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "烏日區廣停二停車場 ( 公所 )|臺中市烏日區三榮路一段與三和路口",
@@ -2334,7 +2647,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市烏日區三榮路一段與三和路口",
       "district": "烏日區",
-      "address": "臺中市烏日區三榮路一段與三和路"
+      "address": "臺中市烏日區三榮路一段與三和路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "烏日區廣兼停三停車場 ( 公所 )|臺中市烏日區三榮路、三榮八路",
@@ -2343,7 +2661,12 @@
       "access": "車辨進，需要到繳費機進行過卡",
       "location": "臺中市烏日區三榮路、三榮八路",
       "district": "烏日區",
-      "address": "臺中市烏日區三榮路"
+      "address": "臺中市烏日區三榮路",
+      "lat": 24.104696,
+      "lng": 120.623806,
+      "precision": "DISTRICT",
+      "geo_source": "nominatim",
+      "approx": true
     },
     {
       "id": "烏日區停三停車場 ( 公所 )|臺中市烏日區興祥街、興祥街 42 巷口",
@@ -2352,7 +2675,11 @@
       "access": "車辨進，多卡通出",
       "location": "臺中市烏日區興祥街、興祥街 42 巷口",
       "district": "烏日區",
-      "address": "臺中市烏日區興祥街"
+      "address": "臺中市烏日區興祥街",
+      "lat": 24.106222,
+      "lng": 120.638556,
+      "precision": "OSM_RESIDENTIAL",
+      "geo_source": "nominatim"
     },
     {
       "id": "烏日區停八停車場 ( 公所 )|臺中市烏日區大同六街與民生路口旁空地",
