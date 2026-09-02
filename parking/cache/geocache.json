@@ -3122,5 +3122,16 @@
     "source": "nominatim",
     "v": 2,
     "cached_at": "2026-08-28T08:44:10+08:00"
+  },
+  "立德地下停車場|臺中市東區立德街77號": {
+    "lat": 24.133868,
+    "lng": 120.686832,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "立德街",
+    "formatted": "立德街, 新庄里, 東區, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-03T03:07:05+08:00"
   }
 }
