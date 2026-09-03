@@ -1,8 +1,8 @@
 {
   "source_url": "https://tcparking.taichung.gov.tw/ParkWeb/Pages/PublicService/LoveCardSchedule",
   "source_title": "臺中市停車管理處開通停車場時程表",
-  "page_updated": "2026-09-02",
-  "scraped_at": "2026-09-03T03:07:01+08:00",
+  "page_updated": "2026-09-03",
+  "scraped_at": "2026-09-04T02:59:25+08:00",
   "count": 285,
   "items": [
     {
@@ -2232,7 +2232,7 @@
     {
       "seq": "280",
       "name": "市政公園地下停車場",
-      "access": "車辨進，需要到繳費機進行過卡",
+      "access": "車辨進，多卡通出",
       "location": "臺中市西屯區文心路三段五號",
       "district": "西屯區",
       "address": "臺中市西屯區文心路三段五號"
