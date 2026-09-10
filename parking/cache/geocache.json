@@ -3133,5 +3133,60 @@
     "source": "nominatim",
     "v": 2,
     "cached_at": "2026-09-03T03:07:05+08:00"
+  },
+  "慈濟公園停車場 ( 公所 )|臺中市豐原區豐東路 555 號": {
+    "lat": 24.249224,
+    "lng": 120.730851,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "豐東路",
+    "formatted": "豐東路, 北陽里, 豐原區, 臺中市, 42048, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-11T02:50:29+08:00"
+  },
+  "中正公園停車場 ( 公所 )|臺中市豐原區水源路 1 號": {
+    "lat": 24.175376,
+    "lng": 120.645967,
+    "precision": "OSM_RESTAURANT",
+    "approx": false,
+    "matched": "豪品鐵板燒",
+    "formatted": "豪品鐵板燒, 562-1, 福星路, 逢福里, 西屯區, 水湳經貿園區, 臺中市, 407037, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-11T02:50:30+08:00"
+  },
+  "豐原漆藝館停車場 ( 公所 )|臺中市豐原區水源路 1-1 號": {
+    "lat": 24.254484,
+    "lng": 120.746791,
+    "precision": "OSM_TERTIARY",
+    "approx": false,
+    "matched": "水源路",
+    "formatted": "水源路, 南嵩里, 豐原區, 臺中市, 420084, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-11T02:50:32+08:00"
+  },
+  "立德地下停車場|臺中市東區立德街 77 號": {
+    "lat": 24.133868,
+    "lng": 120.686832,
+    "precision": "OSM_RESIDENTIAL",
+    "approx": false,
+    "matched": "立德街",
+    "formatted": "立德街, 新庄里, 東區, 臺中市, 401, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-11T02:50:34+08:00"
+  },
+  "沙鹿區沙田立體停車場|臺中市沙鹿區興仁里 16 鄰沙田路 116 號": {
+    "lat": 24.233445,
+    "lng": 120.566218,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "沙鹿區",
+    "formatted": "沙鹿區, 鹿寮, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-11T02:50:38+08:00"
   }
 }
