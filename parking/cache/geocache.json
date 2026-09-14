@@ -3188,5 +3188,16 @@
     "source": "nominatim",
     "v": 2,
     "cached_at": "2026-09-11T02:50:38+08:00"
+  },
+  "南屯停車場|臺中市南屯區五權西路二段與惠中路交叉口": {
+    "lat": 24.134631,
+    "lng": 120.644374,
+    "precision": "DISTRICT",
+    "approx": true,
+    "matched": "南屯區",
+    "formatted": "南屯區, 田心, 臺中市, 臺灣",
+    "source": "nominatim",
+    "v": 2,
+    "cached_at": "2026-09-15T04:04:28+08:00"
   }
 }
